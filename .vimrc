@@ -8,7 +8,6 @@ call plug#begin('~/.vim/plugged')
 Plug 'vim-airline/vim-airline'
 Plug 'morhetz/gruvbox'
 Plug 'scrooloose/nerdtree'
-
 Plug 'christoomey/vim-tmux-navigator'
 Plug 'tpope/vim-fugitive'
 
