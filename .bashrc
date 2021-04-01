@@ -91,7 +91,7 @@ if [ -x /usr/bin/dircolors ]; then
 fi
 
 # colored GCC warnings and errors
-#export GCC_COLORS='error=01;31:warning=01;35:note=01;36:caret=01;32:locus=01:quote=01'
+export GCC_COLORS='error=01;31:warning=01;35:note=01;36:caret=01;32:locus=01:quote=01'
 
 # some more ls aliases
 alias ll='ls -l'
@@ -118,8 +118,31 @@ if ! shopt -oq posix; then
   fi
 fi
 
-PS1="\[\033[38;5;11m\]\u\[$(tput sgr0)\]\[\033[38;5;15m\]@\h:\[$(tput sgr0)\]\[\033[38;5;6m\][\w]:\[$(tput sgr0)\]\[\033[38;5;15m\] \[$(tput sgr0)\]"
+# Aliases
+alias ls='ls -h --color=auto'
+alias ll='ls -al'
+alias la='ls -A'
+alias l='ls -CF'
+alias svim='sudo vim'
+alias h='cd'
+alias ..='cd ..'
+alias cd..='cd ..'
+alias ...='cd ../..'
+alias cim='vim'
+alias back='cd $OLDPWD'
+alias root='sudo su'
+alias runlevel='sudo /sbin/init'
+alias dfh='df -h'
+alias gvim='gvim -geom 84x26'
+alias start='dbus-launch startx'
+alias ip='ip -c'
+alias ipa='ip -o address'
 
-alias config='/usr/bin/git --git-dir=$HOME/.dotfiles --work-tree=$HOME'
+alias syu='sudo pacman -Syu'
+alias dockerkill='docker stop $(docker ps -a -q) && docker rm $(docker ps -a -q)'
+alias light='base16_flattened-light'
+alias dark='base16_flattened-dark'
 
-eval $(/mnt/c/Weasel/weasel-pageant -r)
+# Prompt
+PS1="\[\033[38;5;11m\]\u\[$(tput sgr0)\]\[\033[38;5;6m\]@\h:\[$(tput sgr0)\]\[\033[38;5;61m\][\w]:\[$(tput sgr0)\]\[\033[38;5;15m\] \[$(tput sgr0)\]"
+
