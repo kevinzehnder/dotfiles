@@ -4,21 +4,47 @@ if empty(glob('~/.vim/autoload/plug.vim'))
   autocmd VimEnter * PlugInstall --sync | source $MYVIMRC
 endif
 
+" Leeraste als <leader>
+let mapleader="\<Space>"
+let maplocalleader="\\"
+
+"" Plugins
 call plug#begin('~/.vim/plugged')
 Plug 'vim-airline/vim-airline'
-Plug 'morhetz/gruvbox'
-Plug 'scrooloose/nerdtree'
-Plug 'christoomey/vim-tmux-navigator'
+
+" Themes
+Plug 'vim-airline/vim-airline-themes'
+Plug 'chriskempson/base16-vim'
+
+" Git
 Plug 'tpope/vim-fugitive'
 
+" File handling
+Plug 'scrooloose/nerdtree'
+Plug 'ctrlpvim/ctrlp.vim'
 call plug#end()
 
+" tmux
+Plug 'christoomey/vim-tmux-navigator'
+call plug#end()
 
 " Layout Options
-set background=dark
-colorscheme gruvbox
+set termguicolors
+let g:airline_theme='atomic'
+let g:airline_powerline_fonts = 1
+set background=light
+colorscheme flattened_light
+
+" Base16
+if filereadable(expand("~/.vimrc_background"))
+  let base16colorspace=256
+  source ~/.vimrc_background
+endif
+
+" general settings
 
 syntax on
+set nocompatible
 set nowrap
 set linebreak
 set encoding=utf8
@@ -34,9 +60,9 @@ set splitright
 set textwidth=100
 set colorcolumn=+1
 
-
-" NERDTree
-map <C-n> :NERDTreeToggle<CR>
+" AirLine settings
+let g:airline#extensions#tabline#enabled = 1
+let g:airline#extensions#tabline#buffer_nr_show = 1
 
 " Navigate using ALT
 noremap <A-h> <C-w>h
@@ -55,6 +81,13 @@ set scrolloff=8         "Start scrolling when we're 8 lines away from margins
 set sidescrolloff=15
 set sidescroll=1
 
+" Buffer handling
+nmap <Leader>h :bprevious<cr>
+nmap <Leader>l :bnext<cr>
+nmap <leader>bq :bp <BAR> bd #<cr>
+nmap <leader>bl :ls<cr>
+nmap <leader>b :CtrlPBuffer<cr>
+
 "Map Ctrl + S to save in any mode
 noremap <silent> <C-S>          :update<CR>
 vnoremap <silent> <C-S>         <C-C>:update<CR>
@@ -63,4 +96,9 @@ inoremap <silent> <C-S>         <C-O>:update<CR>
 "Custom Leader Shortcuts
 nnoremap <Leader>x :q!<cr>
 
+nnoremap <Leader>w :w<cr>
+nnoremap <Leader>q :q<cr>
+
+"Custom Shortcuts
+imap jk <Esc>
 
