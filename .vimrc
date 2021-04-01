@@ -15,6 +15,7 @@ Plug 'vim-airline/vim-airline'
 " Themes
 Plug 'vim-airline/vim-airline-themes'
 Plug 'chriskempson/base16-vim'
+Plug 'morhetz/gruvbox'
 
 " Git
 Plug 'tpope/vim-fugitive'
@@ -30,19 +31,18 @@ call plug#end()
 
 " Layout Options
 set termguicolors
-let g:airline_theme='atomic'
+let g:airline_theme='gruvbox'
 let g:airline_powerline_fonts = 1
-set background=light
-colorscheme flattened_light
+set background=dark
+colorscheme gruvbox
 
 " Base16
-if filereadable(expand("~/.vimrc_background"))
-  let base16colorspace=256
-  source ~/.vimrc_background
-endif
+" if filereadable(expand("~/.vimrc_background"))
+"   let base16colorspace=256
+"   source ~/.vimrc_background
+" endif
 
 " general settings
-
 syntax on
 set nocompatible
 set nowrap
