@@ -34,7 +34,7 @@ set termguicolors
 let g:airline_theme='gruvbox'
 let g:airline_powerline_fonts = 1
 set background=dark
-colorscheme gruvbox
+silent colorscheme gruvbox
 
 " Base16
 " if filereadable(expand("~/.vimrc_background"))
