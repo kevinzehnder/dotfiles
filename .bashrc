@@ -142,6 +142,13 @@ alias syu='sudo pacman -Syu'
 alias dockerkill='docker stop $(docker ps -a -q) && docker rm $(docker ps -a -q)'
 alias light='base16_flattened-light'
 alias dark='base16_flattened-dark'
+alias gvim='gvim.exe'
 
 # Prompt
 PS1="\[\033[38;5;11m\]\u\[$(tput sgr0)\]\[\033[38;5;6m\]@\h:\[$(tput sgr0)\]\[\033[38;5;61m\][\w]:\[$(tput sgr0)\]\[\033[38;5;15m\] \[$(tput sgr0)\]"
+
+# Dotfile Management
+# alias config='/usr/bin/git --git-dir=$HOME/.dotfiles --work-tree=$HOME'
+
+
+[ -f ~/.fzf.bash ] && source ~/.fzf.bash

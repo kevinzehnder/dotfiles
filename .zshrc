@@ -160,5 +160,6 @@ alias dockerkill='docker stop $(docker ps -a -q) && docker rm $(docker ps -a -q)
 alias light='base16_flattened-light'
 alias dark='base16_flattened-dark'
 alias gruv='base16_gruvbox-dark-medium'
+alias gvim='gvim.exe'
 
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
