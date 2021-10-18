@@ -31,16 +31,16 @@ call plug#end()
 
 " Layout Options
 set termguicolors
-let g:airline_theme='gruvbox'
+let g:airline_theme='base16'
 let g:airline_powerline_fonts = 1
 set background=dark
 colorscheme gruvbox
 
 " Base16
-" if filereadable(expand("~/.vimrc_background"))
-"   let base16colorspace=256
-"   source ~/.vimrc_background
-" endif
+if filereadable(expand("~/.vimrc_background"))
+  let base16colorspace=256
+  source ~/.vimrc_background
+endif
 
 " general settings
 syntax on
