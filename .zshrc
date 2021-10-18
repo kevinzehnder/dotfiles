@@ -98,3 +98,4 @@ eval `dircolors ~/.dircolors`
 
 [[ ! -f ~/.p10k.zsh ]] || source ~/.p10k.zsh
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
+source ~/base16-fzf/bash/base16-$BASE16_THEME.config
