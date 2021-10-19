@@ -22,7 +22,8 @@ Plug 'tpope/vim-fugitive'
 
 " File handling
 Plug 'scrooloose/nerdtree'
-Plug 'ctrlpvim/ctrlp.vim'
+Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }
+Plug 'junegunn/fzf.vim'
 call plug#end()
 
 " tmux
@@ -60,6 +61,18 @@ set colorcolumn=+1
 " AirLine settings
 let g:airline#extensions#tabline#enabled = 1
 let g:airline#extensions#tabline#buffer_nr_show = 1
+
+" NERDTree
+map <C-n> :NERDTreeToggle<CR>
+
+" FZF
+map <C-p> :FZF<CR>
+
+" Remap arrow keys to resize window
+nnoremap <A-Up>    :resize -2<CR>
+nnoremap <A-Down>  :resize +2<CR>
+nnoremap <A-Right>  :vertical resize -2<CR>
+nnoremap <A-Left> :vertical resize +2<CR>
 
 " Scrolling
 set scrolloff=8         "Start scrolling when we're 8 lines away from margins
