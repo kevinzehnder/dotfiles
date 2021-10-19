@@ -67,6 +67,24 @@ map <C-n> :NERDTreeToggle<CR>
 
 " FZF
 map <C-p> :FZF<CR>
+map <Leader>f :Files<CR>
+
+" Customize fzf colors to match your color scheme
+let g:fzf_colors =
+\ { 'fg':      ['fg', 'Normal'],
+  \ 'bg':      ['bg', 'Normal'],
+  \ 'hl':      ['fg', 'Comment'],
+  \ 'fg+':     ['fg', 'CursorLine', 'CursorColumn', 'Normal'],
+  \ 'bg+':     ['bg', 'CursorLine', 'CursorColumn'],
+  \ 'hl+':     ['fg', 'Statement'],
+  \ 'info':    ['fg', 'PreProc'],
+  \ 'border':  ['fg', 'Ignore'],
+  \ 'prompt':  ['fg', 'Conditional'],
+  \ 'pointer': ['fg', 'Exception'],
+  \ 'marker':  ['fg', 'Keyword'],
+  \ 'spinner': ['fg', 'Label'],
+  \ 'header':  ['fg', 'Comment'] }
+
 
 " Remap arrow keys to resize window
 nnoremap <A-Up>    :resize -2<CR>
@@ -78,6 +96,10 @@ nnoremap <A-Left> :vertical resize +2<CR>
 set scrolloff=8         "Start scrolling when we're 8 lines away from margins
 set sidescrolloff=15
 set sidescroll=1
+
+" vim fugitive
+nnoremap <Leader>gs :G<CR>
+nnoremap <Leader>gl :G log<CR>
 
 " Buffer handling
 nmap <Leader>h :bprevious<cr>
