@@ -56,6 +56,21 @@ setopt appendhistory
 setopt INC_APPEND_HISTORY
 setopt SHARE_HISTORY
 
+# fzf
+export FZF_DEFAULT_OPTS="
+--info=inline
+--height=50%
+--multi
+--prompt='∼ ' --pointer='▶' --marker='✓'
+--bind '?:toggle-preview'
+--bind 'ctrl-a:select-all'
+--bind 'ctrl-y:execute-silent(echo {+} | pbcopy)'
+--bind 'ctrl-o:execute(echo {+} | xargs -o vim)'
+--bind 'ctrl-v:execute(code {+})'
+"                                   
+
+export FZF_DEFAULT_COMMAND="rg --files --hidden --follow --glob '!.git'"
+
 # Aliases
 alias ls='ls -h --color=auto'
 alias ll='ls -al'
