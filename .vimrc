@@ -30,7 +30,14 @@ call plug#end()
 
 " tmux
 Plug 'christoomey/vim-tmux-navigator'
+
+" lint and fix and complete
+Plug 'w0rp/ale'
+
 call plug#end()
+
+" YAML fix
+autocmd FileType yaml setlocal ts=2 sts=2 sw=2 expandtab
 
 " Indentation
 set autoindent
@@ -73,6 +80,7 @@ set colorcolumn=+1
 " AirLine settings
 let g:airline#extensions#tabline#enabled = 1
 let g:airline#extensions#tabline#buffer_nr_show = 1
+let g:airline#extensions#whitespace#enabled = 0
 
 " NERDTree
 map <C-n> :NERDTreeToggle<CR>
@@ -81,6 +89,10 @@ map <C-n> :NERDTreeToggle<CR>
 map <C-p> :Files<CR>
 map <Leader>f :Files<CR>
 map <C-f> :BLines <CR>
+
+" ALE
+nmap <silent> <leader>aj :ALENext<cr>
+nmap <silent> <leader>ak :ALEPrevious<cr>
 
 " let g:fzf_preview_window = 'right:50%'
 " let g:fzf_layout = { 'window': { 'width': 0.9, 'height': 0.6  }  }
