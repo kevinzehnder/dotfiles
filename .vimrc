@@ -66,8 +66,11 @@ let g:airline#extensions#tabline#buffer_nr_show = 1
 map <C-n> :NERDTreeToggle<CR>
 
 " FZF
-map <C-p> :FZF<CR>
+map <C-p> :Files<CR>
 map <Leader>f :Files<CR>
+
+" let g:fzf_preview_window = 'right:50%' 
+" let g:fzf_layout = { 'window': { 'width': 0.9, 'height': 0.6  }  }
 
 " Customize fzf colors to match your color scheme
 let g:fzf_colors =
@@ -85,6 +88,7 @@ let g:fzf_colors =
   \ 'spinner': ['fg', 'Label'],
   \ 'header':  ['fg', 'Comment'] }
 
+" macros
 
 " Remap arrow keys to resize window
 nnoremap <A-Up>    :resize -2<CR>
@@ -105,13 +109,13 @@ nnoremap <Leader>gl :G log<CR>
 nmap <Leader>h :bprevious<cr>
 nmap <Leader>l :bnext<cr>
 nmap <leader>bq :bp <BAR> bd #<cr>
-nmap <leader>bl :ls<cr>
-nmap <leader>b :CtrlPBuffer<cr>
+nmap <leader>o :Buffers<cr>
 
 "Custom Leader Shortcuts
 nnoremap <Leader>x :q!<cr>
 nnoremap <Leader>w :w<cr>
 nnoremap <Leader>q :q<cr>
+nnoremap <Leader>g :Rg <cr>
 
 "Custom Shortcuts
 imap jk <Esc>
