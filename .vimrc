@@ -68,6 +68,7 @@ map <C-n> :NERDTreeToggle<CR>
 " FZF
 map <C-p> :Files<CR>
 map <Leader>f :Files<CR>
+map <C-f> :BLines <CR>
 
 " let g:fzf_preview_window = 'right:50%' 
 " let g:fzf_layout = { 'window': { 'width': 0.9, 'height': 0.6  }  }
@@ -115,7 +116,7 @@ nmap <leader>o :Buffers<cr>
 nnoremap <Leader>x :q!<cr>
 nnoremap <Leader>w :w<cr>
 nnoremap <Leader>q :q<cr>
-nnoremap <Leader>g :Rg <cr>
+nnoremap <Leader>g :Rg<cr>
 
 "Custom Shortcuts
 imap jk <Esc>
