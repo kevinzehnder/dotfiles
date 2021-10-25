@@ -110,6 +110,7 @@ nnoremap <Leader>gl :G log<CR>
 nmap <Leader>h :bprevious<cr>
 nmap <Leader>l :bnext<cr>
 nmap <leader>bq :bp <BAR> bd #<cr>
+nmap <leader>bl :ls<cr>
 nmap <leader>o :Buffers<cr>
 
 "Custom Leader Shortcuts
