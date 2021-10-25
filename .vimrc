@@ -16,6 +16,7 @@ Plug 'vim-airline/vim-airline'
 Plug 'vim-airline/vim-airline-themes'
 Plug 'chriskempson/base16-vim'
 Plug 'morhetz/gruvbox'
+Plug 'lifepillar/vim-solarized8'
 
 " Git
 Plug 'tpope/vim-fugitive'
@@ -33,15 +34,16 @@ call plug#end()
 " Layout Options
 set termguicolors
 let g:airline_theme='base16'
+let g:airline_theme='gruvbox'
 let g:airline_powerline_fonts = 1
 set background=dark
 colorscheme gruvbox
 
 " Base16
-if filereadable(expand("~/.vimrc_background"))
-  let base16colorspace=256
-  source ~/.vimrc_background
-endif
+" if filereadable(expand("~/.vimrc_background"))
+"   let base16colorspace=256
+"   source ~/.vimrc_background
+" endif
 
 " general settings
 syntax on
@@ -70,7 +72,7 @@ map <C-p> :Files<CR>
 map <Leader>f :Files<CR>
 map <C-f> :BLines <CR>
 
-" let g:fzf_preview_window = 'right:50%' 
+" let g:fzf_preview_window = 'right:50%'
 " let g:fzf_layout = { 'window': { 'width': 0.9, 'height': 0.6  }  }
 
 " Customize fzf colors to match your color scheme
