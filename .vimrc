@@ -20,6 +20,7 @@ Plug 'lifepillar/vim-solarized8'
 
 " Git
 Plug 'tpope/vim-fugitive'
+Plug 'airblade/vim-gitgutter'
 
 " File handling
 Plug 'scrooloose/nerdtree'
