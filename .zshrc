@@ -47,7 +47,11 @@ zinit light romkatv/powerlevel10k
 zinit light Aloxaf/fzf-tab
 zinit light zsh-users/zsh-autosuggestions
 zinit light zdharma/fast-syntax-highlighting
+zinit ice as"command" from"gh-r" mv"bat* -> bat" pick"bat/bat"
+zinit light sharkdp/bat
 zinit pack"binary" for fzf
+zinit ice as"program" from"gh-r" mv"ripgrep* -> rg" pick"rg/rg"
+zinit light BurntSushi/ripgrep
 
 # zsh settings
 HISTFILE=~/.zsh_history
