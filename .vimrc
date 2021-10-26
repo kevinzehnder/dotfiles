@@ -89,11 +89,6 @@ map <C-n> :NERDTreeToggle<CR>
 map <C-p> :Files<CR>
 map <Leader>f :Files<CR>
 map <C-f> :BLines <CR>
-
-" ALE
-nmap <silent> <leader>aj :ALENext<cr>
-nmap <silent> <leader>ak :ALEPrevious<cr>
-
 " let g:fzf_preview_window = 'right:50%'
 " let g:fzf_layout = { 'window': { 'width': 0.9, 'height': 0.6  }  }
 
@@ -113,7 +108,15 @@ let g:fzf_colors =
   \ 'spinner': ['fg', 'Label'],
   \ 'header':  ['fg', 'Comment'] }
 
-" macros
+let $BAT_THEME="gruvbox-dark"
+let $FZF_DEFAULT_OPTS="--ansi --preview-window 'right:60%' --layout reverse --margin=1,4 --preview 'bat --color=always --style=header,grid --line-range :300 {}'"
+let $FZF_DEFAULT_COMMAND='rg --files --ignore-case --hidden -g "!{.git,node_modules,vendor}/*"'
+command! -bang -nargs=? -complete=dir Files
+  \ call fzf#vim#files(<q-args>, fzf#vim#with_preview(), <bang>0)
+
+" ALE
+nmap <silent> <leader>aj :ALENext<cr>
+nmap <silent> <leader>ak :ALEPrevious<cr>
 
 " Remap arrow keys to resize window
 nnoremap <A-Up>    :resize -2<CR>
