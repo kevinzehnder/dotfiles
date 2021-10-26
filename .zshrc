@@ -113,5 +113,5 @@ eval `dircolors ~/.dircolors`
 
 [[ ! -f ~/.p10k.zsh ]] || source ~/.p10k.zsh
 [ -f ~/.fzf/shell/key-bindings.zsh ] && source ~/.fzf/shell/key-bindings.zsh
-[[ $- == *i* ]] && source "/home/zehnderk/.fzf/shell/completion.zsh" 2> /dev/null
+[[ $- == *i* ]] && source ~/.fzf.shell/completion.zsh 2> /dev/null
 source ~/base16-fzf/bash/base16-$BASE16_THEME.config
