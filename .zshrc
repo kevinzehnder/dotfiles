@@ -47,6 +47,7 @@ zinit light romkatv/powerlevel10k
 zinit light Aloxaf/fzf-tab
 zinit light zsh-users/zsh-autosuggestions
 zinit light zdharma/fast-syntax-highlighting
+zinit pack"binary" for fzf
 
 # zsh settings
 HISTFILE=~/.zsh_history
@@ -63,11 +64,7 @@ export FZF_DEFAULT_OPTS="
 --height=50%
 --multi
 --prompt='∼ ' --pointer='▶' --marker='✓'
---bind '?:toggle-preview'
 --bind 'ctrl-a:select-all'
---bind 'ctrl-y:execute-silent(echo {+} | pbcopy)'
---bind 'ctrl-o:execute(echo {+} | xargs -o vim)'
---bind 'ctrl-v:execute(code {+})'
 "                                   
 
 export FZF_DEFAULT_COMMAND="rg --files --hidden --follow --glob '!.git'"
@@ -115,5 +112,6 @@ if [ /usr/local/bin/kubectl ]; then source <(kubectl completion zsh); fi
 eval `dircolors ~/.dircolors`
 
 [[ ! -f ~/.p10k.zsh ]] || source ~/.p10k.zsh
-[ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
+[ -f ~/.fzf/shell/key-bindings.zsh ] && source ~/.fzf/shell/key-bindings.zsh
+[[ $- == *i* ]] && source "/home/zehnderk/.fzf/shell/completion.zsh" 2> /dev/null
 source ~/base16-fzf/bash/base16-$BASE16_THEME.config
