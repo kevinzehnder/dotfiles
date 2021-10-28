@@ -14,7 +14,7 @@ fi
 
 
 # Base16 Shell
-BASE16_SHELL="$HOME/.config/base16-shell/"
+BASE16_SHELL="$ZINIT[PLUGINS_DIR]/fnune---base16-shell/.config/base16-shell/"
 [ -n "$PS1" ] && \
 	    [ -s "$BASE16_SHELL/profile_helper.sh" ] && \
 	            eval "$("$BASE16_SHELL/profile_helper.sh")"
@@ -52,6 +52,9 @@ zinit light sharkdp/bat
 zinit pack"binary" for fzf
 zinit ice as"program" from"gh-r" mv"ripgrep* -> rg" pick"rg/rg"
 zinit light BurntSushi/ripgrep
+zinit ice from"gh" nocompile
+zinit light fnune/base16-fzf
+zinit light fnune/base16-shell
 
 # zsh settings
 HISTFILE=~/.zsh_history
@@ -118,4 +121,4 @@ eval `dircolors ~/.dircolors`
 [[ ! -f ~/.p10k.zsh ]] || source ~/.p10k.zsh
 [ -f ~/.fzf/shell/key-bindings.zsh ] && source ~/.fzf/shell/key-bindings.zsh
 [[ $- == *i* ]] && source ~/.fzf.shell/completion.zsh 2> /dev/null
-source ~/base16-fzf/bash/base16-$BASE16_THEME.config
+source $ZINIT[PLUGINS_DIR]/fnune---base16-fzf/bash/base16-$BASE16_THEME.config
