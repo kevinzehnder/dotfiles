@@ -55,6 +55,13 @@ zinit light BurntSushi/ripgrep
 zinit ice from"gh" nocompile
 zinit light fnune/base16-fzf
 zinit light fnune/base16-shell
+zinit light-mode lucid wait has"kubectl" for \
+  id-as"kubectl_completion" \
+  as"completion" \
+  atclone"kubectl completion zsh > _kubectl" \
+  atpull"%atclone" \
+  run-atpull \
+    zdharma/null
 
 # The most important feature of zsh
 # It's so slow that we want to do it once a day
@@ -127,7 +134,6 @@ alias config='/usr/bin/git --git-dir=$HOME/.cfg/ --work-tree=$HOME'
 
 # kubernetes
 alias k='kubectl'
-if [ /usr/local/bin/kubectl ]; then source <(kubectl completion zsh); fi
 
 # set colors for LS_COLORS
 # eval `dircolors ~/.dircolors`
