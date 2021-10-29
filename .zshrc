@@ -62,6 +62,11 @@ zinit light-mode lucid wait has"kubectl" for \
   atpull"%atclone" \
   run-atpull \
     zdharma/null
+zinit ice as"completion"
+zinit snippet https://github.com/docker/cli/blob/master/contrib/completion/zsh/_docker
+zinit ice as"completion"
+zinit snippet https://github.com/docker/compose/tree/master/contrib/completion/zsh/_docker-compose
+
 
 # The most important feature of zsh
 # It's so slow that we want to do it once a day
