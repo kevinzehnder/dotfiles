@@ -67,11 +67,6 @@ zinit snippet https://github.com/docker/cli/blob/master/contrib/completion/zsh/_
 zinit ice as"completion"
 zinit snippet https://github.com/docker/compose/tree/master/contrib/completion/zsh/_docker-compose
 
-zinit ice atclone"dircolors -b LS_COLORS > clrs.zsh" \
-    atpull'%atclone' pick"clrs.zsh" nocompile'!' \
-    atload'zstyle ":completion:*" list-colors “${(s.:.)LS_COLORS}”'
-zinit light trapd00r/LS_COLORS
-
 # The most important feature of zsh
 # It's so slow that we want to do it once a day
 autoload -Uz compinit
