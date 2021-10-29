@@ -150,6 +150,7 @@ alias gvim='gvim.exe'
 alias config='/usr/bin/git --git-dir=$HOME/.cfg/ --work-tree=$HOME'
 
 alias k='kubectl'
+if [ /usr/local/bin/kubectl ]; then source <(kubectl completion zsh); fi
 
 [[ ! -f ~/.p10k.zsh ]] || source ~/.p10k.zsh
 [ -f ~/.fzf/shell/key-bindings.zsh ] && source ~/.fzf/shell/key-bindings.zsh
