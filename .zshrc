@@ -128,4 +128,5 @@ if [ /usr/local/bin/kubectl ]; then source <(kubectl completion zsh); fi
 # eval `dircolors ~/.dircolors`
 
 [[ ! -f ~/.p10k.zsh ]] || source ~/.p10k.zsh
+[ -f ~/.fzf/shell/key-bindings.zsh ] && source ~/.fzf/shell/key-bindings.zsh
 source $ZINIT[PLUGINS_DIR]/fnune---base16-fzf/bash/base16-$BASE16_THEME.config
