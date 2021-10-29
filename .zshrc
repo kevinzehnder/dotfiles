@@ -12,6 +12,15 @@ else
    export EDITOR='vim'
 fi
 
+# The most important feature of zsh
+# It's so slow that we want to do it once a day
+autoload -Uz compinit
+for dump in ~/.zcompdump(N.mh+24); do
+  compinit
+done
+compinit -C
+
+autoload -Uz zmv
 
 # Base16 Shell
 BASE16_SHELL="$ZINIT[PLUGINS_DIR]/fnune---base16-shell/.config/base16-shell/"
@@ -116,9 +125,7 @@ alias k='kubectl'
 if [ /usr/local/bin/kubectl ]; then source <(kubectl completion zsh); fi
 
 # set colors for LS_COLORS
-eval `dircolors ~/.dircolors`
+# eval `dircolors ~/.dircolors`
 
 [[ ! -f ~/.p10k.zsh ]] || source ~/.p10k.zsh
-[ -f ~/.fzf/shell/key-bindings.zsh ] && source ~/.fzf/shell/key-bindings.zsh
-[[ $- == *i* ]] && source ~/.fzf.shell/completion.zsh 2> /dev/null
 source $ZINIT[PLUGINS_DIR]/fnune---base16-fzf/bash/base16-$BASE16_THEME.config
