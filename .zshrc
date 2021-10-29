@@ -75,11 +75,8 @@ setopt INC_APPEND_HISTORY
 setopt SHARE_HISTORY
 
 # key bindings 
-key[Control-Left]="${terminfo[kLFT5]}"
-key[Control-Right]="${terminfo[kRIT5]}"
-
-[[ -n "${key[Control-Left]}"  ]] && bindkey -- "${key[Control-Left]}"  backward-word
-[[ -n "${key[Control-Right]}" ]] && bindkey -- "${key[Control-Right]}" forward-word
+bindkey "^[[1;5C" forward-word
+bindkey "^[[1;5D" backward-word
 
 # fzf
 export FZF_DEFAULT_OPTS="
