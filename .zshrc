@@ -12,15 +12,6 @@ else
    export EDITOR='vim'
 fi
 
-# The most important feature of zsh
-# It's so slow that we want to do it once a day
-autoload -Uz compinit
-for dump in ~/.zcompdump(N.mh+24); do
-  compinit
-done
-compinit -C
-
-autoload -Uz zmv
 
 # Base16 Shell
 BASE16_SHELL="$ZINIT[PLUGINS_DIR]/fnune---base16-shell/.config/base16-shell/"
@@ -64,6 +55,16 @@ zinit light BurntSushi/ripgrep
 zinit ice from"gh" nocompile
 zinit light fnune/base16-fzf
 zinit light fnune/base16-shell
+
+# The most important feature of zsh
+# It's so slow that we want to do it once a day
+autoload -Uz compinit
+for dump in ~/.zcompdump(N.mh+24); do
+  compinit
+done
+compinit -C
+
+autoload -Uz zmv
 
 # zsh settings
 HISTFILE=~/.zsh_history
