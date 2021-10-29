@@ -47,14 +47,25 @@ zinit light romkatv/powerlevel10k
 zinit light Aloxaf/fzf-tab
 zinit light zsh-users/zsh-autosuggestions
 zinit light zdharma/fast-syntax-highlighting
+
+# bat
 zinit ice as"command" from"gh-r" mv"bat* -> bat" pick"bat/bat"
 zinit light sharkdp/bat
-zinit pack"binary" for fzf
+
+# junegunn/fzf-bin
+zinit ice from"gh-r" as"program"
+zinit light junegunn/fzf-bin
+
+# ripgrep
 zinit ice as"program" from"gh-r" mv"ripgrep* -> rg" pick"rg/rg"
 zinit light BurntSushi/ripgrep
+
+# base16-shell and colors
 zinit ice from"gh" nocompile
 zinit light fnune/base16-fzf
 zinit light fnune/base16-shell
+
+# kubectl completions
 zinit light-mode lucid wait has"kubectl" for \
   id-as"kubectl_completion" \
   as"completion" \
@@ -62,6 +73,8 @@ zinit light-mode lucid wait has"kubectl" for \
   atpull"%atclone" \
   run-atpull \
     zdharma/null
+
+# docker and docker-compose completion
 zinit ice as"completion"
 zinit snippet https://github.com/docker/cli/blob/master/contrib/completion/zsh/_docker
 zinit ice as"completion"
