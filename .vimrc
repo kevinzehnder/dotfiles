@@ -17,6 +17,7 @@ Plug 'vim-airline/vim-airline-themes'
 Plug 'chriskempson/base16-vim'
 Plug 'morhetz/gruvbox'
 Plug 'lifepillar/vim-solarized8'
+Plug 'yggdroot/indentline'
 
 " Git
 Plug 'tpope/vim-fugitive'
@@ -42,6 +43,7 @@ autocmd FileType yaml setlocal ts=2 sts=2 sw=2 expandtab
 " Indentation
 set autoindent
 set smartindent
+let g:indentLine_char = '⦙'
 set smarttab
 set shiftwidth=2
 set softtabstop=2
