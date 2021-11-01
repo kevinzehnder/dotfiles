@@ -74,7 +74,8 @@ set numberwidth=2
 set cursorline
 set hlsearch
 set splitright
-set textwidth=100
+set textwidth=120
+highlight Comment cterm=italic
 set colorcolumn=+1
 
 " AirLine settings
