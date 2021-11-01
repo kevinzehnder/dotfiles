@@ -145,6 +145,12 @@ nmap <C-e> :ALENext<cr>
 let g:ale_echo_msg_format = '[%linter%] %s [%severity%]'
 let g:ale_sign_error = '✘'
 let g:ale_sign_warning = '⚠'
+highlight ALEErrorSign ctermbg=NONE ctermfg=red
+highlight ALEWarningSign ctermbg=NONE ctermfg=yellow
+let g:ale_fixers = {
+\  'yaml': ['yamlfix'],
+\}
+nmap <F8> <Plug>(ale_fix)
 
 " Remap arrow keys to resize window
 nnoremap <A-Up>    :resize -2<CR>
