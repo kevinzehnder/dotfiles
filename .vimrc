@@ -179,5 +179,13 @@ nnoremap <Leader>x :q!<cr>
 nnoremap <Leader>w :w<cr>
 nnoremap <Leader>q :q<cr>
 
+" Copy & Paste to system clipboard with Leader P and Leader Y
+vmap <Leader>y "*y
+vmap <Leader>d "*d
+nmap <Leader>p "*p
+nmap <Leader>P "*P
+vmap <Leader>p "*p
+vmap <Leader>P "*P
+
 "Custom Shortcuts
 imap jk <Esc>

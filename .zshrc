@@ -1,4 +1,3 @@
-# Enable Powerlevel10k instant prompt. Should stay close to the top of ~/.zshrc.
 # Initialization code that may require console input (password prompts, [y/n]
 # confirmations, etc.) must go above this block; everything else may go below.
 if [[ -r "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh" ]]; then
@@ -32,15 +31,6 @@ source "$HOME/.zinit/bin/zinit.zsh"
 autoload -Uz _zinit
 (( ${+_comps} )) && _comps[zinit]=_zinit
 
-# Load a few important annexes, without Turbo
-# (this is currently required for annexes)
-zinit light-mode for \
-    zinit-zsh/z-a-rust \
-    zinit-zsh/z-a-as-monitor \
-    zinit-zsh/z-a-patch-dl \
-    zinit-zsh/z-a-bin-gem-node
-
-### End of Zinit's installer chunk
 
 # zinit
 zinit light romkatv/powerlevel10k
@@ -65,15 +55,6 @@ zinit ice from"gh" nocompile
 zinit light fnune/base16-fzf
 zinit light fnune/base16-shell
 
-# kubectl completions
-zinit light-mode lucid wait has"kubectl" for \
-  id-as"kubectl_completion" \
-  as"completion" \
-  atclone"kubectl completion zsh > _kubectl" \
-  atpull"%atclone" \
-  run-atpull \
-    zdharma/null
-
 # docker and docker-compose completion
 zinit ice as"completion"
 zinit snippet https://github.com/docker/cli/blob/master/contrib/completion/zsh/_docker
@@ -95,8 +76,27 @@ HISTFILE=~/.zsh_history
 HISTSIZE=500000
 SAVEHIST=500000
 setopt appendhistory
-setopt INC_APPEND_HISTORY
 setopt SHARE_HISTORY
+set termguicolors
+setopt auto_cd
+
+# Backgrounding and Unbackgrounding {{{
+
+# Use Ctrl-z swap in and out of vim (or any other process)
+# https://sheerun.net/2014/03/21/how-to-boost-your-vim-productivity/
+function ctrl-z-toggle () {
+  if [[ $#BUFFER -eq 0 ]]; then
+	BUFFER="setopt monitor && fg"
+	zle accept-line
+  else
+	zle push-input
+	zle clear-screen
+  fi
+}
+zle -N ctrl-z-toggle
+bindkey '^Z' ctrl-z-toggle
+
+# END Backgrounding and Unbackgrounding }}}
 
 # key bindings 
 bindkey "^[[1;5C" forward-word
