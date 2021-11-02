@@ -61,14 +61,8 @@ zinit snippet https://github.com/docker/cli/blob/master/contrib/completion/zsh/_
 zinit ice as"completion"
 zinit snippet https://github.com/docker/compose/tree/master/contrib/completion/zsh/_docker-compose
 
-# The most important feature of zsh
-# It's so slow that we want to do it once a day
-autoload -Uz compinit
-for dump in ~/.zcompdump(N.mh+24); do
-  compinit
-done
-compinit -C
-
+# enable compinit
+autoload -U compinit && compinit
 autoload -Uz zmv
 
 # zsh settings
