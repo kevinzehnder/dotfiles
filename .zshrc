@@ -43,8 +43,8 @@ zinit ice as"command" from"gh-r" mv"bat* -> bat" pick"bat/bat"
 zinit light sharkdp/bat
 
 # junegunn/fzf-bin
-zinit ice from"gh-r" as"program"
-zinit light junegunn/fzf-bin
+zinit ice from"gh-r" as"program" bpick"*linux_amd64*"
+zinit light junegunn/fzf
 
 # ripgrep
 zinit ice as"program" from"gh-r" mv"ripgrep* -> rg" pick"rg/rg"
