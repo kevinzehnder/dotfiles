@@ -56,7 +56,7 @@ let g:airline_theme='base16'
 let g:airline_theme='gruvbox'
 let g:airline_powerline_fonts = 1
 set background=dark
-colorscheme gruvbox
+colorscheme solarized8
 
 " Base16
 " if filereadable(expand("~/.vimrc_background"))
@@ -166,6 +166,9 @@ set sidescroll=1
 " vim fugitive
 nnoremap <Leader>gs :G<CR>
 nnoremap <Leader>gl :G log<CR>
+
+" gitgutter
+let g:gitgutter_map_keys=0
 
 " Buffer handling
 nmap <Leader>h :bprevious<cr>
