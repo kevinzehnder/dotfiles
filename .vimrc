@@ -53,10 +53,20 @@ set expandtab"
 " Layout Options
 set termguicolors
 let g:airline_theme='base16'
-let g:airline_theme='gruvbox'
 let g:airline_powerline_fonts = 1
 set background=dark
 colorscheme solarized8
+
+" split visibility
+autocmd ColorScheme * highlight dimmed guibg=#14171d 
+autocmd WinEnter,BufWinEnter * set wincolor=
+autocmd WinLeave * set wincolor=dimmed
+
+augroup BgHighlight
+    autocmd!
+    autocmd WinEnter * set cul
+    autocmd WinLeave * set nocul
+augroup END
 
 " Base16
 " if filereadable(expand("~/.vimrc_background"))
