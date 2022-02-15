@@ -53,5 +53,12 @@ nmap <Leader>x :q!<cr>
 nmap <Leader>w :w<cr>
 nmap <Leader>q :q<cr>
 
+
+"VSCode Shortcuts
+xmap gc  <Plug>VSCodeCommentary
+nmap gc  <Plug>VSCodeCommentary
+omap gc  <Plug>VSCodeCommentary
+nmap gcc <Plug>VSCodeCommentaryLine
+
 "Custom Shortcuts
 imap jk <Esc>
