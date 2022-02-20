@@ -38,6 +38,10 @@ zinit light Aloxaf/fzf-tab
 zinit light zsh-users/zsh-autosuggestions
 zinit light zdharma-continuum/fast-syntax-highlighting
 
+# neovim
+zinit ice as"program" from"gh-r" ver"nightly" bpick"nvim.appimage" mv"nvim* -> nvim" pick"nvim"
+zinit light neovim/neovim
+
 # bat
 zinit ice as"command" from"gh-r" mv"bat* -> bat" pick"bat/bat"
 zinit light sharkdp/bat
