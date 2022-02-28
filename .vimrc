@@ -55,18 +55,31 @@ set termguicolors
 let g:airline_theme='base16'
 let g:airline_powerline_fonts = 1
 set background=dark
-colorscheme solarized8
+colorscheme gruvbox
 
 " split visibility
-autocmd ColorScheme * highlight dimmed guibg=#14171d 
-autocmd WinEnter,BufWinEnter * set wincolor=
-autocmd WinLeave * set wincolor=dimmed
+function! DimView() abort
+  set wincolor=dimmed
+  set nocursorline
+  " set nonumber
+  " set norelativenumber
+endfunction
+
+function! RestoreView() abort
+  set wincolor=
+  set cursorline
+  " set number
+  " set relativenumber
+  " vertical resize 120
+endfunction
 
 augroup BgHighlight
     autocmd!
-    autocmd WinEnter * set cul
-    autocmd WinLeave * set nocul
+    autocmd ColorScheme gruvbox,solarized8 highlight dimmed guibg=#222222
+    autocmd WinEnter,BufWinEnter * call RestoreView()
+    autocmd WinLeave * call DimView()
 augroup END
+
 
 " Base16
 " if filereadable(expand("~/.vimrc_background"))
