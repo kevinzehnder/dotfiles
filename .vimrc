@@ -129,6 +129,18 @@ set colorcolumn=+1
 set smartcase
 set incsearch
 
+" undo
+if !isdirectory($HOME."/.vim")
+    call mkdir($HOME."/.vim", "", 0770)
+endif
+if !isdirectory($HOME."/.vim/undo")
+    call mkdir($HOME."/.vim/undo", "", 0700)
+endif
+if has('persistent_undo')         "check if your vim version supports
+  set undodir=$HOME/.vim/undo     "directory where the undo files will be stored
+  set undofile                    "turn on the feature
+endif
+
 " AirLine settings
 let g:airline#extensions#tabline#enabled = 1
 let g:airline#extensions#tabline#buffer_nr_show = 0
