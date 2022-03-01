@@ -59,9 +59,17 @@ let g:airline_powerline_fonts = 1
 if filereadable(expand("~/.lightmode"))
   set background=light
   colorscheme solarized8
+  let $BAT_THEME="Monokai Extended Light"
 else
   set background=dark
   colorscheme solarized8
+  let $BAT_THEME="Solarized (Dark)"
+endif
+
+if $BASE16_THEME == "gruvbox-dark-medium"
+  colorscheme gruvbox
+  let g:airline_theme='gruvbox'
+  let $BAT_THEME="gruvbox-dark"
 endif
 
 " split visibility
@@ -90,7 +98,7 @@ endfunction
 
 augroup BgHighlight
     autocmd!
-    autocmd ColorScheme gruvbox highlight dimmed guibg=#222222
+    autocmd ColorScheme gruvbox highlight dimmed guibg=#181818
     autocmd ColorScheme solarized8 call AdaptSolarized()
     autocmd WinEnter,BufWinEnter * call RestoreView()
     autocmd WinLeave * call DimView()
@@ -152,7 +160,6 @@ let g:fzf_colors =
   \ 'spinner': ['fg', 'Label'],
   \ 'header':  ['fg', 'Comment'] }
 
-let $BAT_THEME="Solarized (Dark)"
 let $FZF_DEFAULT_OPTS="--ansi --preview-window 'right:60%' --layout=reverse --margin=1,4 --preview 'bat --color=always --style=header,grid --line-range :300 {}'"
 let $FZF_DEFAULT_COMMAND='rg --files --ignore-case --hidden -g "!{.git,node_modules,vendor}/*"'
 

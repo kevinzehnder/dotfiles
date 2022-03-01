@@ -141,11 +141,22 @@ bindkey '^ ' forward-word
 alias syu='sudo pacman -Syu'
 alias dockerkill='docker stop $(docker ps -a -q) && docker rm $(docker ps -a -q)'
 
-alias light='base16_solarized-light && touch ~/.lightmode'
-alias dark='base16_solarized-dark && rm ~/.lightmode'
-alias gruv='base16_gruvbox-dark-medium'
+alias light='base16_solarized-light && colorschemeswitcher 0'
+alias dark='base16_solarized-dark && colorschemeswitcher 1'
+alias gruv='base16_gruvbox-dark-medium && colorschemeswitcher 1'
 alias gvim='gvim.exe'
 alias config='/usr/bin/git --git-dir=$HOME/.cfg/ --work-tree=$HOME'
+
+colorschemeswitcher(){
+  if [ $1 -eq 0 ]; then
+    touch ~/.lightmode;
+    source $ZINIT[PLUGINS_DIR]/fnune---base16-fzf/bash/base16-$BASE16_THEME.config;
+  else
+    rm -f ~/.lightmode;
+    source $ZINIT[PLUGINS_DIR]/fnune---base16-fzf/bash/base16-$BASE16_THEME.config;
+  fi
+}
+
 
 alias k='kubectl'
 if [ $commands[kubectl] ]; then source <(kubectl completion zsh); fi
