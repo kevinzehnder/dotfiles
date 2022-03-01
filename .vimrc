@@ -52,10 +52,17 @@ set expandtab"
 
 " Layout Options
 set termguicolors
-let g:airline_theme='base16'
+let g:airline_theme='atomic'
 let g:airline_powerline_fonts = 1
-set background=dark
-colorscheme gruvbox
+
+" colorscheme
+if filereadable(expand("~/.lightmode"))
+  set background=light
+  colorscheme solarized8
+else
+  set background=dark
+  colorscheme solarized8
+endif
 
 " split visibility
 function! DimView() abort
@@ -73,9 +80,18 @@ function! RestoreView() abort
   " vertical resize 120
 endfunction
 
+function! AdaptSolarized() abort
+  if &background ==# 'light'
+    highlight dimmed guibg=#eee8d5
+  else 
+    highlight dimmed guibg=#073642
+  endif
+endfunction
+
 augroup BgHighlight
     autocmd!
-    autocmd ColorScheme gruvbox,solarized8 highlight dimmed guibg=#222222
+    autocmd ColorScheme gruvbox highlight dimmed guibg=#222222
+    autocmd ColorScheme solarized8 call AdaptSolarized()
     autocmd WinEnter,BufWinEnter * call RestoreView()
     autocmd WinLeave * call DimView()
 augroup END
@@ -105,11 +121,12 @@ set colorcolumn=+1
 
 " AirLine settings
 let g:airline#extensions#tabline#enabled = 1
-let g:airline#extensions#tabline#buffer_nr_show = 1
+let g:airline#extensions#tabline#buffer_nr_show = 0
 let g:airline#extensions#whitespace#enabled = 0
 
 " NERDTree
 map <C-n> :NERDTreeToggle<CR>
+
 
 " FZF
 map <C-p> :Files<CR>
@@ -135,7 +152,7 @@ let g:fzf_colors =
   \ 'spinner': ['fg', 'Label'],
   \ 'header':  ['fg', 'Comment'] }
 
-let $BAT_THEME="gruvbox-dark"
+let $BAT_THEME="Solarized (Dark)"
 let $FZF_DEFAULT_OPTS="--ansi --preview-window 'right:60%' --layout=reverse --margin=1,4 --preview 'bat --color=always --style=header,grid --line-range :300 {}'"
 let $FZF_DEFAULT_COMMAND='rg --files --ignore-case --hidden -g "!{.git,node_modules,vendor}/*"'
 

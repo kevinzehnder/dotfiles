@@ -141,8 +141,8 @@ bindkey '^ ' forward-word
 alias syu='sudo pacman -Syu'
 alias dockerkill='docker stop $(docker ps -a -q) && docker rm $(docker ps -a -q)'
 
-alias light='base16_flattened-light'
-alias dark='base16_flattened-dark'
+alias light='base16_solarized-light && touch ~/.lightmode'
+alias dark='base16_solarized-dark && rm ~/.lightmode'
 alias gruv='base16_gruvbox-dark-medium'
 alias gvim='gvim.exe'
 alias config='/usr/bin/git --git-dir=$HOME/.cfg/ --work-tree=$HOME'
