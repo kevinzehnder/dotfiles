@@ -48,7 +48,7 @@ set smarttab
 set shiftwidth=2
 set softtabstop=2
 set tabstop=2
-set expandtab"
+set expandtab
 
 " Layout Options
 set termguicolors
@@ -126,6 +126,8 @@ set splitright
 set textwidth=120
 highlight Comment cterm=italic
 set colorcolumn=+1
+set smartcase
+set incsearch
 
 " AirLine settings
 let g:airline#extensions#tabline#enabled = 1
