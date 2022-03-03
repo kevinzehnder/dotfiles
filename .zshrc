@@ -42,6 +42,14 @@ zinit light zdharma-continuum/fast-syntax-highlighting
 zinit ice as"program" from"gh-r" ver"nightly" bpick"nvim.appimage" mv"nvim* -> nvim" pick"nvim"
 zinit light neovim/neovim
 
+# vim
+zinit ice as"program" from"gh-r" ver"latest" bpick"GVim-*.AppImage" mv"GVim* -> vim"
+zinit light vim/vim-appimage
+
+# ogham/exa, replacement for ls
+zinit ice wait"2" lucid from"gh-r" as"program" mv"exa* -> exa"
+zinit light ogham/exa
+
 # bat
 zinit ice as"command" from"gh-r" mv"bat* -> bat" pick"bat/bat"
 zinit light sharkdp/bat
