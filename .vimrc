@@ -128,6 +128,7 @@ highlight Comment cterm=italic
 set colorcolumn=+1
 set smartcase
 set incsearch
+set backspace=indent,eol,start
 
 " undo
 if !isdirectory($HOME."/.vim")
