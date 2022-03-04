@@ -36,7 +36,7 @@ set splitright
 set textwidth=120
 highlight Comment cterm=italic
 set colorcolumn=+1
-set clipboard=unnamed
+set clipboard=unnamedplus
 
 " Remap arrow keys to resize window
 nnoremap <A-Up>    :resize -2<CR>
