@@ -55,6 +55,29 @@ set termguicolors
 let g:airline_theme='atomic'
 let g:airline_powerline_fonts = 1
 
+" split visibility
+function! AdaptColors() abort
+    if g:colors_name ==# 'solarized8'
+      if &background ==# 'light'
+        highlight InactiveWindow guibg=#eee8d5
+      else
+        highlight InactiveWindow guibg=#073642
+      endif
+    else
+      highlight InactiveWindow guibg=#181818
+    endif
+endfunction
+
+function! Handle_Win_Enter() abort
+  setlocal winhighlight=Normal:Normal,NormalNC:InactiveWindow
+endfunction
+
+augroup BgHighlight
+  autocmd!
+  autocmd ColorScheme * call AdaptColors()
+  autocmd WinEnter,BufWinEnter * call Handle_Win_Enter()
+augroup END
+
 " colorscheme
 if filereadable(expand("~/.lightmode"))
   set background=light
@@ -71,45 +94,6 @@ if $BASE16_THEME == "gruvbox-dark-medium"
   let g:airline_theme='gruvbox'
   let $BAT_THEME="gruvbox-dark"
 endif
-
-" split visibility
-" function! DimView() abort
-"   set wincolor=dimmed
-"   set nocursorline
-  " set nonumber
-  " set norelativenumber
-" endfunction
-
-" function! RestoreView() abort
-"   set wincolor=
-"   set cursorline
-  " set number
-  " set relativenumber
-  " vertical resize 120
-" endfunction
-
-" function! AdaptSolarized() abort
-"   if &background ==# 'light'
-"     highlight dimmed guibg=#eee8d5
-"   else 
-"     highlight dimmed guibg=#073642
-"   endif
-" endfunction
-" 
-" augroup BgHighlight
-"     autocmd!
-"     autocmd ColorScheme gruvbox highlight dimmed guibg=#181818
-"     autocmd ColorScheme solarized8 call AdaptSolarized()
-"     autocmd WinEnter,BufWinEnter * call RestoreView()
-"     autocmd WinLeave * call DimView()
-" augroup END
-
-
-" Base16
-" if filereadable(expand("~/.vimrc_background"))
-"   let base16colorspace=256
-"   source ~/.vimrc_background
-" endif
 
 " general settings
 syntax on
