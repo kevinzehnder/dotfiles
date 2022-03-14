@@ -154,6 +154,13 @@ alias dark='base16_solarized-dark && colorschemeswitcher 1'
 alias gruv='base16_gruvbox-dark-medium && colorschemeswitcher 1'
 alias gvim='gvim.exe'
 alias config='/usr/bin/git --git-dir=$HOME/.cfg/ --work-tree=$HOME'
+alias vim='nvim'
+
+# additional configs
+for conf in "$HOME/.config/zsh/config.d/"*.zsh ; do
+  source "${conf}"
+done
+unset conf
 
 colorschemeswitcher(){
   if [ $1 -eq 0 ]; then
