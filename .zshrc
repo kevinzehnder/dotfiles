@@ -157,10 +157,13 @@ alias config='/usr/bin/git --git-dir=$HOME/.cfg/ --work-tree=$HOME'
 alias vim='nvim'
 
 # additional configs
-for conf in "$HOME/.config/zsh/config.d/"*.zsh ; do
-  source "${conf}"
-done
-unset conf
+if [ -d "$HOME/.config/zsh/config.d/" ] ; then
+  for conf in "$HOME/.config/zsh/config.d/"*.zsh ; do
+      source "${conf}" 
+  done
+  unset conf
+fi
+
 
 colorschemeswitcher(){
   if [ $1 -eq 0 ]; then
