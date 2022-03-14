@@ -140,6 +140,7 @@ map <C-n> :NERDTreeToggle<CR>
 map <C-p> :Files<CR>
 map <Leader>f :Files<CR>
 map <C-f> :BLines <CR>
+map <C-b> :Buffers <CR>
 " let g:fzf_preview_window = 'right:50%'
 " let g:fzf_layout = { 'window': { 'width': 0.9, 'height': 0.6  }  }
 nnoremap <C-g> :RG<cr>
