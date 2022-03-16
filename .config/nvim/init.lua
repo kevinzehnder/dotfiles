@@ -62,10 +62,23 @@ Plug('nvim-treesitter/nvim-treesitter', {['do'] = ":TSUpdate"})
 -- lsp
 Plug 'neovim/nvim-lspconfig'
 Plug 'williamboman/nvim-lsp-installer'
-Plug('ms-jpq/coq_nvim', {['branch'] = 'coq'})
-Plug('ms-jpq/coq.artifacts', {['branch'] = 'artifacts'})
+-- Plug 'w0rp/ale'
+
 
 vim.call('plug#end')
+
+require'lspconfig'.yamlls.setup {
+  settings = {
+    yaml = {
+      schemaStore = {
+        url = "https://www.schemastore.org/api/json/catalog.json",
+        enable = true,
+      }
+    }
+  },
+  on_attach = custom_lsp_attach
+}
+
 
 require'nvim-treesitter.configs'.setup {
   ensure_installed = "maintained", --only uses parsers that are maintained
@@ -88,11 +101,6 @@ lsp_installer.on_server_ready(function(server)
 end)
 
 
-vim.g.coq_settings = {
-  auto_start = 'shut-up',
-  ["keymap.jump_to_mark"] = 'null',
-}
-
 -- Layout Options
 vim.o.termguicolors = true
 vim.g["airline_theme"] = "atomic"
@@ -100,7 +108,7 @@ vim.g["airline_powerline_fonts"] = 1
 
 
 -- YAML fix
--- autocmd FileType yaml setlocal ts=2 sts=2 sw=2 expandtab
+vim.cmd([[autocmd FileType yaml setlocal ts=2 sts=2 sw=2 expandtab]])
 
 -- Indentation
 vim.opt.autoindent=true
@@ -168,13 +176,12 @@ vim.opt.hlsearch = true
 vim.opt.splitright = true
 vim.opt.splitbelow = true
 vim.opt.textwidth = 120
--- vim.opt.ttimeoutlen=0
-
 vim.cmd([[ highlight Comment cterm=italic ]])
 vim.opt.colorcolumn = "+1"
+vim.opt.ignorecase = true
 vim.opt.smartcase = true
 vim.opt.incsearch = true
-vim.opt.backspace = indent,eol,start
+vim.opt.backspace = "indent,eol,start"
 vim.opt.clipboard = unnamedplus
 
 -- undo
@@ -248,6 +255,21 @@ endfunction
 
 command! -nargs=* -bang RG call RipgrepFzf(<q-args>, <bang>0)
 ]])
+
+
+--[[
+-- ALE
+nmap("<C-e>", ":ALENext<cr>")
+nmap("<F8>", ":ALEFix<cr>")
+vim.g["ale_echo_msg_format"] = '[%linter%] %s [%severity%]'
+vim.g["ale_sign_error"] = '✘'
+vim.g["ale_sign_warning"] = '⚠'
+vim.g["ale_fixers"] = '{ "yaml" = [ "yamlfix"], }'
+-- highlight ALEErrorSign ctermbg=NONE ctermfg=red
+-- highlight ALEWarningSign ctermbg=NONE ctermfg=yellow
+
+--]]
+
 
 -- Remap arrow keys to resize window
 nmap("<A-down>", ":resize -2<CR>")
