@@ -59,43 +59,44 @@ Plug 'junegunn/fzf.vim'
 -- treesitter
 Plug('nvim-treesitter/nvim-treesitter', {['do'] = ":TSUpdate"})
 
--- lint and fix and complete
-Plug 'w0rp/ale'
+-- lsp
+Plug 'neovim/nvim-lspconfig'
+Plug 'williamboman/nvim-lsp-installer'
 Plug('ms-jpq/coq_nvim', {['branch'] = 'coq'})
+Plug('ms-jpq/coq.artifacts', {['branch'] = 'artifacts'})
 
 vim.call('plug#end')
 
 require'nvim-treesitter.configs'.setup {
-  -- One of "all", "maintained" (parsers with maintainers), or a list of languages
-  ensure_installed = "maintained",
-
-  -- Install languages synchronously (only applied to `ensure_installed`)
+  ensure_installed = "maintained", --only uses parsers that are maintained
   sync_install = false,
-
-  -- List of parsers to ignore installing
   ignore_install = { "javascript" },
-
-  highlight = {
-    -- `false` will disable the whole extension
+  highlight = { --enable highlighting
     enable = true,
-
-    -- list of language that will be disabled
-    disable = { "c", "rust" },
-
-    -- Setting this to true will run `:h syntax` and tree-sitter at the same time.
-    -- Set this to `true` if you depend on 'syntax' being enabled (like for indentation).
-    -- Using this option may slow down your editor, and you may see some duplicate highlights.
-    -- Instead of true it can also be a list of languages
+    -- disable = { "c", "rust" },
     additional_vim_regex_highlighting = false,
   },
+  indent = {
+    enable = true,
+  }
 }
 
+local lsp_installer = require("nvim-lsp-installer")
+lsp_installer.on_server_ready(function(server)
+    local opts = {}
+    server:setup(opts)
+end)
 
+
+vim.g.coq_settings = {
+  auto_start = 'shut-up',
+}
 
 -- Layout Options
 vim.o.termguicolors = true
- vim.g["airline_theme"] = "atomic"
- vim.g["airline_powerline_fonts"] = 1
+vim.g["airline_theme"] = "atomic"
+vim.g["airline_powerline_fonts"] = 1
+
 
 -- YAML fix
 -- autocmd FileType yaml setlocal ts=2 sts=2 sw=2 expandtab
@@ -154,6 +155,7 @@ if vim.env.BASE16_THEME == "gruvbox-dark-medium" then
 end
 
 -- general settings
+-- vim.opt.mouse = "a"
 vim.opt.wrap = false
 vim.opt.linebreak = true
 vim.opt.encoding = "utf8"
@@ -245,19 +247,6 @@ endfunction
 
 command! -nargs=* -bang RG call RipgrepFzf(<q-args>, <bang>0)
 ]])
-
--- ALE
-nmap("<C-e>", ":ALENext<CR>")
-vim.g.ale_echo_msg_format = '[%linter%] %s [%severity%]'
-vim.g.ale_sign_error = '✘'
-vim.g.ale_sign_warning = '⚠'
-
--- highlight ALEErrorSign ctermbg=NONE ctermfg=red
--- highlight ALEWarningSign ctermbg=NONE ctermfg=yellow
--- vim.g.ale_fixers = 
-	-- {'yaml': ['prettier', 'yamlfix'],}
-
-nmap("<F8>", "<Plug>(ale_fix)")
 
 -- Remap arrow keys to resize window
 nmap("<A-down>", ":resize -2<CR>")
