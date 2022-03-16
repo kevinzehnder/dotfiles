@@ -15,10 +15,24 @@ function imap(shortcut, command)
   map('i', shortcut, command)
 end
 
-function file_exists(name)
-  local f = io.open(name, "r")
-  return f ~= nil and io.close(f)
+--- Check if a file or directory exists in this path
+function exists(file)
+   local ok, err, code = os.rename(file, file)
+   if not ok then
+      if code == 13 then
+         -- Permission denied, but it exists
+         return true
+      end
+   end
+   return ok, err
 end
+
+--- Check if a directory exists in this path
+function isdir(path)
+   -- "/" works on both Unix and Windows
+   return exists(path.."/")
+end
+
 
 -- Plugins
 local Plug = vim.fn['plug#']
@@ -123,12 +137,12 @@ augroup END
 ]])
 
 -- colorscheme
-if file_exists("~/.lightmode") then
-  vim.g.background = light
+if exists(os.getenv("HOME") .. "/.lightmode") then
+  vim.o.background = "light"
   vim.cmd "colorscheme solarized8"
-  vim.env.BAT_THEME = "Monokai Extended Light"
+  vim.env.BAT_THEME = "Solarized (light)"
 else
-  vim.g.background = dark
+  vim.o.background = "dark"
   vim.cmd "colorscheme solarized8"
   vim.env.BAT_THEME = "Solarized (dark)"
 end
@@ -182,6 +196,25 @@ nmap("<C-g>", ":RG<CR>")
 
 -- let g:fzf_preview_window = 'right:50
 -- vim.g["fzf_layout"] = { window: { 'width': 0.9, 'height': 0.6  }  }
+
+vim.cmd([[
+" Customize fzf colors to match your color scheme
+let g:fzf_colors =
+\ { 'fg':      ['fg', 'Normal'],
+  \ 'bg':      ['bg', 'Normal'],
+  \ 'hl':      ['fg', 'Comment'],
+  \ 'fg+':     ['fg', 'CursorLine', 'CursorColumn', 'Normal'],
+  \ 'bg+':     ['bg', 'CursorLine', 'CursorColumn'],
+  \ 'hl+':     ['fg', 'Statement'],
+  \ 'info':    ['fg', 'PreProc'],
+  \ 'border':  ['fg', 'Ignore'],
+  \ 'prompt':  ['fg', 'Conditional'],
+  \ 'pointer': ['fg', 'Exception'],
+  \ 'marker':  ['fg', 'Keyword'],
+  \ 'spinner': ['fg', 'Label'],
+  \ 'header':  ['fg', 'Comment'] }
+]])
+
 
 vim.env.FZF_DEFAULT_OPTS = "--ansi --preview-window 'right:60%' --layout=reverse --margin=1,4 --preview 'bat --color=always --style=header,grid --line-range :300 {}'"
 vim.env.FZF_DEFAULT_COMMAND ='rg --files --ignore-case --hidden -g "!{.git,node_modules,vendor}/*"'
