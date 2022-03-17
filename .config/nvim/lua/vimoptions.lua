@@ -2,6 +2,9 @@
 vim.o.termguicolors = true
 vim.g["airline_theme"] = "atomic"
 vim.g["airline_powerline_fonts"] = 1
+vim.g["airline#extensions#tabline#enabled"] = 1
+vim.g["airline#extensions#tabline#buffer_nr_show"] = 0
+vim.g["airline#extensions#whitespace#enabled"] = 0
 
 -- Indentation
 vim.opt.autoindent=true
@@ -14,7 +17,7 @@ vim.opt.tabstop = 2
 vim.opt.expandtab = true
 
 -- YAML fix
-vim.cmd([[autocmd FileType yaml setlocal ts=2 sts=2 sw=2 expandtab]])
+-- vim.cmd([[autocmd FileType yaml setlocal ts=2 sts=2 sw=2 expandtab]])
 
 -- general settings
 -- vim.opt.mouse = "a"
