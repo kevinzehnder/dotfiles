@@ -16,7 +16,9 @@ end
 vim.g.mapleader = " "
 vim.g.maplocalleader = "\\"
 
--- completion
+-- completion in command mode
+vim.api.nvim_set_keymap('c', '<C-j>', '<C-n>', {})
+vim.api.nvim_set_keymap('c', '<C-k>', '<C-p>', {})
 
 -- nvim-tree
 nmap("<C-n>", ":NvimTreeToggle<CR>")
