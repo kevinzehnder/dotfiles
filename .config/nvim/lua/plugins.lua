@@ -1,38 +1,56 @@
--- Plugins
-local Plug = vim.fn['plug#']
-vim.call('plug#begin', '~/.config/nvim/plugged')
+vim.cmd [[packadd packer.nvim]]
 
-Plug 'vim-airline/vim-airline'
+local fn = vim.fn
+local install_path = fn.stdpath('data')..'/site/pack/packer/start/packer.nvim'
+if fn.empty(fn.glob(install_path)) > 0 then
+  packer_bootstrap = fn.system({'git', 'clone', '--depth', '1', 'https://github.com/wbthomason/packer.nvim', install_path})
+end
 
--- themes
-Plug 'vim-airline/vim-airline-themes'
-Plug 'chriskempson/base16-vim'
-Plug 'morhetz/gruvbox'
-Plug 'lifepillar/vim-solarized8'
-Plug 'yggdroot/indentline'
+return require('packer').startup(function(use)
 
--- git
-Plug 'tpope/vim-fugitive'
-Plug 'airblade/vim-gitgutter'
+  use 'wbthomason/packer.nvim'
 
--- file handling
-Plug 'scrooloose/nerdtree'
-Plug('junegunn/fzf', {['do'] = vim.fn['fzf#install']})
-Plug 'junegunn/fzf.vim'
+  -- status line
+  use 'vim-airline/vim-airline'
+  use 'vim-airline/vim-airline-themes'
 
--- treesitter
-Plug('nvim-treesitter/nvim-treesitter', {['do'] = ":TSUpdate"})
+  -- appearance
+  use 'lifepillar/vim-solarized8'
+  use 'morhetz/gruvbox'
+  use "lukas-reineke/indent-blankline.nvim"
+  use {
+      'nvim-treesitter/nvim-treesitter',
+      run = ':TSUpdate'
+  }
 
--- lsp
-Plug 'neovim/nvim-lspconfig'
-Plug 'williamboman/nvim-lsp-installer' -- collection of configurations for built-in LSP client
-Plug 'hrsh7th/cmp-nvim-lsp' -- LSP source for nvim-cmp
-Plug 'hrsh7th/nvim-cmp' -- autocompletion
-Plug 'hrsh7th/cmp-buffer'
-Plug 'hrsh7th/cmp-path'
-Plug 'hrsh7th/cmp-cmdline'
-Plug 'saadparwaiz1/cmp_luasnip' -- snippets source for nvim-cmp
-Plug 'L3MON4D3/LuaSnip' -- snippets plugin
--- Plug 'w0rp/ale'
+  -- git
+  use "tpope/vim-fugitive"
+  use 'airblade/vim-gitgutter'
 
-vim.call('plug#end')
+  -- file handling
+  use 'kyazdani42/nvim-web-devicons'
+  use { 'kyazdani42/nvim-tree.lua' }
+  use { "junegunn/fzf", run = ":call fzf#install()" }
+  use "junegunn/fzf.vim"
+
+  use 'tpope/vim-commentary'
+  --
+  -- lsp and completion
+  use 'neovim/nvim-lspconfig'
+  use 'williamboman/nvim-lsp-installer' -- collection of configurations for built-in LSP client
+  use 'hrsh7th/cmp-nvim-lsp' -- LSP source for nvim-cmp
+  use 'hrsh7th/nvim-cmp' -- autocompletion
+  use 'hrsh7th/cmp-buffer'
+  use 'hrsh7th/cmp-path'
+  use 'hrsh7th/cmp-cmdline'
+  use 'hrsh7th/cmp-vsnip'
+  use 'hrsh7th/vim-vsnip'
+  use 'onsails/lspkind-nvim'
+  -- use 'saadparwaiz1/cmp_luasnip' -- snippets source for nvim-cmp
+  -- use 'L3MON4D3/LuaSnip' -- snippets plugin
+
+  if packer_bootstrap then
+    require('packer').sync()
+  end
+
+end)

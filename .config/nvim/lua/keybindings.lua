@@ -16,11 +16,12 @@ end
 vim.g.mapleader = " "
 vim.g.maplocalleader = "\\"
 
--- NERDTree
-nmap("<C-n>", ":NERDTreeToggle<CR>")
+-- completion
+
+-- nvim-tree
+nmap("<C-n>", ":NvimTreeToggle<CR>")
 
 -- FZF
-nmap("<C-p>", ":Files<CR>")
 nmap("<C-p>", ":Files<CR>")
 nmap("<Leader>f", ":Files<CR>")
 nmap("<C-f>", ":BLines<CR>")

@@ -1,128 +1,16 @@
+-- plugins with packer
 require('plugins')
+
+-- plugin settings
+require('nvimtree')
+require('completion')
+require('lsp')
+require('treesitter')
+
+-- general vim settings
 require('vimoptions')
 require('colors')
 require('keybindings')
-
-
--- lsp
-local lsp_installer = require("nvim-lsp-installer")
-
-local function on_attach(client, bufnr)
-  -- Enable completion triggered by <c-x><c-o>
-  vim.api.nvim_buf_set_option(bufnr, 'omnifunc', 'v:lua.vim.lsp.omnifunc')
-end
-
-local capabilities = vim.lsp.protocol.make_client_capabilities()
-capabilities = require('cmp_nvim_lsp').update_capabilities(capabilities)
-
-local enhance_server_opts = {
-  ["eslintls"] = function(opts)
-    opts.settings = {
-    }
-  end,
-
-  ["yamlls"] = function(opts)
-    opts.settings = {
-      yaml = {
-        format = { enable = true },
-        schemas = {
-          ["https://raw.githubusercontent.com/quantumblacklabs/kedro/develop/static/jsonschema/kedro-catalog-0.17.json"]= "conf/**/*catalog*",
-          ["https://json.schemastore.org/github-workflow.json"] = "/.github/workflows/*"
-        },
-        schemaStore = {
-          url = "https://www.schemastore.org/api/json/catalog.json",
-          enable = true,
-        }
-      },
-    }
-  end,
-
-  ["sumneko_lua"] = function(opts)
-    opts.settings = {
-      Lua = {
-        diagnostics = {
-          globals = { 'vim' }
-        }
-      },
-    }
-  end,
-}
-
-lsp_installer.on_server_ready(function(server)
-  local opts = {
-    on_attach = on_attach,
-    capabilities = capabilities,
-  }
-
-  if enhance_server_opts[server.name] then
-    enhance_server_opts[server.name](opts)
-
-  end
-  server:setup(opts)
-end)
-
--- cmp
-local luasnip = require'luasnip'
-local cmp = require'cmp'
-cmp.setup {
-  snippet = {
-    expand = function(args)
-      require('luasnip').lsp_expand(args.body)
-    end,
-  },
-  mapping = {
-    ['<C-p>'] = cmp.mapping.select_prev_item(),
-    ['<C-n>'] = cmp.mapping.select_next_item(),
-    ['<C-d>'] = cmp.mapping.scroll_docs(-4),
-    ['<C-f>'] = cmp.mapping.scroll_docs(4),
-    ['<C-Space>'] = cmp.mapping.complete(),
-    ['<C-e>'] = cmp.mapping.close(),
-    ['<CR>'] = cmp.mapping.confirm {
-      behavior = cmp.ConfirmBehavior.Replace,
-      select = true,
-    },
-    ['<Tab>'] = function(fallback)
-      if cmp.visible() then
-        cmp.select_next_item()
-      elseif luasnip.expand_or_jumpable() then
-        luasnip.expand_or_jump()
-      else
-        fallback()
-      end
-    end,
-    ['<S-Tab>'] = function(fallback)
-      if cmp.visible() then
-        cmp.select_prev_item()
-      elseif luasnip.jumpable(-1) then
-        luasnip.jump(-1)
-      else
-        fallback()
-      end
-    end,
-  },
-  sources = {
-    { name = 'nvim_lsp' },
-    { name = 'luasnip' },
-  },
-}
-
-
-
-
--- treesitter
-require'nvim-treesitter.configs'.setup {
-  ensure_installed = "maintained", --only uses parsers that are maintained
-  sync_install = false,
-  ignore_install = { "javascript" },
-  highlight = { --enable highlighting
-    enable = true,
-    -- disable = { "c", "rust" },
-    additional_vim_regex_highlighting = false,
-  },
-  indent = {
-    enable = true,
-  }
-}
 
 
 -- FZF
@@ -146,6 +34,7 @@ let g:fzf_colors =
   \ 'spinner': ['fg', 'Label'],
   \ 'header':  ['fg', 'Comment'] }
 ]])
+
 
 vim.env.FZF_DEFAULT_OPTS = "--ansi --preview-window 'right:60%' --layout=reverse --margin=1,4 --preview 'bat --color=always --style=header,grid --line-range :300 {}'"
 vim.env.FZF_DEFAULT_COMMAND ='rg --files --ignore-case --hidden -g "!{.git,node_modules,vendor}/*"'

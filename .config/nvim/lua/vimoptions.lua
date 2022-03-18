@@ -41,10 +41,10 @@ vim.opt.backspace = "indent,eol,start"
 vim.opt.clipboard = unnamedplus
 
 -- undo
-vim.opt.undodir = "$HOME/.nvim/undo"  --directory where the undo files will be stored
 vim.opt.undofile = true
 
 -- Scrolling
 vim.o.scrolloff = 8  -- Start scrolling when we're 8 lines away from margins
 vim.o.sidescrolloff = 15
 vim.o.sidescroll = 1
+
