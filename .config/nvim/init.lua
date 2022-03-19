@@ -6,8 +6,8 @@ require('c_nvimtree')
 require('c_completion')
 require('c_lsp')
 require('c_treesitter')
-require('c_lualine')
 require('c_fzf')
+require('c_lualine')
 -- require('c_telescope')
 
 -- general vim settings
