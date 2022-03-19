@@ -1,4 +1,4 @@
-vim.cmd [[packadd packer.nvim]]
+-- vim.cmd [[packadd packer.nvim]]
 
 local fn = vim.fn
 local install_path = fn.stdpath('data')..'/site/pack/packer/start/packer.nvim'
@@ -11,8 +11,10 @@ return require('packer').startup(function(use)
   use 'wbthomason/packer.nvim'
 
   -- status line
-  use 'vim-airline/vim-airline'
-  use 'vim-airline/vim-airline-themes'
+  use {
+  'nvim-lualine/lualine.nvim',
+  requires = { 'kyazdani42/nvim-web-devicons', opt = true }
+  }
 
   -- appearance
   use 'lifepillar/vim-solarized8'
@@ -27,13 +29,20 @@ return require('packer').startup(function(use)
   use "tpope/vim-fugitive"
   use 'airblade/vim-gitgutter'
 
+  use 'tpope/vim-commentary'
+
   -- file handling
   use 'kyazdani42/nvim-web-devicons'
   use { 'kyazdani42/nvim-tree.lua' }
+
   use { "junegunn/fzf", run = ":call fzf#install()" }
   use "junegunn/fzf.vim"
 
-  use 'tpope/vim-commentary'
+  -- use {
+  -- 'nvim-telescope/telescope.nvim',
+  -- requires = { {'nvim-lua/plenary.nvim'} }
+  -- }
+
   --
   -- lsp and completion
   use 'neovim/nvim-lspconfig'
@@ -42,7 +51,7 @@ return require('packer').startup(function(use)
   use 'hrsh7th/nvim-cmp' -- autocompletion
   use 'hrsh7th/cmp-buffer'
   use 'hrsh7th/cmp-path'
-  use 'hrsh7th/cmp-cmdline'
+  -- use 'hrsh7th/cmp-cmdline'
   use 'hrsh7th/cmp-vsnip'
   use 'hrsh7th/vim-vsnip'
   use 'onsails/lspkind-nvim'

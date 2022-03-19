@@ -24,11 +24,16 @@ vim.api.nvim_set_keymap('c', '<C-k>', '<C-p>', {})
 nmap("<C-n>", ":NvimTreeToggle<CR>")
 
 -- FZF
+-- nmap("<Leader>f", ":Files<CR>")
 nmap("<C-p>", ":Files<CR>")
-nmap("<Leader>f", ":Files<CR>")
 nmap("<C-f>", ":BLines<CR>")
 nmap("<C-b>", ":Buffers<CR>")
 nmap("<C-g>", ":RG<CR>")
+
+-- telescope
+-- nmap("<C-p>", ":Telescope find_files<CR>")
+-- nmap("<C-b>", ":Telescope buffers<CR>")
+-- nmap("<C-g>", ":Telescope live_grep<CR>")
 
 -- Remap arrow keys to resize window
 nmap("<A-down>", ":resize -2<CR>")
