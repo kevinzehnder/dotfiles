@@ -27,11 +27,6 @@ require('lualine').setup {
   tabline = {
     lualine_a = {
                 'buffers',
-                'buffers_colors' = {}
-                --   active = 'lualine_{section}_normal',
-                --   -- inactive = 'lualine_{section}_inactive',
-                --   }
-
                 },
   },
   extensions = {}
