@@ -20,7 +20,7 @@ end
 -- improve split visibility
 vim.cmd( [[
 function! AdaptColors() abort
-    if g:colors_name ==# 'solarized8'
+    if g:colors_name ==# 'solarized'
       if &background ==# 'light'
         highlight InactiveWindow guibg=#eee8d5
       else
@@ -45,11 +45,11 @@ augroup END
 -- adaptive colorscheme
 if exists(os.getenv("HOME") .. "/.lightmode") then
   vim.o.background = "light"
-  vim.cmd "colorscheme solarized8"
+  vim.cmd "colorscheme solarized"
   vim.env.BAT_THEME = "Solarized (light)"
 else
   vim.o.background = "dark"
-  vim.cmd "colorscheme solarized8"
+  vim.cmd "colorscheme solarized"
   vim.env.BAT_THEME = "Solarized (dark)"
 end
 

@@ -11,15 +11,13 @@ return require('packer').startup(function(use)
   use 'wbthomason/packer.nvim'
 
   -- status line
-  -- use 'vim-airline/vim-airline'
-  -- use 'vim-airline/vim-airline-themes'
   use {
   'nvim-lualine/lualine.nvim',
   requires = { 'kyazdani42/nvim-web-devicons', opt = true }
   }
 
   -- appearance
-  use 'lifepillar/vim-solarized8'
+  use 'ishan9299/nvim-solarized-lua'
   use 'morhetz/gruvbox'
   use "lukas-reineke/indent-blankline.nvim"
   use {
