@@ -21,6 +21,10 @@ vim.opt.expandtab = true
 
 -- general settings
 -- vim.opt.mouse = "a"
+
+-- Set completeopt to have a better completion experience
+vim.o.completeopt = 'menuone,noselect'
+
 vim.opt.wrap = false
 vim.opt.linebreak = true
 vim.opt.encoding = "utf8"
@@ -30,7 +34,7 @@ vim.opt.numberwidth = 2
 vim.opt.cursorline = true
 vim.opt.hlsearch = true
 vim.opt.splitright = true
-vim.opt.splitbelow = true
+vim.opt.splitbelow = false
 vim.opt.textwidth = 120
 vim.cmd([[ highlight Comment cterm=italic ]])
 vim.opt.colorcolumn = "+1"
@@ -38,7 +42,7 @@ vim.opt.ignorecase = true
 vim.opt.smartcase = true
 vim.opt.incsearch = true
 vim.opt.backspace = "indent,eol,start"
-vim.opt.clipboard = unnamedplus
+vim.opt.clipboard = "unnamedplus"
 vim.opt.updatetime = 300
 
 -- undo
