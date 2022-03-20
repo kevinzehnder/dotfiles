@@ -47,6 +47,8 @@ nmap("<Leader>gl", ":G log<CR>")
 
 -- gitgutter
 vim.g.gitgutter_map_keys = 0
+nmap("<Leader>gn", ":GitGutterNextHunk<CR>")
+nmap("<Leader>gp", ":GitGutterPrevHunk<CR>")
 
 -- Buffer handling
 nmap("<Leader>h", ":bprevious<cr>")

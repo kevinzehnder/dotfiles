@@ -6,7 +6,7 @@ if fn.empty(fn.glob(install_path)) > 0 then
 end
 
 -- load plugins
-return require('packer').startup(function(use)
+require('packer').startup(function(use)
 
   use 'wbthomason/packer.nvim'
 
@@ -40,10 +40,10 @@ return require('packer').startup(function(use)
   use { "junegunn/fzf", run = ":call fzf#install()" }
   use "junegunn/fzf.vim"
 
-  use {
-  'nvim-telescope/telescope.nvim',
-  requires = { {'nvim-lua/plenary.nvim'} }
-  }
+  -- use {
+  -- 'nvim-telescope/telescope.nvim',
+  -- requires = { {'nvim-lua/plenary.nvim'} }
+  -- }
 
   -- lsp and completion
   use 'neovim/nvim-lspconfig'
