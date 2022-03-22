@@ -29,7 +29,11 @@ require('packer').startup(function(use)
 
   -- git
   use "tpope/vim-fugitive"
-  use 'airblade/vim-gitgutter'
+  -- use 'airblade/vim-gitgutter'
+  use {
+  'lewis6991/gitsigns.nvim',
+  requires = { {'nvim-lua/plenary.nvim'} }
+  }
 
   use 'tpope/vim-commentary'
 
