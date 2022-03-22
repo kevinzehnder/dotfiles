@@ -9,6 +9,7 @@ require('c_treesitter')
 require('c_fzf')
 require('c_lualine')
 require('c_gitsigns')
+require('c_trouble')
 -- require('c_telescope')
 
 -- general vim settings

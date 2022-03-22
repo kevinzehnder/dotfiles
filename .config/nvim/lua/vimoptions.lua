@@ -11,6 +11,12 @@ vim.opt.softtabstop = 2
 vim.opt.tabstop = 2
 vim.opt.expandtab = true
 
+
+vim.diagnostic.config({
+  virtual_text = false,
+
+})
+
 -- YAML fix
 -- vim.cmd([[autocmd FileType yaml setlocal ts=2 sts=2 sw=2 expandtab]])
 
