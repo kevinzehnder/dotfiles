@@ -20,7 +20,7 @@ vim.opt.expandtab = true
 -- vim.cmd([[autocmd FileType yaml setlocal ts=2 sts=2 sw=2 expandtab]])
 
 -- general settings
--- vim.opt.mouse = "a"
+vim.opt.mouse = "a"
 
 -- Set completeopt to have a better completion experience
 vim.o.completeopt = 'menuone,noselect'
@@ -49,7 +49,7 @@ vim.opt.updatetime = 300
 vim.opt.undofile = true
 
 -- Scrolling
-vim.o.scrolloff = 8  -- Start scrolling when we're 8 lines away from margins
+vim.o.scrolloff = 12  -- Start scrolling when we're 12 lines away from margins
 vim.o.sidescrolloff = 15
 vim.o.sidescroll = 1
 
