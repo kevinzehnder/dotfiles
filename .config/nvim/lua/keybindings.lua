@@ -20,6 +20,9 @@ vim.g.maplocalleader = "\\"
 vim.api.nvim_set_keymap('c', '<C-j>', '<C-n>', {})
 vim.api.nvim_set_keymap('c', '<C-k>', '<C-p>', {})
 
+-- trouble
+nmap("<Leader>t", ":TroubleToggle<CR>")
+
 -- nvim-tree
 nmap("<C-n>", ":NvimTreeToggle<CR>")
 
@@ -44,11 +47,6 @@ nmap("<A-left>", ":vertical resize +2<CR>")
 -- vim fugitive
 nmap("<Leader>gs", ":G<CR>")
 nmap("<Leader>gl", ":G log<CR>")
-
--- gitgutter
--- vim.g.gitgutter_map_keys = 0
--- nmap("<Leader>gn", ":GitGutterNextHunk<CR>")
--- nmap("<Leader>gp", ":GitGutterPrevHunk<CR>")
 
 -- Buffer handling
 nmap("<Leader>h", ":bprevious<cr>")
