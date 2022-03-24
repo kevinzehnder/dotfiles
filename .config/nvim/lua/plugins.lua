@@ -28,24 +28,24 @@ require('packer').startup(function(use)
   }
 
   -- git
-  -- use "tpope/vim-fugitive"
-  -- use 'airblade/vim-gitgutter'
-
   use {
   'lewis6991/gitsigns.nvim',
   requires = { {'nvim-lua/plenary.nvim'} }
   }
   use 'kdheepak/lazygit.nvim'
 
+  -- commentary
   use 'tpope/vim-commentary'
 
-  -- file handling
+  -- nvim tree
   use 'kyazdani42/nvim-web-devicons'
   use { 'kyazdani42/nvim-tree.lua' }
 
+  -- fzf
   use { "junegunn/fzf", run = ":call fzf#install()" }
   use "junegunn/fzf.vim"
 
+  -- telescope
   -- use {
   -- 'nvim-telescope/telescope.nvim',
   -- requires = { {'nvim-lua/plenary.nvim'} }
@@ -61,7 +61,6 @@ require('packer').startup(function(use)
   use 'onsails/lspkind-nvim'
   use 'saadparwaiz1/cmp_luasnip' -- snippets source for nvim-cmp
   use 'L3MON4D3/LuaSnip' -- snippets plugin
-
   use { "folke/trouble.nvim",
     requires = "kyazdani42/nvim-web-devicons",
   }
