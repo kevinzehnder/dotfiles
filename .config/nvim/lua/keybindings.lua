@@ -44,9 +44,8 @@ nmap("<A-up>", ":resize +2<CR>")
 nmap("<A-right>", ":vertical resize -2<CR>")
 nmap("<A-left>", ":vertical resize +2<CR>")
 
--- vim fugitive
-nmap("<Leader>gs", ":G<CR>")
-nmap("<Leader>gl", ":G log<CR>")
+-- LazyGit
+nmap("<Leader>gs", ":LazyGit<CR>")
 
 -- Buffer handling
 nmap("<Leader>h", ":bprevious<cr>")

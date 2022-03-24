@@ -42,6 +42,10 @@ zinit light zdharma-continuum/fast-syntax-highlighting
 zinit ice as"program" from"gh-r" ver"nightly" bpick"nvim.appimage" mv"nvim* -> nvim" pick"nvim"
 zinit light neovim/neovim
 
+# lazygit
+zinit ice as"program" from"gh-r" ver"latest" 
+zinit light jesseduffield/lazygit
+
 # vim
 zinit ice as"program" from"gh-r" ver"latest" bpick"GVim-*.AppImage" mv"GVim* -> vim"
 zinit light vim/vim-appimage

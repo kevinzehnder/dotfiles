@@ -28,12 +28,14 @@ require('packer').startup(function(use)
   }
 
   -- git
-  use "tpope/vim-fugitive"
+  -- use "tpope/vim-fugitive"
   -- use 'airblade/vim-gitgutter'
+
   use {
   'lewis6991/gitsigns.nvim',
   requires = { {'nvim-lua/plenary.nvim'} }
   }
+  use 'kdheepak/lazygit.nvim'
 
   use 'tpope/vim-commentary'
 
@@ -60,7 +62,6 @@ require('packer').startup(function(use)
   use 'saadparwaiz1/cmp_luasnip' -- snippets source for nvim-cmp
   use 'L3MON4D3/LuaSnip' -- snippets plugin
 
-  -- Lua
   use { "folke/trouble.nvim",
     requires = "kyazdani42/nvim-web-devicons",
   }
