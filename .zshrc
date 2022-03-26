@@ -123,6 +123,7 @@ bindkey '^Z' ctrl-z-toggle
 # key bindings 
 bindkey "^[[1;5C" forward-word
 bindkey "^[[1;5D" backward-word
+bindkey "^E" end-of-line
 
 # fzf
 export FZF_DEFAULT_OPTS="
