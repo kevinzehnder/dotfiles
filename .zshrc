@@ -35,8 +35,24 @@ autoload -Uz _zinit
 # zinit
 zinit light romkatv/powerlevel10k
 zinit light Aloxaf/fzf-tab
-zinit light zsh-users/zsh-autosuggestions
-zinit light zdharma-continuum/fast-syntax-highlighting
+zstyle ':fzf-tab:complete:cd:*' fzf-preview 'exa -1 --color=always $realpath'
+zstyle ':completion:*:descriptions' format '[%d]'
+zstyle ':fzf-tab:*' show-group none
+
+# enable compinit
+autoload -U compinit && compinit
+autoload -Uz zmv
+
+zinit wait lucid light-mode for \
+  atinit"zicompinit; zicdreplay" \
+      zdharma-continuum/fast-syntax-highlighting \
+  atload"_zsh_autosuggest_start" \
+      zsh-users/zsh-autosuggestions \
+  blockf atpull'zinit creinstall -q .' \
+      zsh-users/zsh-completions
+
+# zinit light zdharma-continuum/fast-syntax-highlighting
+# zinit light zsh-users/zsh-autosuggestions
 
 # neovim
 zinit ice as"program" from"gh-r" ver"nightly" bpick"nvim.appimage" mv"nvim* -> nvim" pick"nvim"
@@ -76,10 +92,6 @@ zinit ice as"completion"
 zinit snippet https://github.com/docker/cli/blob/master/contrib/completion/zsh/_docker
 zinit ice as"completion"
 zinit snippet https://github.com/docker/compose/tree/master/contrib/completion/zsh/_docker-compose
-
-# enable compinit
-autoload -U compinit && compinit
-autoload -Uz zmv
 
 # zsh settings
 HISTFILE=~/.zsh_history
