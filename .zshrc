@@ -170,7 +170,8 @@ alias light='base16_solarized-light && colorschemeswitcher 0'
 alias dark='base16_solarized-dark && colorschemeswitcher 1'
 alias gruv='base16_gruvbox-dark-medium && colorschemeswitcher 1'
 alias gvim='gvim.exe'
-alias config='/usr/bin/git --git-dir=$HOME/.cfg/ --work-tree=$HOME'
+alias config='lazygit --git-dir=$HOME/.cfg/ --work-tree=$HOME'
+alias oldconfig='/usr/bin/git --git-dir=$HOME/.cfg/ --work-tree=$HOME'
 alias vim='nvim'
 
 # additional configs
