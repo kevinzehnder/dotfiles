@@ -8,6 +8,7 @@ end
 -- load plugins
 require('packer').startup(function(use)
 
+  -- packer
   use 'wbthomason/packer.nvim'
 
   -- status line
@@ -52,13 +53,13 @@ require('packer').startup(function(use)
   -- }
 
   -- lsp and completion
-  use 'neovim/nvim-lspconfig'
-  use 'williamboman/nvim-lsp-installer' -- collection of configurations for built-in LSP client
+  use 'neovim/nvim-lspconfig' -- collection of configurations for built-in LSP client
+  use 'williamboman/nvim-lsp-installer' -- automatically install LSP Servers
   use 'hrsh7th/cmp-nvim-lsp' -- LSP source for nvim-cmp
   use 'hrsh7th/nvim-cmp' -- autocompletion
   use 'hrsh7th/cmp-buffer'
   use 'hrsh7th/cmp-path'
-  use 'onsails/lspkind-nvim'
+  use 'onsails/lspkind-nvim' -- icons for completion
   use 'saadparwaiz1/cmp_luasnip' -- snippets source for nvim-cmp
   use 'L3MON4D3/LuaSnip' -- snippets plugin
   use { "folke/trouble.nvim",
