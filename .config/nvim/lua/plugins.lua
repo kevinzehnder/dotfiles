@@ -38,6 +38,15 @@ require('packer').startup(function(use)
   -- commentary
   use 'tpope/vim-commentary'
 
+
+  use({
+    "jose-elias-alvarez/null-ls.nvim",
+    config = function()
+        require("null-ls").setup()
+    end,
+    requires = { "nvim-lua/plenary.nvim" },
+  })
+
   -- nvim tree
   use 'kyazdani42/nvim-web-devicons'
   use { 'kyazdani42/nvim-tree.lua' }

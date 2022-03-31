@@ -4,6 +4,7 @@ require('plugins')
 -- plugin settings
 require('c_nvimtree')
 require('c_completion')
+require('c_nulls-ls')
 require('c_lsp')
 require('c_treesitter')
 require('c_fzf')
