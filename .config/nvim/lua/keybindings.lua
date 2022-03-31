@@ -76,6 +76,7 @@ nmap("<Leader>x", ":q!<cr>")
 nmap("<Leader>w", ":w<cr>")
 nmap("<Leader>q", ":q<cr>")
 nmap("<Leader>vs", ":silent !code %:p<cr>") -- open current file in vscode
+nmap("<Leader>m", ":Marks<cr>") -- open marks with FZF
 
 -- Custom Shortcuts
 imap("jk", "<Esc>")
