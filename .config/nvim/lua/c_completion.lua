@@ -46,7 +46,7 @@ cmp.setup({
   },
   sources = cmp.config.sources({
     { name = 'nvim_lsp' },
-    { name = 'vsnip' },
+    { name = 'luasnip' },
   }, {
     { name = 'buffer' },
   }),
@@ -56,6 +56,7 @@ cmp.setup({
       mode = "symbol_text",
       menu = ({
         nvim_lsp = "[LSP]",
+        luasnip = "[Snippet]",
         look = "[Dict]",
         buffer = "[Buffer]",
       }),
