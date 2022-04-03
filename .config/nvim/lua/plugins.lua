@@ -21,6 +21,7 @@ require('packer').startup(function(use)
   use 'ishan9299/nvim-solarized-lua'
   use 'morhetz/gruvbox'
   use "lukas-reineke/indent-blankline.nvim"
+  use "sainnhe/gruvbox-material"
 
   -- treesitter
   use {

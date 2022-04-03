@@ -54,8 +54,7 @@ else
 end
 
 if vim.env.BASE16_THEME == "gruvbox-dark-medium" then
-  vim.cmd "colorscheme gruvbox"
-  vim.g["airline_theme"] = "gruvbox"
+  vim.cmd "colorscheme gruvbox-material"
   vim.env.BAT_THEME = "gruvbox-dark"
 end
 
