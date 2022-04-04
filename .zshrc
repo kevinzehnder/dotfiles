@@ -74,6 +74,10 @@ zinit light ogham/exa
 zinit ice as"command" from"gh-r" mv"bat* -> bat" pick"bat/bat"
 zinit light sharkdp/bat
 
+# fd
+zinit ice as"command" from"gh-r" mv"fd* -> fd" pick"fd/fd"
+zinit light sharkdp/fd
+
 # junegunn/fzf-bin
 zinit ice from"gh-r" as"program" bpick"*linux_amd64*"
 zinit light junegunn/fzf

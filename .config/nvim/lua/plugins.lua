@@ -57,10 +57,11 @@ require('packer').startup(function(use)
   use "junegunn/fzf.vim"
 
   -- telescope
-  -- use {
-  -- 'nvim-telescope/telescope.nvim',
-  -- requires = { {'nvim-lua/plenary.nvim'} }
-  -- }
+  use {
+  'nvim-telescope/telescope.nvim',
+  requires = { {'nvim-lua/plenary.nvim'} }
+  }
+  use {'nvim-telescope/telescope-fzf-native.nvim', run = 'make' }
 
   -- lsp and completion
   use 'neovim/nvim-lspconfig' -- collection of configurations for built-in LSP client
