@@ -161,6 +161,7 @@ alias ipa='ip -o address'
 
 alias d='docker'
 alias ap='ansible-playbook'
+alias lg='lazygit'
 bindkey '^ ' forward-word
 
 alias syu='sudo pacman -Syu'
