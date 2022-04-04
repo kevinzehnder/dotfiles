@@ -1,9 +1,14 @@
 require("null-ls").setup({
     sources = {
+        -- python
         require("null-ls").builtins.formatting.black,
+        require("null-ls").builtins.diagnostics.pylint,
+
+        -- yaml
         require("null-ls").builtins.diagnostics.yamllint,
 
-        require("null-ls").builtins.diagnostics.pylint,
+        -- javascript
+        require("null-ls").builtins.formatting.prettier,
     },
 })
 
