@@ -27,15 +27,16 @@ nmap("<Leader>t", ":TroubleToggle<CR>")
 nmap("<C-n>", ":NvimTreeToggle<CR>")
 
 -- FZF
--- nmap("<Leader>f", ":Files<CR>")
 nmap("<Leader>p", ":Files<CR>")
-nmap("<C-f>", ":BLines<CR>")
-nmap("<C-b>", ":Buffers<CR>")
+-- nmap("<Leader>f", ":Files<CR>")
+-- nmap("<C-f>", ":BLines<CR>")
+-- nmap("<C-b>", ":Buffers<CR>")
 -- nmap("<C-g>", ":RG<CR>")
 
 -- telescope
 nmap("<C-p>", ":Telescope find_files<CR>")
--- nmap("<C-b>", ":Telescope buffers<CR>")
+nmap("<C-b>", ":Telescope buffers<CR>")
+nmap("<C-f>", ":Telescope current_buffer_fuzzy_find<CR>")
 nmap("<C-g>", ":Telescope live_grep<CR>")
 nmap("<Leader>T", ":Telescope <CR>")
 
