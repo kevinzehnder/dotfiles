@@ -58,6 +58,10 @@ zinit light neovim/neovim
 zinit ice as"program" from"gh-r" ver"latest" 
 zinit light jesseduffield/lazygit
 
+# tree-sitter
+zinit ice as"program" from"gh-r" mv"tree* -> tree-sitter" pick"tree-sitter"
+zinit light tree-sitter/tree-sitter
+
 # black formatter
 zinit ice as"program" from"gh-r" ver"latest" mv"black_linux -> black"
 zinit light psf/black

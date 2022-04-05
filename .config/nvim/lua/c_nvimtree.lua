@@ -4,7 +4,6 @@ require'nvim-tree'.setup {
   open_on_setup        = false,
   ignore_buffer_on_setup = false,
   ignore_ft_on_setup   = {},
-  auto_close           = false,
   auto_reload_on_write = true,
   open_on_tab          = false,
   hijack_cursor        = false,
@@ -67,8 +66,8 @@ require'nvim-tree'.setup {
       global = true,
     },
     open_file = {
-      quit_on_open = false,
-      resize_window = false,
+      quit_on_open = true,
+      resize_window = true,
       window_picker = {
         enable = true,
         chars = "ABCDEFGHIJKLMNOPQRSTUVWXYZ1234567890",
