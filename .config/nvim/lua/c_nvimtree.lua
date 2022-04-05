@@ -9,7 +9,7 @@ require'nvim-tree'.setup {
   open_on_tab          = false,
   hijack_cursor        = false,
   update_cwd           = true,
-  hijack_unnamed_buffer_when_opening = false,
+  hijack_unnamed_buffer_when_opening = true,
   hijack_directories   = {
     enable = true,
     auto_open = true,
@@ -33,7 +33,7 @@ require'nvim-tree'.setup {
     args = {}
   },
   filters = {
-    dotfiles = false,
+    dotfiles = true,
     custom = {}
   },
   git = {
@@ -42,7 +42,7 @@ require'nvim-tree'.setup {
     timeout = 500,
   },
   view = {
-    width = 30,
+    width = 40,
     height = 30,
     hide_root_folder = false,
     side = 'left',
