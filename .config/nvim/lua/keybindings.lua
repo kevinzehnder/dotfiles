@@ -39,6 +39,7 @@ nmap("<C-b>", ":Telescope buffers<CR>")
 nmap("<C-f>", ":Telescope current_buffer_fuzzy_find<CR>")
 nmap("<C-g>", ":Telescope live_grep<CR>")
 nmap("<Leader>T", ":Telescope <CR>")
+nmap("<Leader>m", ":Telescope marks<CR>")
 
 -- Remap arrow keys to resize window
 nmap("<A-down>", ":resize -2<CR>")
@@ -78,7 +79,6 @@ nmap("<Leader>x", ":q!<cr>")
 nmap("<Leader>w", ":w<cr>")
 nmap("<Leader>q", ":q<cr>")
 nmap("<Leader>vs", ":silent !code %:p<cr>") -- open current file in vscode
-nmap("<Leader>m", ":Marks<cr>") -- open marks with FZF
 
 -- Custom Shortcuts
 imap("jk", "<Esc>")
