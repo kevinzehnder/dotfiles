@@ -10,12 +10,12 @@ require('telescope').setup{
     layout_strategy = "horizontal",
     layout_config = {
       preview_cutoff = 120,
-      vertical = { width = 0.7 },
+      vertical = { width = 0.8 },
       horizontal = {
         width = 0.9 ,
         prompt_position = "top",
       },
-      preview_width = 0.4,
+      preview_width = 0.6,
     },
     mappings = {
       i = {
