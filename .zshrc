@@ -204,6 +204,7 @@ colorschemeswitcher(){
 
 
 alias k='kubectl'
+alias kc='kubectl config use-context'
 if [ $commands[kubectl] ]; then source <(kubectl completion zsh); fi
 
 [[ ! -f ~/.p10k.zsh ]] || source ~/.p10k.zsh
