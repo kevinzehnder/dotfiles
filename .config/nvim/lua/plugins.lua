@@ -10,6 +10,7 @@ require('packer').startup(function(use)
 
   -- packer
   use 'wbthomason/packer.nvim'
+  use 'dstein64/vim-startuptime'
 
   -- status line
   use {
@@ -79,6 +80,9 @@ require('packer').startup(function(use)
   use { "folke/trouble.nvim",
     requires = "kyazdani42/nvim-web-devicons",
   }
+
+
+  --require('packer').update()
 
   if packer_bootstrap then
     require('packer').sync()
