@@ -12,6 +12,7 @@ require('c_lualine')
 require('c_gitsigns')
 require('c_trouble')
 require('c_telescope')
+require('c_toggleterm')
 
 -- general vim settings
 require('vimoptions')

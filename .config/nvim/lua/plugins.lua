@@ -63,6 +63,9 @@ require('packer').startup(function(use)
   }
   use {'nvim-telescope/telescope-fzf-native.nvim', run = 'make' }
 
+  -- toggleterm
+  use {"akinsho/toggleterm.nvim"}
+
   -- lsp and completion
   use 'neovim/nvim-lspconfig' -- collection of configurations for built-in LSP client
   use 'williamboman/nvim-lsp-installer' -- automatically install LSP Servers

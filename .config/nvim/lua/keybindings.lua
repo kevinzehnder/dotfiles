@@ -41,6 +41,22 @@ nmap("<C-g>", ":Telescope live_grep<CR>")
 nmap("<Leader>T", ":Telescope <CR>")
 nmap("<Leader>m", ":Telescope marks<CR>")
 
+-- toggleterm
+nmap("<C-t>", ":ToggleTerm<CR>")
+
+function _G.set_terminal_keymaps()
+  local opts = {noremap = true}
+  vim.api.nvim_buf_set_keymap(0, 't', '<esc>', [[<C-\><C-n>]], opts)
+  vim.api.nvim_buf_set_keymap(0, 't', 'jk', [[<C-\><C-n>]], opts)
+  vim.api.nvim_buf_set_keymap(0, 't', '<C-h>', [[<C-\><C-n><C-W>h]], opts)
+  vim.api.nvim_buf_set_keymap(0, 't', '<C-j>', [[<C-\><C-n><C-W>j]], opts)
+  vim.api.nvim_buf_set_keymap(0, 't', '<C-k>', [[<C-\><C-n><C-W>k]], opts)
+  vim.api.nvim_buf_set_keymap(0, 't', '<C-l>', [[<C-\><C-n><C-W>l]], opts)
+end
+
+-- if you only want these mappings for toggle term use term://*toggleterm#* instead
+vim.cmd('autocmd! TermOpen term://* lua set_terminal_keymaps()')
+
 -- Remap arrow keys to resize window
 nmap("<A-down>", ":resize -2<CR>")
 nmap("<A-up>", ":resize +2<CR>")
