@@ -23,4 +23,5 @@ require('vimoptions')
 require('colors')
 require('keybindings')
 
+require('c_indentline')
 
