@@ -33,25 +33,26 @@ autoload -Uz _zinit
 
 
 # zinit
+zinit wait lucid light-mode for \
+  atinit"zicompinit; zicdreplay" \
+      zdharma-continuum/fast-syntax-highlighting \
+  atload"_zsh_autosuggest_start" \
+      zsh-users/zsh-autosuggestions \
+  blockf atpull'zinit creinstall -q .' \
+      zsh-users/zsh-completions
+
+# autoload -U compinit && compinit
+# autoload -Uz zmv
+
 zinit light romkatv/powerlevel10k
+
 zinit light Aloxaf/fzf-tab
 zstyle ':fzf-tab:complete:cd:*' fzf-preview 'exa -1 --color=always $realpath'
 zstyle ':completion:*:descriptions' format '[%d]'
 zstyle ':fzf-tab:*' show-group none
 
-# enable compinit
-autoload -U compinit && compinit
-autoload -Uz zmv
-
-zinit wait lucid light-mode for \
-  blockf atpull'zinit creinstall -q .' \
-      zsh-users/zsh-completions
-
-zinit light zdharma-continuum/fast-syntax-highlighting
-zinit light zsh-users/zsh-autosuggestions
-
 # neovim
-zinit ice as"program" from"gh-r" ver"nightly" bpick"nvim.appimage" mv"nvim* -> nvim" pick"nvim"
+zinit ice lucid as"program" from"gh-r" ver"nightly" bpick"nvim.appimage" mv"nvim* -> nvim" pick"nvim"
 zinit light neovim/neovim
 
 # lazygit
@@ -71,7 +72,7 @@ zinit ice as"program" from"gh-r" ver"latest" bpick"GVim-*.AppImage" mv"GVim* -> 
 zinit light vim/vim-appimage
 
 # ogham/exa, replacement for ls
-zinit ice wait"2" lucid from"gh-r" as"program" mv"exa* -> exa"
+zinit ice wait"2" lucid from"gh-r" as"program" mv"bin/exa* -> exa"
 zinit light ogham/exa
 
 # bat
@@ -79,7 +80,7 @@ zinit ice as"command" from"gh-r" mv"bat* -> bat" pick"bat/bat"
 zinit light sharkdp/bat
 
 # fd
-zinit ice as"command" from"gh-r" mv"fd* -> fd" pick"fd/fd"
+zinit ice as"command" from"gh-r" mv"fd* -> fdfind" pick"fdfind"
 zinit light sharkdp/fd
 
 # junegunn/fzf-bin
