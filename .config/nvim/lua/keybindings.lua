@@ -54,9 +54,6 @@ function _G.set_terminal_keymaps()
   vim.api.nvim_buf_set_keymap(0, 't', 'jk', [[<C-\><C-n>]], opts)
 end
 
--- if you only want these mappings for toggle term use term://*toggleterm#* instead
-vim.cmd('autocmd! TermOpen term://* lua set_terminal_keymaps()')
-
 -- Remap arrow keys to resize window
 nmap("<A-down>", ":resize -2<CR>")
 nmap("<A-up>", ":resize +2<CR>")
