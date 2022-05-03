@@ -106,7 +106,6 @@ zinit snippet https://github.com/docker/compose/tree/master/contrib/completion/z
 HISTFILE=~/.zsh_history
 HISTSIZE=500000
 SAVEHIST=500000
-setopt appendhistory
 setopt SHARE_HISTORY
 setopt HIST_EXPIRE_DUPS_FIRST
 setopt HIST_IGNORE_DUPS
