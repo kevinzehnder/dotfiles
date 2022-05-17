@@ -39,7 +39,7 @@ nmap("<Leader>p", ":Files<CR>")
 -- nmap("<C-g>", ":RG<CR>")
 
 -- telescope
-nmap("<C-p>", ":Telescope find_files<CR>")
+nmap("<C-p>", ":Telescope git_files<CR>")
 nmap("<C-b>", ":Telescope buffers<CR>")
 nmap("<C-f>", ":Telescope current_buffer_fuzzy_find<CR>")
 nmap("<C-g>", ":Telescope live_grep<CR>")
