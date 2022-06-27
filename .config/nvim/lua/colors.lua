@@ -23,6 +23,7 @@ function! AdaptColors() abort
     if g:colors_name ==# 'solarized'
       if &background ==# 'light'
         highlight InactiveWindow guibg=#eee8d5
+        highlight lualine_buffer_a guifg=#fdfdfd guibg=#ababab
       else
         highlight InactiveWindow guibg=#073642
       endif
@@ -46,16 +47,13 @@ augroup END
 if exists(os.getenv("HOME") .. "/.lightmode") then
   vim.o.background = "light"
   vim.cmd "colorscheme solarized"
-  vim.env.BAT_THEME = "Solarized (light)"
 else
   vim.o.background = "dark"
   vim.cmd "colorscheme solarized"
-  vim.env.BAT_THEME = "Solarized (dark)"
 end
 
 if vim.env.BASE16_THEME == "gruvbox-dark-medium" then
   vim.cmd "colorscheme gruvbox"
-  vim.env.BAT_THEME = "gruvbox-dark"
 end
 
-
+vim.cmd "highlight TSFunction gui=bold"
