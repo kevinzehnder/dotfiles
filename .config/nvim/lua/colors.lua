@@ -22,14 +22,14 @@ vim.cmd( [[
 function! AdaptColors() abort
     if g:colors_name ==# 'solarized'
       if &background ==# 'light'
-        "highlight InactiveWindow guibg=#eee8d5
-        "highlight lualine_buffer_a guifg=#fdfdfd guibg=#ababab
-        highlight CursorLine guibg=#ffd8cb"
+        highlight InactiveWindow guibg=#eee8d5
+        highlight lualine_buffer_a guifg=#fdfdfd guibg=#ababab
+        "highlight CursorLine guibg=#ffd8cb"
       else
-        "highlight InactiveWindow guibg=#073642
+        highlight InactiveWindow guibg=#073642
       endif
     else
-      "highlight InactiveWindow guibg=#333333
+      highlight InactiveWindow guibg=#333333
     endif
 endfunction
 
