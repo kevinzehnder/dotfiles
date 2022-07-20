@@ -1,3 +1,4 @@
+vim.g.theme_switcher_loaded = true
 require('telescope').setup{
   defaults = {
 
@@ -15,7 +16,7 @@ require('telescope').setup{
         width = 0.9 ,
         prompt_position = "top",
       },
-      preview_width = 0.6,
+      preview_width = 0.5,
     },
     mappings = {
       i = {
@@ -66,6 +67,12 @@ M.search_dotfiles = function()
     prompt_title = "<VIMRC>",
     cwd = "~/.config/nvim",
   })
+end
+
+M.project_files = function()
+  local opts = {} -- define here if you want to define something
+  local ok = pcall(require"telescope.builtin".git_files, opts)
+  if not ok then require"telescope.builtin".find_files(opts) end
 end
 
 return M
