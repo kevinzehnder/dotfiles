@@ -1,7 +1,13 @@
 -- plugins with packer
 require('plugins')
 
--- plugin settings
+-- general vim settings
+require('vimoptions')
+require('colors')
+-- require('newcolors')
+require('keybindings')
+
+-- -- plugin settings
 require('c_nvimtree')
  
 require('c_fzf')
@@ -18,10 +24,6 @@ require('c_completion')
 require('c_nulls-ls')
 require('c_lsp')
 
--- general vim settings
-require('vimoptions')
-require('colors')
-require('keybindings')
 
 require('c_indentline')
 
