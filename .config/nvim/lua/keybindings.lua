@@ -86,6 +86,7 @@ map("x", "<A-j>", ":move '>+1<CR>gv-gv" )
 map("x", "<A-k>", ":move '<-2<CR>gv-gv" )
 
 -- Custom Leader Shortcuts
+nmap("<Leader>h", ":WhichKey<cr>")
 nmap("<Leader>x", ":q!<cr>")
 nmap("<Leader>w", ":w<cr>")
 nmap("<Leader>q", ":q<cr>")
