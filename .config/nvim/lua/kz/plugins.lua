@@ -42,6 +42,7 @@ require('packer').startup(function(use)
   use 'tpope/vim-commentary'
 
 
+  -- null-ls
   use({
     "jose-elias-alvarez/null-ls.nvim",
     config = function()
@@ -80,6 +81,18 @@ require('packer').startup(function(use)
   use 'L3MON4D3/LuaSnip' -- snippets plugin
   use { "folke/trouble.nvim",
     requires = "kyazdani42/nvim-web-devicons",
+  }
+  --
+  -- which key
+  use {
+    "folke/which-key.nvim",
+    config = function()
+      require("which-key").setup {
+        -- your configuration comes here
+        -- or leave it empty to use the default settings
+        -- refer to the configuration section below
+      }
+    end
   }
 
 

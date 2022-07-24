@@ -1,29 +1,29 @@
 -- plugins with packer
-require('plugins')
+require('kz.plugins')
 
 -- general vim settings
-require('vimoptions')
-require('colors')
+require('kz.vimoptions')
+require('kz.colors')
 -- require('newcolors')
-require('keybindings')
+require('kz.keybindings')
 
 -- -- plugin settings
-require('c_nvimtree')
+require('kz.nvimtree')
  
-require('c_fzf')
-require('c_telescope')
+require('kz.fzf')
+require('kz.telescope')
  
-require('c_lualine')
-require('c_gitsigns')
-require('c_trouble')
+require('kz.lualine')
+require('kz.gitsigns')
+require('kz.trouble')
  
-require('c_toggleterm')
+require('kz.toggleterm')
 
-require('c_treesitter')
-require('c_completion')
-require('c_nulls-ls')
-require('c_lsp')
+require('kz.treesitter')
+require('kz.completion')
+require('kz.null-ls')
+require('kz.lsp')
 
 
-require('c_indentline')
+require('kz.indentline')
 

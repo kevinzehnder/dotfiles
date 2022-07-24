@@ -17,7 +17,7 @@ vim.g.mapleader = " "
 vim.g.maplocalleader = "\\"
 
 -- edit vimrc files
-nmap("<Leader>vc", ":lua require('c_telescope').search_dotfiles()<CR>")
+nmap("<Leader>vc", ":lua require('kz.telescope').search_dotfiles()<CR>")
 
 -- completion in command mode
 vim.api.nvim_set_keymap('c', '<C-j>', '<C-n>', {})
@@ -35,7 +35,7 @@ nmap("<C-A-h>", ":NvimTreeToggle<CR>")
 nmap("<Leader>p", ":Files<CR>")
 
 -- telescope
-nmap("<C-p>", ":lua require('c_telescope').project_files()<CR>")
+nmap("<C-p>", ":lua require('kz.telescope').project_files()<CR>")
 nmap("<C-b>", ":Telescope buffers<CR>")
 nmap("<C-f>", ":Telescope current_buffer_fuzzy_find<CR>")
 nmap("<C-g>", ":Telescope live_grep<CR>")

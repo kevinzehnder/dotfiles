@@ -2,7 +2,7 @@
 vim.o.termguicolors = true
 
 -- Indentation
-vim.opt.autoindent=true
+-- vim.opt.autoindent=true
 vim.opt.smartindent = true
 -- vim.g.indentLine_char = '⦙'
 vim.opt.smarttab = true
