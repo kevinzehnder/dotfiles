@@ -1,9 +1,41 @@
--- bootstrap packer
 local fn = vim.fn
-local install_path = fn.stdpath('data')..'/site/pack/packer/start/packer.nvim'
+-- Automatically install packer
+local install_path = fn.stdpath "data" .. "/site/pack/packer/start/packer.nvim"
 if fn.empty(fn.glob(install_path)) > 0 then
-  packer_bootstrap = fn.system({'git', 'clone', '--depth', '1', 'https://github.com/wbthomason/packer.nvim', install_path})
+  PACKER_BOOTSTRAP = fn.system {
+    "git",
+    "clone",
+    "--depth",
+    "1",
+    "https://github.com/wbthomason/packer.nvim",
+    install_path,
+  }
+  print "Installing packer close and reopen Neovim..."
+  vim.cmd [[packadd packer.nvim]]
 end
+
+-- Autocommand that reloads neovim whenever you save the plugins.lua file
+vim.cmd [[
+  augroup packer_user_config
+    autocmd!
+    autocmd BufWritePost plugins.lua source <afile> | PackerSync
+  augroup end
+]]
+
+-- Use a protected call so we don't error out on first use
+local status_ok, packer = pcall(require, "packer")
+if not status_ok then
+  return
+end
+
+-- Have packer use a popup window
+packer.init {
+  display = {
+    open_fn = function()
+      return require("packer.util").float { border = "rounded" }
+    end,
+  },
+}
 
 -- load plugins
 require('packer').startup(function(use)
@@ -24,6 +56,9 @@ require('packer').startup(function(use)
   use 'morhetz/gruvbox'
   use "sainnhe/gruvbox-material"
   use "lukas-reineke/indent-blankline.nvim"
+  -- Colorschemes
+  use { "folke/tokyonight.nvim", commit = "8223c970677e4d88c9b6b6d81bda23daf11062bb" }
+  use { "lunarvim/darkplus.nvim", commit = "2584cdeefc078351a79073322eb7f14d7fbb1835" }
 
   -- treesitter
   use {
@@ -39,7 +74,9 @@ require('packer').startup(function(use)
   use 'kdheepak/lazygit.nvim'
 
   -- commentary
-  use 'tpope/vim-commentary'
+  use { "numToStr/Comment.nvim" }
+  use { "JoosepAlviste/nvim-ts-context-commentstring" }
+  use { "lewis6991/impatient.nvim", commit = "969f2c5c90457612c09cf2a13fee1adaa986d350" }
 
 
   -- null-ls
@@ -79,9 +116,11 @@ require('packer').startup(function(use)
   use 'onsails/lspkind-nvim' -- icons for completion
   use 'saadparwaiz1/cmp_luasnip' -- snippets source for nvim-cmp
   use 'L3MON4D3/LuaSnip' -- snippets plugin
+  use { "rafamadriz/friendly-snippets" }
   use { "folke/trouble.nvim",
     requires = "kyazdani42/nvim-web-devicons",
   }
+  use { "windwp/nvim-autopairs" }
   --
   -- which key
   use {
@@ -94,12 +133,16 @@ require('packer').startup(function(use)
       }
     end
   }
-
+  
+  -- DAP
+    use { "mfussenegger/nvim-dap", commit = "014ebd53612cfd42ac8c131e6cec7c194572f21d" }
+    use { "rcarriga/nvim-dap-ui", commit = "d76d6594374fb54abf2d94d6a320f3fd6e9bb2f7" }
+    use { "ravenxrz/DAPInstall.nvim", commit = "8798b4c36d33723e7bba6ed6e2c202f84bb300de" }
 
   --require('packer').update()
 
-  if packer_bootstrap then
-    require('packer').sync()
+  if PACKER_BOOTSTRAP then
+    require("packer").sync()
   end
 
 end)

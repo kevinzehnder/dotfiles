@@ -51,6 +51,21 @@ function _G.set_terminal_keymaps()
   vim.api.nvim_buf_set_keymap(0, 't', 'jk', [[<C-\><C-n>]], opts)
 end
 
+-- DAP
+map("n", "<leader>db", "<cmd>lua require'dap'.toggle_breakpoint()<cr>")
+map("n", "<leader>dc", "<cmd>lua require'dap'.continue()<cr>")
+map("n", "<leader>di", "<cmd>lua require'dap'.step_into()<cr>")
+map("n", "<leader>do", "<cmd>lua require'dap'.step_over()<cr>")
+map("n", "<leader>dO", "<cmd>lua require'dap'.step_out()<cr>")
+map("n", "<leader>dr", "<cmd>lua require'dap'.repl.toggle()<cr>")
+map("n", "<leader>dl", "<cmd>lua require'dap'.run_last()<cr>")
+map("n", "<leader>du", "<cmd>lua require'dapui'.toggle()<cr>")
+map("n", "<leader>dt", "<cmd>lua require'dap'.terminate()<cr>")
+
+-- Comment
+map("n", "<leader>/", "<cmd>lua require('Comment.api').toggle_current_linewise()<CR>")
+map("x", "<leader>/", '<ESC><CMD>lua require("Comment.api").toggle_linewise_op(vim.fn.visualmode())<CR>')
+
 -- Remap arrow keys to resize window
 nmap("<A-down>", ":resize -2<CR>")
 nmap("<A-up>", ":resize +2<CR>")
@@ -86,7 +101,7 @@ map("x", "<A-j>", ":move '>+1<CR>gv-gv" )
 map("x", "<A-k>", ":move '<-2<CR>gv-gv" )
 
 -- Custom Leader Shortcuts
-nmap("<Leader>h", ":WhichKey<cr>")
+nmap("<Leader>?", ":WhichKey<cr>")
 nmap("<Leader>x", ":q!<cr>")
 nmap("<Leader>w", ":w<cr>")
 nmap("<Leader>q", ":q<cr>")
