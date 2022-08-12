@@ -1,6 +1,6 @@
 vim.opt.list = true
 vim.opt.listchars:append("space:⋅")
-vim.opt.listchars:append("eol:↴")
+-- vim.opt.listchars:append("eol:↴")
 
 vim.cmd [[highlight IndentBlankLineContextChar guifg=#268bd2 gui=bold]]
 -- vim.cmd [[highlight IndentBlanklineIndent2 guifg=#E5C07B gui=nocombine]]
@@ -9,9 +9,21 @@ vim.cmd [[highlight IndentBlankLineContextChar guifg=#268bd2 gui=bold]]
 -- vim.cmd [[highlight IndentBlanklineIndent5 guifg=#61AFEF gui=nocombine]]
 -- vim.cmd [[highlight IndentBlanklineIndent6 guifg=#C678DD gui=nocombine]]
 
+local status_ok, indent_blankline = pcall(require, "indent_blankline")
+if not status_ok then
+  return
+end
 
-require("indent_blankline").setup {
-    -- for example, context is off by default, use this to turn it on
-    show_current_context = true,
-    show_current_context_start = true,
+indent_blankline.setup {
+  -- char = "▏",
+  show_trailing_blankline_indent = true,
+  show_first_indent_level = true,
+  use_treesitter = true,
+  show_current_context = true,
+  buftype_exclude = { "terminal", "nofile" },
+  filetype_exclude = {
+    "help",
+    "packer",
+    "NvimTree",
+  },
 }

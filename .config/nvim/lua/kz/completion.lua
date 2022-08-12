@@ -1,7 +1,21 @@
 -- cmp
-local cmp = require'cmp'
+local cmp_status_ok, cmp = pcall(require, "cmp")
+if not cmp_status_ok then
+	return
+end
+
+local snip_status_ok, luasnip = pcall(require, "luasnip")
+if not snip_status_ok then
+	return
+end
+
 local lspkind = require'lspkind'
-local luasnip = require 'luasnip'
+require("luasnip/loaders/from_vscode").lazy_load()
+
+local check_backspace = function()
+	local col = vim.fn.col(".") - 1
+	return col == 0 or vim.fn.getline("."):sub(col, col):match("%s")
+end
 
 cmp.setup({
   snippet = {
@@ -44,14 +58,8 @@ cmp.setup({
     end,
 
   },
-  sources = cmp.config.sources({
-    { name = 'nvim_lsp' },
-    { name = 'luasnip' },
-  }, {
-    { name = 'buffer' },
-  }),
   formatting = {
-
+		fields = { "kind", "abbr", "menu" },
     format = lspkind.cmp_format({
       mode = "symbol_text",
       menu = ({
@@ -61,10 +69,25 @@ cmp.setup({
         buffer = "[Buffer]",
       }),
     }),
-  },
-  view = {
-    entries = "custom"
-  },
+	},
+	sources = {
+		{ name = "nvim_lsp" },
+		{ name = "nvim_lua" },
+		{ name = "luasnip" },
+		{ name = "buffer" },
+		{ name = "path" },
+	},
+	confirm_opts = {
+		behavior = cmp.ConfirmBehavior.Replace,
+		select = false,
+	},
+	window = {
+		completion = cmp.config.window.bordered(),
+		documentation = cmp.config.window.bordered(),
+	},
+	experimental = {
+		ghost_text = true,
+	},
 })
 
   -- Set configuration for specific filetype.
