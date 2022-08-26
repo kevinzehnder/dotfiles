@@ -2,6 +2,7 @@ require("null-ls").setup({
     sources = {
         -- python
         require("null-ls").builtins.formatting.black,
+        require("null-ls").builtins.formatting.isort.with({extra_args = {"--profile black"}}),
         -- require("null-ls").builtins.diagnostics.pylint,
 
         -- go
