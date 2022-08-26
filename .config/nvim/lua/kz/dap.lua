@@ -13,6 +13,8 @@ if not dap_install_status_ok then
   return
 end
 
+require("dap-python").setup("python", {})
+
 dap_install.setup {}
 
 dap_install.config("python", {})
@@ -28,7 +30,7 @@ dapui.setup {
       { id = "breakpoints", size = 0.25 },
     },
     size = 40,
-    position = "right", -- Can be "left", "right", "top", "bottom"
+    position = "left", -- Can be "left", "right", "top", "bottom"
   },
   tray = {
     elements = {},
