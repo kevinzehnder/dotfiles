@@ -32,9 +32,10 @@ nmap("<C-n>", ":NvimTreeToggle<CR>")
 nmap("<C-A-h>", ":NvimTreeToggle<CR>")
 
 -- FZF
-nmap("<Leader>p", ":Files<CR>")
+-- nmap("<Leader>p", ":Files<CR>")
 
 -- telescope
+nmap("<Leader>p", ":Telescope find_files<CR>")
 nmap("<C-p>", ":lua require('kz.telescope').project_files()<CR>")
 nmap("<C-b>", ":Telescope buffers<CR>")
 nmap("<C-f>", ":Telescope current_buffer_fuzzy_find<CR>")
@@ -80,6 +81,7 @@ nmap("<C-A-l>", ":LazyGit<CR>")
 nmap("<Leader>h", ":bprevious<cr>")
 nmap("<Leader>l", ":bnext<cr>")
 nmap("<leader>bq", ":bp <BAR> confirm bd #<cr>")
+nmap("<leader>bQ", ":%bd|e#|confirm bd #<cr>")
 nmap("<leader>o", ":Telescope buffers<cr>")
 
 -- Better window navigation
