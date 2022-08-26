@@ -33,16 +33,16 @@ function! AdaptColors() abort
     endif
 endfunction
 
-function! Handle_Win_Enter() abort
-  setlocal winhighlight=Normal:Normal,NormalNC:InactiveWindow
-endfunction
-
-augroup BgHighlight
-  autocmd!
-  autocmd ColorScheme * call AdaptColors()
-  autocmd WinEnter,BufWinEnter * call Handle_Win_Enter()
-augroup END
-]])
+" function! Handle_Win_Enter() abort
+"   setlocal winhighlight=Normal:Normal,NormalNC:InactiveWindow
+" endfunction
+"
+" augroup BgHighlight
+"   autocmd!
+"   autocmd ColorScheme * call AdaptColors()
+"   autocmd WinEnter,BufWinEnter * call Handle_Win_Enter()
+" augroup END
+" ]])
 
 -- adaptive colorscheme
 if exists(os.getenv("HOME") .. "/.lightmode") then
