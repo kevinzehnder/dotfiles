@@ -46,8 +46,8 @@ require('packer').startup(function(use)
 
   -- status line
   use {
-  'nvim-lualine/lualine.nvim',
-  requires = { 'kyazdani42/nvim-web-devicons', opt = true }
+    'nvim-lualine/lualine.nvim',
+    requires = { 'kyazdani42/nvim-web-devicons', opt = true }
   }
 
   -- appearance
@@ -62,14 +62,14 @@ require('packer').startup(function(use)
 
   -- treesitter
   use {
-      'nvim-treesitter/nvim-treesitter',
-      run = ':TSUpdate'
+    'nvim-treesitter/nvim-treesitter',
+    run = ':TSUpdate'
   }
 
   -- git
   use {
-  'lewis6991/gitsigns.nvim',
-  requires = { {'nvim-lua/plenary.nvim'} }
+    'lewis6991/gitsigns.nvim',
+    requires = { { 'nvim-lua/plenary.nvim' } }
   }
   use 'kdheepak/lazygit.nvim'
 
@@ -83,7 +83,7 @@ require('packer').startup(function(use)
   use({
     "jose-elias-alvarez/null-ls.nvim",
     config = function()
-        require("null-ls").setup()
+      require("null-ls").setup()
     end,
     requires = { "nvim-lua/plenary.nvim" },
   })
@@ -98,13 +98,13 @@ require('packer').startup(function(use)
 
   -- telescope
   use {
-  'nvim-telescope/telescope.nvim',
-  requires = { {'nvim-lua/plenary.nvim'} }
+    'nvim-telescope/telescope.nvim',
+    requires = { { 'nvim-lua/plenary.nvim' } }
   }
-  use {'nvim-telescope/telescope-fzf-native.nvim', run = 'make' }
+  use { 'nvim-telescope/telescope-fzf-native.nvim', run = 'make' }
 
   -- toggleterm
-  use {"akinsho/toggleterm.nvim"}
+  use { "akinsho/toggleterm.nvim" }
 
   -- lsp and completion
   use 'neovim/nvim-lspconfig' -- collection of configurations for built-in LSP client
@@ -133,12 +133,14 @@ require('packer').startup(function(use)
       }
     end
   }
-  
+
+  use { "ahmedkhalf/project.nvim", commit = "541115e762764bc44d7d3bf501b6e367842d3d4f" }
+
   -- DAP
-    use { "mfussenegger/nvim-dap", commit = "014ebd53612cfd42ac8c131e6cec7c194572f21d" }
-    use 'mfussenegger/nvim-dap-python'
-    use { "rcarriga/nvim-dap-ui", commit = "d76d6594374fb54abf2d94d6a320f3fd6e9bb2f7" }
-    use { "ravenxrz/DAPInstall.nvim", commit = "8798b4c36d33723e7bba6ed6e2c202f84bb300de" }
+  use { "mfussenegger/nvim-dap", commit = "014ebd53612cfd42ac8c131e6cec7c194572f21d" }
+  use 'mfussenegger/nvim-dap-python'
+  use { "rcarriga/nvim-dap-ui", commit = "d76d6594374fb54abf2d94d6a320f3fd6e9bb2f7" }
+  use { "ravenxrz/DAPInstall.nvim", commit = "8798b4c36d33723e7bba6ed6e2c202f84bb300de" }
 
   --require('packer').update()
 
@@ -147,4 +149,3 @@ require('packer').startup(function(use)
   end
 
 end)
-

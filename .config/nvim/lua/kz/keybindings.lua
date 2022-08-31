@@ -29,13 +29,13 @@ nmap("<C-A-m>", ":TroubleToggle<CR>")
 
 -- nvim-tree
 nmap("<C-n>", ":NvimTreeToggle<CR>")
-nmap("<C-A-h>", ":NvimTreeToggle<CR>")
+nmap("<C-A-h>", ":NvimTreeFocus<CR>")
 
 -- FZF
 -- nmap("<Leader>p", ":Files<CR>")
 
 -- telescope
-nmap("<Leader>p", ":Telescope find_files<CR>")
+nmap("<Leader>p", ":Telescope projects<CR>")
 nmap("<C-p>", ":lua require('kz.telescope').project_files()<CR>")
 nmap("<C-b>", ":Telescope buffers<CR>")
 nmap("<C-f>", ":Telescope current_buffer_fuzzy_find<CR>")
