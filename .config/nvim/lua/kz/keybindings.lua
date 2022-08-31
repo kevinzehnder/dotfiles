@@ -78,8 +78,8 @@ nmap("<Leader>gs", ":LazyGit<CR>")
 nmap("<C-A-l>", ":LazyGit<CR>")
 
 -- Buffer handling
-nmap("<Leader>h", ":bprevious<cr>")
-nmap("<Leader>l", ":bnext<cr>")
+nmap("<S-h>", ":bprevious<cr>")
+nmap("<S-l>", ":bnext<cr>")
 nmap("<leader>bq", ":bp <BAR> confirm bd #<cr>")
 nmap("<leader>bQ", ":%bd|e#|confirm bd #<cr>")
 nmap("<leader>o", ":Telescope buffers<cr>")
