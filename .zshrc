@@ -52,7 +52,7 @@ zstyle ':completion:*:descriptions' format '[%d]'
 zstyle ':fzf-tab:*' show-group none
 
 # neovim
-zinit ice lucid as"program" from"gh-r" ver"nightly" bpick"nvim.appimage" mv"nvim* -> nvim" pick"nvim"
+zinit ice as"program" from"gh-r" ver"nightly" bpick"nvim.appimage" mv"nvim* -> nvim" pick"nvim"
 zinit light neovim/neovim
 
 # lazygit
@@ -66,10 +66,6 @@ zinit light tree-sitter/tree-sitter
 # black formatter
 zinit ice as"program" from"gh-r" ver"latest" mv"black_linux -> black"
 zinit light psf/black
-
-# vim
-zinit ice as"program" from"gh-r" ver"latest" bpick"GVim-*.AppImage" mv"GVim* -> vim"
-zinit light vim/vim-appimage
 
 # ogham/exa, replacement for ls
 zinit ice wait"2" lucid from"gh-r" as"program" mv"bin/exa* -> exa"
