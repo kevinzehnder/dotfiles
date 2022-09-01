@@ -74,6 +74,10 @@ lvim.keys.normal_mode["<Leader>vs"] = ":silent !code %:p<cr>" -- open current fi
 lvim.keys.normal_mode["<C-p>"] = ":Telescope find_files<CR>"
 lvim.keys.normal_mode["<C-A-p>"] = ":Telescope git_files<CR>"
 
+lvim.keys.normal_mode["<C-A-h>"] = "<cmd>NvimTreeToggle<CR>"
+lvim.keys.normal_mode["<C-A-j>"] = "<cmd>ToggleTerm<CR>"
+lvim.keys.normal_mode["<C-A-m>"] = "<cmd>TroubleToggle<CR>"
+
 
 -- unmap a default keymapping
 -- vim.keymap.del("n", "<C-Up>")
@@ -133,6 +137,12 @@ lvim.builtin.telescope.defaults.pickers = {
 --   l = { "<cmd>Trouble loclist<cr>", "LocationList" },
 --   w = { "<cmd>Trouble workspace_diagnostics<cr>", "Workspace Diagnostics" },
 -- }
+
+
+lvim.builtin.terminal.execs = {
+  { "lazygit", "<C-A-l>", "LazyGit", "float" }
+}
+
 
 -- TODO: User Config for predefined plugins
 -- After changing plugin config exit and reopen LunarVim, Run :PackerInstall :PackerCompile
@@ -199,6 +209,7 @@ lvim.builtin.treesitter.highlight.enabled = true
 --   local function buf_set_option(...)
 --     vim.api.nvim_buf_set_option(bufnr, ...)
 --   end
+
 --   --Enable completion triggered by <c-x><c-o>
 --   buf_set_option("omnifunc", "v:lua.vim.lsp.omnifunc")
 -- end
@@ -207,7 +218,8 @@ lvim.builtin.treesitter.highlight.enabled = true
 -- local formatters = require "lvim.lsp.null-ls.formatters"
 -- formatters.setup {
 --   { command = "black", filetypes = { "python" } },
---   { command = "isort", filetypes = { "python" } },
+-- { command = "isort", filetypes = { "python" } },
+-- }
 --   {
 --     -- each formatter accepts a list of options identical to https://github.com/jose-elias-alvarez/null-ls.nvim/blob/main/doc/BUILTINS.md#Configuration
 --     command = "prettier",
@@ -223,19 +235,19 @@ lvim.builtin.treesitter.highlight.enabled = true
 -- local linters = require "lvim.lsp.null-ls.linters"
 -- linters.setup {
 --   { command = "flake8", filetypes = { "python" } },
---   {
---     -- each linter accepts a list of options identical to https://github.com/jose-elias-alvarez/null-ls.nvim/blob/main/doc/BUILTINS.md#Configuration
---     command = "shellcheck",
---     ---@usage arguments to pass to the formatter
---     -- these cannot contain whitespaces, options such as `--line-width 80` become either `{'--line-width', '80'}` or `{'--line-width=80'}`
---     extra_args = { "--severity", "warning" },
---   },
---   {
---     command = "codespell",
---     ---@usage specify which filetypes to enable. By default a providers will attach to all the filetypes it supports.
---     filetypes = { "javascript", "python" },
---   },
--- }
+-- {
+--   -- each linter accepts a list of options identical to https://github.com/jose-elias-alvarez/null-ls.nvim/blob/main/doc/BUILTINS.md#Configuration
+--   command = "shellcheck",
+--   ---@usage arguments to pass to the formatter
+--   -- these cannot contain whitespaces, options such as `--line-width 80` become either `{'--line-width', '80'}` or `{'--line-width=80'}`
+--   extra_args = { "--severity", "warning" },
+-- },
+-- {
+--   command = "codespell",
+--   ---@usage specify which filetypes to enable. By default a providers will attach to all the filetypes it supports.
+--   filetypes = { "javascript", "python" },
+-- },
+--}
 
 -- Additional Plugins
 lvim.plugins = {
