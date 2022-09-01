@@ -29,7 +29,7 @@ nmap("<C-A-m>", ":TroubleToggle<CR>")
 
 -- nvim-tree
 nmap("<C-n>", ":NvimTreeToggle<CR>")
-nmap("<C-A-h>", ":NvimTreeFocus<CR>")
+nmap("<C-A-h>", ":NvimTreeToggle<CR>")
 
 -- FZF
 -- nmap("<Leader>p", ":Files<CR>")
