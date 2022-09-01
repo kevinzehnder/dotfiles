@@ -6,9 +6,9 @@ fi
 
 # Preferred editor for local and remote sessions
 if [[ -n $SSH_CONNECTION ]]; then
-   export EDITOR='nvim'
+   export EDITOR='lvim'
 else
-   export EDITOR='nvim'
+   export EDITOR='lvim'
 fi
 
 
@@ -183,7 +183,7 @@ alias gruv='base16_gruvbox-dark-medium && colorschemeswitcher 1'
 alias gvim='gvim.exe'
 alias lazyconfig='lazygit --git-dir=$HOME/.cfg/ --work-tree=$HOME'
 alias config='/usr/bin/git --git-dir=$HOME/.cfg/ --work-tree=$HOME'
-alias vim='nvim'
+alias vim='lvim'
 
 # additional configs
 if [ -d "$HOME/.config/zsh/config.d/" ] ; then
@@ -221,6 +221,9 @@ export NVM_DIR="$HOME/.nvm"
 
 # golang
 export PATH=$PATH:/usr/local/go/bin
+
+# lunarvim
+export PATH=$PATH:~/.local/bin/
 
 
 # Configure ssh forwarding
