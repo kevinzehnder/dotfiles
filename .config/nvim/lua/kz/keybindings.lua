@@ -41,7 +41,7 @@ nmap("<C-b>", ":Telescope buffers<CR>")
 nmap("<C-f>", ":Telescope current_buffer_fuzzy_find<CR>")
 nmap("<C-g>", ":Telescope live_grep<CR>")
 nmap("<Leader>T", ":Telescope <CR>")
-nmap("<Leader>m", ":Telescope marks<CR>")
+--[[ nmap("<Leader>m", ":Telescope marks<CR>") ]]
 nmap("<Leader>d", ":Telescope treesitter<CR>")
 
 -- toggleterm
@@ -76,6 +76,14 @@ nmap("<A-left>", ":vertical resize +2<CR>")
 -- LazyGit
 nmap("<Leader>gs", ":LazyGit<CR>")
 nmap("<C-A-l>", ":LazyGit<CR>")
+
+-- harpoon
+nmap("<Leader>m", ":lua require('harpoon.ui').toggle_quick_menu()<cr>")
+nmap("<Leader>n", ":lua require('harpoon.mark').add_file()<cr>")
+nmap("<Leader>la", ":lua require('harpoon.ui').nav_file(1)<cr>")
+nmap("<Leader>ls", ":lua require('harpoon.ui').nav_file(2)<cr>")
+nmap("<Leader>ld", ":lua require('harpoon.ui').nav_file(3)<cr>")
+nmap("<Leader>lf", ":lua require('harpoon.ui').nav_file(4)<cr>")
 
 -- Buffer handling
 nmap("<S-h>", ":bprevious<cr>")

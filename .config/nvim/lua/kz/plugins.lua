@@ -44,6 +44,9 @@ require('packer').startup(function(use)
   use 'wbthomason/packer.nvim'
   use 'dstein64/vim-startuptime'
 
+  -- dashboard
+  use { "goolord/alpha-nvim", commit = "ef27a59e5b4d7b1c2fe1950da3fe5b1c5f3b4c94" }
+
   -- status line
   use {
     'nvim-lualine/lualine.nvim',
@@ -103,6 +106,9 @@ require('packer').startup(function(use)
     requires = { { 'nvim-lua/plenary.nvim' } }
   }
   use { 'nvim-telescope/telescope-fzf-native.nvim', run = 'make' }
+
+  -- harpoon
+  use 'ThePrimeagen/harpoon'
 
   -- toggleterm
   use { "akinsho/toggleterm.nvim" }

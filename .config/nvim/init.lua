@@ -1,6 +1,9 @@
 -- plugins with packer 
 require('kz.plugins')
 
+--dashboard
+require('kz.alpha')
+
 -- general vim settings
 require('kz.vimoptions')
 require('kz.colors')
