@@ -27,7 +27,7 @@ vim.opt.completeopt = 'menuone,noselect'
 -- ide stuff
 vim.opt.pumheight = 10
 vim.opt.showtabline = 0
-vim.opt.timeoutlen = 1000
+vim.opt.timeoutlen = 300
 vim.opt.writebackup = false
 vim.opt.laststatus = 3
 vim.opt.showcmd = false
