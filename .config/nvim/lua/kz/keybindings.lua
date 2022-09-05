@@ -37,6 +37,7 @@ nmap("<C-A-h>", ":NvimTreeToggle<CR>")
 -- telescope
 nmap("<Leader>p", ":Telescope projects<CR>")
 nmap("<C-p>", ":lua require('kz.telescope').project_files()<CR>")
+nmap("<C-A-p>", ":Telescope find_files<CR>")
 nmap("<C-b>", ":Telescope buffers<CR>")
 nmap("<C-f>", ":Telescope current_buffer_fuzzy_find<CR>")
 nmap("<C-g>", ":Telescope live_grep<CR>")
