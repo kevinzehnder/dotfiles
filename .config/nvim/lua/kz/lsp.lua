@@ -32,7 +32,7 @@ local on_attach = function(client, bufnr)
   vim.keymap.set('n', '<space>rn', vim.lsp.buf.rename, opts)
   vim.keymap.set('n', '<space>ca', vim.lsp.buf.code_action, opts)
   vim.keymap.set('n', 'gr', vim.lsp.buf.references, opts)
-  vim.api.nvim_buf_set_keymap(bufnr, 'n', '<Leader>f', ":lua vim.lsp.buf.format({async=True})<CR>", opts)
+  vim.api.nvim_buf_set_keymap(bufnr, 'n', '<Leader>f', ":lua vim.lsp.buf.formatting({async=True})<CR>", opts)
 end
 
 local capabilities = vim.lsp.protocol.make_client_capabilities()
