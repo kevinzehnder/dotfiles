@@ -52,7 +52,7 @@ zstyle ':completion:*:descriptions' format '[%d]'
 zstyle ':fzf-tab:*' show-group none
 
 # neovim
-zinit ice as"program" from"gh-r" ver"nightly" bpick"nvim.appimage" mv"nvim* -> nvim" pick"nvim"
+zinit ice as"program" from"gh-r" bpick"nvim.appimage" ver"latest" mv"nvim* -> nvim"
 zinit light neovim/neovim
 
 # lazygit
