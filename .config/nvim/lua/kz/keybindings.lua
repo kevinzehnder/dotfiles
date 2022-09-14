@@ -10,14 +10,19 @@ end
 function imap(shortcut, command)
   map('i', shortcut, command)
 end
-
+local Remap = require("kz.keymap")
+local nnoremap = Remap.nnoremap
+local vnoremap = Remap.vnoremap
+local inoremap = Remap.inoremap
+local xnoremap = Remap.xnoremap
+local nmap = Remap.nmap
 
 -- Leeraste als <leader>
 vim.g.mapleader = " "
 vim.g.maplocalleader = "\\"
 
 -- edit vimrc files
-nmap("<Leader>vc", ":lua require('kz.telescope').search_dotfiles()<CR>")
+nnoremap("<Leader>vc", ":lua require('kz.telescope').search_dotfiles()<CR>")
 
 -- completion in command mode
 vim.api.nvim_set_keymap('c', '<C-j>', '<C-n>', {})
@@ -34,8 +39,11 @@ nmap("<C-A-h>", ":NvimTreeToggle<CR>")
 -- FZF
 -- nmap("<Leader>p", ":Files<CR>")
 
+-- greatest remap ever
+xnoremap("<leader>p", "\"_dP")
+
 -- telescope
-nmap("<Leader>p", ":Telescope projects<CR>")
+nmap("<C-t>", ":Telescope projects<CR>")
 nmap("<C-p>", ":lua require('kz.telescope').project_files()<CR>")
 nmap("<C-A-p>", ":Telescope find_files<CR>")
 nmap("<C-b>", ":Telescope buffers<CR>")

@@ -53,6 +53,7 @@ set sidescroll=1
 nmap <Leader>x :q!<cr>
 nmap <Leader>w :w<cr>
 nmap <Leader>q :q<cr>
+nmap <Leader>h :nohlsearch<cr>
 
 
 "VSCode Shortcuts
