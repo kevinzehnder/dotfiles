@@ -19,6 +19,7 @@ dashboard.section.buttons.val = {
   dashboard.button("r", " " .. " Recent files", ":Telescope oldfiles <CR>"),
   dashboard.button("t", " " .. " Find text", ":Telescope live_grep <CR>"),
   dashboard.button("c", " " .. " Config", ":lua require('kz.telescope').search_dotfiles()<CR>"),
+  dashboard.button("m", " " .. " Harpoon", ":lua require('harpoon.ui').toggle_quick_menu()<CR>"),
   dashboard.button("q", " " .. " Quit", ":qa<CR>"),
 }
 local function footer()
