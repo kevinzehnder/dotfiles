@@ -9,15 +9,6 @@ vim.opt.softtabstop = 2
 vim.opt.tabstop = 2
 vim.opt.expandtab = true
 
-
-vim.diagnostic.config({
-  virtual_text = true,
-
-})
-
--- YAML fix
-vim.cmd([[autocmd FileType yaml setlocal ts=2 sts=2 sw=2 expandtab]])
-
 -- general settings
 vim.opt.mouse = "a"
 
@@ -65,4 +56,10 @@ vim.opt.undofile = true
 vim.o.scrolloff = 12  -- Start scrolling when we're 12 lines away from margins
 vim.o.sidescrolloff = 15
 vim.o.sidescroll = 1
+
+-- lsp
+vim.diagnostic.config({
+  virtual_text = true,
+
+})
 
