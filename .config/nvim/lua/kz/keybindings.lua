@@ -10,6 +10,7 @@ end
 function imap(shortcut, command)
   map('i', shortcut, command)
 end
+
 local Remap = require("kz.keymap")
 local nnoremap = Remap.nnoremap
 local vnoremap = Remap.vnoremap
