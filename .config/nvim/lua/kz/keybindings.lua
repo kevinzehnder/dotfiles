@@ -34,7 +34,6 @@ nmap("<Leader>t", ":TroubleToggle<CR>")
 nmap("<C-A-m>", ":TroubleToggle<CR>")
 
 -- nvim-tree
-nmap("<C-n>", ":NvimTreeToggle<CR>")
 nmap("<C-A-h>", ":NvimTreeToggle<CR>")
 
 -- FZF
@@ -90,10 +89,10 @@ nmap("<C-A-l>", ":LazyGit<CR>")
 -- harpoon
 nmap("<Leader>m", ":lua require('harpoon.ui').toggle_quick_menu()<cr>")
 nmap("<Leader>n", ":lua require('harpoon.mark').add_file()<cr>")
-nmap("<Leader>la", ":lua require('harpoon.ui').nav_file(1)<cr>")
-nmap("<Leader>ls", ":lua require('harpoon.ui').nav_file(2)<cr>")
-nmap("<Leader>ld", ":lua require('harpoon.ui').nav_file(3)<cr>")
-nmap("<Leader>lf", ":lua require('harpoon.ui').nav_file(4)<cr>")
+nmap("<Leader>lf", ":lua require('harpoon.ui').nav_file(1)<cr>")
+nmap("<Leader>ld", ":lua require('harpoon.ui').nav_file(2)<cr>")
+nmap("<Leader>ls", ":lua require('harpoon.ui').nav_file(3)<cr>")
+nmap("<Leader>la", ":lua require('harpoon.ui').nav_file(4)<cr>")
 
 -- Buffer handling
 nmap("<S-h>", ":bprevious<cr>")
