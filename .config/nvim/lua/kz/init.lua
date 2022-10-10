@@ -33,4 +33,4 @@ require('kz.null-ls')
 require('kz.lsp')
 
 require('kz.dap')
-
+require("mason").setup()

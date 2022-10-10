@@ -7,7 +7,7 @@ require("null-ls").setup({
 
         -- go
         require("null-ls").builtins.formatting.gofmt,
-        --
+        
         -- yaml
         require("null-ls").builtins.diagnostics.yamllint,
 
