@@ -1,4 +1,5 @@
 -- helper functions
+
 function map(mode, shortcut, command)
   vim.api.nvim_set_keymap(mode, shortcut, command, { noremap = true, silent = true })
 end
@@ -11,10 +12,11 @@ function imap(shortcut, command)
   map('i', shortcut, command)
 end
 
+local CodeRunner = require("kz.coderunner")
 local Remap = require("kz.keymap")
 local nnoremap = Remap.nnoremap
 local vnoremap = Remap.vnoremap
-local inoremap = Remap.inoremap
+local inoremap =Remap.inoremap
 local xnoremap = Remap.xnoremap
 local nmap = Remap.nmap
 
@@ -60,7 +62,8 @@ function _G.set_terminal_keymaps()
   vim.api.nvim_buf_set_keymap(0, 't', '<esc>', [[<C-\><C-n>]], opts)
   vim.api.nvim_buf_set_keymap(0, 't', 'jk', [[<C-\><C-n>]], opts)
 end
-map("n", "<Leader>gg", ":TermExec cmd='go run cmd/main.go'<cr>")
+
+map("n", "<Leader>gg", "<cmd>lua CodeRunner()<cr>") -- enable coderunner
 
 -- DAP
 map("n", "<leader>db", "<cmd>lua require'dap'.toggle_breakpoint()<cr>")
@@ -133,3 +136,7 @@ nmap("<F2>", ":Alpha<CR>")
 
 -- Custom Shortcuts
 imap("jk", "<Esc>")
+
+
+
+
