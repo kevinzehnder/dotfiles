@@ -63,7 +63,17 @@ function _G.set_terminal_keymaps()
   vim.api.nvim_buf_set_keymap(0, 't', 'jk', [[<C-\><C-n>]], opts)
 end
 
+if vim.fn.has "nvim-0.7" then
+  vim.api.nvim_create_autocmd("FileType", {
+    pattern = "*",
+    command = "lua CodeRunner()",
+  })
+else
+  vim.cmd "autocmd FileType * lua CodeRunner()"
+end
+
 map("n", "<Leader>gg", "<cmd>lua CodeRunner()<cr>") -- enable coderunner
+
 
 -- DAP
 map("n", "<leader>db", "<cmd>lua require'dap'.toggle_breakpoint()<cr>")
