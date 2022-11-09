@@ -9,7 +9,8 @@ CodeRunner = function()
  if ft == "python" then
    keymap_c = {
      name = "Code",
-     r = { "<cmd>update<CR><cmd>exec '!python3' shellescape(@%, 1)<cr>", "Run" },
+     r = { "<cmd>TermExec cmd='python main.py'<cr>", "Run" },
+     --[[ r = { "<cmd>update<CR><cmd>exec '!python3' shellescape(@%, 1)<cr>", "Run" }, ]]
      m = { "<cmd>TermExec cmd='nodemon -e py %'<cr>", "Monitor" },
    }
  elseif ft == "rust" then
