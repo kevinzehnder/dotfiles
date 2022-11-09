@@ -221,6 +221,7 @@ export NVM_DIR="$HOME/.nvm"
 
 # golang
 export PATH=$PATH:/usr/local/go/bin
+alias air='~/go/bin/air'
 
 # lunarvim
 export PATH=$PATH:~/.local/bin/
