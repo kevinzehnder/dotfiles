@@ -9,14 +9,14 @@ CodeRunner = function()
  if ft == "python" then
    keymap_c = {
      name = "Code",
-     r = { "<cmd>TermExec cmd='python main.py'<cr>", "Run" },
+     r = { "<cmd>TermExec cmd='python main.py' direction=float go_back=0<cr>", "Run" },
      --[[ r = { "<cmd>update<CR><cmd>exec '!python3' shellescape(@%, 1)<cr>", "Run" }, ]]
      m = { "<cmd>TermExec cmd='nodemon -e py %'<cr>", "Monitor" },
    }
  elseif ft == "rust" then
    keymap_c = {
      name = "Code",
-     r = { "<cmd>TermExec cmd='cargo run'<cr>", "Run" },
+     r = { "<cmd>TermExec cmd='cargo run' direction=float go_back=0<cr>" , "Run" },
      --[[ D = { "<cmd>RustDebuggables<cr>", "Debuggables" }, ]]
      --[[ h = { "<cmd>RustHoverActions<cr>", "Hover Actions" }, ]]
      --[[ R = { "<cmd>RustRunnables<cr>", "Runnables" }, ]]
@@ -24,7 +24,7 @@ CodeRunner = function()
  elseif ft == "go" then
    keymap_c = {
      name = "Code",
-     r = { "<cmd>TermExec cmd='go run cmd/main.go'<cr>", "go run cmd/main.go" },
+     r = { "<cmd>TermExec cmd='go run cmd/main.go' direction=float go_back=0<cr>", "go run cmd/main.go" },
    }
  elseif ft == "typescript" or ft == "typescriptreact" or ft == "javascript" or ft == "javascriptreact" then
    keymap_c = {
