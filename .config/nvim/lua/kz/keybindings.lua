@@ -53,7 +53,7 @@ nmap("<C-f>", ":Telescope current_buffer_fuzzy_find<CR>")
 nmap("<C-g>", ":Telescope live_grep<CR>")
 nmap("<Leader>T", ":Telescope <CR>")
 nmap("<Leader>M", ":Telescope marks<CR>")
-nmap("<Leader>d", ":Telescope treesitter<CR>")
+nmap("<Leader>d", ":Telescope lsp_document_symbols<CR>")
 
 -- toggleterm
 -- nmap("<C-A-j>", ":ToggleTerm<CR>")
