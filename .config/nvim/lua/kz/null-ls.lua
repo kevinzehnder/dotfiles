@@ -14,6 +14,9 @@ require("null-ls").setup({
 
         -- javascript
         require("null-ls").builtins.formatting.prettier,
+
+        -- rust
+        require("null-ls").builtins.formatting.rustfmt,
     },
 })
 
