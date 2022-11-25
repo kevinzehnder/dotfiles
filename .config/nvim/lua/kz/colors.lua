@@ -17,6 +17,33 @@ function isdir(path)
    return exists(path.."/")
 end
 
+-- improve split visibility
+vim.cmd( [[
+function! AdaptColors() abort
+    if g:colors_name ==# 'solarized'
+      if &background ==# 'light'
+        highlight InactiveWindow guibg=#eee8d5
+        highlight lualine_buffer_a guifg=#fdfdfd guibg=#ababab
+        "highlight CursorLine guibg=#ffd8cb"
+      else
+        highlight InactiveWindow guibg=#073642
+      endif
+    else
+      highlight InactiveWindow guibg=#333333
+    endif
+endfunction
+
+function! Handle_Win_Enter() abort
+  setlocal winhighlight=Normal:Normal,NormalNC:InactiveWindow
+endfunction
+
+augroup BgHighlight
+  autocmd!
+  autocmd ColorScheme * call AdaptColors()
+  autocmd WinEnter,BufWinEnter * call Handle_Win_Enter()
+augroup END
+]])
+
 -- adaptive colorscheme
 if exists(os.getenv("HOME") .. "/.lightmode") then
   vim.o.background = "light"
@@ -32,12 +59,12 @@ end
 
 vim.cmd "highlight TSFunction gui=bold"
 
-require'shade'.setup({
-  overlay_opacity = 50,
-  opacity_step = 1,
-  keys = {
-    brightness_up    = '<C-Up>',
-    brightness_down  = '<C-Down>',
-    toggle           = '<C-PageDown>',
-  }
-})
+-- require'shade'.setup({
+--   overlay_opacity = 50,
+--   opacity_step = 1,
+--   keys = {
+--     brightness_up    = '<C-Up>',
+--     brightness_down  = '<C-Down>',
+--     toggle           = '<C-PageDown>',
+--   }
+-- })
