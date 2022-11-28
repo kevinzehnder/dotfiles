@@ -10,6 +10,7 @@ CodeRunner = function()
    keymap_c = {
      name = "Code",
      r = { "<cmd>TermExec cmd='python main.py' direction=float go_back=0<cr>", "Run" },
+     t = { "<cmd>TermExec cmd='python -m doctest main.py' direction=float go_back=0<cr>", "Doctests" },
      --[[ r = { "<cmd>update<CR><cmd>exec '!python3' shellescape(@%, 1)<cr>", "Run" }, ]]
      m = { "<cmd>TermExec cmd='nodemon -e py %'<cr>", "Monitor" },
    }
