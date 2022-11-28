@@ -59,7 +59,7 @@ vim.o.sidescroll = 1
 
 -- lsp
 vim.diagnostic.config({
-  virtual_text = true,
+  virtual_text = false,
 
 })
 
