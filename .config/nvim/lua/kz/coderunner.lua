@@ -17,7 +17,7 @@ CodeRunner = function()
  elseif ft == "rust" then
    keymap_c = {
      name = "Code",
-     r = { "<cmd>TermExec cmd='cargo run' direction=float go_back=0<cr>" , "Run" },
+     j = { "<cmd>TermExec cmd='cargo run' direction=float go_back=0<cr>" , "Run" },
      --[[ D = { "<cmd>RustDebuggables<cr>", "Debuggables" }, ]]
      --[[ h = { "<cmd>RustHoverActions<cr>", "Hover Actions" }, ]]
      --[[ R = { "<cmd>RustRunnables<cr>", "Runnables" }, ]]
@@ -25,7 +25,7 @@ CodeRunner = function()
  elseif ft == "go" then
    keymap_c = {
      name = "Code",
-     r = { "<cmd>TermExec cmd='go run cmd/main.go' direction=float go_back=0<cr>", "go run cmd/main.go" },
+     j = { "<cmd>TermExec cmd='go run cmd/main.go' direction=float go_back=0<cr>", "go run cmd/main.go" },
    }
  elseif ft == "typescript" or ft == "typescriptreact" or ft == "javascript" or ft == "javascriptreact" then
    keymap_c = {
