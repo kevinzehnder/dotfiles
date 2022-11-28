@@ -11,7 +11,7 @@ CodeRunner = function()
      name = "Code",
      j = { "<cmd>TermExec cmd='python main.py' direction=float go_back=0<cr>", "Run" },
      p = { "<cmd>TermExec cmd='pytest tests' direction=float go_back=0<cr>", "Pytest" },
-     k = { "<cmd>TermExec cmd='python -m doctest main.py' direction=float go_back=0<cr>", "Doctests" },
+     k = { "<cmd>TermExec cmd='pytest --doctest-modules main.py' direction=float go_back=0<cr>", "Doctests" },
      m = { "<cmd>TermExec cmd='nodemon -e py %'<cr>", "nodemon" },
    }
  elseif ft == "rust" then
