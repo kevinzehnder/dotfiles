@@ -72,7 +72,7 @@ else
   vim.cmd "autocmd FileType * lua CodeRunner()"
 end
 
-map("n", "<Leader>gg", "<cmd>lua CodeRunner()<cr>") -- enable coderunner
+--[[ map("n", "<Leader>gg", "<cmd>lua CodeRunner()<cr>") -- enable coderunner manually ]]
 
 
 -- DAP
