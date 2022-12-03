@@ -53,7 +53,7 @@ nmap("<C-f>", ":Telescope current_buffer_fuzzy_find<CR>")
 nmap("<C-g>", ":Telescope live_grep<CR>")
 nmap("<Leader>T", ":Telescope <CR>")
 nmap("<Leader>M", ":Telescope marks<CR>")
-nmap("<Leader>d", ":Telescope lsp_document_symbols<CR>")
+nmap("<Leader>S", ":Telescope lsp_document_symbols<CR>")
 
 -- toggleterm
 -- nmap("<C-A-j>", ":ToggleTerm<CR>")
@@ -87,8 +87,8 @@ map("n", "<leader>du", "<cmd>lua require'dapui'.toggle()<cr>")
 map("n", "<leader>dt", "<cmd>lua require'dap'.terminate()<cr>")
 
 -- Comment
-map("n", "<leader>/", "<cmd>lua require('Comment.api').toggle_current_linewise()<CR>")
-map("x", "<leader>/", '<ESC><CMD>lua require("Comment.api").toggle_linewise_op(vim.fn.visualmode())<CR>')
+--[[ map("n", "<leader>/", "<cmd>lua require('Comment.api').toggle_current_linewise()<CR>") ]]
+--[[ map("x", "<leader>/", '<ESC><CMD>lua require("Comment.api").toggle_linewise_op(vim.fn.visualmode())<CR>') ]]
 
 -- Remap arrow keys to resize window
 nmap("<A-down>", ":resize -2<CR>")

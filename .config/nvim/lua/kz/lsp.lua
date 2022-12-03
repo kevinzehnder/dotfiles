@@ -18,8 +18,8 @@ local on_attach = function(client, bufnr)
   -- See `:help vim.lsp.*` for documentation on any of the below functions
   --[[ -nvim_buf_set_keymap(buffer, mode, lhs, rhs, *opts) ]]
 
-  vim.api.nvim_buf_set_keymap(bufnr, 'n', 'gD', ":lua vim.lsp.buf.declaration()<CR>", opts)
-  vim.api.nvim_buf_set_keymap(bufnr, 'n', 'gd', ":lua vim.lsp.buf.definition()<CR>", opts)
+  vim.api.nvim_buf_set_keymap(bufnr, 'n', 'gD', ":lua vim.lsp.buf.declaration()<CR>", {desc="go to declaration"})
+  vim.api.nvim_buf_set_keymap(bufnr, 'n', 'gd', ":lua vim.lsp.buf.definition()<CR>", {desc="go to definition"})
   vim.keymap.set('n', 'K', vim.lsp.buf.hover, opts)
   vim.keymap.set('n', 'gi', vim.lsp.buf.implementation, opts)
   --[[ vim.keymap.set('n', '<C-k>', vim.lsp.buf.signature_help, opts) ]]
@@ -28,9 +28,9 @@ local on_attach = function(client, bufnr)
   vim.keymap.set('n', '<space>wl', function()
     print(vim.inspect(vim.lsp.buf.list_workspace_folders()))
   end, opts)
-  vim.keymap.set('n', '<space>D', vim.lsp.buf.type_definition, opts)
-  vim.keymap.set('n', '<space>rn', vim.lsp.buf.rename, opts)
-  vim.keymap.set('n', '<space>ca', vim.lsp.buf.code_action, opts)
+  --[[ vim.keymap.set('n', '<space>D', vim.lsp.buf.type_definition, opts) ]]
+  vim.keymap.set('n', '<space>rn', vim.lsp.buf.rename, { noremap = true, silent = true, desc="rename"})
+  vim.keymap.set('n', '<space>ca', vim.lsp.buf.code_action, { noremap = true, silent = true, desc="code actions"})
   vim.keymap.set('n', 'gr', vim.lsp.buf.references, opts)
   vim.api.nvim_buf_set_keymap(bufnr, 'n', '<Leader>f', ":lua vim.lsp.buf.format({async=True})<CR>", opts)
 end
