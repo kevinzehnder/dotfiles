@@ -42,7 +42,7 @@ nmap("<C-A-h>", ":NvimTreeToggle<CR>")
 -- nmap("<Leader>p", ":Files<CR>")
 
 -- primeagen remaps
-xnoremap("", "\"_dP")
+xnoremap("<Leader>p", "\"_dP")
 nmap("<C-u>", "<C-u>zz")
 
 -- telescope
