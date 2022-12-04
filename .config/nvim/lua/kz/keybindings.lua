@@ -44,6 +44,8 @@ nmap("<C-A-h>", ":NvimTreeToggle<CR>")
 -- primeagen remaps
 xnoremap("<Leader>p", "\"_dP")
 nmap("<C-u>", "<C-u>zz")
+nmap("n", "nzz")
+nmap("N", "Nzz")
 
 -- telescope
 nmap("<C-t>", ":Telescope projects<CR>")
