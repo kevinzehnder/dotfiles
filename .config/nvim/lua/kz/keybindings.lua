@@ -41,8 +41,9 @@ nmap("<C-A-h>", ":NvimTreeToggle<CR>")
 -- FZF
 -- nmap("<Leader>p", ":Files<CR>")
 
--- greatest remap ever
-xnoremap("<leader>p", "\"_dP")
+-- primeagen remaps
+xnoremap("", "\"_dP")
+nmap("<C-u>", "<C-u>zz")
 
 -- telescope
 nmap("<C-t>", ":Telescope projects<CR>")
