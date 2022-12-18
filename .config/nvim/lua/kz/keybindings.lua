@@ -44,6 +44,7 @@ nmap("<C-A-h>", ":NvimTreeToggle<CR>")
 -- primeagen remaps
 xnoremap("<Leader>p", "\"_dP")
 nmap("<C-u>", "<C-u>zz")
+nmap("<C-d>", "<C-d>zz")
 nmap("n", "nzz")
 nmap("N", "Nzz")
 
