@@ -47,6 +47,8 @@ nmap("<C-u>", "<C-u>zz")
 nmap("<C-d>", "<C-d>zz")
 nmap("n", "nzz")
 nmap("N", "Nzz")
+nmap("Q", "<nop>")
+nmap("<Leader>s", [[:%s/\<<C-r><C-w>\>/<C-r><C-w>/gI<Left><Left><Left>]])
 
 -- telescope
 nmap("<C-t>", ":Telescope projects<CR>")
@@ -143,7 +145,7 @@ map("x", "<A-k>", ":move '<-2<CR>gv-gv" )
 -- Custom Leader Shortcuts
 nmap("<Leader>?", ":WhichKey<cr>")
 nmap("<Leader>x", ":q!<cr>")
-nmap("<Leader>w", ":w<cr>")
+nmap("<Leader>w", ":up<cr>")
 nmap("<Leader>q", ":q<cr>")
 nmap("<Leader>vs", ":silent !code %:p<cr>") -- open current file in vscode
 nmap("<F2>", ":Alpha<CR>")
