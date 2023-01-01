@@ -47,7 +47,7 @@ vim.opt.smartcase = true
 vim.opt.incsearch = true
 vim.opt.backspace = "indent,eol,start"
 vim.opt.clipboard = "unnamedplus"
-vim.opt.updatetime = 300
+vim.opt.updatetime = 100
 
 -- undo
 vim.opt.undofile = true
