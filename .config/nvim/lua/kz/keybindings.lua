@@ -91,6 +91,7 @@ map("n", "<leader>dr", "<cmd>lua require'dap'.repl.toggle()<cr>")
 map("n", "<leader>dl", "<cmd>lua require'dap'.run_last()<cr>")
 map("n", "<leader>du", "<cmd>lua require'dapui'.toggle()<cr>")
 map("n", "<leader>dt", "<cmd>lua require'dap'.terminate()<cr>")
+map("n", "<leader>dp", "<cmd>lua require'dapui'.float_element('console', {width=200, height=200})<cr>")
 
 -- Comment
 --[[ map("n", "<leader>/", "<cmd>lua require('Comment.api').toggle_current_linewise()<CR>") ]]

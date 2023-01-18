@@ -22,6 +22,7 @@ dap_install.config("python", {})
 
 dapui.setup {
   sidebar = {
+
     elements = {
       {
         id = "scopes",
@@ -33,20 +34,28 @@ dapui.setup {
     position = "left", -- Can be "left", "right", "top", "bottom"
   },
   tray = {
-    elements = {},
+    elements = {
+            --[[ "console", ]]
+            --[[ "repl" ]]
+        },
+    size = 40,
+    width = 100,
+    position = "bottom"
   },
+  floating = { max_width = 0.9, max_height = 0.5, border = vim.g.border_chars },
 }
 
 vim.fn.sign_define("DapBreakpoint", { text = "", texthl = "DiagnosticSignError", linehl = "", numhl = "" })
 
 dap.listeners.after.event_initialized["dapui_config"] = function()
-  dapui.open()
+  --[[ dapui.open() ]]
+  dapui.float_element("console", {width = 200, height = 200})
 end
 
-dap.listeners.before.event_terminated["dapui_config"] = function()
-  dapui.close()
-end
+--[[ dap.listeners.before.event_terminated["dapui_config"] = function() ]]
+--[[   dapui.close() ]]
+--[[ end ]]
 
-dap.listeners.before.event_exited["dapui_config"] = function()
-  dapui.close()
-end
+--[[ dap.listeners.before.event_exited["dapui_config"] = function() ]]
+--[[   dapui.close() ]]
+--[[ end ]]
