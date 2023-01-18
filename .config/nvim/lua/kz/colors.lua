@@ -29,7 +29,7 @@ function! AdaptColors() abort
         highlight InactiveWindow guibg=#073642
       endif
     else
-      highlight InactiveWindow guibg=#333333
+      highlight InactiveWindow guibg=#1F2335
     endif
 endfunction
 
