@@ -178,7 +178,7 @@ alias syu='sudo pacman -Syu'
 alias dockerkill='docker stop $(docker ps -a -q) && docker rm $(docker ps -a -q)'
 
 alias light='base16_solarized-light && colorschemeswitcher 0'
-alias dark='base16_solarized-dark && colorschemeswitcher 1'
+alias dark='base16_tokyo-night && colorschemeswitcher 1'
 alias gruv='base16_gruvbox-dark-medium && colorschemeswitcher 1'
 alias gvim='gvim.exe'
 alias lazyconfig='lazygit --git-dir=$HOME/.cfg/ --work-tree=$HOME'

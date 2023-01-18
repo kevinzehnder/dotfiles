@@ -50,7 +50,7 @@ if exists(os.getenv("HOME") .. "/.lightmode") then
   vim.cmd "colorscheme solarized"
 else
   vim.o.background = "dark"
-  vim.cmd "colorscheme solarized"
+  vim.cmd "colorscheme tokyonight"
 end
 
 if vim.env.BASE16_THEME == "gruvbox-dark-medium" then
