@@ -42,6 +42,7 @@ dapui.setup {
     position = "bottom"
   },
   floating = { max_width = 0.9, max_height = 0.5, border = vim.g.border_chars },
+  expand_lines = 1,
 }
 
 vim.fn.sign_define("DapBreakpoint", { text = "", texthl = "DiagnosticSignError", linehl = "", numhl = "" })
