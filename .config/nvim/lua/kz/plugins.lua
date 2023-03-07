@@ -87,6 +87,16 @@ require('packer').startup(function(use)
   use { "JoosepAlviste/nvim-ts-context-commentstring" }
   use { "lewis6991/impatient.nvim", commit = "969f2c5c90457612c09cf2a13fee1adaa986d350" }
 
+  -- surround
+  use({
+    "kylechui/nvim-surround",
+    tag = "*", -- Use for stability; omit to use `main` branch for the latest features
+    config = function()
+        require("nvim-surround").setup({
+            -- Configuration here, or leave empty to use defaults
+        })
+    end
+  })
 
   -- null-ls
   use({
