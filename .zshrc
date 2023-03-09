@@ -98,6 +98,10 @@ zinit snippet https://github.com/docker/cli/blob/master/contrib/completion/zsh/_
 zinit ice as"completion"
 zinit snippet https://github.com/docker/compose/tree/master/contrib/completion/zsh/_docker-compose
 
+# kubelogin
+zinit ice as"program" from"gh-r" pick"bin/linux_amd64/kubelogin"
+zinit light Azure/kubelogin
+
 # zsh settings
 HISTFILE=~/.zsh_history
 HISTSIZE=500000
@@ -221,10 +225,12 @@ export NVM_DIR="$HOME/.nvm"
 
 # golang
 export PATH=$PATH:/usr/local/go/bin
+export PATH=$PATH:~/go/bin
 alias air='~/go/bin/air'
 
 # lunarvim
 export PATH=$PATH:~/.local/bin/
+
 
 
 # Configure ssh forwarding
