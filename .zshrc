@@ -249,3 +249,12 @@ if [[ $ALREADY_RUNNING != "0" ]]; then
     # set socat to listen on $SSH_AUTH_SOCK and forward to npiperelay which then forwards to openssh-ssh-agent on windows
     (setsid socat UNIX-LISTEN:$SSH_AUTH_SOCK,fork EXEC:"npiperelay.exe -ei -s //./pipe/openssh-ssh-agent",nofork &) >/dev/null 2>&1
 fi
+
+# Check if the AppsUseLightTheme registry key exists and its value is 1
+if /mnt/c/Windows/System32/reg.exe query 'HKCU\SOFTWARE\Microsoft\Windows\CurrentVersion\Themes\Personalize' /v AppsUseLightTheme | grep -q '0x1'; then
+  # If the registry key value is 1, print "light"
+  light
+else
+  # If the registry key value is not 1, print "dark"
+  dark
+fi
