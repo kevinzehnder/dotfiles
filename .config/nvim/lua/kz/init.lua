@@ -15,7 +15,6 @@ require('kz.autopairs')
 require('kz.commentary')
 require('kz.impatient')
 
-require('kz.nvimtree')
 require('kz.fzf')
 require('kz.telescope')
 require('kz.harpoon')

@@ -7,6 +7,7 @@ end
 configs.setup {
   ensure_installed = "all", --only uses parsers that are maintained
   sync_install = false,
+  auto_install = true,
   highlight = { --enable highlighting
     enable = true,
     use_languagetree = true,

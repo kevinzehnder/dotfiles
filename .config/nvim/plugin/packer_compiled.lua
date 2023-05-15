@@ -241,11 +241,6 @@ _G.packer_plugins = {
     path = "/home/zehnderk/.local/share/nvim/site/pack/packer/start/nvim-surround",
     url = "https://github.com/kylechui/nvim-surround"
   },
-  ["nvim-tree.lua"] = {
-    loaded = true,
-    path = "/home/zehnderk/.local/share/nvim/site/pack/packer/start/nvim-tree.lua",
-    url = "https://github.com/kyazdani42/nvim-tree.lua"
-  },
   ["nvim-treesitter"] = {
     loaded = true,
     path = "/home/zehnderk/.local/share/nvim/site/pack/packer/start/nvim-treesitter",
@@ -262,8 +257,9 @@ _G.packer_plugins = {
     url = "https://github.com/JoosepAlviste/nvim-ts-context-commentstring"
   },
   ["nvim-web-devicons"] = {
-    loaded = true,
-    path = "/home/zehnderk/.local/share/nvim/site/pack/packer/start/nvim-web-devicons",
+    loaded = false,
+    needs_bufread = false,
+    path = "/home/zehnderk/.local/share/nvim/site/pack/packer/opt/nvim-web-devicons",
     url = "https://github.com/kyazdani42/nvim-web-devicons"
   },
   ["onedark.nvim"] = {
@@ -285,6 +281,11 @@ _G.packer_plugins = {
     loaded = true,
     path = "/home/zehnderk/.local/share/nvim/site/pack/packer/start/project.nvim",
     url = "https://github.com/ahmedkhalf/project.nvim"
+  },
+  ["telescope-file-browser.nvim"] = {
+    loaded = true,
+    path = "/home/zehnderk/.local/share/nvim/site/pack/packer/start/telescope-file-browser.nvim",
+    url = "https://github.com/nvim-telescope/telescope-file-browser.nvim"
   },
   ["telescope-fzf-native.nvim"] = {
     loaded = true,

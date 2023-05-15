@@ -25,7 +25,7 @@ CodeRunner = function()
  elseif ft == "go" then
    keymap_c = {
      name = "Code",
-     j = { "<cmd>TermExec cmd='go run cmd/main.go' direction=float go_back=0<cr>", "go run cmd/main.go" },
+     j = { "<cmd>TermExec cmd='go run cmd/main/main.go' direction=float go_back=0<cr>", "go run cmd/main/main.go" },
    }
  elseif ft == "typescript" or ft == "typescriptreact" or ft == "javascript" or ft == "javascriptreact" then
    keymap_c = {

@@ -36,7 +36,7 @@ nmap("<Leader>t", ":TroubleToggle<CR>")
 nmap("<C-A-m>", ":TroubleToggle<CR>")
 
 -- nvim-tree
-nmap("<C-A-h>", ":NvimTreeToggle<CR>")
+nmap("<C-A-h>", ":Telescope file_browser<CR>")
 
 -- FZF
 -- nmap("<Leader>p", ":Files<CR>")

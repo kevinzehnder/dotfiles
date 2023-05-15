@@ -107,10 +107,11 @@ require('packer').startup(function(use)
     requires = { "nvim-lua/plenary.nvim" },
   })
 
-  -- nvim tree
-  use 'kyazdani42/nvim-web-devicons'
-  use { 'kyazdani42/nvim-tree.lua' }
-
+  use {
+    "nvim-telescope/telescope-file-browser.nvim",
+    requires = { "nvim-telescope/telescope.nvim", "nvim-lua/plenary.nvim" }
+    }
+    --
   -- fzf
   use { "junegunn/fzf", run = ":call fzf#install()" }
   use "junegunn/fzf.vim"
