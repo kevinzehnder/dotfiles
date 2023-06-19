@@ -5,7 +5,26 @@ end
 
 -- treesitter
 configs.setup {
-  ensure_installed = "all", --only uses parsers that are maintained
+  ensure_installed = {
+		"bash",
+        "cpp",
+        "python",
+        "rust",
+		"comment",
+		"css",
+		"html",
+		"javascript",
+		"jsdoc",
+		"jsonc",
+		"lua",
+		"markdown",
+		"regex",
+		"scss",
+		"toml",
+		"typescript",
+		"yaml",
+        "go",
+    },
   sync_install = false,
   auto_install = true,
   highlight = { --enable highlighting
