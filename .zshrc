@@ -4,6 +4,10 @@ if [[ -r "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh" ]]
   source "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh"
 fi
 
+if [[ -r "${XDG_CONFIG_HOME:-${HOME}/.config}/zi/init.zsh" ]]; then
+  source "${XDG_CONFIG_HOME:-${HOME}/.config}/zi/init.zsh" && zzinit
+fi
+
 # Preferred editor for local and remote sessions
 if [[ -n $SSH_CONNECTION ]]; then
    export EDITOR='nvim'
@@ -13,94 +17,80 @@ fi
 
 
 # Base16 Shell
-BASE16_SHELL="$ZINIT[PLUGINS_DIR]/fnune---base16-shell/.config/base16-shell/"
+BASE16_SHELL="~/.zi/plugins/fnune---base16-shell/.config/base16-shell/"
 [ -n "$PS1" ] && \
 	    [ -s "$BASE16_SHELL/profile_helper.sh" ] && \
 	            eval "$("$BASE16_SHELL/profile_helper.sh")"
 
-### Added by Zinit's installer
-if [[ ! -f $HOME/.zinit/bin/zinit.zsh ]]; then
-    print -P "%F{33}▓▒░ %F{220}Installing %F{33}DHARMA%F{220} Initiative Plugin Manager (%F{33}zdharma-continuum/zinit%F{220})…%f"
-    command mkdir -p "$HOME/.zinit" && command chmod g-rwX "$HOME/.zinit"
-    command git clone https://github.com/zdharma-continuum/zinit "$HOME/.zinit/bin" && \
-        print -P "%F{33}▓▒░ %F{34}Installation successful.%f%b" || \
-        print -P "%F{160}▓▒░ The clone has failed.%f%b"
-fi
 
-source "$HOME/.zinit/bin/zinit.zsh"
-autoload -Uz _zinit
-(( ${+_comps} )) && _comps[zinit]=_zinit
-
-
-# zinit
-zinit wait lucid light-mode for \
+zi wait lucid light-mode for \
   atinit"zicompinit; zicdreplay" \
       zdharma-continuum/fast-syntax-highlighting \
   atload"_zsh_autosuggest_start" \
       zsh-users/zsh-autosuggestions \
-  blockf atpull'zinit creinstall -q .' \
+  blockf atpull'zi creinstall -q .' \
       zsh-users/zsh-completions
 
 # autoload -U compinit && compinit
 # autoload -Uz zmv
 
-zinit light romkatv/powerlevel10k
+zi light romkatv/powerlevel10k
 
-zinit light Aloxaf/fzf-tab
+zi light Aloxaf/fzf-tab
 zstyle ':fzf-tab:complete:cd:*' fzf-preview 'exa -1 --color=always $realpath'
 zstyle ':completion:*:descriptions' format '[%d]'
 zstyle ':fzf-tab:*' show-group none
 
 # neovim
-zinit ice as"program" from"gh-r" ver"nightly" bpick"*appimage*" mv"nvim* -> nvim"
-zinit light neovim/neovim
+zi ice as"program" from"gh-r" ver"nightly" bpick"*appimage*" mv"nvim* -> nvim"
+zi light neovim/neovim
 
 # lazygit
-zinit ice as"program" from"gh-r" ver"latest" 
-zinit light jesseduffield/lazygit
+zi ice as"program" from"gh-r"
+zi light jesseduffield/lazygit
 
 # tree-sitter
-zinit ice as"program" from"gh-r" mv"tree* -> tree-sitter" pick"tree-sitter"
-zinit light tree-sitter/tree-sitter
+zi ice as"program" from"gh-r" mv"tree* -> tree-sitter" pick"tree-sitter"
+zi light tree-sitter/tree-sitter
 
 # black formatter
-zinit ice as"program" from"gh-r" ver"latest" mv"black_linux -> black"
-zinit light psf/black
+zi ice as"program" from"gh-r" mv"black_linux -> black"
+zi light psf/black
 
 # ogham/exa, replacement for ls
-zinit ice wait"2" lucid from"gh-r" as"program" mv"bin/exa* -> exa"
-zinit light ogham/exa
+zi ice wait"2" lucid from"gh-r" as"program" mv"bin/exa* -> exa"
+zi light ogham/exa
 
 # bat
-zinit ice as"command" from"gh-r" mv"bat* -> bat" pick"bat/bat"
-zinit light sharkdp/bat
+zi ice as"command" from"gh-r" mv"bat* -> bat" pick"bat/bat"
+zi light sharkdp/bat
 
 # fd
-zinit ice as"command" from"gh-r" mv"fd* -> fdfind" pick"fdfind"
-zinit light sharkdp/fd
+zi ice as"command" from"gh-r" mv"fd* -> fdfind" pick"fdfind"
+zi light sharkdp/fd
 
 # junegunn/fzf-bin
-zinit ice from"gh-r" as"program" bpick"*linux_amd64*"
-zinit light junegunn/fzf
+zi ice from"gh-r" as"program" bpick"*linux_amd64*"
+zi light junegunn/fzf
 
 # ripgrep
-zinit ice as"program" from"gh-r" mv"ripgrep* -> rg" pick"rg/rg"
-zinit light BurntSushi/ripgrep
+zi ice as"program" from"gh-r" mv"ripgrep* -> rg" pick"rg/rg"
+zi light BurntSushi/ripgrep
 
 # base16-shell and colors
-zinit ice from"gh" nocompile
-zinit light fnune/base16-fzf
-zinit light fnune/base16-shell
+zi ice from"gh" nocompile
+zi light fnune/base16-fzf
+zi light fnune/base16-shell
 
 # docker and docker-compose completion
-zinit ice as"completion"
-zinit snippet https://github.com/docker/cli/blob/master/contrib/completion/zsh/_docker
-zinit ice as"completion"
-zinit snippet https://github.com/docker/compose/tree/master/contrib/completion/zsh/_docker-compose
+zi ice as"completion"
+zi snippet https://github.com/docker/cli/blob/master/contrib/completion/zsh/_docker
+zi ice as"completion"
+zi snippet https://github.com/docker/compose/tree/master/contrib/completion/zsh/_docker-compose
 
 # kubelogin
-zinit ice as"program" from"gh-r" pick"bin/linux_amd64/kubelogin"
-zinit light Azure/kubelogin
+zi ice as"program" from"gh-r" pick"bin/linux_amd64/kubelogin"
+zi light Azure/kubelogin
 
 # zsh settings
 HISTFILE=~/.zsh_history
@@ -117,7 +107,6 @@ set termguicolors
 setopt auto_cd
 
 # Backgrounding and Unbackgrounding {{{
-
 # Use Ctrl-z swap in and out of vim (or any other process)
 # https://sheerun.net/2014/03/21/how-to-boost-your-vim-productivity/
 function ctrl-z-toggle () {
@@ -201,10 +190,10 @@ fi
 colorschemeswitcher(){
   if [ $1 -eq 0 ]; then
     touch ~/.lightmode;
-    source $ZINIT[PLUGINS_DIR]/fnune---base16-fzf/bash/base16-$BASE16_THEME.config;
+    source ~/.zi/plugins/fnune---base16-fzf/bash/base16-$BASE16_THEME.config;
   else
     rm -f ~/.lightmode;
-    source $ZINIT[PLUGINS_DIR]/fnune---base16-fzf/bash/base16-$BASE16_THEME.config;
+    source ~/.zi/plugins/fnune---base16-fzf/bash/base16-$BASE16_THEME.config;
   fi
 }
 
@@ -216,7 +205,7 @@ if [ $commands[kubectl] ]; then source <(kubectl completion zsh); fi
 [[ ! -f ~/.p10k.zsh ]] || source ~/.p10k.zsh
 [ -f ~/.fzf/shell/key-bindings.zsh ] && source ~/.fzf/shell/key-bindings.zsh
 [[ $- == *i* ]] && source "$HOME/.fzf/shell/completion.zsh" 2> /dev/null
-source $ZINIT[PLUGINS_DIR]/fnune---base16-fzf/bash/base16-$BASE16_THEME.config
+source ~/.zi/plugins/fnune---base16-fzf/bash/base16-$BASE16_THEME.config
 
 # nvm
 export NVM_DIR="$HOME/.nvm"
@@ -227,11 +216,6 @@ export NVM_DIR="$HOME/.nvm"
 export PATH=$PATH:/usr/local/go/bin
 export PATH=$PATH:~/go/bin
 alias air='~/go/bin/air'
-
-# lunarvim
-export PATH=$PATH:~/.local/bin/
-
-
 
 # Configure ssh forwarding
 export SSH_AUTH_SOCK=$HOME/.ssh/agent.sock
