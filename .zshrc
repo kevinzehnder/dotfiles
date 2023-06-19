@@ -22,17 +22,12 @@ BASE16_SHELL="~/.zi/plugins/fnune---base16-shell/.config/base16-shell/"
 	    [ -s "$BASE16_SHELL/profile_helper.sh" ] && \
 	            eval "$("$BASE16_SHELL/profile_helper.sh")"
 
+zi ice wait lucid atload'!_zsh_autosuggest_start'
+zi light zsh-users/zsh-autosuggestions
 
-zi wait lucid light-mode for \
-  atinit"zicompinit; zicdreplay" \
-      zdharma-continuum/fast-syntax-highlighting \
-  atload"_zsh_autosuggest_start" \
-      zsh-users/zsh-autosuggestions \
-  blockf atpull'zi creinstall -q .' \
-      zsh-users/zsh-completions
-
-# autoload -U compinit && compinit
-# autoload -Uz zmv
+zi light zsh-users/zsh-completions
+zi light z-shell/F-Sy-H
+# zi load z-shell/H-S-MW
 
 zi light romkatv/powerlevel10k
 
@@ -105,6 +100,22 @@ setopt HIST_FIND_NO_DUPS
 setopt HIST_SAVE_NO_DUPS
 set termguicolors
 setopt auto_cd
+
+zstyle ':completion:*:matches' group 'yes'
+zstyle ':completion:*:options' description 'yes'
+zstyle ':completion:*:options' auto-description '%d'
+zstyle ':completion:*:corrections' format ' %F{green}-- %d (errors: %e) --%f'
+zstyle ':completion:*:descriptions' format ' %F{yellow}-- %d --%f'
+zstyle ':completion:*:messages' format ' %F{purple} -- %d --%f'
+zstyle ':completion:*:warnings' format ' %F{red}-- no matches found --%f'
+zstyle ':completion:*:default' list-prompt '%S%M matches%s'
+zstyle ':completion:*' format ' %F{yellow}-- %d --%f'
+zstyle ':completion:*' group-name ''
+zstyle ':completion:*' verbose yes
+zstyle ':completion:*' matcher-list 'm:{a-zA-Z}={A-Za-z}' 'r:|[._-]=* r:|=*' 'l:|=* r:|=*'
+zstyle ':completion:*:functions' ignored-patterns '(_*|pre(cmd|exec))'
+zstyle ':completion:*' use-cache true
+zstyle ':completion:*' rehash true
 
 # Backgrounding and Unbackgrounding {{{
 # Use Ctrl-z swap in and out of vim (or any other process)
@@ -200,7 +211,8 @@ colorschemeswitcher(){
 
 alias k='kubectl'
 alias kc='kubectl config use-context'
-if [ $commands[kubectl] ]; then source <(kubectl completion zsh); fi
+[[ $commands[kubectl] ]] && source <(kubectl completion zsh)
+
 
 [[ ! -f ~/.p10k.zsh ]] || source ~/.p10k.zsh
 [ -f ~/.fzf/shell/key-bindings.zsh ] && source ~/.fzf/shell/key-bindings.zsh
