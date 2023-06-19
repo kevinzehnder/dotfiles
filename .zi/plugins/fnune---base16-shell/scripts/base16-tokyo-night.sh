@@ -120,3 +120,5 @@ unset color20
 unset color21
 unset color_foreground
 unset color_background
+
+export BASE16_THEME=tokyo-night
