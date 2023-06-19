@@ -18,31 +18,31 @@ function isdir(path)
 end
 
 -- improve split visibility
-vim.cmd( [[
-function! AdaptColors() abort
-    if g:colors_name ==# 'solarized'
-      if &background ==# 'light'
-        highlight InactiveWindow guibg=#eee8d5
-        highlight lualine_buffer_a guifg=#fdfdfd guibg=#ababab
-        "highlight CursorLine guibg=#ffd8cb"
-      else
-        highlight InactiveWindow guibg=#073642
-      endif
-    else
-      highlight InactiveWindow guibg=#1F2335
-    endif
-endfunction
-
-function! Handle_Win_Enter() abort
-  setlocal winhighlight=Normal:Normal,NormalNC:InactiveWindow
-endfunction
-
-augroup BgHighlight
-  autocmd!
-  autocmd ColorScheme * call AdaptColors()
-  autocmd WinEnter,BufWinEnter * call Handle_Win_Enter()
-augroup END
-]])
+-- vim.cmd( [[
+-- function! AdaptColors() abort
+--     if g:colors_name ==# 'solarized'
+--       if &background ==# 'light'
+--         highlight InactiveWindow guibg=#eee8d5
+--         highlight lualine_buffer_a guifg=#fdfdfd guibg=#ababab
+--         "highlight CursorLine guibg=#ffd8cb"
+--       else
+--         highlight InactiveWindow guibg=#073642
+--       endif
+--     else
+--       highlight InactiveWindow guibg=#1F2335
+--     endif
+-- endfunction
+-- 
+-- function! Handle_Win_Enter() abort
+--   setlocal winhighlight=Normal:Normal,NormalNC:InactiveWindow
+-- endfunction
+-- 
+-- augroup BgHighlight
+--   autocmd!
+--   autocmd ColorScheme * call AdaptColors()
+--   autocmd WinEnter,BufWinEnter * call Handle_Win_Enter()
+-- augroup END
+-- ]])
 
 -- adaptive colorscheme
 if exists(os.getenv("HOME") .. "/.lightmode") then

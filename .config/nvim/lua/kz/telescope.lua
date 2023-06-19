@@ -32,12 +32,12 @@ require('telescope').setup{
   },
   pickers = {
       find_files = {
-        -- find_command = { "rg", "--files", "--ignore", "--hidden"}
-        find_command = { "rg", "--files", "--ignore", "--hidden", "--no-ignore-vcs" }
+        find_command = { "rg", "--files", "--ignore", "--hidden"}
+        -- find_command = { "rg", "--files", "--ignore", "--hidden", "--no-ignore-vcs" }
     },
       git_files = {
-        -- find_command = { "rg", "--files", "--ignore", "--hidden"}
-        find_command = { "rg", "--files", "--ignore", "--hidden", "--no-ignore-vcs" }
+        find_command = { "rg", "--files", "--ignore", "--hidden"}
+        -- find_command = { "rg", "--files", "--ignore", "--hidden", "--no-ignore-vcs" }
     }
   },
   extensions = {

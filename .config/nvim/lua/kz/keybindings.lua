@@ -60,6 +60,7 @@ nmap("<C-g>", ":Telescope live_grep<CR>")
 nmap("<Leader>T", ":Telescope <CR>")
 nmap("<Leader>M", ":Telescope marks<CR>")
 nmap("<Leader>S", ":Telescope lsp_document_symbols<CR>")
+nmap("<F12>", ":WhichKey<CR>")
 
 -- toggleterm
 -- nmap("<C-A-j>", ":ToggleTerm<CR>")
