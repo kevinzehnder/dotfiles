@@ -22,11 +22,11 @@ BASE16_SHELL="~/.zi/plugins/fnune---base16-shell/.config/base16-shell/"
 	    [ -s "$BASE16_SHELL/profile_helper.sh" ] && \
 	            eval "$("$BASE16_SHELL/profile_helper.sh")"
 
-zi ice wait lucid atload'!_zsh_autosuggest_start'
-zi light zsh-users/zsh-autosuggestions
+zi wait lucid light-mode for \
+    atinit"zicompinit; zicdreplay" z-shell/F-Sy-H \
+    atload"_zsh_autosuggest_start" zsh-users/zsh-autosuggestions \
+    blockf atpull"zi creinstall -q ." zsh-users/zsh-completions
 
-zi light zsh-users/zsh-completions
-zi light z-shell/F-Sy-H
 # zi load z-shell/H-S-MW
 
 zi light romkatv/powerlevel10k
