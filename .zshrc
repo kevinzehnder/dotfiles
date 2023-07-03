@@ -87,6 +87,10 @@ zi snippet https://github.com/docker/compose/tree/master/contrib/completion/zsh/
 zi ice as"program" from"gh-r" pick"bin/linux_amd64/kubelogin"
 zi light Azure/kubelogin
 
+# k9s
+zi ice as"program" from"gh-r" pick"*Linux_amd64*"
+zi light derailed/k9s
+
 # zsh settings
 HISTFILE=~/.zsh_history
 HISTSIZE=500000
