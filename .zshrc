@@ -22,10 +22,8 @@ zi wait lucid light-mode as"program" from"gh-r" for \
     mv"tree* -> tree-sitter" pick"tree-sitter" tree-sitter/tree-sitter \
     mv"black_linux -> black" psf/black \
     mv"bin/exa* -> exa" ogham/exa \
-    mv"bat* -> bat" pick"bat/bat" sharkdp/bat \
-    mv"fd* -> fdfind" pick"fdfind" sharkdp/fd \
     pick"bin/linux_amd64/kubelogin" Azure/kubelogin \
-    pick"*Linux_amd64*" derailed/k9s 
+    pick"*Linux_amd64*" derailed/k9s \
 
 
 zi wait lucid light-mode for \
@@ -37,9 +35,16 @@ zi wait lucid light-mode as"completion" for \
     https://github.com/docker/compose/tree/master/contrib/completion/zsh/_docker-compose \
 
 
+zi ice as"program" from"gh-r" mv"fd* -> fdfind" pick"fdfind/fd"
+zi light sharkdp/fd
+
+zi ice as"program" from"gh-r" mv"bat* -> bat" pick"bat/bat"
+zi light sharkdp/bat
+
 # needs to be loaded last
 zi wait lucid light-mode for \
     atinit"zicompinit; zicdreplay" z-shell/F-Sy-H
+
 
 
 # zsh settings
@@ -89,6 +94,7 @@ export FZF_DEFAULT_OPTS="
 "
 
 export FZF_DEFAULT_COMMAND="rg --files --hidden --follow --glob '!.git'"
+# export FZF_DEFAULT_COMMAND="rg --files --hidden --glob '!.git'"
 export FZF_CTRL_T_COMMAND="$FZF_DEFAULT_COMMAND"
 
 # completion settings
