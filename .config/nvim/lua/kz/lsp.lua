@@ -72,7 +72,7 @@ local enhance_server_opts = {
     }
   end,
 
-  ["sumneko_lua"] = function(opts)
+  ["lua_ls"] = function(opts)
     opts.settings = {
       Lua = {
         diagnostics = {
