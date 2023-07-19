@@ -8,89 +8,67 @@ if [[ -r "${XDG_CONFIG_HOME:-${HOME}/.config}/zi/init.zsh" ]]; then
   source "${XDG_CONFIG_HOME:-${HOME}/.config}/zi/init.zsh" && zzinit
 fi
 
-
-# zi wait lucid light-mode for \
-#     atinit"zicompinit; zicdreplay" z-shell/F-Sy-H \
-#     atload"_zsh_autosuggest_start" zsh-users/zsh-autosuggestions \
-#     blockf atpull"zi creinstall -q ." zsh-users/zsh-completions
-
-# zi load z-shell/H-S-MW
-
 zi light romkatv/powerlevel10k
 
-# zi light Aloxaf/fzf-tab
+zi wait lucid light-mode for \
+    atload"_zsh_autosuggest_start" zsh-users/zsh-autosuggestions \
+    blockf atpull'zi creinstall -q .' zsh-users/zsh-completions
 
-# neovim
-# zi ice as"program" from"gh-r" ver"nightly" bpick"*appimage*" mv"nvim* -> nvim"
-# zi light neovim/neovim
+zi wait lucid light-mode as"program" from"gh-r" for \
+    ver"nightly" bpick"*appimage*" mv"nvim* -> nvim" neovim/neovim \
+    mv"ripgrep* -> rg" pick"rg/rg" BurntSushi/ripgrep \
+    bpick"*linux_amd64*" junegunn/fzf \
+    jesseduffield/lazygit \
+    mv"tree* -> tree-sitter" pick"tree-sitter" tree-sitter/tree-sitter \
+    mv"black_linux -> black" psf/black \
+    mv"bin/exa* -> exa" ogham/exa \
+    mv"bat* -> bat" pick"bat/bat" sharkdp/bat \
+    mv"fd* -> fdfind" pick"fdfind" sharkdp/fd \
+    pick"bin/linux_amd64/kubelogin" Azure/kubelogin \
+    pick"*Linux_amd64*" derailed/k9s 
 
-# lazygit
-zi ice as"program" from"gh-r"
-zi light jesseduffield/lazygit
 
-# tree-sitter
-# zi ice as"program" from"gh-r" mv"tree* -> tree-sitter" pick"tree-sitter"
-# zi light tree-sitter/tree-sitter
+zi wait lucid light-mode for \
+    chriskempson/base16-shell \
+    Aloxaf/fzf-tab
 
-# black formatter
-# zi ice as"program" from"gh-r" mv"black_linux -> black"
-# zi light psf/black
+zi wait lucid light-mode as"completion" for \
+    https://github.com/docker/cli/blob/master/contrib/completion/zsh/_docker \
+    https://github.com/docker/compose/tree/master/contrib/completion/zsh/_docker-compose \
 
-# ogham/exa, replacement for ls
-# zi ice wait"2" lucid from"gh-r" as"program" mv"bin/exa* -> exa"
-# zi light ogham/exa
 
-# bat
-# zi ice as"command" from"gh-r" mv"bat* -> bat" pick"bat/bat"
-# zi light sharkdp/bat
+# needs to be loaded last
+zi wait lucid light-mode for \
+    atinit"zicompinit; zicdreplay" z-shell/F-Sy-H
 
-# fd
-# zi ice as"command" from"gh-r" mv"fd* -> fdfind" pick"fdfind"
-# zi light sharkdp/fd
-
-# junegunn/fzf-bin
-# zi ice from"gh-r" as"program" bpick"*linux_amd64*"
-# zi light junegunn/fzf
-
-# ripgrep
-# zi ice as"program" from"gh-r" mv"ripgrep* -> rg" pick"rg/rg"
-# zi light BurntSushi/ripgrep
-
-# base16-shell and colors
-# zi light chriskempson/base16-shell
-
-# what is this???
-# zi ice from"gh" nocompile
-# zi light fnune/base16-fzf
-# zi light fnune/base16-shell
-
-# docker and docker-compose completion
-# zi ice as"completion"
-# zi snippet https://github.com/docker/cli/blob/master/contrib/completion/zsh/_docker
-# zi ice as"completion"
-# zi snippet https://github.com/docker/compose/tree/master/contrib/completion/zsh/_docker-compose
-
-# kubelogin
-# zi ice as"program" from"gh-r" pick"bin/linux_amd64/kubelogin"
-# zi light Azure/kubelogin
-
-# k9s
-# zi ice as"program" from"gh-r" pick"*Linux_amd64*"
-# zi light derailed/k9s
 
 # zsh settings
 HISTFILE=~/.zsh_history
 HISTSIZE=500000
 SAVEHIST=500000
-setopt SHARE_HISTORY
-setopt HIST_EXPIRE_DUPS_FIRST
-setopt HIST_IGNORE_DUPS
-setopt HIST_IGNORE_ALL_DUPS
-setopt HIST_IGNORE_SPACE
-setopt HIST_FIND_NO_DUPS
-setopt HIST_SAVE_NO_DUPS
-# set termguicolors 
-setopt auto_cd
+setopt share_history          # Share history between different instances of the shell.
+setopt hist_expire_dups_first # Expire A duplicate event first when trimming history.
+setopt hist_ignore_dups       # Do not record an event that was just recorded again.
+setopt hist_ignore_all_dups   # Remove older duplicate entries from history.
+setopt hist_ignore_space      # Do not record an Event Starting With A Space.
+setopt hist_find_no_dups      # Do not display a previously found event.
+setopt hist_save_no_dups      # Do not write a duplicate event to the history file.
+setopt append_history         # Allow multiple sessions to append to one Zsh command history.
+setopt extended_history       # Show timestamp in history.
+setopt hist_reduce_blanks     # Remove superfluous blanks from history items.
+setopt hist_verify            # Do not execute immediately upon history expansion.
+setopt inc_append_history     # Write to the history file immediately, not when the shell exits.
+
+setopt auto_cd              # Use cd by typing directory name if it's not a command.
+setopt auto_list            # Automatically list choices on ambiguous completion.
+setopt auto_pushd           # Make cd push the old directory onto the directory stack.
+setopt bang_hist            # Treat the '!' character, especially during Expansion.
+setopt interactive_comments # Comments even in interactive shells.
+setopt multios              # Implicit tees or cats when multiple redirections are attempted.
+setopt no_beep              # Don't beep on error.
+setopt prompt_subst         # Substitution of parameters inside the prompt each time the prompt is drawn.
+setopt pushd_ignore_dups    # Don't push multiple copies directory onto the directory stack.
+setopt pushd_minus          # Swap the meaning of cd +1 and cd -1 to the opposite.
 
 export EDITOR='nvim'
 export COLORTERM="truecolor"
@@ -109,10 +87,18 @@ export FZF_DEFAULT_OPTS="
 --prompt='∼ ' --pointer='▶' --marker='✓'
 --bind 'ctrl-a:select-all'
 "
+
 export FZF_DEFAULT_COMMAND="rg --files --hidden --follow --glob '!.git'"
 export FZF_CTRL_T_COMMAND="$FZF_DEFAULT_COMMAND"
 
 # completion settings
+zstyle ':completion:*' completer _complete _match _approximate
+zstyle ':completion:*:match:*' original only
+zstyle -e ':completion:*:approximate:*' max-errors 'reply=($((($#PREFIX+$#SUFFIX)/3>7?7:($#PREFIX+$#SUFFIX)/3))numeric)'
+
+zstyle ':completion:*:git-checkout:*' sort false # disable sort when completing `git checkout`
+zstyle ':completion:*' list-colors ${(s.:.)LS_COLORS} # set list-colors to enable filename colorizing
+
 zstyle ':completion:*:matches' group 'yes'
 zstyle ':completion:*:options' description 'yes'
 zstyle ':completion:*:options' auto-description '%d'
@@ -129,11 +115,6 @@ zstyle ':completion:*:functions' ignored-patterns '(_*|pre(cmd|exec))'
 zstyle ':completion:*' use-cache true
 zstyle ':completion:*' rehash true
 
-
-# nvm settings
-export NVM_DIR="$HOME/.nvm"
-[ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
-[ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
 
 # golang settings
 export PATH=$PATH:~/go/bin
@@ -164,10 +145,10 @@ bindkey '^ ' forward-word
 
 
 # aliases
-alias ls='ls -h --color=auto'
+alias ls='exa -h --color=auto'
 alias ll='ls -al'
-alias la='ls -A'
-alias l='ls -CF'
+alias la='ls -a'
+alias l='ls'
 alias svim='sudo vim'
 alias h='cd'
 alias ..='cd ..'
@@ -178,8 +159,6 @@ alias back='cd $OLDPWD'
 alias root='sudo su'
 alias runlevel='sudo /sbin/init'
 alias dfh='df -h'
-alias gvim='gvim -geom 84x26'
-alias start='dbus-launch startx'
 alias ip='ip -c'
 alias ipa='ip -o address'
 
@@ -222,7 +201,6 @@ colorschemeswitcher(){
 }
 
 
-[[ $commands[kubectl] ]] && source <(kubectl completion zsh)
 
 
 # Configure ssh forwarding
@@ -251,8 +229,8 @@ else
   # dark
 fi
 
-# [ -f ~/.fzf/shell/key-bindings.zsh ] && source ~/.fzf/shell/key-bindings.zsh
-# [[ $- == *i* ]] && source "$HOME/.fzf/shell/completion.zsh" 2> /dev/null
+[ -f ~/.fzf/shell/key-bindings.zsh ] && source ~/.fzf/shell/key-bindings.zsh
+[[ $- == *i* ]] && source "$HOME/.fzf/shell/completion.zsh" 2> /dev/null
 
 # change FZF theme
 # source ~/.zi/plugins/fnune---base16-fzf/bash/base16-$BASE16_THEME.config
