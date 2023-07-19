@@ -24,7 +24,8 @@ zi wait lucid light-mode as"program" from"gh-r" for \
     mv"bin/exa* -> exa" ogham/exa \
     pick"bin/linux_amd64/kubelogin" Azure/kubelogin \
     pick"*Linux_amd64*" derailed/k9s \
-
+    mv"fd* -> fdfind" pick"fdfind/fd" @sharkdp/fd \
+    mv"bat* -> bat" pick"bat/bat" @sharkdp/bat \
 
 zi wait lucid light-mode for \
     chriskempson/base16-shell \
@@ -35,16 +36,9 @@ zi wait lucid light-mode as"completion" for \
     https://github.com/docker/compose/tree/master/contrib/completion/zsh/_docker-compose \
 
 
-zi ice as"program" from"gh-r" mv"fd* -> fdfind" pick"fdfind/fd"
-zi light sharkdp/fd
-
-zi ice as"program" from"gh-r" mv"bat* -> bat" pick"bat/bat"
-zi light sharkdp/bat
-
 # needs to be loaded last
 zi wait lucid light-mode for \
     atinit"zicompinit; zicdreplay" z-shell/F-Sy-H
-
 
 
 # zsh settings
