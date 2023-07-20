@@ -10,6 +10,8 @@ fi
 
 zi light romkatv/powerlevel10k
 
+zicompinit
+
 zi wait lucid light-mode for \
     atload"_zsh_autosuggest_start" zsh-users/zsh-autosuggestions \
     blockf atpull'zi creinstall -q .' zsh-users/zsh-completions
@@ -29,16 +31,20 @@ zi wait lucid light-mode as"program" from"gh-r" for \
 
 zi wait lucid light-mode for \
     chriskempson/base16-shell \
-    Aloxaf/fzf-tab
+    Aloxaf/fzf-tab \
+    nocompile tinted-theming/base16-fzf \
+
+    # z-shell/H-S-MW
 
 zi wait lucid light-mode as"completion" for \
     https://github.com/docker/cli/blob/master/contrib/completion/zsh/_docker \
     https://github.com/docker/compose/tree/master/contrib/completion/zsh/_docker-compose \
 
+source <(kubectl completion zsh)
 
 # needs to be loaded last
 zi wait lucid light-mode for \
-    atinit"zicompinit; zicdreplay" z-shell/F-Sy-H
+    atinit"zicdreplay" z-shell/F-Sy-H
 
 
 # zsh settings
@@ -88,7 +94,6 @@ export FZF_DEFAULT_OPTS="
 "
 
 export FZF_DEFAULT_COMMAND="rg --files --hidden --follow --glob '!.git'"
-# export FZF_DEFAULT_COMMAND="rg --files --hidden --glob '!.git'"
 export FZF_CTRL_T_COMMAND="$FZF_DEFAULT_COMMAND"
 
 # completion settings
@@ -142,11 +147,16 @@ bindkey "^[[1;5C" forward-word
 bindkey "^[[1;5D" backward-word
 bindkey "^E" end-of-line
 bindkey '^ ' forward-word
+bindkey "^K" up-line-or-history
+bindkey "^J" down-line-or-history
 
 
 # aliases
-alias ls='exa -h --color=auto'
+alias ls='ls -h --color=auto'
+
 alias ll='ls -al'
+alias ll='exa -al'
+
 alias la='ls -a'
 alias l='ls'
 alias svim='sudo vim'
@@ -193,14 +203,23 @@ fi
 colorschemeswitcher(){
   if [ $1 -eq 0 ]; then
     touch ~/.lightmode;
-    source ~/.zi/plugins/chriskempson---base16-shell/bash/base16-$BASE16_THEME.config;
+    source ~/.zi/plugins/tinted-theming---base16-fzf/bash/base16-$BASE16_THEME.config;
   else
     rm -f ~/.lightmode;
-    source ~/.zi/plugins/chriskempson---base16-shell/bash/base16-$BASE16_THEME.config;
+    source ~/.zi/plugins/tinted-theming---base16-fzf/bash/base16-$BASE16_THEME.config;
   fi
 }
 
-
+darkmodechecker(){
+  # Check if the AppsUseLightTheme registry key exists and its value is 1
+  if /mnt/c/Windows/System32/reg.exe query 'HKCU\SOFTWARE\Microsoft\Windows\CurrentVersion\Themes\Personalize' /v AppsUseLightTheme | grep -q '0x1'; then
+    # If the registry key value is 1, execute "light"
+    light
+  else
+    # If the registry key value is not 1, execute "dark"
+    dark
+  fi
+}
 
 
 # Configure ssh forwarding
@@ -220,20 +239,12 @@ if [[ $ALREADY_RUNNING != "0" ]]; then
     (setsid socat UNIX-LISTEN:$SSH_AUTH_SOCK,fork EXEC:"npiperelay.exe -ei -s //./pipe/openssh-ssh-agent",nofork &) >/dev/null 2>&1
 fi
 
-# Check if the AppsUseLightTheme registry key exists and its value is 1
-if /mnt/c/Windows/System32/reg.exe query 'HKCU\SOFTWARE\Microsoft\Windows\CurrentVersion\Themes\Personalize' /v AppsUseLightTheme | grep -q '0x1'; then
-  # If the registry key value is 1, execute "light"
-  light
-else
-  # If the registry key value is not 1, execute "dark"
-  # dark
-fi
 
 [ -f ~/.fzf/shell/key-bindings.zsh ] && source ~/.fzf/shell/key-bindings.zsh
 [[ $- == *i* ]] && source "$HOME/.fzf/shell/completion.zsh" 2> /dev/null
 
 # change FZF theme
-# source ~/.zi/plugins/fnune---base16-fzf/bash/base16-$BASE16_THEME.config
+# source ~/.zi/plugins/tinted-theming---base16-fzf/bash/base16-$BASE16_THEME.config;
 
 [[ ! -f ~/.p10k.zsh ]] || source ~/.p10k.zsh
 
