@@ -10,6 +10,7 @@ if not snip_status_ok then
 end
 
 local lspkind = require'lspkind'
+
 require("luasnip/loaders/from_vscode").lazy_load()
 
 local check_backspace = function()

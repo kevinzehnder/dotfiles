@@ -1,4 +1,5 @@
 local fn = vim.fn
+
 -- Automatically install packer
 local install_path = fn.stdpath "data" .. "/site/pack/packer/start/packer.nvim"
 if fn.empty(fn.glob(install_path)) > 0 then
@@ -44,10 +45,6 @@ require('packer').startup(function(use)
   use 'wbthomason/packer.nvim'
   use 'dstein64/vim-startuptime'
 
-
-  -- mason
-  use { "williamboman/mason.nvim" }
-
   -- dashboard
   use { "goolord/alpha-nvim", commit = "ef27a59e5b4d7b1c2fe1950da3fe5b1c5f3b4c94" }
 
@@ -58,16 +55,14 @@ require('packer').startup(function(use)
   }
 
   -- appearance
-  use 'navarasu/onedark.nvim'
   use 'ishan9299/nvim-solarized-lua'
   use 'morhetz/gruvbox'
   use "sainnhe/gruvbox-material"
   use "lukas-reineke/indent-blankline.nvim"
   -- Colorschemes
   use { "folke/tokyonight.nvim", commit = "8223c970677e4d88c9b6b6d81bda23daf11062bb" }
-  use { "lunarvim/darkplus.nvim", commit = "2584cdeefc078351a79073322eb7f14d7fbb1835" }
-  --[[ use 'sunjon/shade.nvim' ]]
   use 'nvim-tree/nvim-web-devicons'
+
   -- treesitter
   use {
     'nvim-treesitter/nvim-treesitter',
@@ -111,10 +106,7 @@ require('packer').startup(function(use)
     "nvim-telescope/telescope-file-browser.nvim",
     requires = { "nvim-telescope/telescope.nvim", "nvim-lua/plenary.nvim" }
     }
-    --
-  -- fzf
-  use { "junegunn/fzf", run = ":call fzf#install()" }
-  use "junegunn/fzf.vim"
+
 
   -- telescope
   use {
@@ -144,7 +136,7 @@ require('packer').startup(function(use)
     requires = "kyazdani42/nvim-web-devicons",
   }
   use { "windwp/nvim-autopairs" }
-  --
+
   -- which key
   use {
     "folke/which-key.nvim",

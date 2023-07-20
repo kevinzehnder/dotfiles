@@ -1,5 +1,4 @@
 -- helper functions
-
 function map(mode, shortcut, command)
   vim.api.nvim_set_keymap(mode, shortcut, command, { noremap = true, silent = true })
 end
@@ -31,15 +30,15 @@ nnoremap("<Leader>vc", ":lua require('kz.telescope').search_dotfiles()<CR>")
 vim.api.nvim_set_keymap('c', '<C-j>', '<C-n>', {})
 vim.api.nvim_set_keymap('c', '<C-k>', '<C-p>', {})
 
+-- formatting
+vim.api.nvim_set_keymap('n', '<Leader>f', ":lua vim.lsp.buf.format({async=True})<CR>", {})
+
 -- trouble
 nmap("<Leader>t", ":TroubleToggle<CR>")
 nmap("<C-A-m>", ":TroubleToggle<CR>")
 
 -- nvim-tree
 nmap("<C-A-h>", ":Telescope file_browser<CR>")
-
--- FZF
--- nmap("<Leader>p", ":Files<CR>")
 
 -- primeagen remaps
 xnoremap("<Leader>p", "\"_dP")
@@ -80,7 +79,6 @@ else
 end
 
 --[[ map("n", "<Leader>gg", "<cmd>lua CodeRunner()<cr>") -- enable coderunner manually ]]
-
 
 -- DAP
 map("n", "<leader>db", "<cmd>lua require'dap'.toggle_breakpoint()<cr>")
@@ -156,7 +154,4 @@ nmap("<F2>", ":Alpha<CR>")
 
 -- Custom Shortcuts
 imap("jk", "<Esc>")
-
-
-
 

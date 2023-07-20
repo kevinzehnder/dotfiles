@@ -15,7 +15,6 @@ require('kz.autopairs')
 require('kz.commentary')
 require('kz.impatient')
 
-require('kz.fzf')
 require('kz.telescope')
 require('kz.harpoon')
 require('kz.project')
@@ -31,5 +30,4 @@ require('kz.completion')
 require('kz.null-ls')
 require('kz.lsp')
 
-require('kz.dap')
-require("mason").setup()
+--[[ require('kz.dap') ]]

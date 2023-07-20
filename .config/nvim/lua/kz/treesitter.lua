@@ -7,7 +7,6 @@ end
 configs.setup {
   ensure_installed = {
 		"bash",
-        "cpp",
         "python",
         "rust",
 		"comment",
@@ -19,13 +18,12 @@ configs.setup {
 		"lua",
 		"markdown",
 		"regex",
-		"scss",
 		"toml",
 		"typescript",
 		"yaml",
         "go",
     },
-  sync_install = true,
+  sync_install = false,
   auto_install = true,
   highlight = { --enable highlighting
     enable = true,

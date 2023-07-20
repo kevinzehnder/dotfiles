@@ -2,7 +2,6 @@
 local lsp_installer = require("nvim-lsp-installer")
 local opts = { noremap = true, silent = true }
 
-
 vim.api.nvim_set_keymap('n', '<Leader>e', ":lua vim.diagnostic.open_float()<CR>", opts)
 vim.api.nvim_set_keymap('n', '<F7>', ":lua vim.diagnostic.goto_prev()<CR>", opts)
 vim.api.nvim_set_keymap('n', '<F9>', ":lua vim.diagnostic.goto_next()<CR>", opts)
@@ -32,7 +31,7 @@ local on_attach = function(client, bufnr)
   vim.keymap.set('n', '<space>rn', vim.lsp.buf.rename, { noremap = true, silent = true, desc="rename"})
   vim.keymap.set('n', '<space>ca', vim.lsp.buf.code_action, { noremap = true, silent = true, desc="code actions"})
   vim.keymap.set('n', 'gr', vim.lsp.buf.references, opts)
-  vim.api.nvim_buf_set_keymap(bufnr, 'n', '<Leader>f', ":lua vim.lsp.buf.format({async=True})<CR>", opts)
+  vim.api.nvim_set_keymap(bufnr, 'n', '<Leader>f', ":lua vim.lsp.buf.format({async=True})<CR>", opts)
 end
 
 local capabilities = vim.lsp.protocol.make_client_capabilities()

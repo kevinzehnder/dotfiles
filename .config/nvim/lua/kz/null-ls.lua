@@ -21,14 +21,12 @@ null_ls.setup({
         null_ls.builtins.diagnostics.yamllint,
 
         -- javascript
-        null_ls.builtins.formatting.prettier,
+        --[[ null_ls.builtins.formatting.prettier, ]]
         null_ls.builtins.formatting.eslint,
 
         -- rust
         null_ls.builtins.formatting.rustfmt,
     },
-
-
 
 })
 
