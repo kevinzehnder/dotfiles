@@ -1,3 +1,5 @@
+vim.loader.enable()
+
 -- plugins with packer 
 require('kz.plugins')
 
@@ -13,7 +15,6 @@ require('kz.keybindings')
 -- plugin settings
 require('kz.autopairs')
 require('kz.commentary')
-require('kz.impatient')
 
 require('kz.telescope')
 require('kz.harpoon')

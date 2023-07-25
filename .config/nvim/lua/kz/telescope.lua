@@ -1,5 +1,11 @@
 vim.g.theme_switcher_loaded = true
-require('telescope').setup{
+
+local status_ok, telescope = pcall(require, "telescope")
+if not status_ok then
+  return
+end
+
+telescope.setup{
   defaults = {
 
     set_env = { ["COLORTERM"] = "truecolor" },
@@ -51,8 +57,8 @@ require('telescope').setup{
   }
 }
 
-require('telescope').load_extension('fzf')
-require('telescope').load_extension('file_browser')
+telescope.load_extension("fzf")
+telescope.load_extension("file_browser")
 
 local M = {}
 M.search_dotfiles = function()

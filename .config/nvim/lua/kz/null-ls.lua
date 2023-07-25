@@ -1,4 +1,8 @@
-null_ls = require("null-ls")
+local status_ok, null_ls = pcall(require, "null-ls")
+if not status_ok then
+  return
+end
+
 null_ls.setup({
     sources = {
         -- python
@@ -22,7 +26,7 @@ null_ls.setup({
 
         -- javascript
         --[[ null_ls.builtins.formatting.prettier, ]]
-        null_ls.builtins.formatting.eslint,
+        --[[ null_ls.builtins.formatting.eslint, ]]
 
         -- rust
         null_ls.builtins.formatting.rustfmt,

@@ -9,7 +9,10 @@ if not snip_status_ok then
 	return
 end
 
-local lspkind = require'lspkind'
+local lspkind_status_ok, lspkind = pcall(require, "lspkind")
+if not lspkind_status_ok then
+	return
+end
 
 require("luasnip/loaders/from_vscode").lazy_load()
 

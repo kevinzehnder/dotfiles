@@ -3,7 +3,7 @@ if not status_ok then
 	return
 end
 
--- treesitter
+-- treesitter.configs
 configs.setup {
   ensure_installed = {
 		"bash",
@@ -42,7 +42,7 @@ if not status_ok then
 	return
 end
 
--- treesitter
+-- treesitter-context
 tscontext.setup {
     enable = true, -- Enable this plugin (Can be enabled/disabled later via commands)
     max_lines = 0, -- How many lines the window should span. Values <= 0 mean no limit.

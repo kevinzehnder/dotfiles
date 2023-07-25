@@ -43,7 +43,6 @@ require('packer').startup(function(use)
 
   -- packer
   use 'wbthomason/packer.nvim'
-  use 'dstein64/vim-startuptime'
 
   -- dashboard
   use { "goolord/alpha-nvim", commit = "ef27a59e5b4d7b1c2fe1950da3fe5b1c5f3b4c94" }
@@ -59,9 +58,7 @@ require('packer').startup(function(use)
   use 'morhetz/gruvbox'
   use "sainnhe/gruvbox-material"
   use "lukas-reineke/indent-blankline.nvim"
-  -- Colorschemes
   use { "folke/tokyonight.nvim", commit = "8223c970677e4d88c9b6b6d81bda23daf11062bb" }
-  use 'nvim-tree/nvim-web-devicons'
 
   -- treesitter
   use {
@@ -80,7 +77,6 @@ require('packer').startup(function(use)
   -- commentary
   use { "numToStr/Comment.nvim" }
   use { "JoosepAlviste/nvim-ts-context-commentstring" }
-  use { "lewis6991/impatient.nvim", commit = "969f2c5c90457612c09cf2a13fee1adaa986d350" }
 
   -- surround
   use({
@@ -107,7 +103,6 @@ require('packer').startup(function(use)
     requires = { "nvim-telescope/telescope.nvim", "nvim-lua/plenary.nvim" }
     }
 
-
   -- telescope
   use {
     'nvim-telescope/telescope.nvim',
@@ -131,7 +126,6 @@ require('packer').startup(function(use)
   use 'onsails/lspkind-nvim' -- icons for completion
   use 'saadparwaiz1/cmp_luasnip' -- snippets source for nvim-cmp
   use 'L3MON4D3/LuaSnip' -- snippets plugin
-  use { "rafamadriz/friendly-snippets" }
   use { "folke/trouble.nvim",
     requires = "kyazdani42/nvim-web-devicons",
   }
