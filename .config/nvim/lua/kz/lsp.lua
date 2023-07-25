@@ -2,7 +2,7 @@
 local lsp_installer = require("nvim-lsp-installer")
 local opts = { noremap = true, silent = true }
 
-vim.api.nvim_set_keymap('n', '<Leader>e', ":lua vim.diagnostic.open_float()<CR>", opts)
+vim.api.nvim_set_keymap('n', '<Leader>e', ":lua vim.diagnostic.open_float()<CR>", { noremap = true, silent = true, desc="Diagnostics"} )
 vim.api.nvim_set_keymap('n', '<F7>', ":lua vim.diagnostic.goto_prev()<CR>", opts)
 vim.api.nvim_set_keymap('n', '<F9>', ":lua vim.diagnostic.goto_next()<CR>", opts)
 --[[ vim.api.nvim_set_keymap('n', '<Leader>q', ":lua vim.diagnostic.setloclist()<CR>", opts) ]]

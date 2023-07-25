@@ -132,16 +132,7 @@ require('packer').startup(function(use)
   use { "windwp/nvim-autopairs" }
 
   -- which key
-  use {
-    "folke/which-key.nvim",
-    config = function()
-      require("which-key").setup {
-        -- your configuration comes here
-        -- or leave it empty to use the default settings
-        -- refer to the configuration section below
-      }
-    end
-  }
+  use { "folke/which-key.nvim" }
 
   use { "ahmedkhalf/project.nvim", commit = "541115e762764bc44d7d3bf501b6e367842d3d4f" }
 
