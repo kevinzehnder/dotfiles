@@ -9,7 +9,6 @@ require('kz.alpha')
 -- general vim settings
 require('kz.vimoptions')
 require('kz.colors')
-require('kz.keymap')
 require('kz.keybindings')
 
 -- plugin settings

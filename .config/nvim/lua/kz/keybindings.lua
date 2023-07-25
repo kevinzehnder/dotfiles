@@ -11,27 +11,19 @@ function imap(shortcut, command)
   map('i', shortcut, command)
 end
 
-local CodeRunner = require("kz.coderunner")
-local Remap = require("kz.keymap")
-local nnoremap = Remap.nnoremap
-local vnoremap = Remap.vnoremap
-local inoremap =Remap.inoremap
-local xnoremap = Remap.xnoremap
-local nmap = Remap.nmap
-
--- Leeraste als <leader>
+-- space as <Leader>
 vim.g.mapleader = " "
 vim.g.maplocalleader = "\\"
 
 -- edit vimrc files
-nnoremap("<Leader>vc", ":lua require('kz.telescope').search_dotfiles()<CR>")
+nmap("<Leader>vc", ":lua require('kz.telescope').search_dotfiles()<CR>")
 
 -- completion in command mode
 vim.api.nvim_set_keymap('c', '<C-j>', '<C-n>', {})
 vim.api.nvim_set_keymap('c', '<C-k>', '<C-p>', {})
 
 -- formatting
-vim.api.nvim_set_keymap('n', '<Leader>f', ":lua vim.lsp.buf.format({async=True})<CR>", {})
+nmap("<Leader>f", ":lua vim.lsp.buf.format({async=True})<CR>", {})
 
 -- trouble
 nmap("<Leader>t", ":TroubleToggle<CR>")
@@ -41,7 +33,7 @@ nmap("<C-A-m>", ":TroubleToggle<CR>")
 nmap("<C-A-h>", ":Telescope file_browser<CR>")
 
 -- primeagen remaps
-xnoremap("<Leader>p", "\"_dP")
+map("x", "<Leader>p", "\"_dP")
 nmap("<C-u>", "<C-u>zz")
 nmap("<C-d>", "<C-d>zz")
 nmap("n", "nzz")
@@ -60,25 +52,6 @@ nmap("<Leader>T", ":Telescope <CR>")
 nmap("<Leader>M", ":Telescope marks<CR>")
 nmap("<Leader>S", ":Telescope lsp_document_symbols<CR>")
 nmap("<F12>", ":WhichKey<CR>")
-
--- toggleterm
--- nmap("<C-A-j>", ":ToggleTerm<CR>")
-function _G.set_terminal_keymaps()
-  local opts = {noremap = true}
-  vim.api.nvim_buf_set_keymap(0, 't', '<esc>', [[<C-\><C-n>]], opts)
-  vim.api.nvim_buf_set_keymap(0, 't', 'jk', [[<C-\><C-n>]], opts)
-end
-
-if vim.fn.has "nvim-0.7" then
-  vim.api.nvim_create_autocmd("FileType", {
-    pattern = "*",
-    command = "lua CodeRunner()",
-  })
-else
-  vim.cmd "autocmd FileType * lua CodeRunner()"
-end
-
---[[ map("n", "<Leader>gg", "<cmd>lua CodeRunner()<cr>") -- enable coderunner manually ]]
 
 -- DAP
 map("n", "<leader>db", "<cmd>lua require'dap'.toggle_breakpoint()<cr>")
