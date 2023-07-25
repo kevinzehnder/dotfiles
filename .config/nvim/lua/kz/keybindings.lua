@@ -29,7 +29,6 @@ local mappings = {
   ["?"] = { "<cmd>WhichKey<CR>", "WhichKey" },
   ["<F2>"] = { "<cmd>Alpha<CR>", "Alpha" },
 
-
   ["T"] = { "<cmd>Telescope<CR>", "Telescope" },
   ["M"] = { "<cmd>Telescope marks<CR>", "Marks" },
   ["S"] = { "<cmd>Telescope lsp_document_symbols<CR>", "Symbols" },
@@ -202,7 +201,6 @@ nmap("<C-f>", ":Telescope current_buffer_fuzzy_find<CR>")
 nmap("<C-g>", ":Telescope live_grep<CR>")
 nmap("<F12>", ":WhichKey<CR>")
 
-
 -- Remap arrow keys to resize window
 nmap("<A-down>", ":resize -2<CR>")
 nmap("<A-up>", ":resize +2<CR>")
@@ -210,7 +208,6 @@ nmap("<A-right>", ":vertical resize -2<CR>")
 nmap("<A-left>", ":vertical resize +2<CR>")
 
 -- LazyGit
---[[ nmap("<Leader>gs", ":LazyGit<CR>") ]]
 nmap("<C-A-l>", ":LazyGit<CR>")
 
 -- Buffer handling

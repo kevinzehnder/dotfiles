@@ -117,8 +117,11 @@ require('packer').startup(function(use)
   use { "akinsho/toggleterm.nvim" }
 
   -- lsp and completion
-  use 'neovim/nvim-lspconfig' -- collection of configurations for built-in LSP client
-  use 'williamboman/nvim-lsp-installer' -- automatically install LSP Servers
+  use {
+      "williamboman/mason.nvim",
+      "williamboman/mason-lspconfig.nvim",
+      "neovim/nvim-lspconfig",
+  }
   use 'hrsh7th/cmp-nvim-lsp' -- LSP source for nvim-cmp
   use 'hrsh7th/nvim-cmp' -- autocompletion
   use 'hrsh7th/cmp-buffer'
