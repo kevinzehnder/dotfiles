@@ -1,6 +1,6 @@
 vim.loader.enable()
 
--- plugins with packer 
+-- plugins with packer
 require('kz.plugins')
 
 --dashboard

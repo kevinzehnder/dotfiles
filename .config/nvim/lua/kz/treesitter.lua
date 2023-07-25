@@ -1,53 +1,53 @@
 local status_ok, configs = pcall(require, "nvim-treesitter.configs")
 if not status_ok then
-	return
+    return
 end
 
 -- treesitter.configs
 configs.setup {
-  ensure_installed = {
-		"bash",
+    ensure_installed = {
+        "bash",
         "python",
         "rust",
-		"comment",
-		"css",
-		"html",
-		"javascript",
-		"jsdoc",
-		"jsonc",
-		"lua",
-		"markdown",
-		"regex",
-		"toml",
-		"typescript",
-		"yaml",
+        "comment",
+        "css",
+        "html",
+        "javascript",
+        "jsdoc",
+        "jsonc",
+        "lua",
+        "markdown",
+        "regex",
+        "toml",
+        "typescript",
+        "yaml",
         "go",
     },
-  sync_install = false,
-  auto_install = true,
-  highlight = { --enable highlighting
-    enable = true,
-    use_languagetree = true,
-    -- disable = { "c", "rust" },
-    additional_vim_regex_highlighting = false,
-  },
-  indent = {
-    enable = true,
-    disable = { "python", "cscs", "yaml" },
-  }
+    sync_install = false,
+    auto_install = true,
+    highlight = { --enable highlighting
+        enable = true,
+        use_languagetree = true,
+        -- disable = { "c", "rust" },
+        additional_vim_regex_highlighting = false,
+    },
+    indent = {
+        enable = true,
+        disable = { "python", "cscs", "yaml" },
+    }
 }
 
 local status_ok, tscontext = pcall(require, "treesitter-context")
 if not status_ok then
-	return
+    return
 end
 
 -- treesitter-context
 tscontext.setup {
-    enable = true, -- Enable this plugin (Can be enabled/disabled later via commands)
-    max_lines = 0, -- How many lines the window should span. Values <= 0 mean no limit.
+    enable = true,        -- Enable this plugin (Can be enabled/disabled later via commands)
+    max_lines = 0,        -- How many lines the window should span. Values <= 0 mean no limit.
     trim_scope = 'outer', -- Which context lines to discard if `max_lines` is exceeded. Choices: 'inner', 'outer'
-    patterns = { -- Match patterns for TS nodes. These get wrapped to match at word boundaries.
+    patterns = {          -- Match patterns for TS nodes. These get wrapped to match at word boundaries.
         -- For all filetypes
         -- Note that setting an entry here replaces all other patterns for this entry.
         -- By setting the 'default' entry below, you can control which nodes you want to
@@ -97,7 +97,7 @@ tscontext.setup {
     -- [!] The options below are exposed but shouldn't require your attention,
     --     you can safely ignore them.
 
-    zindex = 20, -- The Z-index of the context window
-    mode = 'cursor',  -- Line used to calculate context. Choices: 'cursor', 'topline'
+    zindex = 20,     -- The Z-index of the context window
+    mode = 'cursor', -- Line used to calculate context. Choices: 'cursor', 'topline'
     separator = nil, -- Separator between context and content. Should be a single character string, like '-'.
 }

@@ -23,7 +23,7 @@ vim.opt.writebackup = false
 vim.opt.laststatus = 3
 vim.opt.showcmd = false
 vim.opt.ruler = false
-vim.opt.fillchars.eob=" "
+vim.opt.fillchars.eob = " "
 vim.opt.shortmess:append "c"
 vim.opt.whichwrap:append("<,>,[,],h,l")
 vim.opt.iskeyword:append("-")
@@ -53,13 +53,12 @@ vim.opt.updatetime = 100
 vim.opt.undofile = true
 
 -- Scrolling
-vim.o.scrolloff = 12  -- Start scrolling when we're 12 lines away from margins
+vim.o.scrolloff = 12 -- Start scrolling when we're 12 lines away from margins
 vim.o.sidescrolloff = 15
 vim.o.sidescroll = 1
 
 -- lsp
 vim.diagnostic.config({
-  virtual_text = true,
+    virtual_text = true,
 
 })
-
