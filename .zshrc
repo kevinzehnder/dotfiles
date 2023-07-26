@@ -8,6 +8,8 @@ if [[ -r "${XDG_CONFIG_HOME:-${HOME}/.config}/zi/init.zsh" ]]; then
   source "${XDG_CONFIG_HOME:-${HOME}/.config}/zi/init.zsh" && zzinit
 fi
 
+zi light chriskempson/base16-shell
+
 zi light romkatv/powerlevel10k
 
 zicompinit
@@ -30,7 +32,6 @@ zi wait lucid light-mode as"program" from"gh-r" for \
     mv"bat* -> bat" pick"bat/bat" @sharkdp/bat \
 
 zi wait lucid light-mode for \
-    chriskempson/base16-shell \
     Aloxaf/fzf-tab \
     nocompile tinted-theming/base16-fzf \
 
@@ -217,9 +218,13 @@ colorschemeswitcher(){
   if [ $1 -eq 0 ]; then
     touch ~/.lightmode;
     source ~/.zi/plugins/tinted-theming---base16-fzf/bash/base16-$BASE16_THEME.config;
+    # source ~/.zi/plugins/tinted-theming---base16-fzf/bash/base16-solarized-light.config;
+    export BAT_THEME="Solarized (light)"
   else
     rm -f ~/.lightmode;
     source ~/.zi/plugins/tinted-theming---base16-fzf/bash/base16-$BASE16_THEME.config;
+    # source ~/.zi/plugins/tinted-theming---base16-fzf/bash/base16-tokyo-night.config;
+    export BAT_THEME="OneHalfDark"
   fi
 }
 
@@ -234,6 +239,7 @@ darkmodechecker(){
   fi
 }
 
+darkmodechecker
 
 # Configure ssh forwarding
 export SSH_AUTH_SOCK=$HOME/.ssh/agent.sock
@@ -255,9 +261,6 @@ fi
 
 [ -f ~/.fzf/shell/key-bindings.zsh ] && source ~/.fzf/shell/key-bindings.zsh
 [[ $- == *i* ]] && source "$HOME/.fzf/shell/completion.zsh" 2> /dev/null
-
-# change FZF theme
-# source ~/.zi/plugins/tinted-theming---base16-fzf/bash/base16-$BASE16_THEME.config;
 
 [[ ! -f ~/.p10k.zsh ]] || source ~/.p10k.zsh
 
