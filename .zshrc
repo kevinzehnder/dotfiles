@@ -92,9 +92,22 @@ export FZF_DEFAULT_OPTS="
 --prompt='∼ ' --pointer='▶' --marker='✓'
 --bind 'ctrl-a:select-all'
 "
+# export FZF_DEFAULT_COMMAND="rg --files --hidden --follow --glob '!.git'"
+# export FZF_DEFAULT_COMMAND='fd --type file'
+export FZF_DEFAULT_COMMAND='fd --type file --follow --hidden --exclude .git'
 
-export FZF_DEFAULT_COMMAND="rg --files --hidden --follow --glob '!.git'"
+export FZF_ALT_C_COMMAND='fd --type directory'
+export FZF_ALT_C_OPTS="--height=95% --preview-window down:70% --preview-window border --preview='exa --color=always -T {}'"
+
 export FZF_CTRL_T_COMMAND="$FZF_DEFAULT_COMMAND"
+export FZF_PREVIEW_COMMAND="bat --style=numbers,changes --wrap never --color always {} || cat {} || tree -C {}"
+export FZF_CTRL_T_OPTS="--height 95% --preview-window down:70% --preview-window border --preview '($FZF_PREVIEW_COMMAND) 2> /dev/null'"
+export FZF_COMMON_OPTIONS="
+  --bind='?:toggle-preview'
+  --bind='ctrl-u:preview-page-up'
+  --bind='ctrl-d:preview-page-down'
+  --preview-window 'right:60%:hidden:wrap'
+  --preview '([[ -d {} ]] && tree -C {}) || ([[ -f {} ]] && bat --style=full --color=always {}) || echo {}'"
 
 # completion settings
 zstyle ':completion:*' completer _complete _match _approximate

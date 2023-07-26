@@ -9,7 +9,7 @@ telescope.setup {
     defaults = {
 
         set_env = { ["COLORTERM"] = "truecolor" },
-        -- color_devicons = true,
+        color_devicons = true,
         winblend = 0,
 
         sorting_strategy = "ascending",
@@ -39,10 +39,12 @@ telescope.setup {
     pickers = {
         find_files = {
             find_command = { "rg", "--files", "--ignore", "--hidden" }
+            --[[ find_command = { "fd", "--type file", "--follow", "--hidden" } ]]
             -- find_command = { "rg", "--files", "--ignore", "--hidden", "--no-ignore-vcs" }
         },
         git_files = {
             find_command = { "rg", "--files", "--ignore", "--hidden" }
+            --[[ find_command = { "fd", "--type file", "--follow", "--hidden", "--exclude .git" } ]]
             -- find_command = { "rg", "--files", "--ignore", "--hidden", "--no-ignore-vcs" }
         }
     },
