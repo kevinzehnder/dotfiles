@@ -13,6 +13,7 @@ require('kz.keybindings')
 
 -- plugin settings
 require('kz.autopairs')
+require('kz.autocommands')
 require('kz.commentary')
 
 require('kz.telescope')
@@ -27,7 +28,7 @@ require('kz.toggleterm')
 require('kz.trouble')
 require('kz.treesitter')
 require('kz.completion')
-require('kz.null-ls')
+require('kz.null')
 require('kz.lsp')
 
 --[[ require('kz.dap') ]]

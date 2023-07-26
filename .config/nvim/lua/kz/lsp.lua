@@ -8,7 +8,17 @@ local status_ok, lspconfig = pcall(require, "lspconfig")
 if not status_ok then
     return
 end
-lspconfig.lua_ls.setup {}
+lspconfig.lua_ls.setup {
+    settings = {
+        Lua = {
+            diagnostics = {
+                -- Get the language server to recognize the `vim` global
+                globals = { 'vim' },
+            },
+        },
+    },
+}
+
 --[[ lspconfig.pyright.setup {} ]]
 --[[ lspconfig.tsserver.setup {} ]]
 --[[ lspconfig.rust_analyzer.setup { ]]

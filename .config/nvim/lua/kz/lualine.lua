@@ -3,19 +3,19 @@ if not status_ok then
     return
 end
 
-local diagnostics = {
-    "diagnostics",
-    sources = { "nvim_diagnostic" },
-    sections = { "error", "warn" },
-    symbols = { error = " ", warn = " " },
-    colored = false,
-    always_visible = true,
-}
-
-local location = {
-    "location",
-    padding = 0,
-}
+--[[ local diagnostics = { ]]
+--[[     "diagnostics", ]]
+--[[     sources = { "nvim_diagnostic" }, ]]
+--[[     sections = { "error", "warn" }, ]]
+--[[     symbols = { error = " ", warn = " " }, ]]
+--[[     colored = false, ]]
+--[[     always_visible = true, ]]
+--[[ } ]]
+--[[]]
+--[[ local location = { ]]
+--[[     "location", ]]
+--[[     padding = 0, ]]
+--[[ } ]]
 
 lualine.setup {
     options = {

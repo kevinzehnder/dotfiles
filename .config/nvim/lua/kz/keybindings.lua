@@ -120,6 +120,7 @@ local mappings = {
             "Prev Diagnostic",
         },
         l = { "<cmd>lua vim.lsp.codelens.run()<cr>", "CodeLens Action" },
+        n = { "<cmd>NullLsInfo<cr>", "Null-LS-Info" },
         q = { "<cmd>lua vim.diagnostic.setloclist()<cr>", "Quickfix" },
         r = { "<cmd>lua vim.lsp.buf.rename()<cr>", "Rename" },
         M = { "<cmd>Mason<cr>", "Mason" },
@@ -163,7 +164,7 @@ local mappings = {
 
 }
 
-wk.setup(setup)
+wk.setup()
 wk.register(mappings, opts)
 
 
@@ -197,6 +198,7 @@ nmap("<Leader>s", [[:%s/\<<C-r><C-w>\>/<C-r><C-w>/gI<Left><Left><Left>]])
 nmap("<C-t>", ":Telescope projects<CR>")
 nmap("<C-p>", ":lua require('kz.telescope').project_files()<CR>")
 nmap("<C-A-p>", ":Telescope find_files<CR>")
+nmap("<C-A-h>", ":Telescope file_browser<CR>")
 nmap("<C-b>", ":Telescope buffers<CR>")
 nmap("<C-f>", ":Telescope current_buffer_fuzzy_find<CR>")
 nmap("<C-g>", ":Telescope live_grep<CR>")
@@ -209,7 +211,10 @@ nmap("<A-right>", ":vertical resize -2<CR>")
 nmap("<A-left>", ":vertical resize +2<CR>")
 
 -- LazyGit
-nmap("<C-A-l>", ":LazyGit<CR>")
+nmap("<C-A-l>", "<cmd>LazyGit<CR>")
+
+-- Trouble
+nmap("<C-A-m>", "<cmd>TroubleToggle<CR>")
 
 -- Buffer handling
 nmap("<S-h>", ":bprevious<cr>")
