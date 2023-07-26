@@ -239,7 +239,10 @@ darkmodechecker(){
   fi
 }
 
-darkmodechecker
+# run check if we're not on an SSH connection
+if [[ -z "$SSH_CONNECTION" ]]; then
+  darkmodechecker
+fi
 
 # Configure ssh forwarding
 export SSH_AUTH_SOCK=$HOME/.ssh/agent.sock
