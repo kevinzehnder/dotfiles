@@ -252,7 +252,7 @@ ALREADY_RUNNING=$(ps -auxww | grep -q "[n]piperelay.exe -ei -s //./pipe/openssh-
 if [[ $ALREADY_RUNNING != "0" ]]; then
     if [[ -S $SSH_AUTH_SOCK ]]; then
         # not expecting the socket to exist as the forwarding command isn't running (http://www.tldp.org/LDP/abs/html/fto.html)
-        echo "removing previous socket..."
+        # echo "removing previous socket..."
         rm $SSH_AUTH_SOCK
     fi
     # echo "Starting SSH-Agent relay..."
