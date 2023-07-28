@@ -42,12 +42,16 @@ local mappings = {
     },
 
     -- harpoon
-    --[[ nmap("<Leader>m", ":lua require('harpoon.ui').toggle_quick_menu()<cr>") ]]
-    --[[ nmap("<Leader>n", ":lua require('harpoon.mark').add_file()<cr>") ]]
-    --[[ nmap("<Leader>lf", ":lua require('harpoon.ui').nav_file(1)<cr>") ]]
-    --[[ nmap("<Leader>ld", ":lua require('harpoon.ui').nav_file(2)<cr>") ]]
-    --[[ nmap("<Leader>ls", ":lua require('harpoon.ui').nav_file(3)<cr>") ]]
-    --[[ nmap("<Leader>la", ":lua require('harpoon.ui').nav_file(4)<cr>") ]]
+
+    k = {
+        name = "Harpoon",
+        m = { "<cmd>lua require('harpoon.ui').toggle_quick_menu()<cr>", "Quick Menu" },
+        n = { "<cmd>lua require('harpoon.mark').add_file()<cr>", "Add File" },
+        f = { "<cmd>lua require('harpoon.ui').nav_file(1)<cr>", "File 1" },
+        d = { "<cmd>lua require('harpoon.ui').nav_file(2)<cr>", "File 2" },
+        s = { "<cmd>lua require('harpoon.ui').nav_file(3)<cr>", "File 3" },
+        a = { "<cmd>lua require('harpoon.ui').nav_file(4)<cr>", "File 4" },
+    },
 
     -- DAP
     --[[ map("n", "<leader>db", "<cmd>lua require'dap'.toggle_breakpoint()<cr>") ]]
