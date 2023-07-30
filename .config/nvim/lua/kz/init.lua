@@ -27,6 +27,7 @@ require('kz.toggleterm')
 
 require('kz.trouble')
 require('kz.treesitter')
+require('kz.zerolsp')
 require('kz.completion')
 require('kz.null')
 require('kz.lsp')

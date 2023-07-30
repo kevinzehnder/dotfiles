@@ -2,13 +2,24 @@
 require("mason").setup()
 require("mason-lspconfig").setup({ ensure_installed = { "lua_ls", "rust_analyzer" } })
 
-
--- Setup language servers.
 local status_ok, lspconfig = pcall(require, "lspconfig")
 if not status_ok then
     return
 end
+
+local lsp_capabilities = require('cmp_nvim_lsp').default_capabilities()
+
+require('mason-lspconfig').setup_handlers({
+  function(server_name)
+    lspconfig[server_name].setup({
+      capabilities = lsp_capabilities,
+    })
+  end,
+})
+
+-- Setup language servers.
 lspconfig.lua_ls.setup {
+    capabilities = lsp_capabilities,
     settings = {
         Lua = {
             diagnostics = {
@@ -18,7 +29,6 @@ lspconfig.lua_ls.setup {
         },
     },
 }
-
 
 -- Global mappings.
 -- See `:help vim.diagnostic.*` for documentation on any of the below functions
@@ -33,7 +43,7 @@ vim.api.nvim_create_autocmd('LspAttach', {
     group = vim.api.nvim_create_augroup('UserLspConfig', {}),
     callback = function(ev)
         -- Enable completion triggered by <c-x><c-o>
-        vim.bo[ev.buf].omnifunc = 'v:lua.vim.lsp.omnifunc'
+        --[[ vim.bo[ev.buf].omnifunc = 'v:lua.vim.lsp.omnifunc' ]]
 
         -- Buffer local mappings.
         -- See `:help vim.lsp.*` for documentation on any of the below functions
@@ -70,3 +80,5 @@ end
 vim.lsp.handlers["textDocument/hover"] = vim.lsp.with(vim.lsp.handlers.hover, {
     border = "rounded",
 })
+
+

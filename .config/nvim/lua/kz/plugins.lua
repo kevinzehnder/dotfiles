@@ -50,9 +50,10 @@ require('packer').startup(function(use)
     use 'ishan9299/nvim-solarized-lua'
     use 'morhetz/gruvbox'
     use "sainnhe/gruvbox-material"
-    use "lukas-reineke/indent-blankline.nvim"
     use { "folke/tokyonight.nvim", commit = "8223c970677e4d88c9b6b6d81bda23daf11062bb" }
-    use ({
+
+    use "lukas-reineke/indent-blankline.nvim"
+    use({
         "kyazdani42/nvim-web-devicons",
         config = function()
             require("nvim-web-devicons").setup()
@@ -83,7 +84,7 @@ require('packer').startup(function(use)
     use { "numToStr/Comment.nvim" }
     use { "JoosepAlviste/nvim-ts-context-commentstring" }
 
-    -- surround
+    -- surround and autopairs
     use({
         "kylechui/nvim-surround",
         tag = "*", -- Use for stability; omit to use `main` branch for the latest features
@@ -93,6 +94,7 @@ require('packer').startup(function(use)
             })
         end
     })
+    use { "windwp/nvim-autopairs" }
 
     -- null-ls
     use({
@@ -103,17 +105,16 @@ require('packer').startup(function(use)
         requires = { "nvim-lua/plenary.nvim" },
     })
 
-    use {
-        "nvim-telescope/telescope-file-browser.nvim",
-        requires = { "nvim-telescope/telescope.nvim", "nvim-lua/plenary.nvim" }
-    }
-
     -- telescope
     use {
         'nvim-telescope/telescope.nvim',
         requires = { { 'nvim-lua/plenary.nvim' } }
     }
     use { 'nvim-telescope/telescope-fzf-native.nvim', run = 'make' }
+    use {
+        "nvim-telescope/telescope-file-browser.nvim",
+        requires = { "nvim-telescope/telescope.nvim", "nvim-lua/plenary.nvim" }
+    }
 
     -- harpoon
     use 'ThePrimeagen/harpoon'
@@ -121,27 +122,31 @@ require('packer').startup(function(use)
     -- toggleterm
     use { "akinsho/toggleterm.nvim" }
 
-    -- lsp and completion
+    -- lsp
     use {
         "williamboman/mason.nvim",
         "williamboman/mason-lspconfig.nvim",
         "neovim/nvim-lspconfig",
     }
-    use 'hrsh7th/cmp-nvim-lsp' -- LSP source for nvim-cmp
-    use 'hrsh7th/nvim-cmp'     -- autocompletion
-    use 'hrsh7th/cmp-buffer'
-    use 'hrsh7th/cmp-path'
-    use 'onsails/lspkind-nvim'     -- icons for completion
-    use 'saadparwaiz1/cmp_luasnip' -- snippets source for nvim-cmp
-    use 'L3MON4D3/LuaSnip'         -- snippets plugin
     use { "folke/trouble.nvim",
         requires = "kyazdani42/nvim-web-devicons",
     }
-    use { "windwp/nvim-autopairs" }
+
+    -- completion
+    use 'hrsh7th/nvim-cmp'     -- autocompletion
+    use 'hrsh7th/cmp-nvim-lsp' -- LSP source for nvim-cmp
+    use 'hrsh7th/cmp-buffer'
+    use 'hrsh7th/cmp-path'
+    use 'hrsh7th/cmp-cmdline'
+    use 'onsails/lspkind-nvim'     -- icons for completion
+
+    use 'L3MON4D3/LuaSnip'         -- snippets plugin
+    use 'saadparwaiz1/cmp_luasnip' -- snippets source for nvim-cmp
 
     -- which key
     use { "folke/which-key.nvim" }
 
+    -- project
     use { "ahmedkhalf/project.nvim", commit = "541115e762764bc44d7d3bf501b6e367842d3d4f" }
 
     -- DAP
