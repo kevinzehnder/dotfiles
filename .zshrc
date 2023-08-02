@@ -78,7 +78,7 @@ setopt pushd_minus          # Swap the meaning of cd +1 and cd -1 to the opposit
 
 export EDITOR='nvim'
 export COLORTERM="truecolor"
-export NVIM_APPNAME="astro"
+# export NVIM_APPNAME="astro"
 
 
 # fzf settings
