@@ -78,6 +78,7 @@ setopt pushd_minus          # Swap the meaning of cd +1 and cd -1 to the opposit
 
 export EDITOR='nvim'
 export COLORTERM="truecolor"
+export NVIM_APPNAME="astro"
 
 
 # fzf settings
@@ -196,14 +197,13 @@ alias dockerkill='docker stop $(docker ps -a -q) && docker rm $(docker ps -a -q)
 alias light='base16_solarized-light && colorschemeswitcher 0'
 alias dark='base16_tokyo-night && colorschemeswitcher 1'
 alias gruv='base16_gruvbox-dark-medium && colorschemeswitcher 1'
-alias gvim='gvim.exe'
+
 alias lazyconfig='lazygit --git-dir=$HOME/.cfg/ --work-tree=$HOME'
 alias config='/usr/bin/git --git-dir=$HOME/.cfg/ --work-tree=$HOME'
 alias vim='nvim'
 alias k='kubectl'
 alias kc='kubectl config use-context'
 alias air='~/go/bin/air'
-
 
 # additional configs
 if [ -d "$HOME/.config/zsh/config.d/" ] ; then
