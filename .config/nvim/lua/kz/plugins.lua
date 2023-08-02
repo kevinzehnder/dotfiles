@@ -66,12 +66,14 @@ require('packer').startup(function(use)
         requires = { 'kyazdani42/nvim-web-devicons', opt = true }
     }
 
+    use { "rebelot/heirline.nvim", }
+
     -- treesitter
     use {
         'nvim-treesitter/nvim-treesitter',
         run = ':TSUpdate'
     }
-    use 'nvim-treesitter/nvim-treesitter-context'
+    -- use 'nvim-treesitter/nvim-treesitter-context'
 
     -- git
     use {
@@ -82,7 +84,7 @@ require('packer').startup(function(use)
 
     -- commentary
     use { "numToStr/Comment.nvim" }
-    use { "JoosepAlviste/nvim-ts-context-commentstring" }
+    -- use { "JoosepAlviste/nvim-ts-context-commentstring" }
 
     -- surround and autopairs
     use({
@@ -133,14 +135,14 @@ require('packer').startup(function(use)
     }
 
     -- completion
-    use 'hrsh7th/nvim-cmp'     -- autocompletion
+    use 'hrsh7th/nvim-cmp' -- autocompletion
     use 'hrsh7th/cmp-nvim-lsp' -- LSP source for nvim-cmp
     use 'hrsh7th/cmp-buffer'
     use 'hrsh7th/cmp-path'
     use 'hrsh7th/cmp-cmdline'
-    use 'onsails/lspkind-nvim'     -- icons for completion
+    use 'onsails/lspkind-nvim' -- icons for completion
 
-    use 'L3MON4D3/LuaSnip'         -- snippets plugin
+    use 'L3MON4D3/LuaSnip' -- snippets plugin
     use 'saadparwaiz1/cmp_luasnip' -- snippets source for nvim-cmp
 
     -- which key
