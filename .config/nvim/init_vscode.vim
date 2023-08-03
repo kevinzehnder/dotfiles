@@ -19,9 +19,6 @@ set expandtab"
 
 " Layout Options
 set termguicolors
-let g:airline_theme='base16'
-let g:airline_powerline_fonts = 1
-set background=dark
 
 " general settings
 syntax on
@@ -37,14 +34,7 @@ set hlsearch
 set splitright
 set textwidth=120
 highlight Comment cterm=italic
-set colorcolumn=+1
 set clipboard=unnamedplus
-
-" Remap arrow keys to resize window
-nnoremap <A-Up>    :resize -2<CR>
-nnoremap <A-Down>  :resize +2<CR>
-nnoremap <A-Right>  :vertical resize -2<CR>
-nnoremap <A-Left> :vertical resize +2<CR>
 
 " Scrolling
 set scrolloff=8         "Start scrolling when we're 8 lines away from margins
