@@ -22,7 +22,9 @@ local mappings = {
     ["w"] = { "<cmd>up<CR>", "Save" },
     ["x"] = { "<cmd>q!<CR>", "Quit (Force)" },
     ["q"] = { "<cmd>q<CR>", "Quit" },
-    ["c"] = { "<cmd>Bdelete!<CR>", "Close Buffer" },
+    -- ["c"] = { "<cmd>Bdelete!<CR>", "Close Buffer" },
+    ["c"] = { "<cmd>bp <BAR> confirm bd #<CR>", "Close Buffer" },
+
     ["h"] = { "<cmd>nohlsearch<CR>", "No Highlight" },
     ["F"] = { "<cmd>Telescope live_grep theme=ivy<cr>", "Find Text" },
     ["P"] = { "<cmd>lua require('telescope').extensions.projects.projects()<cr>", "Projects" },
