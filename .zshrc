@@ -41,7 +41,7 @@ zi wait lucid light-mode as"completion" for \
     https://github.com/docker/cli/blob/master/contrib/completion/zsh/_docker \
     https://github.com/docker/compose/tree/master/contrib/completion/zsh/_docker-compose \
 
-source <(kubectl completion zsh)
+[ -x "$(command -v kubectl)" ] && source <(kubectl completion zsh)
 
 # needs to be loaded last
 zi wait lucid light-mode for \
