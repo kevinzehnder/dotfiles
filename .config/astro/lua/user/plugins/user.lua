@@ -28,4 +28,5 @@ return {
   },
 
   { "ThePrimeagen/harpoon" },
+  { "tpope/vim-fugitive", lazy = false },
 }

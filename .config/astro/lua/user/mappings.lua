@@ -31,24 +31,21 @@ return {
     },
     -- tables with the `name` key will be registered with which-key if it's installed
     -- this is useful for naming menus
-    ["<leader>b"] = { name = "Buffers" },
-    -- quick save
-    -- ["<C-s>"] = { ":w!<cr>", desc = "Save File" },  -- change description but the same command
+
+    -- lsp
+
+    ["K"] = { "<cmd>lua vim.lsp.buf.hover()<CR>", desc = "LSP Hover" },
 
     -- Buffer handling
+    ["<leader>b"] = { name = "Buffers" },
     ["<S-h>"] = { ":bprevious<cr>" },
     ["<S-l>"] = { ":bnext<cr>" },
-    -- ["<leader>c"] = { "<cmd>Bdelete!<CR>", desc = "Close Buffer" },
-    -- ["<leader>bq"] = { "<cmd>bp <BAR> confirm bd #<CR>", desc = "Close Buffer" },
-    -- ["<leader>bQ"] = { "<cmd>%bd|e#|confirm bd #<CR>", desc = "Close All Buffers" },
-
-    -- ["<leader>f"] = { "<cmd>lua vim.lsp.buf.format({async=True})<CR>", desc = "Format" },
-
     ["<leader>x"] = { "<cmd>q!<CR>", desc = "Quit (Force)" },
     ["<leader>q"] = { "<cmd>q<CR>", desc = "Quit" },
 
     ["<leader>h"] = { "<cmd>nohlsearch<CR>", desc = "No Highlight" },
 
+    -- navigation
     ["<C-A-l>"] = {
       function()
         local worktree = require("astronvim.utils.git").file_worktree()
@@ -62,19 +59,9 @@ return {
 
     -- telescope
     ["<leader>F"] = { "<cmd>Telescope live_grep theme=ivy<cr>", desc = "Find Text" },
-    -- ["<leader>P"] = { "<cmd>lua require('telescope').extensions.projects.projects()<cr>", desc = "Projects" },
-    -- ["<C-p>"] = { ":lua require('kz.telescope').project_files()<CR>" },
     ["<C-p>"] = { "<cmd>Telescope find_files<CR>" },
     ["<leader>T"] = { "<cmd>Telescope<CR>", desc = "Telescope" },
-    -- ["<leader>M"] = { "<cmd>Telescope marks<CR>", desc = "Marks" },
-    -- ["<leader>S"] = { "<cmd>Telescope lsp_document_symbols<CR>", desc = "Symbols" },
-    -- ["<leader>o"] = { "<cmd>Telescope buffers<CR>", desc = "Buffers" },
-    -- ["<C-t>"] = { ":Telescope projects<CR>" },
-    -- ["<C-A-p>"] = { ":Telescope find_files<CR>" },
-    -- ["<C-A-h>"] = { ":Telescope file_browser<CR>" },
-    -- ["<C-b>"] = { ":Telescope buffers<CR>" },
     ["<C-f>"] = { ":Telescope current_buffer_fuzzy_find<CR>" },
-    -- ["<C-g>"] = { ":Telescope live_grep<CR>" },
 
     -- primeagen remaps
     ["<leader>p"] = { '"_dP' },
@@ -89,6 +76,19 @@ return {
     ["<A-up>"] = { ":resize +2<CR>" },
     ["<A-right>"] = { ":vertical resize -2<CR>" },
     ["<A-left>"] = { ":vertical resize +2<CR>" },
+
+    -- harpoon
+    ["<leader>j"] = { name = "Harpoon" },
+    ["<leader>jj"] = { "<cmd>lua require('harpoon.ui').toggle_quick_menu()<cr>", desc = "Quick Menu" },
+    ["<leader>ja"] = { "<cmd>lua require('harpoon.mark').add_file()<cr>", desc = "Add File" },
+    ["<leader>jf"] = { "<cmd>lua require('harpoon.ui').nav_file(1)<cr>", desc = " File 1" },
+    ["<leader>jd"] = { "<cmd>lua require('harpoon.ui').nav_file(2)<cr>", desc = "File 2" },
+    ["<leader>js"] = { "<cmd>lua require('harpoon.ui').nav_file(3)<cr>", desc = "File 3" },
+    ["<leader>jr"] = { "<cmd>lua require('harpoon.ui').nav_file(3)<cr>", desc = "File 4" },
+    ["<leader>je"] = { "<cmd>lua require('harpoon.ui').nav_file(3)<cr>", desc = "File 5" },
+
+    -- git
+    ["<leader>gH"] = { "<cmd>Gitsigns toggle_linehl<cr>", desc = "Toggle LineHL" },
   },
   t = {
     -- setting a mapping to false will disable it
