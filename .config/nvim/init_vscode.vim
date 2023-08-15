@@ -21,7 +21,6 @@ set expandtab"
 set termguicolors
 
 " general settings
-syntax on
 set nocompatible
 set nowrap
 set linebreak
@@ -36,17 +35,11 @@ set textwidth=120
 highlight Comment cterm=italic
 set clipboard=unnamedplus
 
-" Scrolling
-set scrolloff=8         "Start scrolling when we're 8 lines away from margins
-set sidescrolloff=15
-set sidescroll=1
-
 "Custom Leader Shortcuts
 nmap <Leader>x :q!<cr>
 nmap <Leader>w :w<cr>
 nmap <Leader>q :q<cr>
 nmap <Leader>h :nohlsearch<cr>
-
 
 "VSCode Shortcuts
 xmap gc  <Plug>VSCodeCommentary
@@ -54,9 +47,12 @@ nmap gc  <Plug>VSCodeCommentary
 omap gc  <Plug>VSCodeCommentary
 nmap gcc <Plug>VSCodeCommentaryLine
 
-
 "Custom Shortcuts
 imap jk <Esc>
+
+"Paste without replacing Buffer 
+vnoremap p "_dP
+
 
 "move lines around
 function! MoveVisualSelection(direction)
@@ -90,4 +86,5 @@ endfunction
 ":        ┌───────────────────────────────────── " Exit visual mode otherwise our :call will be '<,'>call
 vmap <A-j> <Esc>:call MoveVisualSelection("Down")<cr>
 vmap <A-k> <Esc>:call MoveVisualSelection("Up")<cr>
+
 
