@@ -27,6 +27,7 @@ zi wait lucid light-mode as"program" from"gh-r" for \
     mv"dust* -> dust" pick"dust/dust" bootandy/dust \
     pick"duf" muesli/duf \
     httpie/cli \
+    mv"delta* -> delta" pick"delta/delta" dandavison/delta \
     ver"v0.7.5" pick"b/x86*/release/sd" chmln/sd \
     mv"tree* -> tree-sitter" pick"tree-sitter" tree-sitter/tree-sitter \
     mv"black_linux -> black" psf/black \
