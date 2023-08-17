@@ -63,27 +63,32 @@ function! MoveVisualSelection(direction)
     let startLine = getpos(markStartLine)[1]     " Getpos(mark) => [?, lineNum, colNumber, ?]
     let endLine = getpos(markEndLine)[1]
     let removeVsCodeSelectionAfterCommand = 1    " We set the visual selection manually after this command as otherwise it will use the line numbers that correspond to the old positions
-    call VSCodeCallRange('editor.action.moveLines'. a:direction . 'Action', startLine, endLine, removeVsCodeSelectionAfterCommand )
+    let linecount = getbufinfo('%')[0].linecount
+     
 
-    if a:direction == "Up"                       " Calculate where the new visual selection lines should be
+
+
+    if (a:direction == "Up" && startLine == 1) || (a:direction == "Down" && endLine == linecount) 
+        let newStart = startLine
+        let newEnd = endLine
+    else
+      call VSCodeCallRange('editor.action.moveLines'. a:direction . 'Action', startLine, endLine, removeVsCodeSelectionAfterCommand )
+      if a:direction == "Up"
         let newStart = startLine - 1
         let newEnd = endLine - 1
-    else ": == 'Down'
+      else 
         let newStart = startLine + 1
         let newEnd = endLine + 1
+      endif
     endif
-
-    ": This command basically:
-    ": 1. Jumps to the `newStart` line
-    ": 2. Makes a linewise visual selection
-    ": 3. Jumps to the `newEnd` line
+      
     let newVis = "normal!" . newStart . "GV". newEnd . "G"
     ":                  │  └──────────────────── " The dot combines the strings together
     ":                  └─────────────────────── " ! means don't respect any remaps the user has made when executing
     execute newVis
 endfunction
-
 ":        ┌───────────────────────────────────── " Exit visual mode otherwise our :call will be '<,'>call
+
 vmap <A-j> <Esc>:call MoveVisualSelection("Down")<cr>
 vmap <A-k> <Esc>:call MoveVisualSelection("Up")<cr>
 
