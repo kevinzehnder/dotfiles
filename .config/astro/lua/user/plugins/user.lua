@@ -26,7 +26,7 @@ return {
     lazy = false,
     opts = {},
   },
-
   { "ThePrimeagen/harpoon" },
   { "tpope/vim-fugitive", lazy = false },
+  { "sindrets/diffview.nvim", lazy = false },
 }
