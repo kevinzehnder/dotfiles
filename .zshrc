@@ -27,6 +27,7 @@ zi wait lucid light-mode as"program" from"gh-r" for \
     mv"dust* -> dust" pick"dust/dust" bootandy/dust \
     pick"duf" muesli/duf \
     httpie/cli \
+    zellij-org/zellij \
     mv"delta* -> delta" pick"delta/delta" dandavison/delta \
     ver"v0.7.5" pick"b/x86*/release/sd" chmln/sd \
     mv"tree* -> tree-sitter" pick"tree-sitter" tree-sitter/tree-sitter \
@@ -40,8 +41,6 @@ zi wait lucid light-mode as"program" from"gh-r" for \
 zi wait lucid light-mode for \
     Aloxaf/fzf-tab \
     nocompile tinted-theming/base16-fzf \
-
-    # z-shell/H-S-MW
 
 zi wait lucid light-mode as"completion" for \
     https://github.com/docker/cli/blob/master/contrib/completion/zsh/_docker \
