@@ -1,0 +1,38 @@
+layout {
+    tab name="vim" focus=true{
+        pane {
+            size 1;
+            borderless true;
+            plugin location="zellij:tab-bar";
+        }
+        pane name="vim" focus=true{
+            borderless false
+        }
+        
+        floating_panes {
+            pane name="lazygit" {
+                width "100%";
+                height "100%";
+            }
+        }
+        pane {
+            size 1;
+            borderless true;
+            plugin location="zellij:status-bar";
+        }
+    }
+    tab name="server"{
+        pane {
+            size 1;
+            borderless true;
+            plugin location="zellij:tab-bar";
+        }
+        pane name="server"{}
+        pane {
+            size 1;
+            borderless true; 
+            plugin location="zellij:status-bar";
+        }
+    }
+}
+
