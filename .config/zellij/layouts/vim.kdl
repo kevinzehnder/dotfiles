@@ -8,7 +8,6 @@ layout {
             plugin location="zellij:status-bar"
         }
     }
-    tab name="zsh"
     tab name="vim"{
         pane
         floating_panes {
@@ -18,5 +17,6 @@ layout {
             }
         }
     }
+    tab name="zsh"
     
 }
