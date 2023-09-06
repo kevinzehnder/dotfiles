@@ -27,6 +27,7 @@ zi wait lucid light-mode as"program" from"gh-r" for \
     mv"dust* -> dust" pick"dust/dust" bootandy/dust \
     pick"duf" muesli/duf \
     httpie/cli \
+    mv"k6* -> k6" pick"k6/k6" grafana/k6 \
     zellij-org/zellij \
     mv"delta* -> delta" pick"delta/delta" dandavison/delta \
     ver"v0.7.5" pick"b/x86*/release/sd" chmln/sd \
@@ -91,6 +92,9 @@ zstyle ':fzf-tab:complete:cd:*' fzf-preview 'exa -1 --color=always $realpath'
 zstyle ':completion:*:descriptions' format '[%d]'
 zstyle ':fzf-tab:*' show-group none
 
+export FZF_DEFAULT_COMMAND='fd --type file --follow --hidden --exclude .git'
+export FZF_PREVIEW_COMMAND="bat --style=numbers,changes --wrap never --color always {} || cat {} || tree -C {}"
+
 export FZF_DEFAULT_OPTS="
 --layout=reverse
 --info=inline
@@ -98,9 +102,8 @@ export FZF_DEFAULT_OPTS="
 --multi
 --prompt='∼ ' --pointer='▶' --marker='✓'
 --bind 'ctrl-a:select-all'
+--preview '($FZF_PREVIEW_COMMAND) 2> /dev/null'
 "
-export FZF_DEFAULT_COMMAND='fd --type file --follow --hidden --exclude .git'
-export FZF_PREVIEW_COMMAND="bat --style=numbers,changes --wrap never --color always {} || cat {} || tree -C {}"
 
 export FZF_ALT_C_COMMAND='fd --type directory'
 export FZF_ALT_C_OPTS="--height=75% --preview-window down:70% --preview-window border --preview='exa --color=always -T {}'"
