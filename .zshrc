@@ -102,7 +102,6 @@ export FZF_DEFAULT_OPTS="
 --multi
 --prompt='∼ ' --pointer='▶' --marker='✓'
 --bind 'ctrl-a:select-all'
---preview '($FZF_PREVIEW_COMMAND) 2> /dev/null'
 "
 
 export FZF_ALT_C_COMMAND='fd --type directory'
