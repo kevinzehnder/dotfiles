@@ -170,6 +170,8 @@ bindkey "^E" end-of-line
 bindkey '^ ' forward-word
 bindkey "^K" up-line-or-history
 bindkey "^J" down-line-or-history
+bindkey "^[l" forward-word
+bindkey "^[h" backward-word
 
 
 ## aliases
