@@ -93,7 +93,9 @@ return {
   },
   t = {
     -- setting a mapping to false will disable it
-    -- ["<esc>"] = false,
+    ["<esc>"] = false,
+    ["<C-k>"] = false,
+    ["<C-j>"] = false,
   },
   v = {
     -- Move text up and down
