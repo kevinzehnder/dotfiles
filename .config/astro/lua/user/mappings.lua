@@ -55,6 +55,7 @@ return {
       desc = "ToggleTerm lazygit",
     },
     ["<C-A-m>"] = { "<cmd>TroubleToggle<CR>" },
+    ["<C-A-h>"] = { "<cmd>Neotree toggle<CR>" },
     ["<C-A-j>"] = { "<cmd>ToggleTerm<CR>" },
 
     -- telescope
