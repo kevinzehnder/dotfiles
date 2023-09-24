@@ -8,15 +8,11 @@ layout {
             plugin location="zellij:status-bar"
         }
     }
-    tab name="vim"{
-        pane
-        floating_panes {
-            pane name="lazygit" {
-                width "100%";
-                height "100%";
-            }
-        }
+    tab name="vim" {
+    pane name="vim"
     }
-    tab name="zsh"
+    tab name="zsh" {
+    pane name="zsh"
+    }
     
 }
