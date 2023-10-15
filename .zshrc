@@ -144,6 +144,7 @@ zstyle ':completion:*' rehash true
 
 # golang settings
 export PATH=$PATH:/usr/local/go/bin
+export PATH=$PATH:$HOME/go/bin
 
 
 # Backgrounding and Unbackgrounding {{{
