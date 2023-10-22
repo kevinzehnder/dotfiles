@@ -10,6 +10,7 @@ return {
     config.sources = {
       null_ls.builtins.formatting.terraform_fmt,
       null_ls.builtins.formatting.prettier,
+      null_ls.builtins.formatting.gofmt,
       -- Set a formatter
       -- null_ls.builtins.formatting.stylua,
     }
