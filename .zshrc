@@ -173,8 +173,8 @@ bindkey "^K" up-line-or-history
 bindkey "^J" down-line-or-history
 bindkey "^[l" forward-word
 bindkey "^[h" backward-word
-bindkey "^[k" forward-char
-bindkey "^[j" backward-char
+bindkey "^[j" forward-char
+bindkey "^[k" backward-char
 
 
 ## aliases
