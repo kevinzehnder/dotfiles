@@ -9,7 +9,8 @@ return {
     wrap = false, -- sets vim.opt.wrap
     sidescrolloff = 0,
 
-    cmdheight = 1,
+    cmdheight = 0,
+    showtabline = 1,
 
     list = true, -- show whitespace characters
     listchars = {
