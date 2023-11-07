@@ -33,8 +33,10 @@ return {
     -- this is useful for naming menus
 
     -- lsp
-
     ["K"] = { "<cmd>lua vim.lsp.buf.hover()<CR>", desc = "LSP Hover" },
+
+    -- code runner
+    ["<leader>k"] = { "<cmd>2TermExec cmd='go run cmd/main/main.go'<CR>", desc = "Run Go Main" },
 
     -- Buffer handling
     ["<leader>b"] = { name = "Buffers" },
@@ -65,7 +67,6 @@ return {
     ["<C-f>"] = { ":Telescope current_buffer_fuzzy_find<CR>" },
 
     -- primeagen remaps
-    -- ["<leader>p"] = { '"_dP' },
     ["<C-u>"] = { "<C-u>zz" },
     ["<C-d>"] = { "<C-d>zz" },
     ["n"] = { "nzz" },
