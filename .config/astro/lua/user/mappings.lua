@@ -65,7 +65,7 @@ return {
     ["<C-f>"] = { ":Telescope current_buffer_fuzzy_find<CR>" },
 
     -- primeagen remaps
-    ["<leader>p"] = { '"_dP' },
+    -- ["<leader>p"] = { '"_dP' },
     ["<C-u>"] = { "<C-u>zz" },
     ["<C-d>"] = { "<C-d>zz" },
     ["n"] = { "nzz" },
@@ -104,5 +104,6 @@ return {
     ["K"] = { ":move '<-2<CR>gv-gv" },
     ["<A-j>"] = { ":move '>+1<CR>gv-gv" },
     ["<A-k>"] = { ":move '<-2<CR>gv-gv" },
+    ["<A-p>"] = { '"_dP' },
   },
 }
