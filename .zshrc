@@ -208,8 +208,7 @@ alias syu='sudo pacman -Syu'
 alias dockerkill='docker stop $(docker ps -a -q) && docker rm $(docker ps -a -q)'
 
 alias light='base16_solarized-light && colorschemeswitcher 0'
-alias dark='base16_tokyo-night && colorschemeswitcher 1'
-alias gruv='base16_gruvbox-dark-medium && colorschemeswitcher 1'
+alias dark='$HOME/.config/base16/base16-tokyo-night.sh && colorschemeswitcher 1'
 
 alias lazyconfig='lazygit --git-dir=$HOME/.cfg/ --work-tree=$HOME'
 alias config='/usr/bin/git --git-dir=$HOME/.cfg/ --work-tree=$HOME'
@@ -233,12 +232,10 @@ colorschemeswitcher(){
   if [ $1 -eq 0 ]; then
     touch ~/.lightmode;
     source ~/.zi/plugins/tinted-theming---base16-fzf/bash/base16-$BASE16_THEME.config;
-    # source ~/.zi/plugins/tinted-theming---base16-fzf/bash/base16-solarized-light.config;
     export BAT_THEME="Solarized (light)"
   else
     rm -f ~/.lightmode;
-    source ~/.zi/plugins/tinted-theming---base16-fzf/bash/base16-$BASE16_THEME.config;
-    # source ~/.zi/plugins/tinted-theming---base16-fzf/bash/base16-tokyo-night.config;
+    source ~/.config/base16/base16-tokyo-night.config;
     export BAT_THEME="OneHalfDark"
   fi
 }
