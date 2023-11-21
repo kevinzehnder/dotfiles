@@ -27,6 +27,7 @@ zi wait lucid light-mode as"program" from"gh-r" for \
     mv"dust* -> dust" pick"dust/dust" bootandy/dust \
     pick"duf" muesli/duf \
     httpie/cli \
+    mv"gojq* ->gojq" pick"gojq/gojq" itchyny/gojq \
     mv"k6* -> k6" pick"k6/k6" grafana/k6 \
     zellij-org/zellij \
     mv"delta* -> delta" pick"delta/delta" dandavison/delta \
