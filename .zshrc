@@ -208,9 +208,6 @@ alias lg='lazygit'
 alias syu='sudo pacman -Syu'
 alias dockerkill='docker stop $(docker ps -a -q) && docker rm $(docker ps -a -q)'
 
-alias light='base16_solarized-light && colorschemeswitcher 0'
-alias dark='$HOME/.config/base16/base16-tokyo-night.sh && colorschemeswitcher 1'
-
 alias lazyconfig='lazygit --git-dir=$HOME/.cfg/ --work-tree=$HOME'
 alias config='/usr/bin/git --git-dir=$HOME/.cfg/ --work-tree=$HOME'
 alias vim='nvim'
@@ -228,15 +225,26 @@ if [ -d "$HOME/.config/zsh/config.d/" ] ; then
   unset conf
 fi
 
+# Color Themes
+alias light='colorschemeswitcher solarized'
+alias dark='colorschemeswitcher dark'
+alias gruv='colorschemeswitcher gruvbox'
 
 colorschemeswitcher(){
-  if [ $1 -eq 0 ]; then
+  if [ "$1" = "solarized" ]; then
     touch ~/.lightmode;
-    source ~/.zi/plugins/tinted-theming---base16-fzf/bash/base16-$BASE16_THEME.config;
+    base16_solarized-light;
+    [ -f ~/.zi/plugins/tinted-theming---base16-fzf/bash/base16-$BASE16_THEME.config ] && source ~/.zi/plugins/tinted-theming---base16-fzf/bash/base16-$BASE16_THEME.config;
     export BAT_THEME="Solarized (light)"
+  elif [ "$1" = "gruvbox" ]; then
+    rm -f ~/.lightmode;
+    base16_gruvbox-dark-medium;
+    [ -f ~/.zi/plugins/tinted-theming---base16-fzf/bash/base16-$BASE16_THEME.config ] && source ~/.zi/plugins/tinted-theming---base16-fzf/bash/base16-$BASE16_THEME.config;
+    export BAT_THEME="Gruvbox"
   else
     rm -f ~/.lightmode;
-    source ~/.config/base16/base16-tokyo-night.config;
+    [ -f ~/.config/base16/base16-tokyo-night.config ] && source ~/.config/base16/base16-tokyo-night.config;
+    [ -f $HOME/.config/base16/base16-tokyo-night.sh ] && source $HOME/.config/base16/base16-tokyo-night.sh;
     export BAT_THEME="OneHalfDark"
   fi
 }
@@ -252,9 +260,15 @@ darkmodechecker(){
   fi
 }
 
-# run check if we're not on an SSH connection
+# run DarkMode Check if we're not on an SSH connection
 if [[ -z "$SSH_CONNECTION" ]]; then
   darkmodechecker
+else 
+  if [[ -f ~/.lightmode ]]; then
+    light
+  else
+    dark
+  fi
 fi
 
 # Configure ssh forwarding
