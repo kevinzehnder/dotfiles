@@ -211,6 +211,7 @@ alias kc='kubectl config use-context'
 alias air='~/go/bin/air'
 
 alias https='http --default-scheme=https'
+alias zj='zellij'
 
 
 # use bat to colorize help output
