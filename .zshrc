@@ -216,6 +216,7 @@ alias https='http --default-scheme=https'
 # use bat to colorize help output
 alias -g -- -h='-h 2>&1 | bat --language=help --style=plain -P'
 alias -g -- --help='--help 2>&1 | bat --language=help --style=plain -P'
+alias batp='bat -Pp'
 jctl(){journalctl $@ | bat -l syslog -p --pager="less -FR +G"}
 
 # additional configs
