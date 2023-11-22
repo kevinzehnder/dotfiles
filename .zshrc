@@ -24,6 +24,7 @@ zi wait lucid light-mode as"program" from"gh-r" for \
     bpick"*linux_amd64*" junegunn/fzf \
     jesseduffield/lazygit \
     jesseduffield/lazydocker \
+    joehillen/sysz \
     mv"dust* -> dust" pick"dust/dust" bootandy/dust \
     pick"duf" muesli/duf \
     httpie/cli \
