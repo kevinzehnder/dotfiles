@@ -27,16 +27,10 @@ zi wait lucid light-mode as"program" from"gh-r" for \
     mv"dust* -> dust" pick"dust/dust" bootandy/dust \
     pick"duf" muesli/duf \
     httpie/cli \
-    mv"gojq* ->gojq" pick"gojq/gojq" itchyny/gojq \
-    mv"k6* -> k6" pick"k6/k6" grafana/k6 \
     zellij-org/zellij \
     mv"delta* -> delta" pick"delta/delta" dandavison/delta \
     ver"v0.7.5" pick"b/x86*/release/sd" chmln/sd \
-    mv"tree* -> tree-sitter" pick"tree-sitter" tree-sitter/tree-sitter \
-    mv"black_linux -> black" psf/black \
     mv"bin/exa* -> exa" ogham/exa \
-    pick"bin/linux_amd64/kubelogin" Azure/kubelogin \
-    pick"*Linux_amd64*" derailed/k9s \
     mv"fd* -> fdfind" pick"fdfind/fd" @sharkdp/fd \
     mv"bat* -> bat" pick"bat/bat" @sharkdp/bat \
 
