@@ -243,7 +243,7 @@ colorschemeswitcher(){
     rm -f ~/.lightmode;
     base16_gruvbox-dark-medium;
     [ -f ~/.zi/plugins/tinted-theming---base16-fzf/bash/base16-$BASE16_THEME.config ] && source ~/.zi/plugins/tinted-theming---base16-fzf/bash/base16-$BASE16_THEME.config;
-    export BAT_THEME="Gruvbox"
+    export BAT_THEME="gruvbox-dark"
   else
     rm -f ~/.lightmode;
     [ -f ~/.config/base16/base16-tokyo-night.config ] && source ~/.config/base16/base16-tokyo-night.config;
