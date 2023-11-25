@@ -18,6 +18,8 @@ return {
 
   { "Darazaki/indent-o-matic", enabled = false },
   { "rebelot/heirline.nvim", enabled = false },
+  { "folke/noice.nvim", config = function(plugin, opts) end
+ },
   -- You can disable default plugins as follows:
   -- { "max397574/better-escape.nvim", enabled = false },
   --

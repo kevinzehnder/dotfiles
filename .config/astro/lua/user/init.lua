@@ -27,6 +27,11 @@ return {
   },
 
   lsp = {
+    override = {
+      ["vim.lsp.util.convert_input_to_markdown_lines"] = true,
+      ["vim.lsp.util.stylize_markdown"] = true,
+      ["cmp.entry.get_documentation"] = true,
+    },
     -- customize lsp formatting options
     formatting = {
       -- control auto formatting on save
@@ -79,7 +84,6 @@ return {
         vim.cmd("DiffviewOpen " .. e.args)
       end
     end, { nargs = "*" })
-    
 
     -- Set up custom filetypes
     -- vim.filetype.add {
