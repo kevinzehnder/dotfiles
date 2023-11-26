@@ -1,0 +1,28 @@
+themes {
+    solarized-light {
+        bg "#657b83"  // cyan
+        fg "#657b83"  // cyan
+        red "#eee8d5" // base2
+        green "#268bd2"  // blue
+        blue "#d33682"// magenta
+        yellow "#268bd2"  // blue
+        magenta "#d33682"// magenta
+        orange "#d33682"// magenta
+        cyan "#2aa198"  // cyan
+        black "#eee8d5" // base2
+        white "#657b83"  // cyan
+    }
+    solarized-dark {
+        bg "#002b36"    // base03
+        fg "#839496"    // base0
+        red "#dc322f"   // red
+        green "#859900" // green
+        blue "#268bd2"  // blue
+        yellow "#b58900"// yellow
+        magenta "#d33682"// magenta
+        orange "#cb4b16"// orange
+        cyan "#2aa198"  // cyan
+        black "#073642" // base02
+        white "#eee8d5" // base2
+    }
+}
