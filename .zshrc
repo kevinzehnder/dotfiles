@@ -78,7 +78,7 @@ setopt prompt_subst         # Substitution of parameters inside the prompt each 
 setopt pushd_ignore_dups    # Don't push multiple copies directory onto the directory stack.
 setopt pushd_minus          # Swap the meaning of cd +1 and cd -1 to the opposite.
 
-export EDITOR='nvim'
+# export EDITOR='nvim'
 export COLORTERM="truecolor"
 export NVIM_APPNAME="astro"
 
