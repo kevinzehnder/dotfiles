@@ -42,7 +42,7 @@ keybinds clear-defaults=true {
         bind "c" { SwitchToMode "RenamePane"; PaneNameInput 0;}
     }
     move {
-        bind "Alt m" { SwitchToMode "Normal"; }
+        bind "Ctrl m" { SwitchToMode "Normal"; }
         bind "n" "Tab" { MovePane; }
         bind "p" { MovePaneBackwards; }
         bind "h" "Left" { MovePane "Left"; }
@@ -172,9 +172,9 @@ keybinds clear-defaults=true {
     shared_except "move" "locked" {
         bind "Alt m" { SwitchToMode "Move"; }
     }
-    shared_except "tmux" "locked" {
-        bind "Ctrl b" { SwitchToMode "Tmux"; }
-    }
+//    shared_except "tmux" "locked" {
+//        bind "Ctrl b" { SwitchToMode "Tmux"; }
+//    }
 }
 
 plugins {
@@ -226,10 +226,10 @@ auto_layout true
 // For more examples, see: https://github.com/zellij-org/zellij/tree/main/example/themes
 // Once these themes are defined, one of them should to be selected in the "theme" section of this file
 //
-
 // Choose the theme that is specified in the themes section.
 // Default: default
-theme "tokyo-night-dark"
+
+theme "solarized-light"
 
 // The name of the default layout to load on startup
 // Default: "default"
