@@ -14,6 +14,10 @@ zi light romkatv/powerlevel10k
 
 zicompinit
 
+export ZVM_INIT_MODE=sourcing
+zi ice depth=1
+zi light jeffreytse/zsh-vi-mode
+
 zi wait lucid light-mode for \
     atload"_zsh_autosuggest_start" zsh-users/zsh-autosuggestions \
     blockf atpull'zi creinstall -q .' zsh-users/zsh-completions
@@ -34,6 +38,7 @@ zi wait lucid light-mode as"program" from"gh-r" for \
     mv"bin/exa* -> exa" ogham/exa \
     mv"fd* -> fdfind" pick"fdfind/fd" @sharkdp/fd \
     mv"bat* -> bat" pick"bat/bat" @sharkdp/bat \
+  
 
 zi wait lucid light-mode for \
     Aloxaf/fzf-tab \
@@ -167,10 +172,10 @@ bindkey "^E" end-of-line
 bindkey '^ ' forward-word
 bindkey "^K" up-line-or-history
 bindkey "^J" down-line-or-history
-bindkey "^[l" forward-word
-bindkey "^[h" backward-word
-bindkey "^[j" forward-char
-bindkey "^[k" backward-char
+# bindkey "^[l" forward-word
+# bindkey "^[h" backward-word
+# bindkey "^[j" forward-char
+# bindkey "^[k" backward-char
 
 
 ## aliases
