@@ -187,6 +187,7 @@ alias ls="eza -1 --color=auto --icons"
 alias ll='ls -alh'
 alias la='ls -a'
 alias llm='ll --sort=modified' # ll, sorted by modification date
+alias llz='ll -Z'
 
 alias svim='sudo vim'
 alias h='cd'
