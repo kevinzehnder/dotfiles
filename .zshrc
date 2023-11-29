@@ -35,7 +35,7 @@ zi wait lucid light-mode as"program" from"gh-r" for \
     zellij-org/zellij \
     mv"delta* -> delta" pick"delta/delta" dandavison/delta \
     ver"v0.7.5" pick"b/x86*/release/sd" chmln/sd \
-    mv"bin/exa* -> exa" ogham/exa \
+    eza-community/eza \
     mv"fd* -> fdfind" pick"fdfind/fd" @sharkdp/fd \
     mv"bat* -> bat" pick"bat/bat" @sharkdp/bat \
   
@@ -181,8 +181,8 @@ bindkey "^J" down-line-or-history
 ## aliases
 
 # exa
-alias l='exa'
-alias ls="exa -1 --color=auto --icons"
+alias l='eza'
+alias ls="eza -1 --color=auto --icons"
 # alias -g ls="exa -1 --color=auto --icons"
 alias ll='ls -alh'
 alias la='ls -a'
