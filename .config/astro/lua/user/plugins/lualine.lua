@@ -27,7 +27,7 @@ return {
       section_separators = "",
       -- component_separators = { left = "", right = "" },
       -- section_separators = { left = "", right = "" },
-      disabled_filetypes = { "packer", "neo-tree" },
+      disabled_filetypes = { "packer", "neo-tree", "alpha" },
       globalstatus = true,
     }
 
