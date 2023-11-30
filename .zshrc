@@ -89,7 +89,7 @@ export NVIM_APPNAME="astro"
 
 
 # fzf settings
-zstyle ':fzf-tab:complete:cd:*' fzf-preview 'exa -1 --color=always $realpath'
+zstyle ':fzf-tab:complete:cd:*' fzf-preview 'eza -1 --color=always $realpath'
 zstyle ':completion:*:descriptions' format '[%d]'
 zstyle ':fzf-tab:*' show-group none
 
@@ -106,7 +106,7 @@ export FZF_DEFAULT_OPTS="
 "
 
 export FZF_ALT_C_COMMAND='fd --type directory'
-export FZF_ALT_C_OPTS="--height=75% --preview-window down:70% --preview-window border --preview='exa --color=always -T {}'"
+export FZF_ALT_C_OPTS="--height=75% --preview-window down:70% --preview-window border --preview='eza --color=always -T {}'"
 
 export FZF_CTRL_T_COMMAND="$FZF_DEFAULT_COMMAND"
 export FZF_CTRL_T_OPTS="--height 75% --preview-window down:70% --preview-window border --preview '($FZF_PREVIEW_COMMAND) 2> /dev/null'"
