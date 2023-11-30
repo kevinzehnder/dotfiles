@@ -219,6 +219,18 @@ alias air='~/go/bin/air'
 alias https='http --default-scheme=https'
 alias zj='zellij'
 
+zjTokyo() {
+    zellij $@ options --theme tokyo-night-dark
+}
+
+zjSolarized() {
+    zellij $@ options --theme solarized-light
+}
+
+zjGruvbox() {
+    zellij $@ options --theme gruvbox-dark
+}
+
 
 # use bat to colorize help output
 alias -g -- -h='-h 2>&1 | bat --language=help --style=plain -P'
@@ -245,16 +257,19 @@ colorschemeswitcher(){
     base16_solarized-light;
     [ -f ~/.zi/plugins/tinted-theming---base16-fzf/bash/base16-$BASE16_THEME.config ] && source ~/.zi/plugins/tinted-theming---base16-fzf/bash/base16-$BASE16_THEME.config;
     export BAT_THEME="Solarized (light)"
+    alias zj='zjSolarized'
   elif [ "$1" = "gruvbox" ]; then
     rm -f ~/.lightmode;
     base16_gruvbox-dark-medium;
     [ -f ~/.zi/plugins/tinted-theming---base16-fzf/bash/base16-$BASE16_THEME.config ] && source ~/.zi/plugins/tinted-theming---base16-fzf/bash/base16-$BASE16_THEME.config;
     export BAT_THEME="gruvbox-dark"
+    alias zj='zjGruvbox'
   else
     rm -f ~/.lightmode;
     [ -f ~/.config/base16/base16-tokyo-night.config ] && source ~/.config/base16/base16-tokyo-night.config;
     [ -f $HOME/.config/base16/base16-tokyo-night.sh ] && source $HOME/.config/base16/base16-tokyo-night.sh;
     export BAT_THEME="OneHalfDark"
+    alias zj='zjTokyo'
   fi
 }
 
