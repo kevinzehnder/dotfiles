@@ -115,6 +115,8 @@ export FZF_PREVIEW_COMMAND="bat --style=numbers,changes --wrap never --color alw
 
 export FZF_DEFAULT_OPTS="
 --layout=reverse
+--bind='?:toggle-preview'
+  --bind='ctrl-space:toggle'
 --info=inline
 --height=50%
 --multi
@@ -130,6 +132,7 @@ export FZF_CTRL_T_OPTS="--height 75% --preview-window down:70% --preview-window 
 
 export FZF_COMMON_OPTIONS="
   --bind='?:toggle-preview'
+  --bind='ctrl-space:toggle'
   --bind='ctrl-u:preview-page-up'
   --bind='ctrl-d:preview-page-down'
   --preview-window 'right:60%:hidden:wrap'
