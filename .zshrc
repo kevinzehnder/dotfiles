@@ -128,7 +128,11 @@ export FZF_ALT_C_COMMAND='fd --type directory'
 export FZF_ALT_C_OPTS="--height=75% --preview-window down:70% --preview-window border --preview='eza --color=always -T {}'"
 
 export FZF_CTRL_T_COMMAND="$FZF_DEFAULT_COMMAND"
-export FZF_CTRL_T_OPTS="--height 75% --preview-window down:70% --preview-window border --preview '($FZF_PREVIEW_COMMAND) 2> /dev/null'"
+export FZF_CTRL_T_OPTS="
+  --height 75%
+  --preview-window down:70%
+  --preview-window border
+  --preview '($FZF_PREVIEW_COMMAND) 2> /dev/null'"
 
 export FZF_COMMON_OPTIONS="
   --bind='?:toggle-preview'
