@@ -38,7 +38,7 @@ zi wait lucid light-mode as"program" from"gh-r" for \
     eza-community/eza \
     mv"fd* -> fdfind" pick"fdfind/fd" @sharkdp/fd \
     mv"bat* -> bat" pick"bat/bat" @sharkdp/bat \
-  
+    mv"bin/dog -> dog" pick"dog" ogham/dog \ 
 
 zi wait lucid light-mode for \
     Aloxaf/fzf-tab \
