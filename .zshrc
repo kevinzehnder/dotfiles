@@ -48,6 +48,22 @@ zi wait lucid light-mode as"completion" for \
     https://github.com/docker/cli/blob/master/contrib/completion/zsh/_docker \
     https://github.com/docker/compose/blob/1.28.x/contrib/completion/zsh/_docker-compose \
 
+# install custom completions
+function load_custom_completions() {
+    local completion_dir="$HOME/.config/zsh/completions"
+    setopt local_options nullglob
+    local compfiles=("$completion_dir"/_*)
+    if [[ -d $completion_dir ]] && [[ -n $compfiles ]]; then
+        for file in "${compfiles[@]}"; do
+            zi ice as"completion" lucid
+            zi snippet "$file"
+        done
+    else
+        echo "No completion files found in $completion_dir"
+    fi
+    unsetopt nullglob
+}
+
 [ -x "$(command -v kubectl)" ] && source <(kubectl completion zsh)
 
 # needs to be loaded last
@@ -93,7 +109,8 @@ zstyle ':fzf-tab:complete:cd:*' fzf-preview 'eza -1 --color=always $realpath'
 zstyle ':completion:*:descriptions' format '[%d]'
 zstyle ':fzf-tab:*' show-group none
 
-export FZF_DEFAULT_COMMAND='fd --type file --follow --hidden --exclude .git'
+# export FZF_DEFAULT_COMMAND='fd --type file --follow --hidden --exclude .git'
+export FZF_DEFAULT_COMMAND='fd --type file --follow --exclude .git'
 export FZF_PREVIEW_COMMAND="bat --style=numbers,changes --wrap never --color always {} || cat {} || tree -C {}"
 
 export FZF_DEFAULT_OPTS="
