@@ -42,7 +42,6 @@ zi wait lucid light-mode as"program" from"gh-r" for \
 
 zi wait lucid light-mode for \
     Aloxaf/fzf-tab \
-    sunlei/zsh-ssh \
     nocompile tinted-theming/base16-fzf \
 
 zi wait lucid light-mode as"completion" for \
