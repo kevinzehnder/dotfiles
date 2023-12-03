@@ -41,6 +41,9 @@
     newline                 # \n
     prompt_char             # prompt symbol
   )
+  
+  # CUSTOM CONTEXTS
+  typeset -g POWERLEVEL9K_AKS_CONTEXT_SHOW_ON_COMMAND='aks'
 
   # The list of segments shown on the right. Fill it with less important segments.
   # Right prompt on the last prompt line (where you are typing your commands) gets
@@ -82,6 +85,7 @@
     aws                     # aws profile (https://docs.aws.amazon.com/cli/latest/userguide/cli-configure-profiles.html)
     aws_eb_env              # aws elastic beanstalk environment (https://aws.amazon.com/elasticbeanstalk/)
     azure                   # azure account name (https://docs.microsoft.com/en-us/cli/azure)
+    aks_context
     gcloud                  # google cloud cli account and project (https://cloud.google.com/)
     google_app_cred         # google application credentials (https://cloud.google.com/docs/authentication/production)
     # context                 # user@hostname
