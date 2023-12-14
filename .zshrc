@@ -27,18 +27,16 @@ zi wait lucid light-mode as"program" from"gh-r" for \
     mv"ripgrep* -> rg" pick"rg/rg" BurntSushi/ripgrep \
     bpick"*linux_amd64*" junegunn/fzf \
     jesseduffield/lazygit \
-    jesseduffield/lazydocker \
-    joehillen/sysz \
     mv"dust* -> dust" pick"dust/dust" bootandy/dust \
     pick"duf" muesli/duf \
     httpie/cli \
     zellij-org/zellij \
     mv"delta* -> delta" pick"delta/delta" dandavison/delta \
-    ver"v0.7.5" pick"b/x86*/release/sd" chmln/sd \
     eza-community/eza \
     mv"fd* -> fdfind" pick"fdfind/fd" @sharkdp/fd \
     mv"bat* -> bat" pick"bat/bat" @sharkdp/bat \
-    mv"bin/dog -> dog" pick"dog" ogham/dog
+    mv"bin/dog -> dog" pick"dog" ogham/dog \
+    dalance/procs \
 
 zi wait lucid light-mode for \
     Aloxaf/fzf-tab \
@@ -242,6 +240,7 @@ alias air='~/go/bin/air'
 
 alias https='http --default-scheme=https'
 alias zj='zellij'
+alias zja="zellij ls | fzf -1 -0 --ansi | head -n1 | cut -d ' ' -f1 | xargs -to zellij a"
 
 zjTokyo() {
     zellij $@ options --theme tokyo-night-dark
