@@ -37,6 +37,7 @@ zi wait lucid light-mode as"program" from"gh-r" for \
     mv"bat* -> bat" pick"bat/bat" @sharkdp/bat \
     mv"bin/dog -> dog" pick"dog" ogham/dog \
     dalance/procs \
+    mv"choose* -> choose" theryangeary/choose \
 
 zi wait lucid light-mode for \
     Aloxaf/fzf-tab \
