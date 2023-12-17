@@ -141,6 +141,9 @@ export FZF_COMMON_OPTIONS="
   --preview-window 'right:60%:hidden:wrap'
   --preview '([[ -d {} ]] && tree -C {}) || ([[ -f {} ]] && bat --style=full --color=always {}) || echo {}'"
 
+# navi settings
+export NAVI_FZF_OVERRIDES='--with-nth 3,2,1'
+
 # completion settings
 zstyle ':completion:*' completer _complete _match _approximate
 zstyle ':completion:*:match:*' original only
