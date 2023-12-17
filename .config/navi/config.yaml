@@ -1,18 +1,22 @@
+---
 # THIS IS EXPERIMENTAL
 # the config file schema may change at any time
+
 style:
-  comment:
-    color: blue
-    width_percentage: 45
-    min_width: 25
   snippet:
     color: white
-    min_width: 25
-    width_percentage: 45
+    width_percentage: 25
+
+  comment:
+    color: blue
+    width_percentage: 55
+    min_width: 30
+
   tag:
     color: cyan # text color. possible values: https://bit.ly/3gloNNI
     width_percentage: 10 # column width relative to the terminal window
     min_width: 10 # minimum column width as number of characters
+
 
 finder:
   command: fzf # equivalent to the --finder option
@@ -32,5 +36,5 @@ shell:
   # Shell used for shell out. Possible values: bash, zsh, dash, ...
   # For Windows, use `cmd.exe` instead.
   command: zsh
-  
+
   # finder_command: bash # similar, but for fzf's internals
