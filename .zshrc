@@ -142,7 +142,7 @@ export FZF_COMMON_OPTIONS="
   --preview '([[ -d {} ]] && tree -C {}) || ([[ -f {} ]] && bat --style=full --color=always {}) || echo {}'"
 
 # navi settings
-export NAVI_FZF_OVERRIDES='--with-nth 3,2,1'
+export NAVI_FZF_OVERRIDES='--with-nth 3,2,1 --height 70%'
 
 # completion settings
 zstyle ':completion:*' completer _complete _match _approximate
