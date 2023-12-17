@@ -1,0 +1,30 @@
+% ripgrep
+# search something in current directory recursively
+rg <something>
+
+# search something in a single file
+rg <something> <filename>
+
+# search something in a directory recursively
+rg <something> <directory>/
+
+# search something and ignore case
+rg -i <something>
+
+% rsync
+# copy source to target [-P partial][-a archive mode][-v verbose][-z compress]
+rsync -Pavz <source> <target>
+
+# copy all files/subdirs of sourcedir to targetdir
+rsync -r <source>/ <target>
+
+# rsync with sudo on remote machine
+rsync -Pavz --rsync-path="sudo rsync" <source> <target>
+
+% azcli
+# ssh into Azure VM
+az ssh vm -n <vmname> -g <resourcegroup> --subscription "<subscription>"
+
+% ssh
+# create a socks proxy through ssh
+ssh <target> -D <socksport>
