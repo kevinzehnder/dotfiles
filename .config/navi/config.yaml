@@ -5,12 +5,12 @@
 style:
   snippet:
     color: white
-    width_percentage: 35
+    width_percentage: 25
 
   comment:
     color: blue
-    width_percentage: 45
-    min_width: 20
+    width_percentage: 55
+    min_width: 30
 
   tag:
     color: cyan # text color. possible values: https://bit.ly/3gloNNI
