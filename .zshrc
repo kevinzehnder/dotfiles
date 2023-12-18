@@ -210,39 +210,45 @@ bindkey "^J" down-line-or-history
 
 # exa
 alias l='eza'
-alias ls="eza -1 --color=auto --icons"
-# alias -g ls="exa -1 --color=auto --icons"
+alias ls="eza --color=auto --icons"
 alias ll='ls -alh'
 alias la='ls -a'
 alias llm='ll --sort=modified' # ll, sorted by modification date
 alias llz='ll -Z'
 
-alias svim='sudo vim'
 alias h='cd'
 alias ..='cd ..'
 alias cd..='cd ..'
 alias ...='cd ../..'
-alias cim='vim'
 alias back='cd $OLDPWD'
-alias root='sudo su'
+
 alias runlevel='sudo /sbin/init'
-alias dfh='df -h'
+
+alias root='sudo su'
+
+alias svim='sudo vim'
+alias vim='nvim'
+alias cim='vim'
+
 alias ip='ip -c'
 alias ipa='ip -o address'
 
 alias d='docker'
+alias dockerkill='docker stop $(docker ps -a -q) && docker rm $(docker ps -a -q)'
+
 alias ap='ansible-playbook'
 alias lg='lazygit'
 
 alias syu='sudo pacman -Syu'
-alias dockerkill='docker stop $(docker ps -a -q) && docker rm $(docker ps -a -q)'
 
 alias lazyconfig='lazygit --git-dir=$HOME/.cfg/ --work-tree=$HOME'
 alias config='/usr/bin/git --git-dir=$HOME/.cfg/ --work-tree=$HOME'
-alias vim='nvim'
+
 alias k='kubectl'
 alias kc='kubectl config use-context'
 alias air='~/go/bin/air'
+
+alias tldrf='tldr --list | fzf --preview "tldr {1}" --preview-window=right,60% | xargs tldr'
 
 alias https='http --default-scheme=https'
 alias zj='zellij'
