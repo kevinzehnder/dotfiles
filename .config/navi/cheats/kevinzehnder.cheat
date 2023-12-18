@@ -1,4 +1,4 @@
-% ripgrep
+% ripgrep, kz
 # search something in current directory recursively
 rg <something>
 
@@ -11,7 +11,7 @@ rg <something> <directory>/
 # search something and ignore case
 rg -i <something>
 
-% rsync
+% rsync, kz
 # copy source to target [-P partial][-a archive mode][-v verbose][-z compress]
 rsync -Pavz <source> <target>
 
@@ -21,10 +21,10 @@ rsync -r <source>/ <target>
 # rsync with sudo on remote machine
 rsync -Pavz --rsync-path="sudo rsync" <source> <target>
 
-% azcli
+% azcli, kz
 # ssh into Azure VM
 az ssh vm -n <vmname> -g <resourcegroup> --subscription "<subscription>"
 
-% ssh
+% ssh, kz
 # create a socks proxy through ssh
 ssh <target> -D <socksport>
