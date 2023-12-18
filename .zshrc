@@ -38,6 +38,8 @@ zi wait lucid light-mode as"program" from"gh-r" for \
     mv"bin/dog -> dog" pick"dog" ogham/dog \
     dalance/procs \
     mv"choose* -> choose" theryangeary/choose \
+    denisidoro/navi \
+    pick"tldr" tldr-pages/tlrc \
 
 zi wait lucid light-mode for \
     Aloxaf/fzf-tab \
