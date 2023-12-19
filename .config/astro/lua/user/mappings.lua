@@ -86,8 +86,8 @@ return {
     ["<leader>jf"] = { "<cmd>lua require('harpoon.ui').nav_file(1)<cr>", desc = " File 1" },
     ["<leader>jd"] = { "<cmd>lua require('harpoon.ui').nav_file(2)<cr>", desc = "File 2" },
     ["<leader>js"] = { "<cmd>lua require('harpoon.ui').nav_file(3)<cr>", desc = "File 3" },
-    ["<leader>jr"] = { "<cmd>lua require('harpoon.ui').nav_file(3)<cr>", desc = "File 4" },
-    ["<leader>je"] = { "<cmd>lua require('harpoon.ui').nav_file(3)<cr>", desc = "File 5" },
+    ["<leader>je"] = { "<cmd>lua require('harpoon.ui').nav_file(4)<cr>", desc = "File 4" },
+    ["<leader>jr"] = { "<cmd>lua require('harpoon.ui').nav_file(5)<cr>", desc = "File 5" },
 
     -- git
     ["<leader>gH"] = { "<cmd>Gitsigns toggle_linehl<cr>", desc = "Toggle LineHL" },
