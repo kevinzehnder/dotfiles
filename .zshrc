@@ -23,14 +23,13 @@ zi wait lucid light-mode for \
     blockf atpull'zi creinstall -q .' zsh-users/zsh-completions
 
 zi wait lucid light-mode as"program" from"gh-r" for \
-    ver"nightly" bpick"*appimage*" mv"nvim* -> nvim" neovim/neovim \
+    ver"stable" bpick"*appimage*" mv"nvim* -> nvim" neovim/neovim \
     mv"ripgrep* -> rg" pick"rg/rg" BurntSushi/ripgrep \
     bpick"*linux_amd64*" junegunn/fzf \
     jesseduffield/lazygit \
     mv"dust* -> dust" pick"dust/dust" bootandy/dust \
     pick"duf" muesli/duf \
     httpie/cli \
-    zellij-org/zellij \
     mv"delta* -> delta" pick"delta/delta" dandavison/delta \
     eza-community/eza \
     mv"fd* -> fdfind" pick"fdfind/fd" @sharkdp/fd \
@@ -40,6 +39,7 @@ zi wait lucid light-mode as"program" from"gh-r" for \
     mv"choose* -> choose" theryangeary/choose \
     denisidoro/navi \
     pick"tldr" tldr-pages/tlrc \
+    zellij-org/zellij \
 
 zi wait lucid light-mode for \
     Aloxaf/fzf-tab \
@@ -351,10 +351,20 @@ fi
 export NVM_DIR="$HOME/.nvm"
 [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
 [ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
+# nvm end
 
+# pnpm
+export PNPM_HOME="/home/zehnderk/.local/share/pnpm"
+case ":$PATH:" in
+  *":$PNPM_HOME:"*) ;;
+  *) export PATH="$PNPM_HOME:$PATH" ;;
+esac
+# pnpm end
+
+# fzf keybindings
 [ -f ~/.fzf/shell/key-bindings.zsh ] && source ~/.fzf/shell/key-bindings.zsh
 [[ $- == *i* ]] && source "$HOME/.fzf/shell/completion.zsh" 2> /dev/null
 
+# powerlevel10k
 [[ ! -f ~/.p10k.zsh ]] || source ~/.p10k.zsh
-
 
