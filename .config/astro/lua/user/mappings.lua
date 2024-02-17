@@ -56,7 +56,7 @@ return {
       end,
       desc = "ToggleTerm lazygit",
     },
-    ["<C-A-m>"] = { "<cmd>TroubleToggle<CR>" },
+    ["<C-A-m>"] = { "<cmd>lua require('trouble').toggle()<cr>" },
     ["<C-A-h>"] = { "<cmd>Neotree toggle<CR>" },
     ["<C-A-j>"] = { "<cmd>ToggleTerm<CR>" },
 
