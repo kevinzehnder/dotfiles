@@ -28,3 +28,7 @@ az ssh vm -n <vmname> -g <resourcegroup> --subscription "<subscription>"
 % ssh, kz
 # create a socks proxy through ssh
 ssh <target> -D <socksport>
+
+% prometheus, kz
+# force reload of prometheus config in docker compose project
+docker compose kill -s SIGHUP prometheus 
