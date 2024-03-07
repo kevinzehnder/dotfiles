@@ -1,0 +1,14 @@
+---
+version: "3"
+
+tasks:
+  asshole:
+    desc: prints asshole to the console
+    cmds:
+      - echo asshole
+
+  from-working-directory:
+    desc: fuckkkkk
+    dir: "{{.USER_WORKING_DIR}}"
+    cmds:
+      - pwd

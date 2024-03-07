@@ -47,6 +47,9 @@ return {
 
     ["<leader>h"] = { "<cmd>nohlsearch<CR>", desc = "No Highlight" },
 
+    ["<leader>4"] = { "<cmd>YAMLYank *<CR>", desc = "YANK Yaml" },
+    ["<leader>5"] = { "<cmd>YAMLView<CR>", desc = "YANK Yaml" },
+
     -- navigation
     ["<C-A-l>"] = {
       function()
