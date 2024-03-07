@@ -4,3 +4,5 @@ zi wait lucid light-mode as"program" from"gh-r" for \
     mv"tree* -> tree-sitter" pick"tree-sitter" tree-sitter/tree-sitter \
     mv"black_linux -> black" psf/black \
     pick"bws" bitwarden/sdk \
+    go-task/task \
+    
