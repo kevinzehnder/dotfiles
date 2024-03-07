@@ -27,5 +27,13 @@ return {
     opts = {},
   },
   { "ThePrimeagen/harpoon" },
-  { "tpope/vim-fugitive", lazy = false },
+  { "tpope/vim-fugitive",  lazy = false },
+  {
+    "cuducos/yaml.nvim",
+    ft = { "yaml" }, -- optional
+    dependencies = {
+      "nvim-treesitter/nvim-treesitter",
+      "nvim-telescope/telescope.nvim", -- optional
+    },
+  },
 }
