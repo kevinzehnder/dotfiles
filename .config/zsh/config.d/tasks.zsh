@@ -3,7 +3,7 @@ function tg() {
   local selected_tasks=$(task --taskfile ${HOME}/.Taskfile.yaml --list \
     | cut -d ' ' -f2 \
     | tail -n +2 \
-    | sed 's/://' \
+    | sd ':?$' '' \
     | sort \
     | fzf -m --reverse --preview 'task --taskfile ${HOME}/.Taskfile.yaml --summary {}')
 
@@ -21,7 +21,7 @@ function t() {
   local selected_tasks=$(task --list \
     | cut -d ' ' -f2 \
     | tail -n +2 \
-    | sed 's/://' \
+    | sd ':?$' '' \
     | sort \
     | fzf -m --reverse --preview 'task --summary {}')
 
