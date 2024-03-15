@@ -34,4 +34,4 @@ function t() {
   fi
 }
 
-alias tedit='vim ~/Taskfile.yaml'
+alias tedit='vim ~/.Taskfile.yaml'
