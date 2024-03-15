@@ -5,13 +5,13 @@ function tg() {
     | tail -n +2 \
     | sed 's/://' \
     | sort \
-    | fzf -m --reverse --preview 'task ${HOME}/.Taskfile.yaml --summary {}')
+    | fzf -m --reverse --preview 'task --taskfile ${HOME}/.Taskfile.yaml --summary {}')
 
   # Check if any tasks were selected
   if [ -n "$selected_tasks" ]; then
     # Loop through the selected tasks and execute the command with each task as an argument
     for task in $selected_tasks; do
-      task "$@" $task
+      task "$@"--taskfile ${HOME}/.Taskfile.yaml $task
     done
   fi
 }
