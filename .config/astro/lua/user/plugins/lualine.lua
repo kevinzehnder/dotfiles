@@ -1,16 +1,17 @@
+local function show_macro_recording()
+  local recording_register = vim.fn.reg_recording()
+  if recording_register ~= "" then
+    return "Recording @" .. recording_register
+  else
+    return ""
+  end
+end
+
 return {
   "nvim-lualine/lualine.nvim",
   lazy = false,
 
   opts = function(_, opts)
-    local function show_macro_recording()
-      local recording_register = vim.fn.reg_recording()
-      if recording_register == "" then
-        return ""
-      else
-        return "Recording @" .. recording_register
-      end
-    end
     -- opts.tabline = {}
     opts.winbar = {
       lualine_a = { "filename" },
@@ -41,7 +42,7 @@ return {
 
     opts.sections = {
       lualine_a = { { "mode", fmt = function(str) return str:sub(1, 1) end } },
-      lualine_b = { "branch", "diff", "diagnostics", { "macro-recording", fmt = show_macro_recording } },
+      lualine_b = { "branch", "diff", "diagnostics", { show_macro_recording } },
       lualine_c = { "filename" },
 
       lualine_x = { "encoding", "fileformat", "filetype" },
