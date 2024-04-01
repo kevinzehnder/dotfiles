@@ -6,4 +6,5 @@ zi wait lucid light-mode as"program" from"gh-r" for \
     pick"bws" bitwarden/sdk \
     go-task/task \
     tellerops/teller \
+    derailed/k9s \
     
