@@ -14,7 +14,15 @@ return {
   opts = function(_, opts)
     -- opts.tabline = {}
     opts.winbar = {
-      lualine_a = { "filename" },
+      lualine_a = {
+        {
+          "filename",
+          file_status = true,     -- Displays file status (readonly status, modified status)
+          newfile_status = false, -- Display new file status (new file means no write after created)
+          path = 1,
+          shorting_target = 40,   -- Shortens path to leave 40 spaces in the window
+        },
+      },
       lualine_b = {},
       lualine_c = {},
       lualine_x = {},
@@ -43,7 +51,7 @@ return {
     opts.sections = {
       lualine_a = { { "mode", fmt = function(str) return str:sub(1, 1) end } },
       lualine_b = { "branch", "diff", "diagnostics", { show_macro_recording } },
-      lualine_c = { "filename" },
+      lualine_c = {},
 
       lualine_x = { "encoding", "fileformat", "filetype" },
       lualine_z = { "location" },
