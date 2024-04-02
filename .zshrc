@@ -252,7 +252,6 @@ alias tldrf='tldr --list | fzf --preview "tldr {1}" --preview-window=right,60% |
 
 alias https='http --default-scheme=https'
 alias zj='zellij'
-alias zja="zellij ls | fzf -1 -0 --ansi | head -n1 | cut -d ' ' -f1 | xargs -to zellij a"
 
 zjTokyo() {
     zellij $@ options --theme tokyo-night-dark
