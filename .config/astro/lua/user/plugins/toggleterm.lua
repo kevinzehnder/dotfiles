@@ -1,7 +1,7 @@
 return {
   "akinsho/toggleterm.nvim",
   opts = {
-    open_mapping = [[<C-A-j>]],
+    open_mapping = [[<A-J>]],
     insert_mappings = true, -- whether or not the open mapping applies in insert mode
     terminal_mappings = true, -- whether or not the open mapping applies in the opened termina
     size = 20,

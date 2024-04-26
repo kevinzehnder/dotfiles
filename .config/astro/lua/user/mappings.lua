@@ -51,17 +51,17 @@ return {
     ["<leader>5"] = { "<cmd>YAMLView<CR>", desc = "YANK Yaml" },
 
     -- navigation
-    ["<C-A-l>"] = {
-      function()
-        local worktree = require("astronvim.utils.git").file_worktree()
-        local flags = worktree and (" --work-tree=%s --git-dir=%s"):format(worktree.toplevel, worktree.gitdir) or ""
-        utils.toggle_term_cmd("lazygit " .. flags)
-      end,
-      desc = "ToggleTerm lazygit",
-    },
-    ["<C-A-m>"] = { "<cmd>lua require('trouble').toggle()<cr>" },
-    ["<C-A-h>"] = { "<cmd>Neotree toggle<CR>" },
-    ["<C-A-j>"] = { "<cmd>ToggleTerm<CR>" },
+    -- ["<A-L>"] = {
+    --   function()
+    --     local worktree = require("astronvim.utils.git").file_worktree()
+    --     local flags = worktree and (" --work-tree=%s --git-dir=%s"):format(worktree.toplevel, worktree.gitdir) or ""
+    --     utils.toggle_term_cmd("lazygit " .. flags)
+    --   end,
+    --   desc = "ToggleTerm lazygit",
+    -- },
+    ["<A-M>"] = { "<cmd>lua require('trouble').toggle()<cr>" },
+    ["<A-H>"] = { "<cmd>Neotree toggle<CR>" },
+    ["<A-J>"] = { "<cmd>ToggleTerm<CR>" },
 
     -- telescope
     ["<leader>F"] = { "<cmd>Telescope live_grep theme=ivy<cr>", desc = "Find Text" },
