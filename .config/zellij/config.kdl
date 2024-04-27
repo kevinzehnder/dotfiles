@@ -309,4 +309,4 @@ default_layout "vim"
 //
 // theme_dir "/path/to/my/theme_dir"
 
-session_serialization false
+
