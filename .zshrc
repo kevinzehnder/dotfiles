@@ -235,6 +235,7 @@ alias ipa='ip -o address'
 
 alias d='docker'
 alias dockerkill='docker stop $(docker ps -a -q) && docker rm $(docker ps -a -q)'
+alias ld='lazydocker'
 
 alias ap='ansible-playbook'
 alias lg='lazygit'
