@@ -320,7 +320,7 @@ darkmodechecker(){
 
 # run DarkMode Check if we're not on an SSH connection
 if [[ -z "$SSH_CONNECTION" ]]; then
-  darkmodechecker
+  # darkmodechecker
 else 
   if [[ -f ~/.lightmode ]]; then
     light
