@@ -310,7 +310,8 @@ colorschemeswitcher(){
 
 darkmodechecker(){
   # Check if the AppsUseLightTheme registry key exists and its value is 1
-  if /mnt/c/Windows/System32/reg.exe query 'HKCU\SOFTWARE\Microsoft\Windows\CurrentVersion\Themes\Personalize' /v AppsUseLightTheme | grep -q '0x1'; then
+  # if /mnt/c/Windows/System32/reg.exe query 'HKCU\SOFTWARE\Microsoft\Windows\CurrentVersion\Themes\Personalize' /v AppsUseLightTheme | grep -q '0x1'; then
+  if [ -f ~/.lightmode ]; then
     # If the registry key value is 1, execute "light"
     light
   else
@@ -321,7 +322,7 @@ darkmodechecker(){
 
 # run DarkMode Check if we're not on an SSH connection
 if [[ -z "$SSH_CONNECTION" ]]; then
-  # darkmodechecker
+  darkmodechecker
 else 
   if [[ -f ~/.lightmode ]]; then
     light
