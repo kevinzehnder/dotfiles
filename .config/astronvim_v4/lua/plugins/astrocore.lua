@@ -101,6 +101,7 @@ return {
         ["N"] = { "Nzz" },
         ["Q"] = { "<nop>" },
         ["<leader>s"] = { [[:%s/\<<C-r><C-w>\>/<C-r><C-w>/gI<Left><Left><Left>]], desc = "replace word under cursor" },
+        ["<leader>P"] = { "<cmd>:put +<CR>" , desc = "paste without overwriting buffer" },
 
         ["<A-down>"] = { ":resize -2<CR>" },
         ["<A-up>"] = { ":resize +2<CR>" },
