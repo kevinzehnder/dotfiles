@@ -84,7 +84,7 @@ return {
         ["<leader>5"] = { "<cmd>YAMLView<CR>", desc = "YANK Yaml" },
 
         -- panels
-        ["<A-M>"] = { "<cmd>lua require('trouble').toggle()<cr>" },
+        ["<A-M>"] = { "<cmd>Trouble diagnostics toggle<cr>" },
         ["<A-H>"] = { "<cmd>Neotree toggle<CR>" },
         ["<A-J>"] = { "<cmd>ToggleTerm<CR>" },
 
