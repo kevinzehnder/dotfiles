@@ -43,6 +43,19 @@ return {
     -- customize language server configuration options passed to `lspconfig`
     ---@diagnostic disable: missing-fields
     config = {
+      pyright = {
+        settings = {
+          pyright = {
+            disableOrganizeImports = true, -- Using Ruff
+          },
+          python = {
+            analysis = {
+              ignore = { "*" }, -- Using Ruff
+              typeCheckingMode = "off", -- Using mypy
+            },
+          },
+        },
+      },
       -- clangd = { capabilities = { offsetEncoding = "utf-8" } },
     },
     -- customize how language servers are attached
