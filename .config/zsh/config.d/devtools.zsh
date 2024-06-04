@@ -5,6 +5,6 @@ zi wait lucid light-mode as"program" from"gh-r" for \
     mv"black_linux -> black" psf/black \
     pick"bws" bitwarden/sdk \
     go-task/task \
-    ver"1.5.6" pick"teller-x86_64-linux/teller" tellerops/teller \
+    pick"teller-x86_64-linux/teller" tellerops/teller \
     derailed/k9s \
     
