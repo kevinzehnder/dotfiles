@@ -366,6 +366,10 @@ esac
 [ -f ~/.fzf/shell/key-bindings.zsh ] && source ~/.fzf/shell/key-bindings.zsh
 [[ $- == *i* ]] && source "$HOME/.fzf/shell/completion.zsh" 2> /dev/null
 
+zi ice as"program" make'!' atclone'./direnv hook zsh > zhook.zsh' \
+  atpull'%atclone' src"zhook.zsh"
+zi light direnv/direnv
+
 # powerlevel10k
 [[ ! -f ~/.p10k.zsh ]] || source ~/.p10k.zsh
 
