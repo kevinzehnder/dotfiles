@@ -6,6 +6,10 @@ return {
       visible = false,
       hide_dotfiles = true,
       hide_gitignored = true,
+      always_show = { -- remains visible even if other settings would normally hide it
+        ".envrc",
+        ".env",
+      },
     }
     opts.window.position = "left"
     opts.window.width = 35
