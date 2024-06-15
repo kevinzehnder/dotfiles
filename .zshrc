@@ -373,3 +373,5 @@ zi light direnv/direnv
 # powerlevel10k
 [[ ! -f ~/.p10k.zsh ]] || source ~/.p10k.zsh
 
+# load global devbox
+# eval "$(devbox global shellenv --init-hook)"
