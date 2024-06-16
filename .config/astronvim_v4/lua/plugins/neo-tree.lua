@@ -12,6 +12,7 @@ return {
         ".teller.yml",
         ".teller.yaml",
         ".air.toml",
+        ".goreleaser.yaml"
       },
     }
     opts.window.position = "left"
