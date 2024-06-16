@@ -115,14 +115,16 @@ export FZF_DEFAULT_COMMAND='fd --type file --follow --exclude .git'
 export FZF_PREVIEW_COMMAND="bat --style=numbers,changes --wrap never --color always {} || cat {} || tree -C {}"
 
 export FZF_DEFAULT_OPTS="
---layout=reverse
---bind='?:toggle-preview'
-  --bind='ctrl-space:toggle'
---info=inline
---height=50%
---multi
---prompt='∼ ' --pointer='▶' --marker='✓'
---bind 'ctrl-a:select-all'
+--layout=reverse 
+--bind='?:toggle-preview' 
+--bind='ctrl-space:toggle' 
+--info=inline 
+--height=50% 
+--multi 
+--prompt='∼ ' 
+--pointer='▶' 
+--marker='✓' 
+--bind 'ctrl-a:select-all' 
 "
 
 export FZF_ALT_C_COMMAND='fd --type directory'
@@ -207,6 +209,7 @@ bindkey "^J" down-line-or-history
 
 
 ## aliases
+alias gh='gh.exe' # use windows based gh, because it supports credential store
 
 # exa
 alias l='eza'
