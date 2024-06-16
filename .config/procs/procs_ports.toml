@@ -1,0 +1,49 @@
+[[columns]]
+kind = "Pid"
+style = "BrightYellow|Yellow"
+numeric_search = true
+nonnumeric_search = false
+align = "Left"
+
+[[columns]]
+kind = "User"
+style = "BrightGreen|Green"
+numeric_search = false
+nonnumeric_search = true
+align = "Left"
+
+[[columns]]
+kind = "Separator"
+style = "White|BrightBlack"
+numeric_search = false
+nonnumeric_search = false
+align = "Left"
+
+[[columns]]
+kind = "TcpPort"
+style = "BrightCyan|Cyan"
+numeric_search = false
+nonnumeric_search = false
+align = "Left"
+
+[[columns]]
+kind = "UdpPort"
+style = "BrightBlue|Blue"
+numeric_search = false
+nonnumeric_search = false
+align = "Left"
+
+[[columns]]
+kind = "Separator"
+style = "White|BrightBlack"
+numeric_search = false
+nonnumeric_search = false
+align = "Left"
+
+[[columns]]
+kind = "Command"
+style = "BrightWhite|Black"
+numeric_search = false
+nonnumeric_search = true
+align = "Left"
+
