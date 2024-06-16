@@ -11,6 +11,7 @@ return {
         ".env",
         ".teller.yml",
         ".teller.yaml",
+        ".air.toml",
       },
     }
     opts.window.position = "left"
