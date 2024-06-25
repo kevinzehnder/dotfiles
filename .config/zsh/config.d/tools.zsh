@@ -6,4 +6,5 @@ zi wait lucid light-mode as"program" from"gh-r" for \
     pick"bin/linux_amd64/kubelogin" Azure/kubelogin \
     ver"kustomize/v5.3.0" kubernetes-sigs/kustomize \
     pick"uv*/uv" @astral-sh/uv \
+    pick"ya*/yazi" sxyazi/yazi \
     
