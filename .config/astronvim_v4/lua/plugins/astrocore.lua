@@ -120,7 +120,7 @@ return {
 
         -- git
         ["<leader>gH"] = { "<cmd>Gitsigns toggle_linehl<cr>", desc = "Toggle LineHL" },
-        ["<leader>gd"] = { "<cmd>DiffviewToggle<cr>", desc = "Diffview" },
+        ["<leader>gd"] = { "<cmd>DiffviewOpen<cr>", desc = "Diffview" },
       },
       t = {
         -- setting a mapping to false will disable it
