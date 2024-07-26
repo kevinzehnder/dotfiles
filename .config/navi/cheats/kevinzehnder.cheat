@@ -37,3 +37,6 @@ docker compose kill -s SIGHUP prometheus
 # show open ports with fzf
 sudo procs --sorta=TcpPort --color=always | fzf --ansi
 
+% tldr, kz
+# open tldr pages using fzf
+tldrf
