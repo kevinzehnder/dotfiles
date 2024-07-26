@@ -1,33 +1,46 @@
-# p10k-instant-prompt
-if [[ -r "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh" ]]; then
-  source "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh"
-fi
+# starship
+eval "$(starship init zsh)"
 
-# zi initialization
+# p10k-instant-prompt
+# if [[ -r "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh" ]]; then
+#   source "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh"
+# fi
+
+# zi
 if [[ -r "${XDG_CONFIG_HOME:-${HOME}/.config}/zi/init.zsh" ]]; then
   source "${XDG_CONFIG_HOME:-${HOME}/.config}/zi/init.zsh" && zzinit
 fi
 
 zi light chriskempson/base16-shell
 
-zi light romkatv/powerlevel10k
+zi ice nocompile
+zi light tinted-theming/base16-fzf
 
-export ZVM_INIT_MODE=sourcing
-zi ice depth=1
-zi light jeffreytse/zsh-vi-mode
+# zi light romkatv/powerlevel10k
 
-zi wait lucid light-mode for \
-    atload"_zsh_autosuggest_start" zsh-users/zsh-autosuggestions \
-    blockf atpull'zi creinstall -q .' zsh-users/zsh-completions
 
-zi wait lucid light-mode as"program" from"gh-r" for \
+zi wait lucid for \
+  atinit"ZI[COMPINIT_OPTS]=-C; zicompinit; zicdreplay" \
+    z-shell/F-Sy-H \
+  blockf \
+    zsh-users/zsh-completions \
+  atload"!_zsh_autosuggest_start" \
+    zsh-users/zsh-autosuggestions
+
+[ -x "$(command -v kubectl)" ] && source <(kubectl completion zsh)
+
+zi wait lucid for \
+  Aloxaf/fzf-tab
+
+# zi light jeffreytse/zsh-vi-mode
+
+zi wait lucid as"program" from"gh-r" for \
     ver"stable" bpick"*appimage*" mv"nvim* -> nvim" neovim/neovim \
     mv"ripgrep* -> rg" pick"rg/rg" BurntSushi/ripgrep \
     bpick"*linux_amd64*" junegunn/fzf \
     jesseduffield/lazygit \
     mv"dust* -> dust" pick"dust/dust" bootandy/dust \
     pick"duf" muesli/duf \
-    httpie/cli \
     mv"delta* -> delta" pick"delta/delta" dandavison/delta \
     eza-community/eza \
     mv"fd* -> fdfind" pick"fdfind/fd" @sharkdp/fd \
@@ -39,13 +52,15 @@ zi wait lucid light-mode as"program" from"gh-r" for \
     pick"tldr" tldr-pages/tlrc \
     zellij-org/zellij \
 
-zi wait lucid light-mode for \
-    Aloxaf/fzf-tab \
-    nocompile tinted-theming/base16-fzf \
+# additional configs
+if [ -d "$HOME/.config/zsh/config.d/" ] ; then
+  for conf in "$HOME/.config/zsh/config.d/"*.zsh ; do
+      source "${conf}" 
+  done
+  unset conf
+fi
 
-zi wait lucid light-mode as"completion" for \
-    https://github.com/docker/cli/blob/master/contrib/completion/zsh/_docker \
-    https://github.com/docker/compose/blob/1.28.x/contrib/completion/zsh/_docker-compose \
+zi wait pack for system-completions
 
 # install custom completions
 function load_custom_completions() {
@@ -63,14 +78,10 @@ function load_custom_completions() {
     unsetopt nullglob
 }
 
-[ -x "$(command -v kubectl)" ] && source <(kubectl completion zsh)
-
-# needs to be loaded last
-zi wait lucid light-mode for \
-    atinit"zicdreplay" z-shell/F-Sy-H
-
 
 # zsh settings
+export ZVM_INIT_MODE=sourcing # vi mode for zsh
+
 HISTFILE=~/.zsh_history
 HISTSIZE=500000
 SAVEHIST=500000
@@ -149,8 +160,10 @@ export FZF_COMMON_OPTIONS="
 --preview-window 'right:60%:hidden:wrap'
 --preview '([[ -d {} ]] && tree -C {}) || ([[ -f {} ]] && bat --style=full --color=always {}) || echo {}'"
 
+
 # navi settings
 export NAVI_FZF_OVERRIDES='--with-nth 3,2,1 --height 70%'
+
 
 # completion settings
 zstyle ':completion:*' completer _complete _match _approximate
@@ -206,16 +219,11 @@ bindkey "^E" end-of-line
 bindkey '^ ' forward-word
 bindkey "^K" up-line-or-history
 bindkey "^J" down-line-or-history
-# bindkey "^[l" forward-word
-# bindkey "^[h" backward-word
-# bindkey "^[j" forward-char
-# bindkey "^[k" backward-char
 
 
 ## aliases
 alias gh='gh.exe' # use windows based gh, because it supports credential store
 
-# exa
 alias l='eza'
 alias ls="eza --color=auto --icons"
 alias ll='ls -alh'
@@ -280,13 +288,6 @@ alias -g -- --help='--help 2>&1 | bat --language=help --style=plain -P'
 alias batp='bat -Pp'
 jctl(){journalctl $@ | bat -l syslog -p --pager="less -FR +G"}
 
-# additional configs
-if [ -d "$HOME/.config/zsh/config.d/" ] ; then
-  for conf in "$HOME/.config/zsh/config.d/"*.zsh ; do
-      source "${conf}" 
-  done
-  unset conf
-fi
 
 # Color Themes
 alias light='colorschemeswitcher solarized'
@@ -338,6 +339,7 @@ else
   fi
 fi
 
+
 # Configure ssh forwarding
 export SSH_AUTH_SOCK=$HOME/.ssh/agent.sock
 # need `ps -ww` to get non-truncated command for matching
@@ -355,34 +357,21 @@ if [[ $ALREADY_RUNNING != "0" ]]; then
     (setsid socat UNIX-LISTEN:$SSH_AUTH_SOCK,fork,umask=077 EXEC:"npiperelay.exe -ei -s //./pipe/openssh-ssh-agent",nofork &) >/dev/null 2>&1
 fi
 
-# nvm
-export NVM_DIR="$HOME/.nvm"
-[ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
-[ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
-# nvm end
-
-# pnpm
-export PNPM_HOME="/home/zehnderk/.local/share/pnpm"
-case ":$PATH:" in
-  *":$PNPM_HOME:"*) ;;
-  *) export PATH="$PNPM_HOME:$PATH" ;;
-esac
-# pnpm end
 
 # fzf keybindings
 [ -f ~/.fzf/shell/key-bindings.zsh ] && source ~/.fzf/shell/key-bindings.zsh
 [[ $- == *i* ]] && source "$HOME/.fzf/shell/completion.zsh" 2> /dev/null
 
+
+# direnv
 zi ice as"program" make'!' atclone'./direnv hook zsh > zhook.zsh' \
   atpull'%atclone' src"zhook.zsh"
 zi light direnv/direnv
 
 # powerlevel10k
-[[ ! -f ~/.p10k.zsh ]] || source ~/.p10k.zsh
-
-# load dotnet
-export DOTNET_ROOT=$HOME/.dotnet 
-export PATH=$PATH:$DOTNET_ROOT:$DOTNET_ROOT/tools
+# [[ ! -f ~/.p10k.zsh ]] || source ~/.p10k.zsh
 
 # load global devbox
 # eval "$(devbox global shellenv --init-hook)"
+
+
