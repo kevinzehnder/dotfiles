@@ -1,0 +1,25 @@
+# SSH completion script
+
+# Function to extract hosts from the SSH config file
+_ssh_hosts() {
+  local config_file=~/.ssh/config
+  if [[ -f $config_file ]]; then
+    awk '/^Host / {for (i=2; i<=NF; i++) print $i}' $config_file
+  fi
+}
+
+# Main completion function for ssh
+_ssh_complete() {
+  local cur
+  cur="${words[-1]}"
+  
+  # Get the list of hosts
+  local hosts
+  hosts=($(_ssh_hosts))
+  
+  # Use compadd to add the completions
+  compadd "$@" -- "${hosts[@]}"
+}
+
+# Bind the completion function to the ssh command
+compdef _ssh_complete ssh

@@ -1,0 +1,7 @@
+#compdef granian
+
+_granian_completion() {
+  eval $(env _TYPER_COMPLETE_ARGS="${words[1,$CURRENT]}" _GRANIAN_COMPLETE=complete_zsh granian)
+}
+
+compdef _granian_completion granian
