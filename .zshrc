@@ -48,7 +48,7 @@ zi wait lucid as"program" from"gh-r" for \
     mv"bin/dog -> dog" pick"dog" ogham/dog \
     dalance/procs \
     httpie/cli \
-    mv"choose* -> choose" theryangeary/choose \
+    mv"choose* -> choose" pick"choose" theryangeary/choose \
     denisidoro/navi \
     pick"tldr" tldr-pages/tlrc \
     zellij-org/zellij \
