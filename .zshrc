@@ -47,6 +47,7 @@ zi wait lucid as"program" from"gh-r" for \
     mv"bat* -> bat" pick"bat/bat" @sharkdp/bat \
     mv"bin/dog -> dog" pick"dog" ogham/dog \
     dalance/procs \
+    httpie/cli \
     mv"choose* -> choose" theryangeary/choose \
     denisidoro/navi \
     pick"tldr" tldr-pages/tlrc \
