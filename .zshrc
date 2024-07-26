@@ -12,7 +12,6 @@ zi light chriskempson/base16-shell
 
 zi light romkatv/powerlevel10k
 
-
 export ZVM_INIT_MODE=sourcing
 zi ice depth=1
 zi light jeffreytse/zsh-vi-mode
@@ -68,7 +67,7 @@ function load_custom_completions() {
 
 # needs to be loaded last
 zi wait lucid light-mode for \
-    atinit"zicompinit; zicdreplay" z-shell/F-Sy-H
+    atinit"zicdreplay" z-shell/F-Sy-H
 
 
 # zsh settings
