@@ -12,7 +12,6 @@ zi light chriskempson/base16-shell
 
 zi light romkatv/powerlevel10k
 
-zicompinit
 
 export ZVM_INIT_MODE=sourcing
 zi ice depth=1
@@ -69,7 +68,7 @@ function load_custom_completions() {
 
 # needs to be loaded last
 zi wait lucid light-mode for \
-    atinit"zicdreplay" z-shell/F-Sy-H
+    atinit"zicompinit; zicdreplay" z-shell/F-Sy-H
 
 
 # zsh settings
@@ -381,6 +380,10 @@ zi light direnv/direnv
 
 # powerlevel10k
 [[ ! -f ~/.p10k.zsh ]] || source ~/.p10k.zsh
+
+# load dotnet
+export DOTNET_ROOT=$HOME/.dotnet 
+export PATH=$PATH:$DOTNET_ROOT:$DOTNET_ROOT/tools
 
 # load global devbox
 # eval "$(devbox global shellenv --init-hook)"
