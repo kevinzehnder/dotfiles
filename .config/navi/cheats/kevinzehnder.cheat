@@ -1,3 +1,10 @@
+% httpie, http, kz
+# http GET
+http <url>
+
+# http download file
+http --download <url>
+
 % ripgrep, kz
 # search something in current directory recursively
 rg <something>
