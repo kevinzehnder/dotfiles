@@ -1,9 +1,44 @@
+% nmap, kz
+# TCP-SYN scan [-sS]
+sudo nmap -sS <target> -oA <logfile_name>
+
+# PING scan network [-sn]
+sudo nmap <network> -sn -oA <logfile_name> | rg for | choose 4:
+
+# store list of targets from last scan
+bat <logfile_name> | rg for | choose 4 > <targets_list>
+
+# PING scan a list of targets
+sudo nmap -sn -iL <targets_list>
+
+# scan 10 top-ports
+sudo nmap <target> --top-ports=10
+
+# scan target with OS detection and version scanning [-A]
+sudo nmap <target> -sn -oA <logfile_name> -A
+
+# PORT scan [-p-] scan all ports; [-sV] service version detection; [-v] verbose
+sudo nmap <target> -p- -sV -v
+
+% linux, kz
+# show Linux distribution information
+bat /etc/*-release
+
+% tar, kz
+# create an archive file, zipped, verbose output
+tar cfzv <filename>.tar.gz -C <goHereFirst> <directoryToInclude>/ 
+
+# extract an archive file, unzip, verbose output
+tar xfzv <filename> -C <goHereFirst>
+
+
 % httpie, http, kz
 # http GET
 http <url>
 
 # http download file
 http --download <url>
+
 
 % ripgrep, kz
 # search something in current directory recursively
@@ -18,6 +53,7 @@ rg <something> <directory>/
 # search something and ignore case
 rg -i <something>
 
+
 % rsync, kz
 # copy source to target [-P partial][-a archive mode][-v verbose][-z compress]
 rsync -Pavz <source> <target>
@@ -28,17 +64,21 @@ rsync -r <source>/ <target>
 # rsync with sudo on remote machine
 rsync -Pavz --rsync-path="sudo rsync" <source> <target>
 
+
 % azcli, kz
 # ssh into Azure VM
 az ssh vm -n <vmname> -g <resourcegroup> --subscription "<subscription>"
+
 
 % ssh, kz
 # create a socks proxy through ssh
 ssh <target> -D <socksport>
 
+
 % prometheus, kz
 # force reload of prometheus config in docker compose project
 docker compose kill -s SIGHUP prometheus 
+
 
 % procs, kz
 # show open ports with fzf
