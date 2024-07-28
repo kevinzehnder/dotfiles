@@ -373,6 +373,6 @@ zi light direnv/direnv
 # [[ ! -f ~/.p10k.zsh ]] || source ~/.p10k.zsh
 
 # load global devbox
-# eval "$(devbox global shellenv --init-hook)"
+eval "$(devbox global shellenv --init-hook --omit-nix-env=false)"
 
 

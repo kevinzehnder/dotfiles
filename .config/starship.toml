@@ -98,3 +98,4 @@ impure_msg = 'devbox'
 symbol = '❄️ '
 format = '[$symbol$state](bold blue) '
 
+
