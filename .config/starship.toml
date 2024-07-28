@@ -90,4 +90,11 @@ style_user = "bold dimmed blue"
 show_always = false
 
 [nodejs]
-format = "via [🤖 $version](bold green) "
+format = "[🤖 $version](bold green) "
+
+[nix_shell]
+disabled = false
+impure_msg = 'devbox'
+symbol = '❄️ '
+format = '[$symbol$state](bold blue) '
+
