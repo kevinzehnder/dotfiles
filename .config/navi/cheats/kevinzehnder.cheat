@@ -1,4 +1,31 @@
-% nmap, kz
+% ssh, kz
+# SSH using only explicitly configured keyfile
+ssh <user>@<server> -o IdentitiesOnly=yes -i <keyfile>
+
+# SSH using only password (no public keys)
+ssh -o PubkeyAuthentication=no -o PreferredAuthentications=password <user>@<server>
+
+% searchsploit, kz, pentest
+# find public exploit
+searchsploit <searchterms>
+
+% whatweb, kz, pentest
+# List Details about webserver/certificates
+whatweb <url>
+
+% gobuster, kz, pentest
+# Web Directory/File Enumeration
+gobuster dir -u http://<server> -w <wordlist>
+
+# SubDomain Enumeration
+gobuster dns -d <domain> -w <wordlist>
+
+
+% smbclient, kz, pentest
+# Enumerate SMB shares anonymously
+smbclient -N -L <target>
+
+% nmap, kz, pentest
 # TCP-SYN scan [-sS]
 sudo nmap -sS <target> -oA <logfile_name>
 
@@ -38,6 +65,9 @@ http <url>
 
 # http download file
 http --download <url>
+
+# http GET website banner/headers
+http --headers --follow <url>
 
 
 % ripgrep, kz
