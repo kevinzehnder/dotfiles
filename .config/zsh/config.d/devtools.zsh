@@ -7,4 +7,6 @@ zi wait lucid light-mode as"program" from"gh-r" for \
     go-task/task \
     pick"teller-x86_64-linux/teller" tellerops/teller \
     derailed/k9s \
+    pick"uv*/uv" @astral-sh/uv \
+    jesseduffield/lazydocker 
     
