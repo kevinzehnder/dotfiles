@@ -1,4 +1,15 @@
 # ~/.config/starship.toml
+# format = '''
+# [┌───────────────────>](bold green)
+# [│](bold green)$directory$rust$package
+# [└─>](bold green) '''
+right_format = "$kubernetes"
+
+[kubernetes]
+disabled = false
+format = "[$symbol $cluster](blue)"
+detect_files = [".k8s"]
+detect_env_vars = ['INVALID']
 
 [battery]
 full_symbol = "🔋"
