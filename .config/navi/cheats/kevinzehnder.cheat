@@ -1,3 +1,10 @@
+% xargs, kz
+# add input as argument to the command: <command> <input>
+echo <input> | xargs <command>
+
+# place argument to a specific location by using --replace / -I: <command> <input>
+echo <input> | xargs -I _ <command> _
+
 % ssh, kz
 # SSH using only explicitly configured keyfile
 ssh <user>@<server> -o IdentitiesOnly=yes -i <keyfile>
