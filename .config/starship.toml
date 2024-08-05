@@ -105,7 +105,7 @@ format = "[🤖 $version](bold green) "
 [nix_shell]
 disabled = false
 impure_msg = 'devbox'
-symbol = '❄️ '
+# symbol = '❄️ '
 format = '[$symbol$state](bold blue) '
 
 
