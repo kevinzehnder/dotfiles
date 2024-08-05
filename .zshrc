@@ -383,4 +383,12 @@ function devbox_global () {
 }
 # devbox_global
 
-
+za(){
+if command -v zellij &> /dev/null; then
+    # Check if zellij is already running to avoid nested sessions
+    if [ -z "$ZELLIJ" ]; then
+        # Start a new Zellij session or attach to an existing one
+        zellij attach --create mysession
+    fi
+fi
+}
