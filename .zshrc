@@ -300,20 +300,39 @@ colorschemeswitcher(){
     base16_solarized-light;
     [ -f ~/.zi/plugins/tinted-theming---base16-fzf/bash/base16-$BASE16_THEME.config ] && source ~/.zi/plugins/tinted-theming---base16-fzf/bash/base16-$BASE16_THEME.config;
     export BAT_THEME="Solarized (light)"
-    alias zj='zjSolarized'
+    change_zellij_theme "solarized-light"
   elif [ "$1" = "gruvbox" ]; then
     rm -f ~/.lightmode;
     base16_gruvbox-dark-medium;
     [ -f ~/.zi/plugins/tinted-theming---base16-fzf/bash/base16-$BASE16_THEME.config ] && source ~/.zi/plugins/tinted-theming---base16-fzf/bash/base16-$BASE16_THEME.config;
     export BAT_THEME="gruvbox-dark"
-    alias zj='zjGruvbox'
+    change_zellij_theme "gruvbox"
   else
     rm -f ~/.lightmode;
     [ -f ~/.config/base16/base16-tokyo-night.config ] && source ~/.config/base16/base16-tokyo-night.config;
     [ -f $HOME/.config/base16/base16-tokyo-night.sh ] && source $HOME/.config/base16/base16-tokyo-night.sh;
     export BAT_THEME="OneHalfDark"
     alias zj='zjTokyo'
+    change_zellij_theme "tokyo-night-dark"
   fi
+}
+
+change_zellij_theme() {
+    if [ "$#" -ne 1 ]; then
+        echo "Usage: change_zellij_theme <new-theme>"
+        return 1
+    fi
+
+    CONFIG_FILE="$HOME/.config/zellij/config.kdl"
+    NEW_THEME="$1"
+    
+    if [ ! -f "$CONFIG_FILE" ]; then
+        echo "Configuration file not found: $CONFIG_FILE"
+        return 1
+    fi
+
+    # Use sed to replace the theme line
+    sed -i.bak "s/^theme \".*\"$/theme \"$NEW_THEME\"/" "$CONFIG_FILE"
 }
 
 darkmodechecker(){
