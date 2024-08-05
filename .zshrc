@@ -269,19 +269,6 @@ alias tldrf='tldr --list | fzf --preview "tldr {1}" --preview-window=right,60% |
 alias https='http --default-scheme=https'
 alias zj='zellij'
 
-zjTokyo() {
-    zellij $@ options --theme tokyo-night-dark
-}
-
-zjSolarized() {
-    zellij $@ options --theme solarized-light
-}
-
-zjGruvbox() {
-    zellij $@ options --theme gruvbox-dark
-}
-
-
 # use bat to colorize help output
 alias -g -- -h='-h 2>&1 | bat --language=help --style=plain -P'
 alias -g -- --help='--help 2>&1 | bat --language=help --style=plain -P'
@@ -312,7 +299,6 @@ colorschemeswitcher(){
     [ -f ~/.config/base16/base16-tokyo-night.config ] && source ~/.config/base16/base16-tokyo-night.config;
     [ -f $HOME/.config/base16/base16-tokyo-night.sh ] && source $HOME/.config/base16/base16-tokyo-night.sh;
     export BAT_THEME="OneHalfDark"
-    alias zj='zjTokyo'
     change_zellij_theme "tokyo-night-dark"
   fi
 }
