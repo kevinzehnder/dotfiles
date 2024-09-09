@@ -51,6 +51,7 @@ zi wait lucid as"program" from"gh-r" for \
     denisidoro/navi \
     pick"tldr" tldr-pages/tlrc \
     zellij-org/zellij \
+    twpayne/chezmoi \
 
 # additional configs
 if [ -d "$HOME/.config/zsh/config.d/" ] ; then
