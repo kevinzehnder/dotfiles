@@ -263,7 +263,6 @@ alias config='/usr/bin/git --git-dir=$HOME/.cfg/ --work-tree=$HOME'
 
 alias k='kubectl'
 alias kc='kubectl config use-context'
-alias air='~/go/bin/air'
 
 alias tldrf='tldr --list | fzf --preview "tldr {1}" --preview-window=right,60% | xargs tldr'
 
