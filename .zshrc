@@ -288,6 +288,7 @@ colorschemeswitcher(){
     [ -f ~/.zi/plugins/tinted-theming---base16-fzf/bash/base16-$BASE16_THEME.config ] && source ~/.zi/plugins/tinted-theming---base16-fzf/bash/base16-$BASE16_THEME.config;
     export BAT_THEME="Solarized (light)"
     change_zellij_theme "solarized-light"
+    change_k9s_theme "solarized_light"
   elif [ "$1" = "gruvbox" ]; then
     rm -f ~/.lightmode;
     base16_gruvbox-dark-medium;
@@ -300,6 +301,7 @@ colorschemeswitcher(){
     [ -f $HOME/.config/base16/base16-tokyo-night.sh ] && source $HOME/.config/base16/base16-tokyo-night.sh;
     export BAT_THEME="OneHalfDark"
     change_zellij_theme "tokyo-night-dark"
+    change_k9s_theme "nord"
   fi
 }
 
@@ -319,6 +321,23 @@ change_zellij_theme() {
 
     # Use sed to replace the theme line
     sed -i.bak "s/^theme \".*\"$/theme \"$NEW_THEME\"/" "$CONFIG_FILE"
+}
+
+change_k9s_theme() {
+    if [ "$#" -ne 1 ]; then
+        echo "Usage: change_k9s_theme <new-theme>"
+        return 1
+    fi
+    CONFIG_FILE="$HOME/.config/k9s/config.yaml"
+    NEW_THEME="$1"
+    
+    if [ ! -f "$CONFIG_FILE" ]; then
+        echo "Configuration file not found: $CONFIG_FILE"
+        return 1
+    fi
+    
+    # Use sed to replace the skin line, considering the nested structure
+    sed -i.bak 's/^ *skin: .*$/    skin: '"$NEW_THEME"'/' "$CONFIG_FILE"
 }
 
 darkmodechecker(){
