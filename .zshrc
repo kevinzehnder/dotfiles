@@ -35,7 +35,7 @@ zi wait lucid for \
 # zi light jeffreytse/zsh-vi-mode
 
 zi wait lucid as"program" from"gh-r" for \
-    ver"nightly" bpick"*appimage*" mv"nvim* -> nvim" neovim/neovim \
+    ver"stable" bpick"*appimage*" mv"nvim* -> nvim" neovim/neovim \
     mv"ripgrep* -> rg" pick"rg/rg" BurntSushi/ripgrep \
     bpick"*linux_amd64*" junegunn/fzf \
     jesseduffield/lazygit \
