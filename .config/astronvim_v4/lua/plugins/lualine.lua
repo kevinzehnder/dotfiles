@@ -7,6 +7,7 @@ local function show_macro_recording()
   end
 end
 
+---@type LazySpec
 return {
   "nvim-lualine/lualine.nvim",
   lazy = false,

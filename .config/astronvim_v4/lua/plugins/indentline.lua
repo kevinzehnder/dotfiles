@@ -1,3 +1,4 @@
+---@type LazySpec
 return {
   "lukas-reineke/indent-blankline.nvim",
   main = "ibl",
@@ -21,7 +22,7 @@ return {
         "NvimTree",
         "neo-tree",
         "Trouble",
-        "py"
+        "py",
       },
     },
   },

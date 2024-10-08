@@ -35,7 +35,7 @@ zi wait lucid for \
 # zi light jeffreytse/zsh-vi-mode
 
 zi wait lucid as"program" from"gh-r" for \
-    ver"stable" bpick"*appimage*" mv"nvim* -> nvim" neovim/neovim \
+    ver"v0.10.2" bpick"*appimage*" mv"nvim* -> nvim" neovim/neovim \
     mv"ripgrep* -> rg" pick"rg/rg" BurntSushi/ripgrep \
     bpick"*linux_amd64*" junegunn/fzf \
     jesseduffield/lazygit \
@@ -112,7 +112,8 @@ setopt pushd_minus          # Swap the meaning of cd +1 and cd -1 to the opposit
 
 export EDITOR='nvim'
 export COLORTERM="truecolor"
-export NVIM_APPNAME="astronvim_v4"
+# export NVIM_APPNAME="astronvim_v4"
+export NVIM_APPNAME="nvim"
 
 
 # fzf settings
@@ -245,6 +246,7 @@ alias root='sudo su'
 alias svim='sudo vim'
 alias vim='nvim'
 alias cim='vim'
+alias neovide='nohup neovide.exe --wsl --neovim-bin $(which nvim) >/dev/null 2>&1 &'
 
 alias ip='ip -c'
 alias ipa='ip -o address'

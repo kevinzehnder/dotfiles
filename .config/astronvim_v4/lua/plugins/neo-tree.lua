@@ -1,3 +1,4 @@
+---@type LazySpec
 return {
   "nvim-neo-tree/neo-tree.nvim",
   opts = function(_, opts)
@@ -12,7 +13,7 @@ return {
         ".teller.yml",
         ".teller.yaml",
         ".air.toml",
-        ".goreleaser.yaml"
+        ".goreleaser.yaml",
       },
     }
     opts.window.position = "left"
