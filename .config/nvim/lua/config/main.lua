@@ -148,6 +148,9 @@ vim.keymap.set("n", "<A-up>", ":resize +2<CR>")
 vim.keymap.set("n", "<A-right>", ":vertical resize -2<CR>")
 vim.keymap.set("n", "<A-left>", ":vertical resize +2<CR>")
 
+vim.keymap.set("i", "<C-l>", "<Right>")
+vim.keymap.set("i", "<C-k>", "<Up>")
+
 -- [[ Basic Autocommands ]]
 --  See `:help lua-guide-autocommands`
 
