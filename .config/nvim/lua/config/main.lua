@@ -105,29 +105,20 @@ vim.keymap.set("n", "<leader>gD", function()
 	end
 end, { desc = "Git Toggle Diffview" })
 vim.keymap.set("n", "<leader>gF", "<cmd>DiffviewFileHistory %<CR>", { desc = "Git File History" })
---  map('n', '<leader>tb', gitsigns.toggle_current_line_blame)
---  map('n', '<leader>hd', gitsigns.diffthis)
---  map('n', '<leader>td', gitsigns.toggle_deleted)
---
 
+-- layout keymaps
 vim.keymap.set("n", "<C-down>", ":resize -2<CR>", { desc = "Resize Window" })
 vim.keymap.set("n", "<C-up>", ":resize +2<CR>", { desc = "Resize Window" })
 vim.keymap.set("n", "<C-right>", ":vertical resize -2<CR>", { desc = "Resize Window" })
 vim.keymap.set("n", "<C-left>", ":vertical resize +2<CR>", { desc = "Resize Window" })
 
--- ["<leader>s"] = { [[:%s/\<<C-r><C-w>\>/<C-r><C-w>/gI<Left><Left><Left>]], desc = "replace word under cursor" },
--- ["<leader>P"] = { "<cmd>:put +<CR>" , desc = "paste without overwriting buffer" },
 -- harpoon
--- ["<leader>j"] = { name = "Harpoon" },
--- ["<leader>jj"] = { "<cmd>lua require('harpoon.ui').toggle_quick_menu()<cr>", desc = "Quick Menu" },
--- ["<leader>ja"] = { "<cmd>lua require('harpoon.mark').add_file()<cr>", desc = "Add File" },
--- ["<leader>jf"] = { "<cmd>lua require('harpoon.ui').nav_file(1)<cr>", desc = " File 1" },
--- ["<leader>jd"] = { "<cmd>lua require('harpoon.ui').nav_file(2)<cr>", desc = "File 2" },
--- ["<leader>js"] = { "<cmd>lua require('harpoon.ui').nav_file(3)<cr>", desc = "File 3" },
--- ["<leader>je"] = { "<cmd>lua require('harpoon.ui').nav_file(4)<cr>", desc = "File 4" },
--- ["<leader>jr"] = { "<cmd>lua require('harpoon.ui').nav_file(5)<cr>", desc = "File 5" },
-
--- git
+vim.keymap.set("n", "<leader>jj", "<cmd>lua require('harpoon.ui').toggle_quick_menu()<cr>", { desc = "Menu" })
+vim.keymap.set("n", "<leader>ja", "<cmd>lua require('harpoon.mark').add_file()<cr>", { desc = "Add File" })
+vim.keymap.set("n", "<A-f>", "<cmd>lua require('harpoon.ui').nav_file(1)<cr>", { desc = "File 1" })
+vim.keymap.set("n", "<A-d>", "<cmd>lua require('harpoon.ui').nav_file(2)<cr>", { desc = "File 2" })
+vim.keymap.set("n", "<A-s>", "<cmd>lua require('harpoon.ui').nav_file(3)<cr>", { desc = "File 3" })
+vim.keymap.set("n", "<A-a>", "<cmd>lua require('harpoon.ui').nav_file(4)<cr>", { desc = "File 4" })
 
 -- Keybinds to make split navigation easier.
 --  Use CTRL+<hjkl> to switch between windows
@@ -137,7 +128,8 @@ vim.keymap.set("n", "<C-j>", "<C-w><C-j>", { desc = "Move focus to the lower win
 vim.keymap.set("n", "<C-k>", "<C-w><C-k>", { desc = "Move focus to the upper window" })
 
 -- primeagen remaps
-vim.keymap.set("x", "<Leader>p", '"_dP')
+-- vim.keymap.set("x", "<Leader>p", '"_dP')
+-- vim.keymap.set("n", "<leader>P", "<cmd>:put +<CR>", { desc = "paste without overwriting register" })
 -- vim.keymap.set("n", "<C-u>", "<C-u>zz")
 -- vim.keymap.set("n", "<C-d>", "<C-d>zz")
 -- vim.keymap.set("n", "n", "nzz")
