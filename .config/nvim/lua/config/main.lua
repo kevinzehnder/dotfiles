@@ -47,25 +47,68 @@ vim.fn.sign_define("DiagnosticSignWarn", { text = " ", texthl = "DiagnosticSi
 vim.fn.sign_define("DiagnosticSignInfo", { text = " ", texthl = "DiagnosticSignInfo" })
 vim.fn.sign_define("DiagnosticSignHint", { text = "󰌵", texthl = "DiagnosticSignHint" })
 
--- [[ Basic Keymaps ]]
-vim.keymap.set("n", "<leader>x", "<cmd>q!<CR>", { desc = "Quit (Force)" })
-vim.keymap.set("n", "<leader>q", "<cmd>q<CR>", { desc = "Quit" })
+-- leader keymaps
+-- vim.keymap.set("n", "<leader>x", "<cmd>qa!<CR>", { desc = "Quit (Force)" })
+vim.keymap.set("n", "<leader>q", "<cmd>qa<CR>", { desc = "Quit" })
 vim.keymap.set("n", "<leader>w", "<cmd>w<CR>", { desc = "Save Buffer" })
 vim.keymap.set("n", "<leader>h", "<cmd>nohlsearch<CR>", { desc = "No Highlight" })
-
 vim.keymap.set("n", "<leader>e", "<cmd>NvimTreeToggle<CR>", { desc = "Toggle NvimTree" })
-
 vim.keymap.set("n", "<leader>c", "<cmd>bdelete<CR>", { desc = "Close Buffer" })
 
+-- telescope
 vim.keymap.set("n", "<C-f>", "<cmd>Telescope current_buffer_fuzzy_find<CR>", { desc = "Find in Buffer" })
 vim.keymap.set("n", "<C-p>", "<cmd>Telescope find_files<CR>", { desc = "Find Files" })
 
 -- Clear highlights on search when pressing <Esc> in normal mode
---  See `:help hlsearch`
 vim.keymap.set("n", "<Esc>", "<cmd>nohlsearch<CR>")
 
--- Diagnostic keymaps
--- vim.keymap.set("n", "<leader>q", vim.diagnostic.setloclist, { desc = "Open diagnostic [Q]uickfix list" })
+-- diagnostic keymaps
+
+-- git keymaps
+vim.keymap.set("n", "<leader>gd", "<cmd>Gitsigns diffthis<CR>", { desc = "Git Diff This" })
+vim.keymap.set("n", "<leader>gs", "<cmd>Gitsigns stage_hunk<CR>", { desc = "Git Stage Hunk" })
+vim.keymap.set("n", "<leader>gu", "<cmd>Gitsigns undo_stage_hunk<CR>", { desc = "Git Undo Stage Hunk" })
+vim.keymap.set("n", "<leader>gj", "<cmd>Gitsigns next_hunk<CR>", { desc = "Git Next Hunk" })
+vim.keymap.set("n", "<leader>gk", "<cmd>Gitsigns previous_hunk<CR>", { desc = "Git Previous Hunk" })
+vim.keymap.set("n", "<leader>gp", "<cmd>Gitsigns preview_hunk_inline<CR>", { desc = "Git Preview Hunk Inline" })
+vim.keymap.set("n", "<leader>gr", "<cmd>Gitsigns reset_hunk<CR>", { desc = "Git Reset Hunk" })
+vim.keymap.set(
+	"n",
+	"<leader>gh",
+	"<cmd>Gitsigns toggle_deleted<CR><cmd>Gitsigns toggle_linehl<CR><cmd>Gitsigns toggle_word_diff<CR>",
+	{ desc = "Git Highlight Changes" }
+)
+vim.keymap.set("n", "<leader>gD", function()
+	if next(require("diffview.lib").views) == nil then
+		vim.cmd("DiffviewOpen")
+	else
+		vim.cmd("DiffviewClose")
+	end
+end, { desc = "Git Toggle Diffview" })
+vim.keymap.set("n", "<leader>gF", "<cmd>DiffviewFileHistory %<CR>", { desc = "Git File History" })
+--  map('n', '<leader>tb', gitsigns.toggle_current_line_blame)
+--  map('n', '<leader>hd', gitsigns.diffthis)
+--  map('n', '<leader>td', gitsigns.toggle_deleted)
+--
+
+vim.keymap.set("n", "<C-down>", ":resize -2<CR>", { desc = "Resize Window" })
+vim.keymap.set("n", "<C-up>", ":resize +2<CR>", { desc = "Resize Window" })
+vim.keymap.set("n", "<C-right>", ":vertical resize -2<CR>", { desc = "Resize Window" })
+vim.keymap.set("n", "<C-left>", ":vertical resize +2<CR>", { desc = "Resize Window" })
+
+-- ["<leader>s"] = { [[:%s/\<<C-r><C-w>\>/<C-r><C-w>/gI<Left><Left><Left>]], desc = "replace word under cursor" },
+-- ["<leader>P"] = { "<cmd>:put +<CR>" , desc = "paste without overwriting buffer" },
+-- harpoon
+-- ["<leader>j"] = { name = "Harpoon" },
+-- ["<leader>jj"] = { "<cmd>lua require('harpoon.ui').toggle_quick_menu()<cr>", desc = "Quick Menu" },
+-- ["<leader>ja"] = { "<cmd>lua require('harpoon.mark').add_file()<cr>", desc = "Add File" },
+-- ["<leader>jf"] = { "<cmd>lua require('harpoon.ui').nav_file(1)<cr>", desc = " File 1" },
+-- ["<leader>jd"] = { "<cmd>lua require('harpoon.ui').nav_file(2)<cr>", desc = "File 2" },
+-- ["<leader>js"] = { "<cmd>lua require('harpoon.ui').nav_file(3)<cr>", desc = "File 3" },
+-- ["<leader>je"] = { "<cmd>lua require('harpoon.ui').nav_file(4)<cr>", desc = "File 4" },
+-- ["<leader>jr"] = { "<cmd>lua require('harpoon.ui').nav_file(5)<cr>", desc = "File 5" },
+
+-- git
 
 -- Keybinds to make split navigation easier.
 --  Use CTRL+<hjkl> to switch between windows

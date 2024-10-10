@@ -31,8 +31,3 @@ if vim.env.BASE16_THEME == "gruvbox-dark-medium" then
 end
 
 vim.cmd("highlight TSFunction gui=bold")
-
-if vim.g.neovide then
-	vim.g.neovide_theme = "light"
-	vim.cmd("colorscheme solarized")
-end
