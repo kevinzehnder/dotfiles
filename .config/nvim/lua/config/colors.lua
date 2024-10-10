@@ -20,7 +20,7 @@ end
 -- adaptive colorscheme
 if exists(os.getenv("HOME") .. "/.lightmode") then
 	vim.o.background = "light"
-	-- vim.cmd("colorscheme solarized")
+	vim.cmd("colorscheme solarized")
 else
 	vim.o.background = "dark"
 	vim.cmd("colorscheme tokyonight")
