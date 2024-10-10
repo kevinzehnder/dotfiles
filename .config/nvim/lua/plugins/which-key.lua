@@ -42,11 +42,11 @@ return {
 
 		-- Document existing key chains
 		spec = {
-			{ "<leader>g", group = "[G]it" },
-			{ "<leader>l", group = "[L]SP" },
-			{ "<leader>f", group = "[F]ind" },
-			{ "<leader>t", group = "[T]rouble" },
-			-- { "<leader>h", group = "Git [H]unk", mode = { "n", "v" } },
+			{ "<leader>g", group = "Git" },
+			{ "<leader>l", group = "LSP" },
+			{ "<leader>f", group = "Find" },
+			{ "<leader>t", group = "Trouble" },
+			{ "<leader>h", group = "Harpoon" },
 		},
 	},
 }

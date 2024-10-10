@@ -113,8 +113,8 @@ vim.keymap.set("n", "<C-right>", ":vertical resize -2<CR>", { desc = "Resize Win
 vim.keymap.set("n", "<C-left>", ":vertical resize +2<CR>", { desc = "Resize Window" })
 
 -- harpoon
-vim.keymap.set("n", "<leader>jj", "<cmd>lua require('harpoon.ui').toggle_quick_menu()<cr>", { desc = "Menu" })
-vim.keymap.set("n", "<leader>ja", "<cmd>lua require('harpoon.mark').add_file()<cr>", { desc = "Add File" })
+vim.keymap.set("n", "<leader>hh", "<cmd>lua require('harpoon.ui').toggle_quick_menu()<cr>", { desc = "Menu" })
+vim.keymap.set("n", "<leader>ha", "<cmd>lua require('harpoon.mark').add_file()<cr>", { desc = "Add File" })
 vim.keymap.set("n", "<A-f>", "<cmd>lua require('harpoon.ui').nav_file(1)<cr>", { desc = "File 1" })
 vim.keymap.set("n", "<A-d>", "<cmd>lua require('harpoon.ui').nav_file(2)<cr>", { desc = "File 2" })
 vim.keymap.set("n", "<A-s>", "<cmd>lua require('harpoon.ui').nav_file(3)<cr>", { desc = "File 3" })
