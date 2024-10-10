@@ -8,7 +8,7 @@ vim.g.loaded_netrwPlugin = 1
 
 vim.g.have_nerd_font = true
 
--- [[ Setting options ]]
+-- options
 vim.opt.number = true
 vim.opt.relativenumber = true
 vim.opt.mouse = "a"
@@ -21,11 +21,30 @@ vim.schedule(function()
 	vim.opt.clipboard = "unnamedplus"
 end)
 
-vim.opt.breakindent = true
+-- indentation
 vim.opt.smartindent = false
+vim.opt.tabstop = 4
+vim.opt.shiftwidth = 4
+vim.opt.breakindent = true
+
+-- ide stuff
+-- vim.opt.pumheight = 10
+-- vim.opt.showtabline = 0
+-- vim.opt.timeoutlen = 300
+-- vim.opt.writebackup = false
+-- vim.opt.laststatus = 3
+-- vim.opt.showcmd = false
+-- vim.opt.ruler = false
+-- vim.opt.fillchars.eob = " "
+-- vim.opt.shortmess:append "c"
+-- vim.opt.whichwrap:append("<,>,[,],h,l")
+-- vim.opt.iskeyword:append("-")
+
 vim.opt.undofile = true
+
 vim.opt.ignorecase = true
 vim.opt.smartcase = true
+
 vim.opt.signcolumn = "yes"
 vim.opt.updatetime = 250
 vim.opt.timeoutlen = 300
@@ -37,8 +56,8 @@ vim.opt.listchars = { tab = "» ", trail = "·", nbsp = "␣", extends = "⟩", 
 vim.opt.inccommand = "split"
 vim.opt.cursorline = true
 vim.opt.scrolloff = 10
-vim.opt.tabstop = 4
-vim.opt.shiftwidth = 4
+vim.o.sidescrolloff = 15
+vim.o.sidescroll = 1
 
 vim.opt.diffopt = "internal,filler,closeoff,vertical,iwhiteall"
 
@@ -116,6 +135,26 @@ vim.keymap.set("n", "<C-h>", "<C-w><C-h>", { desc = "Move focus to the left wind
 vim.keymap.set("n", "<C-l>", "<C-w><C-l>", { desc = "Move focus to the right window" })
 vim.keymap.set("n", "<C-j>", "<C-w><C-j>", { desc = "Move focus to the lower window" })
 vim.keymap.set("n", "<C-k>", "<C-w><C-k>", { desc = "Move focus to the upper window" })
+
+-- primeagen remaps
+vim.keymap.set("x", "<Leader>p", '"_dP')
+-- vim.keymap.set("n", "<C-u>", "<C-u>zz")
+-- vim.keymap.set("n", "<C-d>", "<C-d>zz")
+-- vim.keymap.set("n", "n", "nzz")
+-- vim.keymap.set("n", "N", "Nzz")
+-- vim.keymap.set("n", "Q", "<nop>")
+vim.keymap.set(
+	"n",
+	"<Leader>s",
+	[[:%s/\<<C-r><C-w>\>/<C-r><C-w>/gI<Left><Left><Left>]],
+	{ desc = "Change word under cursor" }
+)
+
+-- Remap arrow keys to resize window
+vim.keymap.set("n", "<A-down>", ":resize -2<CR>")
+vim.keymap.set("n", "<A-up>", ":resize +2<CR>")
+vim.keymap.set("n", "<A-right>", ":vertical resize -2<CR>")
+vim.keymap.set("n", "<A-left>", ":vertical resize +2<CR>")
 
 -- [[ Basic Autocommands ]]
 --  See `:help lua-guide-autocommands`
