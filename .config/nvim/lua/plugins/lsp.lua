@@ -161,6 +161,10 @@ return {
 					},
 					python = {
 						analysis = {
+							diagnosticSeverityOverrides = {
+								reportUndefinedVariable = "none",
+								reportUnusedVariable = "none",
+							},
 							typeCheckingMode = "strict",
 						},
 					},
