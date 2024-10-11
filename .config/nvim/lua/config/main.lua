@@ -10,6 +10,7 @@ vim.g.have_nerd_font = true
 
 -- options
 vim.opt.number = true
+vim.opt.confirm = true
 vim.opt.relativenumber = true
 vim.opt.mouse = "a"
 vim.opt.showmode = false
@@ -67,7 +68,7 @@ vim.fn.sign_define("DiagnosticSignInfo", { text = " ", texthl = "DiagnosticSi
 vim.fn.sign_define("DiagnosticSignHint", { text = "󰌵", texthl = "DiagnosticSignHint" })
 
 -- leader keymaps
--- vim.keymap.set("n", "<leader>x", "<cmd>qa!<CR>", { desc = "Quit (Force)" })
+vim.keymap.set("n", "<leader>x", "<cmd>qa<CR>", { desc = "Quit (Force)" })
 vim.keymap.set("n", "<leader>q", "<cmd>qa<CR>", { desc = "Quit" })
 vim.keymap.set("n", "<leader>w", "<cmd>w<CR>", { desc = "Save Buffer" })
 vim.keymap.set("n", "<leader>h", "<cmd>nohlsearch<CR>", { desc = "No Highlight" })
