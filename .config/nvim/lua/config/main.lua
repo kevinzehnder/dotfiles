@@ -75,6 +75,10 @@ vim.keymap.set("n", "<leader>h", "<cmd>nohlsearch<CR>", { desc = "No Highlight" 
 vim.keymap.set("n", "<leader>e", "<cmd>NvimTreeToggle<CR>", { desc = "Toggle NvimTree" })
 vim.keymap.set("n", "<leader>c", "<cmd>bdelete<CR>", { desc = "Close Buffer" })
 
+-- panels keymaps
+vim.keymap.set("n", "<A-H>", "<cmd>NvimTreeToggle<CR>", { desc = "Toggle NvimTree" })
+vim.keymap.set("n", "<A-M>", "<cmd>Trouble diagnostics toggle filter.buf=0<cr>", { desc = "Toggle NvimTree" })
+
 -- telescope
 vim.keymap.set("n", "<C-f>", "<cmd>Telescope current_buffer_fuzzy_find<CR>", { desc = "Find in Buffer" })
 vim.keymap.set("n", "<C-p>", "<cmd>Telescope find_files<CR>", { desc = "Find Files" })
@@ -85,7 +89,7 @@ vim.keymap.set("n", "<Esc>", "<cmd>nohlsearch<CR>")
 -- diagnostic keymaps
 
 -- git keymaps
-vim.keymap.set("n", "<leader>gd", "<cmd>Gitsigns diffthis<CR>", { desc = "Git Diff This" })
+vim.keymap.set("n", "<leader>gD", "<cmd>Gitsigns diffthis<CR>", { desc = "Git Diff This" })
 vim.keymap.set("n", "<leader>gs", "<cmd>Gitsigns stage_hunk<CR>", { desc = "Git Stage Hunk" })
 vim.keymap.set("n", "<leader>gu", "<cmd>Gitsigns undo_stage_hunk<CR>", { desc = "Git Undo Stage Hunk" })
 vim.keymap.set("n", "<leader>gj", "<cmd>Gitsigns next_hunk<CR>", { desc = "Git Next Hunk" })
@@ -98,7 +102,7 @@ vim.keymap.set(
 	"<cmd>Gitsigns toggle_deleted<CR><cmd>Gitsigns toggle_linehl<CR><cmd>Gitsigns toggle_word_diff<CR>",
 	{ desc = "Git Highlight Changes" }
 )
-vim.keymap.set("n", "<leader>gD", function()
+vim.keymap.set("n", "<leader>gd", function()
 	if next(require("diffview.lib").views) == nil then
 		vim.cmd("DiffviewOpen")
 	else
@@ -149,6 +153,7 @@ vim.keymap.set("n", "<A-up>", ":resize +2<CR>")
 vim.keymap.set("n", "<A-right>", ":vertical resize -2<CR>")
 vim.keymap.set("n", "<A-left>", ":vertical resize +2<CR>")
 
+-- insert mode mappings
 vim.keymap.set("i", "<C-l>", "<Right>")
 vim.keymap.set("i", "<C-k>", "<Up>")
 
