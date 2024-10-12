@@ -9,7 +9,7 @@ return {
 
 		-- Useful status updates for LSP.
 		-- NOTE: `opts = {}` is the same as calling `require('fidget').setup({})`
-		{ "j-hui/fidget.nvim", opts = {} },
+		{ "j-hui/fidget.nvim",       opts = {} },
 
 		-- Allows extra capabilities provided by nvim-cmp
 		"hrsh7th/cmp-nvim-lsp",
@@ -189,6 +189,34 @@ return {
 						},
 						-- You can toggle below to ignore Lua_LS's noisy `missing-fields` warnings
 						-- diagnostics = { disable = { 'missing-fields' } },
+						format = {
+							enable = true,
+							-- Use double quotes instead of single quotes
+							defaultConfig = {
+								quote_style = "double",
+								-- Increase max line length
+								max_line_length = "200",
+								-- Indent settings
+								indent_style = "tab",
+								indent_size = "2",
+								-- Prevent breaking long lines
+								call_arg_parentheses = "keep",
+								-- Other formatting options
+								align_call_args = "false",
+								align_function_params = "true",
+								align_continuous_assign_statement = "true",
+								align_continuous_rect_table_field = "true",
+								align_array_table = "true",
+								break_all_list_when_line_exceed = "false",
+								trailing_table_separator = "keep",
+								-- Space settings
+								space_before_function_open_parenthesis = "false",
+								space_before_closure_open_parenthesis = "true",
+								space_before_function_call_single_arg = "keep",
+								space_inside_function_call_parentheses = "false",
+								space_inside_function_param_list_parentheses = "false",
+							},
+						},
 					},
 				},
 			},

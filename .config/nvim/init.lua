@@ -1,6 +1,7 @@
 require("config.main")
 require("config.lazy")
 require("config.colors")
+require("config.keymaps")
 
 if vim.g.neovide then
 	-- vim.g.neovide_theme = "auto"
