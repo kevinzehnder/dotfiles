@@ -18,7 +18,7 @@ vim.opt.cmdheight = 0
 
 -- Sync clipboard between OS and Neovim.
 --  Schedule the setting after `UiEnter` because it can increase startup-time.
-vim.schedule(function()
+vim.schedule(function ()
 	vim.opt.clipboard = "unnamedplus"
 end)
 
@@ -75,18 +75,18 @@ vim.fn.sign_define("DiagnosticSignHint", { text = "󰌵", texthl = "DiagnosticSi
 vim.api.nvim_create_autocmd("TextYankPost", {
 	desc = "Highlight when yanking (copying) text",
 	group = vim.api.nvim_create_augroup("kickstart-highlight-yank", { clear = true }),
-	callback = function()
+	callback = function ()
 		vim.highlight.on_yank()
 	end,
 })
 
 -- auto toggle nvim-tree
 vim.api.nvim_create_autocmd({ "BufNewFile", "BufReadPost" }, {
-	callback = function(args)
+	callback = function (args)
 		if vim.fn.expand("%:p") ~= "" then
 			vim.api.nvim_del_autocmd(args.id)
 			vim.cmd("noautocmd NvimTreeOpen")
-			vim.schedule(function()
+			vim.schedule(function ()
 				vim.cmd("wincmd p")
 			end)
 		end

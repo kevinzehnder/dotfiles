@@ -15,16 +15,16 @@ return {
 
 				-- `cond` is a condition used to determine whether this plugin should be
 				-- installed and loaded.
-				cond = function()
+				cond = function ()
 					return vim.fn.executable("make") == 1
 				end,
 			},
 			{ "nvim-telescope/telescope-ui-select.nvim" },
 
 			-- Useful for getting pretty icons, but requires a Nerd Font.
-			{ "nvim-tree/nvim-web-devicons", enabled = vim.g.have_nerd_font },
+			{ "nvim-tree/nvim-web-devicons",            enabled = vim.g.have_nerd_font },
 		},
-		config = function()
+		config = function ()
 			-- Telescope is a fuzzy finder that comes with a lot of different things that
 			-- it can fuzzy find! It's more than just a "file finder", it can search
 			-- many different aspects of Neovim, your workspace, LSP, and more!
@@ -98,7 +98,7 @@ return {
 
 			-- It's also possible to pass additional configuration options.
 			--  See `:help telescope.builtin.live_grep()` for information about particular keys
-			vim.keymap.set("n", "<leader>f/", function()
+			vim.keymap.set("n", "<leader>f/", function ()
 				builtin.live_grep({
 					grep_open_files = true,
 					prompt_title = "Live Grep in Open Files",
@@ -106,7 +106,7 @@ return {
 			end, { desc = "[F]find [/] in Open Files" })
 
 			-- Shortcut for searching your Neovim configuration files
-			vim.keymap.set("n", "<leader>fn", function()
+			vim.keymap.set("n", "<leader>fn", function ()
 				builtin.find_files({ cwd = vim.fn.stdpath("config") })
 			end, { desc = "[F]earch [N]eovim files" })
 		end,

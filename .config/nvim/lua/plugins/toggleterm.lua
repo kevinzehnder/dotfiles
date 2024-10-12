@@ -1,7 +1,7 @@
 return {
 	"akinsho/toggleterm.nvim",
 	version = "*",
-	config = function()
+	config = function ()
 		require("toggleterm").setup({
 			size = 20,
 			open_mapping = [[<A-J>]],
@@ -31,10 +31,10 @@ return {
 			direction = "float",
 			float_opts = {
 				border = "single",
-				width = function()
+				width = function ()
 					return math.floor(vim.o.columns - 3)
 				end,
-				height = function()
+				height = function ()
 					return math.floor(vim.o.lines - 3)
 				end,
 			},

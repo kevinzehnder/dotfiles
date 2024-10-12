@@ -27,9 +27,7 @@ vim.keymap.set("n", "<leader>gj", "<cmd>Gitsigns next_hunk<CR>", { desc = "Git N
 vim.keymap.set("n", "<leader>gk", "<cmd>Gitsigns previous_hunk<CR>", { desc = "Git Previous Hunk" })
 vim.keymap.set("n", "<leader>gp", "<cmd>Gitsigns preview_hunk_inline<CR>", { desc = "Git Preview Hunk Inline" })
 vim.keymap.set("n", "<leader>gr", "<cmd>Gitsigns reset_hunk<CR>", { desc = "Git Reset Hunk" })
-vim.keymap.set("n", "<leader>gh",
-	"<cmd>Gitsigns toggle_deleted<CR><cmd>Gitsigns toggle_linehl<CR><cmd>Gitsigns toggle_word_diff<CR>",
-	{ desc = "Git Highlight Changes" })
+vim.keymap.set("n", "<leader>gh", "<cmd>Gitsigns toggle_deleted<CR><cmd>Gitsigns toggle_linehl<CR><cmd>Gitsigns toggle_word_diff<CR>", { desc = "Git Highlight Changes" })
 vim.keymap.set("n", "<leader>gd", function ()
 	if next(require("diffview.lib").views) == nil then
 		vim.cmd("DiffviewOpen")
@@ -70,12 +68,7 @@ vim.keymap.set("n", "<C-k>", "<C-w><C-k>", { desc = "Move focus to the upper win
 -- vim.keymap.set("n", "N", "Nzz")
 -- vim.keymap.set("n", "Q", "<nop>")
 
-vim.keymap.set(
-	"n",
-	"<Leader>s",
-	[[:%s/\<<C-r><C-w>\>/<C-r><C-w>/gI<Left><Left><Left>]],
-	{ desc = "Change word under cursor" }
-)
+vim.keymap.set("n", "<Leader>s", [[:%s/\<<C-r><C-w>\>/<C-r><C-w>/gI<Left><Left><Left>]], { desc = "Change word under cursor" })
 
 -- Remap arrow keys to resize window
 vim.keymap.set("n", "<A-down>", ":resize -2<CR>")
