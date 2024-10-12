@@ -1,6 +1,15 @@
 return {
 	"folke/trouble.nvim",
-	opts = {}, -- for default options, refer to the configuration section for custom setup.
+	opts = {
+		open_no_results = true,
+		modes = {
+			diagnostics = { -- Configure symbols mode
+				win = {
+					size = 0.3, -- 30% of the window
+				},
+			},
+		},
+	}, -- for default options, refer to the configuration section for custom setup.
 	cmd = "Trouble",
 	keys = {
 		{
