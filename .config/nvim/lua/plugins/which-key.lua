@@ -47,6 +47,7 @@ return {
 			{ "<leader>f", group = "Find" },
 			{ "<leader>t", group = "Trouble" },
 			{ "<leader>h", group = "Harpoon" },
+			{ "<leader>n", group = "Minimap" },
 		},
 	},
 }
