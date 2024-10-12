@@ -3,13 +3,13 @@ keybinds clear-defaults=true {
     normal {
         // uncomment this and adjust key if using copy_on_select=false
         // bind "Alt c" { Copy; }
-        bind "Alt L" { ToggleFloatingPanes; SwitchToMode "Normal"; }
+        // bind "Alt L" { ToggleFloatingPanes; SwitchToMode "Normal"; }
     }
     locked {
         bind "Alt g" { SwitchToMode "Normal"; }
         bind "Alt h" "Alt Left" { MoveFocusOrTab "Left"; }
         bind "Alt l" "Alt Right" { MoveFocusOrTab "Right"; }
-        bind "Alt L" { ToggleFloatingPanes; }
+        // bind "Alt L" { ToggleFloatingPanes; }
     }
     resize {
         bind "Ctrl n" { SwitchToMode "Normal"; }
@@ -238,7 +238,7 @@ auto_layout true
 // Choose the theme that is specified in the themes section.
 // Default: default
 
-theme "solarized-light"
+theme "tokyo-night-dark"
 
 // The name of the default layout to load on startup
 // Default: "default"
