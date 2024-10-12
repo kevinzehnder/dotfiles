@@ -111,6 +111,7 @@ vim.keymap.set("n", "<leader>gd", function()
 	end
 end, { desc = "Git Toggle Diffview" })
 vim.keymap.set("n", "<leader>gF", "<cmd>DiffviewFileHistory %<CR>", { desc = "Git File History" })
+vim.api.nvim_set_keymap("n", "<leader>gg", "<cmd>lua _lazygit_toggle()<CR>", { noremap = true, silent = true })
 
 -- layout keymaps
 vim.keymap.set("n", "<C-down>", ":resize -2<CR>", { desc = "Resize Window" })
