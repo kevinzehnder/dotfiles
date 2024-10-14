@@ -3,7 +3,7 @@ vim.keymap.set("n", "<leader>x", "<cmd>qa<CR>", { desc = "Quit All" })
 vim.keymap.set("n", "<leader>q", "<cmd>q<CR>", { desc = "Quit" })
 vim.keymap.set("n", "<leader>w", "<cmd>w<CR>", { desc = "Save Buffer" })
 vim.keymap.set("n", "<leader>h", "<cmd>nohlsearch<CR>", { desc = "No Highlight" })
-vim.keymap.set("n", "<leader>e", "<cmd>NvimTreeToggle<CR>", { desc = "Toggle NvimTree" })
+vim.keymap.set("n", "<leader>e", "<cmd>NvimTreeToggle<CR><cmd>wincmd p<CR>", { desc = "Toggle NvimTree" })
 vim.keymap.set("n", "<leader>c", "<cmd>bdelete<CR>", { desc = "Close Buffer" })
 
 -- panels keymaps
