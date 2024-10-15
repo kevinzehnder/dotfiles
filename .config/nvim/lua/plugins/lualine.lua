@@ -10,10 +10,8 @@ end
 return {
 	"nvim-lualine/lualine.nvim",
 	lazy = false,
-
-	opts = function(_, opts)
-		-- opts.tabline = {}
-		opts.winbar = {
+	opts = {
+		winbar = {
 			lualine_a = {
 				{
 					"filename",
@@ -29,17 +27,17 @@ return {
 
 			lualine_y = {},
 			lualine_z = {},
-		}
-		opts.inactive_winbar = {
+		},
+		inactive_winbar = {
 			lualine_a = {},
 			lualine_b = {},
 			lualine_c = {},
 			lualine_x = {},
 			lualine_y = {},
 			lualine_z = {},
-		}
+		},
 
-		opts.options = {
+		options = {
 			component_separators = "|",
 			section_separators = "",
 			-- component_separators = { left = "", right = "" },
@@ -68,13 +66,13 @@ return {
 				"dap-repl",
 			},
 			globalstatus = true,
-		}
+		},
 
-		opts.sections = {
+		sections = {
 			lualine_a = {
 				{
 					"mode",
-					fmt = function(str)
+					fmt = function (str)
 						return str:sub(1, 1)
 					end,
 				},
@@ -85,5 +83,5 @@ return {
 			lualine_x = { "encoding", "fileformat", "filetype" },
 			lualine_z = { "location" },
 		}
-	end,
+	}
 }
