@@ -33,7 +33,6 @@ return {
 					winbar_info = false, -- See ':h diffview-config-view.x.winbar_info'
 				},
 				keymaps = {
-					disable_defaults = false, -- Disable the default keymaps
 					diff4 = {
 						-- Mappings in 4-way diff layouts
 						{ { "n", "x" }, "1do",        actions.diffget("base"),           { desc = "Obtain the diff hunk from the BASE version of the file" } },

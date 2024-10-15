@@ -43,7 +43,7 @@ return {
 		-- Document existing key chains
 		spec = {
 			{ "<leader>g", group = "Git" },
-			{ "<leader>l", group = "LSP" },
+			{ "<leader>l", group = "Language" },
 			{ "<leader>f", group = "Find" },
 			{ "<leader>t", group = "Trouble" },
 			{ "<leader>h", group = "Harpoon" },

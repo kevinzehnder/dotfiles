@@ -6,11 +6,11 @@ return {
 		{
 			-- Customize or remove this keymap to your liking
 			"<leader>lf",
-			function()
+			function ()
 				require("conform").format({ async = true })
 			end,
 			mode = "",
-			desc = "LSP: [f]ormat buffer",
+			desc = "Conform: [f]ormat buffer",
 		},
 	},
 	-- This will provide type hinting with LuaLS
@@ -36,7 +36,7 @@ return {
 			},
 		},
 	},
-	init = function()
+	init = function ()
 		-- If you want the formatexpr, here is the place to set it
 		vim.o.formatexpr = "v:lua.require'conform'.formatexpr()"
 	end,
