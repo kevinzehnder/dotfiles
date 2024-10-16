@@ -30,8 +30,8 @@ vim.opt.expandtab = false
 vim.opt.breakindent = true
 
 -- ide stuff
+vim.opt.showtabline = 0
 -- vim.opt.pumheight = 10
--- vim.opt.showtabline = 0
 -- vim.opt.timeoutlen = 300
 -- vim.opt.writebackup = false
 -- vim.opt.laststatus = 3
