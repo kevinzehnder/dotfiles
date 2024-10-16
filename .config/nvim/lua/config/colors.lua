@@ -21,6 +21,7 @@ end
 if exists(os.getenv("HOME") .. "/.lightmode") then
 	vim.o.background = "light"
 	vim.cmd("colorscheme solarized")
+	vim.api.nvim_set_hl(0, "CursorLine", { bg = "#ffd8cb" })
 else
 	vim.o.background = "dark"
 	vim.cmd("colorscheme tokyonight")
