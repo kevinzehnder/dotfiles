@@ -31,6 +31,7 @@ vim.keymap.set("n", "<leader>gh", "<cmd>Gitsigns toggle_deleted<CR><cmd>Gitsigns
 vim.keymap.set("n", "<leader>gd", function ()
 	if next(require("diffview.lib").views) == nil then
 		vim.cmd("DiffviewOpen")
+		vim.cmd("Neominimap tabOff")
 	else
 		vim.cmd("DiffviewClose")
 	end
