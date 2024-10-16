@@ -105,7 +105,7 @@ return {
 				},
 				winbar = {
 					"help", "startify", "dashboard", "packer", "neogitstatus",
-					"NvimTree", "Trouble", "alpha", "lir", "Outline", "spectre_panel",
+					"NvimTree", "trouble", "alpha", "lir", "Outline", "spectre_panel",
 					"toggleterm", "dapui_console", "dapui_watches", "dapui_stacks",
 					"dapui_breakpoints", "dapui_scopes", "DiffviewFiles"
 				},
