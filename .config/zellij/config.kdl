@@ -199,6 +199,9 @@ plugins {
 //   - detach (Default)
 //   - quit
 //
+
+session_serialization false
+
 on_force_close "detach"
 
 //  Send a request for a simplified ui (without arrow fonts) to plugins
@@ -238,7 +241,7 @@ auto_layout true
 // Choose the theme that is specified in the themes section.
 // Default: default
 
-theme "tokyo-night-dark"
+theme "solarized-light"
 
 // The name of the default layout to load on startup
 // Default: "default"
