@@ -1,84 +1,73 @@
 # starship
 eval "$(starship init zsh)"
 
-# p10k-instant-prompt
-# if [[ -r "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh" ]]; then
-#   source "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh"
-# fi
-
 # zi
 if [[ -r "${XDG_CONFIG_HOME:-${HOME}/.config}/zi/init.zsh" ]]; then
-  source "${XDG_CONFIG_HOME:-${HOME}/.config}/zi/init.zsh" && zzinit
+	source "${XDG_CONFIG_HOME:-${HOME}/.config}/zi/init.zsh" && zzinit
 fi
 
 zi light chriskempson/base16-shell
-
 zi ice nocompile
 zi light tinted-theming/base16-fzf
 
-# zi light romkatv/powerlevel10k
-
-
 zi wait lucid for \
-  atinit"ZI[COMPINIT_OPTS]=-C; zicompinit; zicdreplay" \
-    z-shell/F-Sy-H \
-  blockf \
-    zsh-users/zsh-completions \
-  atload"!_zsh_autosuggest_start" \
-    zsh-users/zsh-autosuggestions
+	atinit"ZI[COMPINIT_OPTS]=-C; zicompinit; zicdreplay" \
+	z-shell/F-Sy-H \
+	blockf \
+	zsh-users/zsh-completions \
+	atload"!_zsh_autosuggest_start" \
+	zsh-users/zsh-autosuggestions
 
 [ -x "$(command -v kubectl)" ] && source <(kubectl completion zsh)
 
 zi wait lucid for \
-  Aloxaf/fzf-tab
-
-# zi light jeffreytse/zsh-vi-mode
+	Aloxaf/fzf-tab
 
 zi wait lucid as"program" from"gh-r" for \
-    ver"v0.10.2" bpick"*appimage*" mv"nvim* -> nvim" neovim/neovim \
-    mv"ripgrep* -> rg" pick"rg/rg" BurntSushi/ripgrep \
-    bpick"*linux_amd64*" junegunn/fzf \
-    jesseduffield/lazygit \
-    mv"dust* -> dust" pick"dust/dust" bootandy/dust \
-    pick"duf" muesli/duf \
-    mv"delta* -> delta" pick"delta/delta" dandavison/delta \
-    eza-community/eza \
-    mv"fd* -> fdfind" pick"fdfind/fd" @sharkdp/fd \
-    mv"bat* -> bat" pick"bat/bat" @sharkdp/bat \
-    mv"bin/dog -> dog" pick"dog" ogham/dog \
-    dalance/procs \
-    mv"choose* -> choose" pick"choose" theryangeary/choose \
-    denisidoro/navi \
-    pick"tldr" tldr-pages/tlrc \
-    zellij-org/zellij \
-    twpayne/chezmoi \
+	ver"v0.10.2" bpick"*appimage*" mv"nvim* -> nvim" neovim/neovim \
+	mv"ripgrep* -> rg" pick"rg/rg" BurntSushi/ripgrep \
+	bpick"*linux_amd64*" junegunn/fzf \
+	jesseduffield/lazygit \
+	mv"dust* -> dust" pick"dust/dust" bootandy/dust \
+	pick"duf" muesli/duf \
+	mv"delta* -> delta" pick"delta/delta" dandavison/delta \
+	eza-community/eza \
+	mv"fd* -> fdfind" pick"fdfind/fd" @sharkdp/fd \
+	mv"bat* -> bat" pick"bat/bat" @sharkdp/bat \
+	mv"bin/dog -> dog" pick"dog" ogham/dog \
+	dalance/procs \
+	mv"choose* -> choose" pick"choose" theryangeary/choose \
+	denisidoro/navi \
+	pick"tldr" tldr-pages/tlrc \
+	zellij-org/zellij \
+	twpayne/chezmoi \
 
 # additional configs
 if [ -d "$HOME/.config/zsh/config.d/" ] ; then
-  for conf in "$HOME/.config/zsh/config.d/"*.zsh ; do
-      source "${conf}" 
-  done
-  unset conf
+	for conf in "$HOME/.config/zsh/config.d/"*.zsh ; do
+		source "${conf}" 
+	done
+	unset conf
 fi
 
+# system completions
 zi wait pack for system-completions
 
 # install custom completions
 function load_custom_completions() {
-    local completion_dir="$HOME/.config/zsh/completions"
-    setopt local_options nullglob
-    local compfiles=("$completion_dir"/_*)
-    if [[ -d $completion_dir ]] && [[ -n $compfiles ]]; then
-        for file in "${compfiles[@]}"; do
-            zi ice as"completion" lucid
-            zi snippet "$file"
-        done
-    else
-        echo "No completion files found in $completion_dir"
-    fi
-    unsetopt nullglob
+	local completion_dir="$HOME/.config/zsh/completions"
+	setopt local_options nullglob
+	local compfiles=("$completion_dir"/_*)
+	if [[ -d $completion_dir ]] && [[ -n $compfiles ]]; then
+		for file in "${compfiles[@]}"; do
+			zi ice as"completion" lucid
+			zi snippet "$file"
+		done
+	else
+		echo "No completion files found in $completion_dir"
+	fi
+	unsetopt nullglob
 }
-
 
 # zsh settings
 export ZVM_INIT_MODE=sourcing # vi mode for zsh
@@ -112,16 +101,13 @@ setopt pushd_minus          # Swap the meaning of cd +1 and cd -1 to the opposit
 
 export EDITOR='nvim'
 export COLORTERM="truecolor"
-# export NVIM_APPNAME="astronvim_v4"
 export NVIM_APPNAME="nvim"
-
 
 # fzf settings
 zstyle ':fzf-tab:complete:cd:*' fzf-preview 'eza -1 --color=always $realpath'
 zstyle ':completion:*:descriptions' format '[%d]'
 zstyle ':fzf-tab:*' show-group none
 
-# export FZF_DEFAULT_COMMAND='fd --type file --follow --hidden --exclude .git'
 export FZF_DEFAULT_COMMAND='fd --type file --follow --exclude .git'
 export FZF_PREVIEW_COMMAND='bat --style=numbers,changes --wrap never --color always {} || cat {} || tree -C {}'
 
@@ -166,7 +152,6 @@ export FZF_COMMON_OPTIONS="
 # navi settings
 export NAVI_FZF_OVERRIDES='--with-nth 3,2,1 --height 70%'
 
-
 # completion settings
 zstyle ':completion:*' completer _complete _match _approximate
 zstyle ':completion:*:match:*' original only
@@ -196,24 +181,6 @@ zstyle ':completion:*' rehash true
 export PATH=$PATH:/usr/local/go/bin
 export PATH=$PATH:$HOME/go/bin
 
-
-# Backgrounding and Unbackgrounding {{{
-# Use Ctrl-z swap in and out of vim (or any other process)
-# https://sheerun.net/2014/03/21/how-to-boost-your-vim-productivity/
-function ctrl-z-toggle () {
-  if [[ $#BUFFER -eq 0 ]]; then
-	BUFFER="setopt monitor && fg"
-	zle accept-line
-  else
-	zle push-input
-	zle clear-screen
-  fi
-}
-zle -N ctrl-z-toggle
-bindkey '^Z' ctrl-z-toggle
-# END Backgrounding and Unbackgrounding }}}
-
-
 # key bindings 
 bindkey "^[[1;5C" forward-word
 bindkey "^[[1;5D" backward-word
@@ -221,7 +188,6 @@ bindkey "^E" end-of-line
 bindkey '^ ' forward-word
 bindkey "^K" up-line-or-history
 bindkey "^J" down-line-or-history
-
 
 ## aliases
 alias gh='gh.exe' # use windows based gh, because it supports credential store
@@ -275,7 +241,10 @@ alias zj='zellij'
 alias -g -- -h='-h 2>&1 | bat --language=help --style=plain -P'
 alias -g -- --help='--help 2>&1 | bat --language=help --style=plain -P'
 alias batp='bat -Pp'
-jctl(){journalctl $@ | bat -l syslog -p --pager="less -FR +G"}
+
+function jctl(){
+	journalctl $@ | bat -l syslog -p --pager="less -FR +G"
+}
 
 
 # Color Themes
@@ -283,88 +252,87 @@ alias light='colorschemeswitcher solarized'
 alias dark='colorschemeswitcher dark'
 alias gruv='colorschemeswitcher gruvbox'
 
-colorschemeswitcher(){
-  if [ "$1" = "solarized" ]; then
-    touch ~/.lightmode;
-    base16_solarized-light;
-    [ -f ~/.zi/plugins/tinted-theming---base16-fzf/bash/base16-$BASE16_THEME.config ] && source ~/.zi/plugins/tinted-theming---base16-fzf/bash/base16-$BASE16_THEME.config;
-    export BAT_THEME="Solarized (light)"
-    change_zellij_theme "solarized-light"
-    change_k9s_theme "solarized_light"
-  elif [ "$1" = "gruvbox" ]; then
-    rm -f ~/.lightmode;
-    base16_gruvbox-dark-medium;
-    [ -f ~/.zi/plugins/tinted-theming---base16-fzf/bash/base16-$BASE16_THEME.config ] && source ~/.zi/plugins/tinted-theming---base16-fzf/bash/base16-$BASE16_THEME.config;
-    export BAT_THEME="gruvbox-dark"
-    change_zellij_theme "gruvbox"
-  else
-    rm -f ~/.lightmode;
-    [ -f ~/.config/base16/base16-tokyo-night.config ] && source ~/.config/base16/base16-tokyo-night.config;
-    [ -f $HOME/.config/base16/base16-tokyo-night.sh ] && source $HOME/.config/base16/base16-tokyo-night.sh;
-    export BAT_THEME="OneHalfDark"
-    change_zellij_theme "tokyo-night-dark"
-    change_k9s_theme "nord"
-  fi
+function colorschemeswitcher(){
+	if [ "$1" = "solarized" ]; then
+		touch ~/.lightmode;
+		base16_solarized-light;
+		[ -f ~/.zi/plugins/tinted-theming---base16-fzf/bash/base16-$BASE16_THEME.config ] && source ~/.zi/plugins/tinted-theming---base16-fzf/bash/base16-$BASE16_THEME.config;
+		export BAT_THEME="Solarized (light)"
+		change_zellij_theme "solarized-light"
+		change_k9s_theme "solarized_light"
+	elif [ "$1" = "gruvbox" ]; then
+		rm -f ~/.lightmode;
+		base16_gruvbox-dark-medium;
+		[ -f ~/.zi/plugins/tinted-theming---base16-fzf/bash/base16-$BASE16_THEME.config ] && source ~/.zi/plugins/tinted-theming---base16-fzf/bash/base16-$BASE16_THEME.config;
+		export BAT_THEME="gruvbox-dark"
+		change_zellij_theme "gruvbox"
+	else
+		rm -f ~/.lightmode;
+		[ -f ~/.config/base16/base16-tokyo-night.config ] && source ~/.config/base16/base16-tokyo-night.config;
+		[ -f $HOME/.config/base16/base16-tokyo-night.sh ] && source $HOME/.config/base16/base16-tokyo-night.sh;
+		export BAT_THEME="OneHalfDark"
+		change_zellij_theme "tokyo-night-dark"
+		change_k9s_theme "nord"
+	fi
 }
 
-change_zellij_theme() {
-    if [ "$#" -ne 1 ]; then
-        echo "Usage: change_zellij_theme <new-theme>"
-        return 1
-    fi
+function change_zellij_theme() {
+	if [ "$#" -ne 1 ]; then
+		echo "Usage: change_zellij_theme <new-theme>"
+		return 1
+	fi
 
-    CONFIG_FILE="$HOME/.config/zellij/config.kdl"
-    NEW_THEME="$1"
-    
-    if [ ! -f "$CONFIG_FILE" ]; then
-        echo "Configuration file not found: $CONFIG_FILE"
-        return 1
-    fi
+	CONFIG_FILE="$HOME/.config/zellij/config.kdl"
+	NEW_THEME="$1"
 
-    # Use sed to replace the theme line
-    sed -i.bak "s/^theme \".*\"$/theme \"$NEW_THEME\"/" "$CONFIG_FILE"
+	if [ ! -f "$CONFIG_FILE" ]; then
+		echo "Configuration file not found: $CONFIG_FILE"
+		return 1
+	fi
+
+	# Use sed to replace the theme line
+	sed -i.bak "s/^theme \".*\"$/theme \"$NEW_THEME\"/" "$CONFIG_FILE"
 }
 
-change_k9s_theme() {
-    if [ "$#" -ne 1 ]; then
-        echo "Usage: change_k9s_theme <new-theme>"
-        return 1
-    fi
-    CONFIG_FILE="$HOME/.config/k9s/config.yaml"
-    NEW_THEME="$1"
-    
-    if [ ! -f "$CONFIG_FILE" ]; then
-        echo "Configuration file not found: $CONFIG_FILE"
-        return 1
-    fi
-    
-    # Use sed to replace the skin line, considering the nested structure
-    sed -i.bak 's/^ *skin: .*$/    skin: '"$NEW_THEME"'/' "$CONFIG_FILE"
+function change_k9s_theme() {
+	if [ "$#" -ne 1 ]; then
+		echo "Usage: change_k9s_theme <new-theme>"
+		return 1
+	fi
+	CONFIG_FILE="$HOME/.config/k9s/config.yaml"
+	NEW_THEME="$1"
+
+	if [ ! -f "$CONFIG_FILE" ]; then
+		echo "Configuration file not found: $CONFIG_FILE"
+		return 1
+	fi
+
+	# Use sed to replace the skin line, considering the nested structure
+	sed -i.bak 's/^ *skin: .*$/    skin: '"$NEW_THEME"'/' "$CONFIG_FILE"
 }
 
-darkmodechecker(){
-  # Check if the AppsUseLightTheme registry key exists and its value is 1
-  # if /mnt/c/Windows/System32/reg.exe query 'HKCU\SOFTWARE\Microsoft\Windows\CurrentVersion\Themes\Personalize' /v AppsUseLightTheme | grep -q '0x1'; then
-  if [ -f ~/.lightmode ]; then
-    # If the registry key value is 1, execute "light"
-    light
-  else
-    # If the registry key value is not 1, execute "dark"
-    dark
-  fi
+function darkmodechecker(){
+	# Check if the AppsUseLightTheme registry key exists and its value is 1
+	# if /mnt/c/Windows/System32/reg.exe query 'HKCU\SOFTWARE\Microsoft\Windows\CurrentVersion\Themes\Personalize' /v AppsUseLightTheme | grep -q '0x1'; then
+	if [ -f ~/.lightmode ]; then
+		# If the registry key value is 1, execute "light"
+		light
+	else
+		# If the registry key value is not 1, execute "dark"
+		dark
+	fi
 }
 
 # run DarkMode Check if we're not on an SSH connection
 if [[ -z "$SSH_CONNECTION" ]]; then
-  darkmodechecker
+	darkmodechecker
 else 
-  if [[ -f ~/.lightmode ]]; then
-    light
-  else
-    dark
-  fi
+	if [[ -f ~/.lightmode ]]; then
+		light
+	else
+		dark
+	fi
 fi
-
 
 # Configure ssh forwarding
 export SSH_AUTH_SOCK=$HOME/.ssh/agent.sock
@@ -372,46 +340,50 @@ export SSH_AUTH_SOCK=$HOME/.ssh/agent.sock
 # use square brackets to generate a regex match for the process we want but that doesn't match the grep command running it!
 ALREADY_RUNNING=$(ps -auxww | grep -q "[n]piperelay.exe -ei -s //./pipe/openssh-ssh-agent"; echo $?)
 if [[ $ALREADY_RUNNING != "0" ]]; then
-    if [[ -S $SSH_AUTH_SOCK ]]; then
-        # not expecting the socket to exist as the forwarding command isn't running (http://www.tldp.org/LDP/abs/html/fto.html)
-        # echo "removing previous socket..."
-        rm $SSH_AUTH_SOCK
-    fi
-    # echo "Starting SSH-Agent relay..."
-    # setsid to force new session to keep running
-    # set socat to listen on $SSH_AUTH_SOCK and forward to npiperelay which then forwards to openssh-ssh-agent on windows
-    (setsid socat UNIX-LISTEN:$SSH_AUTH_SOCK,fork,umask=077 EXEC:"npiperelay.exe -ei -s //./pipe/openssh-ssh-agent",nofork &) >/dev/null 2>&1
+	if [[ -S $SSH_AUTH_SOCK ]]; then
+		# not expecting the socket to exist as the forwarding command isn't running (http://www.tldp.org/LDP/abs/html/fto.html)
+		# echo "removing previous socket..."
+		rm $SSH_AUTH_SOCK
+	fi
+	# echo "Starting SSH-Agent relay..."
+	# setsid to force new session to keep running
+	# set socat to listen on $SSH_AUTH_SOCK and forward to npiperelay which then forwards to openssh-ssh-agent on windows
+	(setsid socat UNIX-LISTEN:$SSH_AUTH_SOCK,fork,umask=077 EXEC:"npiperelay.exe -ei -s //./pipe/openssh-ssh-agent",nofork &) >/dev/null 2>&1
 fi
-
 
 # fzf keybindings
 [ -f ~/.fzf/shell/key-bindings.zsh ] && source ~/.fzf/shell/key-bindings.zsh
 [[ $- == *i* ]] && source "$HOME/.fzf/shell/completion.zsh" 2> /dev/null
 
-
 # direnv
 zi ice as"program" make'!' atclone'./direnv hook zsh > zhook.zsh' \
-  atpull'%atclone' src"zhook.zsh"
-zi light direnv/direnv
-
-# powerlevel10k
-# [[ ! -f ~/.p10k.zsh ]] || source ~/.p10k.zsh
-
+	atpull'%atclone' src"zhook.zsh"
+	zi light direnv/direnv
 
 # load global devbox
 function devbox_global () {
-  eval "$(devbox global shellenv --init-hook --omit-nix-env=false)"
+	eval "$(devbox global shellenv --init-hook --omit-nix-env=false)"
 }
-# devbox_global
 
-za(){
-if command -v zellij &> /dev/null; then
-    # Check if zellij is already running to avoid nested sessions
-    if [ -z "$ZELLIJ" ]; then
-        # Start a new Zellij session or attach to an existing one
-        zellij attach --create mysession
-    fi
-fi
+# zellij 
+function za(){
+	if command -v zellij &> /dev/null; then
+		# Check if zellij is already running to avoid nested sessions
+		if [ -z "$ZELLIJ" ]; then
+			# Start a new Zellij session or attach to an existing one
+			zellij attach --create mysession
+		fi
+	fi
+}
+
+# yazi
+function y() {
+	local tmp="$(mktemp -t "yazi-cwd.XXXXXX")"
+	yazi "$@" --cwd-file="$tmp"
+	if cwd="$(command cat -- "$tmp")" && [ -n "$cwd" ] && [ "$cwd" != "$PWD" ]; then
+		builtin cd -- "$cwd"
+	fi
+	rm -f -- "$tmp"
 }
 
 export NVM_DIR="$HOME/.nvm"
