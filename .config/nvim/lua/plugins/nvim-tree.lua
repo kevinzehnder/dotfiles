@@ -2,6 +2,11 @@ return {
 	{
 		"nvim-tree/nvim-tree.lua",
 		opts = {
+			actions = {
+				open_file = {
+					resize_window = false,
+				}
+			},
 			filters = {
 				dotfiles = true,
 			},
