@@ -352,8 +352,8 @@ if [[ $ALREADY_RUNNING != "0" ]]; then
 fi
 
 # fzf keybindings
-[ -f "$HOME/config/fzf/shell/key-bindings.zsh" ] && source "$HOME/fzf/shell/key-bindings.zsh"
-[[ $- == *i* ]] && source "$HOME/config/fzf/shell/completion.zsh" 2> /dev/null
+[ -f "$HOME/.config/fzf/key-bindings.zsh" ] && source "$HOME/.config/fzf/key-bindings.zsh"
+[[ $- == *i* ]] && source "$HOME/.config/fzf/completion.zsh" 2> /dev/null
 
 # direnv
 zi ice as"program" make'!' atclone'./direnv hook zsh > zhook.zsh' \
