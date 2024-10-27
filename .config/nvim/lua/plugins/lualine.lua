@@ -107,7 +107,7 @@ return {
 					"help", "startify", "dashboard", "packer", "neogitstatus",
 					"NvimTree", "trouble", "alpha", "lir", "Outline", "spectre_panel",
 					"toggleterm", "dapui_console", "dapui_watches", "dapui_stacks",
-					"dapui_breakpoints", "dapui_scopes", "DiffviewFiles"
+					"dapui_breakpoints", "dapui_scopes", "DiffviewFiles", "qf"
 				},
 			},
 			ignore_focus = {

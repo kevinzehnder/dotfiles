@@ -6,18 +6,35 @@ vim.keymap.set("n", "<leader>h", "<cmd>nohlsearch<CR>", { desc = "No Highlight" 
 vim.keymap.set("n", "<leader>e", "<cmd>NvimTreeToggle<CR><cmd>wincmd p<CR>", { desc = "Toggle NvimTree" })
 vim.keymap.set("n", "<leader>c", "<cmd>bdelete<CR>", { desc = "Close Buffer" })
 
+vim.keymap.set("n", "<leader>j", "<cmd>cnext<CR>", { desc = "QuickFix next" })
+vim.keymap.set("n", "<leader>k", "<cmd>cprevious<CR>", { desc = "QuickFix previous" })
+
 -- panels keymaps
 vim.keymap.set("n", "<A-H>", "<cmd>NvimTreeToggle<CR>", { desc = "Toggle NvimTree" })
 vim.keymap.set("n", "<A-M>", "<cmd>Trouble diagnostics toggle filter.buf=0<cr>", { desc = "Toggle NvimTree" })
+--
+-- Toggle quickfix with Alt-N
+vim.keymap.set("n", "<A-N>", function ()
+	local qf_exists = false
+	for _, win in pairs(vim.fn.getwininfo()) do
+		if win.quickfix == 1 then
+			qf_exists = true
+		end
+	end
+	if qf_exists == true then
+		vim.cmd "cclose"
+	else
+		vim.cmd "copen"
+	end
+end, { desc = "Toggle quickfix window" })
 
 -- telescope
 vim.keymap.set("n", "<C-f>", "<cmd>Telescope current_buffer_fuzzy_find<CR>", { desc = "Find in Buffer" })
 vim.keymap.set("n", "<C-p>", "<cmd>Telescope find_files<CR>", { desc = "Find Files" })
+vim.keymap.set("n", "<leader>f6", "<cmd>YAMLTelescope<CR>", { desc = "Find in YAML" })
 
 -- Clear highlights on search when pressing <Esc> in normal mode
 vim.keymap.set("n", "<Esc>", "<cmd>nohlsearch<CR>")
-
--- diagnostic keymaps
 
 -- git keymaps
 vim.keymap.set("n", "<leader>gD", "<cmd>Gitsigns diffthis<CR>", { desc = "Git Diff This" })
@@ -60,14 +77,12 @@ vim.keymap.set("n", "<C-l>", "<C-w><C-l>", { desc = "Move focus to the right win
 vim.keymap.set("n", "<C-j>", "<C-w><C-j>", { desc = "Move focus to the lower window" })
 vim.keymap.set("n", "<C-k>", "<C-w><C-k>", { desc = "Move focus to the upper window" })
 
--- primeagen remaps
--- vim.keymap.set("x", "<Leader>p", '"_dP')
--- vim.keymap.set("n", "<leader>P", "<cmd>:put +<CR>", { desc = "paste without overwriting register" })
--- vim.keymap.set("n", "<C-u>", "<C-u>zz")
--- vim.keymap.set("n", "<C-d>", "<C-d>zz")
--- vim.keymap.set("n", "n", "nzz")
--- vim.keymap.set("n", "N", "Nzz")
--- vim.keymap.set("n", "Q", "<nop>")
+-- primeagen primeagen
+vim.keymap.set("x", "p", '"_dP')
+vim.keymap.set("x", "<leader>p", "p", { desc = "default paste behavior (overwrites register)" })
+vim.keymap.set("n", "n", "nzz")
+vim.keymap.set("n", "N", "Nzz")
+vim.keymap.set("n", "Q", "<nop>")
 
 vim.keymap.set("n", "<Leader>s", [[:%s/\<<C-r><C-w>\>/<C-r><C-w>/gI<Left><Left><Left>]], { desc = "Change word under cursor" })
 
