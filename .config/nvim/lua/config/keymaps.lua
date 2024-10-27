@@ -6,8 +6,8 @@ vim.keymap.set("n", "<leader>h", "<cmd>nohlsearch<CR>", { desc = "No Highlight" 
 vim.keymap.set("n", "<leader>e", "<cmd>NvimTreeToggle<CR><cmd>wincmd p<CR>", { desc = "Toggle NvimTree" })
 vim.keymap.set("n", "<leader>c", "<cmd>bdelete<CR>", { desc = "Close Buffer" })
 
-vim.keymap.set("n", "<leader>j", "<cmd>cnext<CR>zz<CR>", { desc = "QuickFix next" })
-vim.keymap.set("n", "<leader>k", "<cmd>cprevious<CR>zz<CR>", { desc = "QuickFix previous" })
+vim.keymap.set("n", "<A-j>", "<cmd>cnext<CR>zz", { desc = "QuickFix next", silent = true })
+vim.keymap.set("n", "<A-k>", "<cmd>cprevious<CR>zz", { desc = "QuickFix previous", silent = true })
 
 vim.keymap.set("n", "<leader>lR", "<cmd>Telescope lsp_references<CR>", { desc = "LSP: [R]eferences" })
 
