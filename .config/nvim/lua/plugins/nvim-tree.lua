@@ -4,7 +4,7 @@ return {
 		opts = {
 			actions = {
 				open_file = {
-					resize_window = false,
+					resize_window = true,
 				}
 			},
 			filters = {
@@ -40,7 +40,7 @@ return {
 				number = false,
 				relativenumber = false,
 				signcolumn = "yes",
-				width = 30,
+				width = 40,
 			},
 
 			update_focused_file = {
