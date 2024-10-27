@@ -3,7 +3,7 @@ return {
 	opts = {
 		auto_enable = true,
 		preview = {
-			auto_preview = false
+			auto_preview = true
 		}
 	}
 }
