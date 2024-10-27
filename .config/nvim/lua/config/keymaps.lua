@@ -85,6 +85,8 @@ vim.keymap.set("x", "p", '"_dP')
 vim.keymap.set("x", "<leader>p", "p", { desc = "default paste behavior (overwrites register)" })
 vim.keymap.set("n", "n", "nzz")
 vim.keymap.set("n", "N", "Nzz")
+vim.keymap.set("n", "<C-d>", "<C-d>zz")
+vim.keymap.set("n", "<C-u>", "<C-u>zz")
 vim.keymap.set("n", "Q", "<nop>")
 
 vim.keymap.set("n", "<Leader>s", [[:%s/\<<C-r><C-w>\>/<C-r><C-w>/gI<Left><Left><Left>]], { desc = "Change word under cursor" })
