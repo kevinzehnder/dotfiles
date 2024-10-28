@@ -150,7 +150,7 @@ keybinds clear-defaults=true {
     }
     shared_except "locked" {
         bind "Alt g" { SwitchToMode "Locked"; }
-        bind "Ctrl q" { Quit; }
+        bind "Ctrl F4" { Quit; }
         bind "Alt n" { NewPane; }
         bind "Alt I" { MoveTab "Left"; }
         bind "Alt O" { MoveTab "Right"; }
