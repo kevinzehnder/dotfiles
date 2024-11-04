@@ -198,6 +198,15 @@ return {
 				}
 
 			},
+
+			["helm-ls"] = {
+				logLevel = "info",
+				valuesFiles = {
+					mainValuesFile = "values.yaml",
+					lintOverlayValuesFile = "values.lint.yaml",
+					additionalValuesFilesGlobPattern = "values*.yaml"
+				},
+			},
 			-- rust_analyzer = {},
 			-- ... etc. See `:help lspconfig-all` for a list of all the pre-configured LSPs
 			--
