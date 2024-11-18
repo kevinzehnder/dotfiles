@@ -231,6 +231,7 @@ alias config='/usr/bin/git --git-dir=$HOME/.cfg/ --work-tree=$HOME'
 
 alias k='kubectl'
 alias kc='kubectl config use-context'
+alias kar='kubectl-argo-rollouts'
 
 alias tldrf='tldr --list | fzf --preview "tldr {1}" --preview-window=right,60% | xargs tldr'
 
@@ -385,6 +386,22 @@ function y() {
 	fi
 	rm -f -- "$tmp"
 }
+
+function repeater() {
+  if [ "$#" -lt 2 ]; then
+    echo "Usage: repeater <seconds> <command>"
+    return 1
+  fi
+
+  local interval=$1
+  shift
+  local command="$@"
+
+  while true; do
+	echo "--- $(date +"%H:%M:%S") ---"  
+    eval "$command"
+    sleep $interval
+  done}
 
 export NVM_DIR="$HOME/.nvm"
 [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
