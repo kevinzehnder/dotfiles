@@ -1,6 +1,16 @@
 -- autocommands
 --  See `:help lua-guide-autocommands`
 
+-- setup tab expansion for YAML files
+vim.api.nvim_create_autocmd("FileType", {
+	pattern = { "yaml", "helm" },
+	callback = function ()
+		vim.bo.tabstop = 2
+		vim.bo.softtabstop = 2
+		vim.bo.shiftwidth = 2
+		vim.bo.expandtab = true
+	end,
+})
 -- Highlight when yanking
 vim.api.nvim_create_autocmd("TextYankPost", {
 	desc = "Highlight when yanking (copying) text",
