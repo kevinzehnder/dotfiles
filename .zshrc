@@ -8,7 +8,7 @@ fi
 
 zi light chriskempson/base16-shell
 zi ice nocompile
-zi light tinted-theming/base16-fzf
+zi light tinted-theming/tinted-fzf
 
 zi wait lucid for \
 	atinit"ZI[COMPINIT_OPTS]=-C; zicompinit; zicdreplay" \
@@ -107,6 +107,9 @@ export NVIM_APPNAME="nvim"
 zstyle ':fzf-tab:complete:cd:*' fzf-preview 'eza -1 --color=always $realpath'
 zstyle ':completion:*:descriptions' format '[%d]'
 zstyle ':fzf-tab:*' show-group none
+zstyle ':fzf-tab:*' fzf-flags --color=fg:3,fg+:3 --bind=tab:accept
+zstyle ':fzf-tab:*' use-fzf-default-opts yes
+zstyle ':fzf-tab:*' switch-group '<' '>'
 
 export FZF_DEFAULT_COMMAND='fd --type file --follow --exclude .git'
 export FZF_PREVIEW_COMMAND='bat --style=numbers,changes --wrap never --color always {} || cat {} || tree -C {}'
@@ -121,7 +124,7 @@ export FZF_DEFAULT_OPTS="
 --prompt='∼ ' 
 --pointer='▶' 
 --marker='✓' 
---bind 'ctrl-a:select-all' 
+--bind 'ctrl-a:select-all'
 "
 
 export FZF_ALT_C_COMMAND='fd --type directory'
@@ -257,14 +260,14 @@ function colorschemeswitcher(){
 	if [ "$1" = "solarized" ]; then
 		touch ~/.lightmode;
 		base16_solarized-light;
-		[ -f ~/.zi/plugins/tinted-theming---base16-fzf/bash/base16-$BASE16_THEME.config ] && source ~/.zi/plugins/tinted-theming---base16-fzf/bash/base16-$BASE16_THEME.config;
+		[ -f ~/.zi/plugins/tinted-theming---tinted-fzf/bash/base16-$BASE16_THEME.config ] && source ~/.zi/plugins/tinted-theming---tinted-fzf/bash/base16-$BASE16_THEME.config;
 		export BAT_THEME="Solarized (light)"
 		change_zellij_theme "solarized-light"
 		change_k9s_theme "solarized_light"
 	elif [ "$1" = "gruvbox" ]; then
 		rm -f ~/.lightmode;
 		base16_gruvbox-dark-medium;
-		[ -f ~/.zi/plugins/tinted-theming---base16-fzf/bash/base16-$BASE16_THEME.config ] && source ~/.zi/plugins/tinted-theming---base16-fzf/bash/base16-$BASE16_THEME.config;
+		[ -f ~/.zi/plugins/tinted-theming---tinted-fzf/bash/base16-$BASE16_THEME.config ] && source ~/.zi/plugins/tinted-theming---tinted-fzf/bash/base16-$BASE16_THEME.config;
 		export BAT_THEME="gruvbox-dark"
 		change_zellij_theme "gruvbox"
 	else
