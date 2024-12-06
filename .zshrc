@@ -107,7 +107,7 @@ export NVIM_APPNAME="nvim"
 zstyle ':fzf-tab:complete:cd:*' fzf-preview 'eza -1 --color=always $realpath'
 zstyle ':completion:*:descriptions' format '[%d]'
 zstyle ':fzf-tab:*' show-group none
-zstyle ':fzf-tab:*' fzf-flags --color=fg:3,fg+:3 --bind=tab:accept
+zstyle ':fzf-tab:*' fzf-flags --bind=tab:accept
 zstyle ':fzf-tab:*' use-fzf-default-opts yes
 zstyle ':fzf-tab:*' switch-group '<' '>'
 
