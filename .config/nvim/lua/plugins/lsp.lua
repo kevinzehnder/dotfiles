@@ -169,7 +169,7 @@ return {
 								reportUndefinedVariable = "none",
 								reportUnusedVariable = "none",
 							},
-							typeCheckingMode = "strict",
+							typeCheckingMode = "standard",
 						},
 					},
 				},
