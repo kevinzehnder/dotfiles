@@ -62,6 +62,7 @@ function fs() {
       --bind "ctrl-f:unbind(change,ctrl-f)+change-prompt(2. fzf> )+enable-search+clear-query" \
       --bind "ctrl-h:execute-silent([ -z $HIDDEN ] && export HIDDEN=1 || unset HIDDEN)+reload:$RG_BASE $([ -n $HIDDEN ] && echo '--hidden') {q} 2>/dev/null" \
       --preview "bat --style=numbers --color=always {1} --highlight-line {2} 2>/dev/null" \
+	  --preview-window=right:60%:wrap:+{2}-/2 \
       --height=80% \
       --prompt "1. ripgrep> " \
       --delimiter : \
