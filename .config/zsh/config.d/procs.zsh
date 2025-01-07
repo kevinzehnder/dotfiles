@@ -44,14 +44,12 @@ function hogs() {
 
 # Find files and fucking edit them
 function fe() {
-   local file=$(fzf --ansi \
+   local files=($(fzf -m --ansi \
        --bind "ctrl-h:execute-silent([ -z $HIDDEN ] && export HIDDEN=1 || unset HIDDEN)+reload:fd --type f --color=always $([ -n $HIDDEN ] && echo '--hidden')" \
        --preview 'bat --style=numbers --color=always {}' \
       --header "CTRL-H: enable hidden files | ENTER: open in $EDITOR" \
-       < <(fd --type f --color=always) \
-       | awk '{print $1}'
-   )
-   [[ -n $file ]] && ${EDITOR:-vim} "$file"
+       < <(fd --type f --color=always)))
+   [[ ${#files[@]} -gt 0 ]] && ${EDITOR:-vim} "${files[@]}"
 }
 
 function fs() {
