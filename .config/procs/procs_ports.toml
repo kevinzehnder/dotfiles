@@ -47,3 +47,6 @@ numeric_search = false
 nonnumeric_search = true
 align = "Left"
 
+[sort]
+column = 4
+order = "Ascending"
