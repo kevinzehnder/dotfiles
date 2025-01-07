@@ -42,6 +42,10 @@ zi wait lucid as"program" from"gh-r" for \
 	zellij-org/zellij \
 	twpayne/chezmoi \
 
+# neovim for vscode
+zi ice wait lucid as"program" from"gh-r" ver"nightly" bpick"*appimage*" mv"nvim* -> nvim-vscode" id-as"neovim-vscode"
+zi load neovim/neovim
+
 # additional configs
 if [ -d "$HOME/.config/zsh/config.d/" ] ; then
 	for conf in "$HOME/.config/zsh/config.d/"*.zsh ; do
