@@ -141,8 +141,7 @@ export FZF_ALT_C_OPTS="
 
 export FZF_CTRL_T_COMMAND="$FZF_DEFAULT_COMMAND"
 export FZF_CTRL_T_OPTS="
---height 75% 
---preview-window down:70% 
+--height 80% 
 --preview-window border 
 --preview '($FZF_PREVIEW_COMMAND) 2> /dev/null' 
 "
@@ -251,7 +250,7 @@ alias -g -- --help='--help 2>&1 | bat --language=help --style=plain -P'
 alias batp='bat -Pp'
 
 function jctl(){
-	journalctl $@ | bat -l syslog -p --pager="less -FR +G"
+	journalctl -e $@ | bat -l syslog -p --pager="less -FR +G"
 }
 
 

@@ -63,7 +63,6 @@ function fs() {
       --bind "ctrl-h:execute-silent([ -z $HIDDEN ] && export HIDDEN=1 || unset HIDDEN)+reload:$RG_BASE $([ -n $HIDDEN ] && echo '--hidden') {q} 2>/dev/null" \
       --preview "bat --style=numbers --color=always {1} --highlight-line {2} 2>/dev/null" \
       --height=80% \
-      --preview-window "down,60%" \
       --prompt "1. ripgrep> " \
       --delimiter : \
       --header "CTRL-F: switch to fzf filtering | CTRL-H: toggle hidden files | ENTER: open in $EDITOR" \
@@ -73,4 +72,35 @@ function fs() {
   if [[ -n $file ]]; then
       ${EDITOR:-vim} "$file" "+$(echo "$match" | cut -d':' -f2)"
   fi
+}
+
+function memhogs() {
+    sudo -v
+    sudo procs --sortd mem --no-header | head -n 15 | fzf --ansi \
+        --preview "sudo procs --tree {1} && echo '\n---Memory Maps---\n' && sudo pmap -x {1} | head -n 20" \
+        --preview-window=down,wrap \
+        --height=100% \
+        --layout=reverse \
+        --header='Memory Hogs [ENTER to kill] | Preview shows process tree and memory maps' \
+        --bind='ctrl-r:reload(sudo procs --sortd mem --no-header | head -n 15)' \
+        | awk '{print $1}' | xargs -r sudo kill -9
+}
+
+function units() {
+    sudo -v
+    systemctl list-units --type=service --all --no-pager \
+        | awk '{print $1}' \
+        | rg '\.service' \
+        | fzf --ansi \
+            --preview "systemctl status {1} --no-pager | bat --color=always -l log --style=numbers" \
+            --preview-window=right:60%:wrap \
+            --header 'System Units | CTRL-R: reload | CTRL-L: journal | CTRL-S: start/stop' \
+            --bind "ctrl-r:reload(systemctl list-units --type=service --all --no-pager | awk '{print \$1}' | rg '\.service')" \
+            --bind "ctrl-l:execute(journalctl -u {1} --no-pager  | bat --paging=always --color=always -l log --style=numbers)" \
+            --bind "ctrl-s:execute(echo 'Action? [s]tart [k]ill [r]estart' && read -n 1 action && \
+                case \$action in \
+                    s) sudo systemctl start {1} ;; \
+                    k) sudo systemctl stop {1} ;; \
+                    r) sudo systemctl restart {1} ;; \
+                esac)"
 }
