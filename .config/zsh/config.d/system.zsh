@@ -48,13 +48,15 @@ function units() {
 }
 
 function timers() {
-   systemctl list-timers --all --no-pager --output=json \
-       | jq -r '.[].unit' \
+   systemctl list-timers --all --no-pager \
+       | tail -n +2 \
+       | head -n -5 \
+       | awk '{print $(NF-1)}' \
        | fzf --ansi \
            --preview "script -qec 'systemctl status {1} --no-pager' /dev/null" \
            --preview-window=right:60%:wrap \
            --header $'System Timers | CTRL-R: reload\nCTRL-L: journal | CTRL-S: start | CTRL-D: stop | CTRL-T: restart' \
-           --bind "ctrl-r:reload(systemctl list-timers --all --no-pager --output=json | jq -r '.[].unit')" \
+           --bind "ctrl-r:reload(systemctl list-timers --all --no-pager | tail -n +2 | head -n -5 | awk '{print $(NF-1)}')" \
            --bind "ctrl-l:execute(journalctl -u {1} --no-pager | bat --paging=always -l=syslog --style=numbers )" \
            --bind "ctrl-s:execute(sudo systemctl start {1})" \
            --bind "ctrl-d:execute(sudo systemctl stop {1})" \
