@@ -32,15 +32,23 @@ function fs() {
 }
 
 function units() {
+   zparseopts -D -E -a opts \
+       e=enabled -enabled=enabled \
+       a=active -active=active
+
+   local cmd="systemctl list-units --type=service --all --no-pager"
+   [[ -n "$enabled" ]] && cmd="systemctl list-unit-files --type=service --state=enabled --no-pager"
+   [[ -n "$active" ]] && cmd="systemctl list-units --type=service --state=active --no-pager"
+
    sudo -v
-   systemctl list-units --type=service --all --no-pager \
+   eval "$cmd" \
        | awk '{print $1}' \
        | rg '\.service' \
        | fzf --ansi \
            --preview "script -qec 'systemctl status {1} --no-pager' /dev/null" \
            --preview-window=right:60%:wrap \
            --header $'System Units | CTRL-R: reload\nCTRL-L: journal | CTRL-S: start | CTRL-D: stop | CTRL-T: restart' \
-           --bind "ctrl-r:reload(systemctl list-units --type=service --all --no-pager | awk '{print \$1}' | rg '\.service')" \
+           --bind "ctrl-r:reload($cmd | awk '{print \$1}' | rg '\.service')" \
            --bind "ctrl-l:execute(journalctl -u {1} --no-pager | bat --paging=always -l syslog --style=numbers)" \
            --bind "ctrl-s:execute(sudo systemctl start {1})" \
            --bind "ctrl-d:execute(sudo systemctl stop {1})" \
@@ -62,3 +70,16 @@ function timers() {
            --bind "ctrl-d:execute(sudo systemctl stop {1})" \
            --bind "ctrl-t:execute(sudo systemctl restart {1})"
 }
+
+function crons() {
+   (for f in /etc/cron.d/* /etc/crontab; do
+       [[ -f "$f" ]] && grep -Ev '^#|^$' "$f" | sed "s|^|$f: |"
+   done
+   for user in $(getent passwd | cut -d: -f1,6 | grep -v /nologin$ | cut -d: -f1); do
+       crontab -l -u "$user" 2>/dev/null | grep -Ev '^#|^$' | sed "s/^/$user: /"
+   done) | \
+   fzf --ansi \
+       --header $'System Crons | CTRL-R: reload\nFormat: [file/user]: [schedule] [command]' \
+       --bind "ctrl-r:reload(for f in /etc/cron.d/* /etc/crontab; do [[ -f \$f ]] && grep -Ev '^#|^$' \$f | sed \"s|^|\$f: |\"; done; for user in \$(getent passwd | cut -d: -f1,6 | grep -v /nologin$ | cut -d: -f1); do crontab -l -u \$user 2>/dev/null | grep -Ev '^#|^$' | sed \"s/^/\$user: /\"; done)"
+}
+
