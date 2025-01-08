@@ -1,5 +1,5 @@
 
-# Find files and fucking edit them
+# Find files and edit them
 function fe() {
    local files=($(fzf -m --ansi \
        --bind "ctrl-h:execute-silent([ -z $HIDDEN ] && export HIDDEN=1 || unset HIDDEN)+reload:fd --type f --color=always $([ -n $HIDDEN ] && echo '--hidden')" \
@@ -9,6 +9,7 @@ function fe() {
    [[ ${#files[@]} -gt 0 ]] && ${EDITOR:-vim} "${files[@]}"
 }
 
+# Ripgrep thru files and edit them
 function fs() {
   RG_BASE="rg --column --line-number --no-heading --color=always --smart-case --ignore-file-case-insensitive"
   INITIAL_QUERY=""
@@ -38,26 +39,27 @@ function units() {
        | fzf --ansi \
            --preview "script -qec 'systemctl status {1} --no-pager' /dev/null" \
            --preview-window=right:60%:wrap \
-           --header $'System Units | CTRL-R: reload\nCTRL-L: journal | CTRL-S: start | CTRL-K: stop | CTRL-T: restart' \
+           --header $'System Units | CTRL-R: reload\nCTRL-L: journal | CTRL-S: start | CTRL-D: stop | CTRL-T: restart' \
            --bind "ctrl-r:reload(systemctl list-units --type=service --all --no-pager | awk '{print \$1}' | rg '\.service')" \
            --bind "ctrl-l:execute(journalctl -u {1} --no-pager | bat --paging=always --color=always -l log --style=numbers --pager='less -FR +G')" \
            --bind "ctrl-s:execute(sudo systemctl start {1})" \
-           --bind "ctrl-k:execute(sudo systemctl stop {1})" \
+           --bind "ctrl-d:execute(sudo systemctl stop {1})" \
            --bind "ctrl-t:execute(sudo systemctl restart {1})"
 }
 
+
 function timers() {
-    systemctl list-timers --all --no-pager --full \
-        | fzf --ansi \
-            --preview "script -qec 'systemctl status {1} --no-pager' /dev/null" \
-            --preview-window=right:30%:wrap \
-            --header 'System Timers | CTRL-R: reload | CTRL-L: journal | CTRL-S: start/stop' \
-            --bind "ctrl-r:reload(systemctl list-timers --all --no-pager --full)" \
-            --bind "ctrl-l:execute(journalctl -u {1} --no-pager | bat --paging=always --color=always -l log --style=numbers --pager='less -FR +G')" \
-            --bind "ctrl-s:execute(echo 'Action? [s]tart [k]ill [r]estart' && read -n 1 action && \
-                case \$action in \
-                    s) sudo systemctl start {1} ;; \
-                    k) sudo systemctl stop {1} ;; \
-                    r) sudo systemctl restart {1} ;; \
-                esac)"
+   systemctl list-timers --all --no-pager --full \
+       | sed '/timers listed/d' \
+       | sed '/^$/d' \
+       | awk 'NR>1 {print $NF}' \
+       | fzf --ansi \
+           --preview "script -qec 'systemctl status {1} --no-pager' /dev/null" \
+           --preview-window=right:60%:wrap \
+           --header $'System Timers | CTRL-R: reload\nCTRL-L: journal | CTRL-S: start | CTRL-D: stop | CTRL-T: restart' \
+           --bind "ctrl-r:reload(systemctl list-timers --all --no-pager --full | sed '/timers listed/d' | sed '/^$/d' | awk 'NR>1 {print \$NF}')" \
+           --bind "ctrl-l:execute(journalctl -u {1} --no-pager | bat --paging=always --color=always -l log --style=numbers --pager='less -FR +G')" \
+           --bind "ctrl-s:execute(sudo systemctl start {1})" \
+           --bind "ctrl-d:execute(sudo systemctl stop {1})" \
+           --bind "ctrl-t:execute(sudo systemctl restart {1})"
 }
