@@ -39,8 +39,6 @@ zi wait lucid as"program" from"gh-r" for \
 	mv"choose* -> choose" pick"choose" theryangeary/choose \
 	denisidoro/navi \
 	pick"tldr" tldr-pages/tlrc \
-	zellij-org/zellij \
-	twpayne/chezmoi \
 
 # neovim for vscode
 zi ice wait lucid as"program" from"gh-r" ver"nightly" bpick"*appimage*" mv"nvim* -> nvim-vscode" id-as"neovim-vscode"
@@ -413,4 +411,3 @@ export NVM_DIR="$HOME/.nvm"
 [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
 [ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
 
-eval "$(zoxide init zsh)"
