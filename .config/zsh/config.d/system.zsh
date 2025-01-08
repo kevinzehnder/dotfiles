@@ -41,24 +41,21 @@ function units() {
            --preview-window=right:60%:wrap \
            --header $'System Units | CTRL-R: reload\nCTRL-L: journal | CTRL-S: start | CTRL-D: stop | CTRL-T: restart' \
            --bind "ctrl-r:reload(systemctl list-units --type=service --all --no-pager | awk '{print \$1}' | rg '\.service')" \
-           --bind "ctrl-l:execute(journalctl -u {1} --no-pager | bat --paging=always --color=always -l log --style=numbers --pager='less -FR +G')" \
+           --bind "ctrl-l:execute(journalctl -u {1} --no-pager | bat --paging=always -l syslog --style=numbers)" \
            --bind "ctrl-s:execute(sudo systemctl start {1})" \
            --bind "ctrl-d:execute(sudo systemctl stop {1})" \
            --bind "ctrl-t:execute(sudo systemctl restart {1})"
 }
 
-
 function timers() {
-   systemctl list-timers --all --no-pager --full \
-       | sed '/timers listed/d' \
-       | sed '/^$/d' \
-       | awk 'NR>1 {print $NF}' \
+   systemctl list-timers --all --no-pager --output=json \
+       | jq -r '.[].unit' \
        | fzf --ansi \
            --preview "script -qec 'systemctl status {1} --no-pager' /dev/null" \
            --preview-window=right:60%:wrap \
            --header $'System Timers | CTRL-R: reload\nCTRL-L: journal | CTRL-S: start | CTRL-D: stop | CTRL-T: restart' \
-           --bind "ctrl-r:reload(systemctl list-timers --all --no-pager --full | sed '/timers listed/d' | sed '/^$/d' | awk 'NR>1 {print \$NF}')" \
-           --bind "ctrl-l:execute(journalctl -u {1} --no-pager | bat --paging=always --color=always -l log --style=numbers --pager='less -FR +G')" \
+           --bind "ctrl-r:reload(systemctl list-timers --all --no-pager --output=json | jq -r '.[].unit')" \
+           --bind "ctrl-l:execute(journalctl -u {1} --no-pager | bat --paging=always -l=syslog --style=numbers )" \
            --bind "ctrl-s:execute(sudo systemctl start {1})" \
            --bind "ctrl-d:execute(sudo systemctl stop {1})" \
            --bind "ctrl-t:execute(sudo systemctl restart {1})"
