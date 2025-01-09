@@ -96,21 +96,3 @@ function memhogs() {
         | awk '{print $1}' | xargs -r sudo kill -9
 }
 
-function units() {
-    sudo -v
-    systemctl list-units --type=service --all --no-pager \
-        | awk '{print $1}' \
-        | rg '\.service' \
-        | fzf --ansi \
-            --preview "script -qec 'systemctl status {1} --no-pager' /dev/null" \
-            --preview-window=right:60%:wrap \
-            --header 'System Units | CTRL-R: reload | CTRL-L: journal | CTRL-S: start/stop' \
-            --bind "ctrl-r:reload(systemctl list-units --type=service --all --no-pager | awk '{print \$1}' | rg '\.service')" \
-            --bind "ctrl-l:execute(journalctl -u {1} --no-pager  | bat --paging=always --color=always -l log --style=numbers --pager='less -FR +G')" \
-            --bind "ctrl-s:execute(echo 'Action? [s]tart [k]ill [r]estart' && read -n 1 action && \
-                case \$action in \
-                    s) sudo systemctl start {1} ;; \
-                    k) sudo systemctl stop {1} ;; \
-                    r) sudo systemctl restart {1} ;; \
-                esac)"
-}
