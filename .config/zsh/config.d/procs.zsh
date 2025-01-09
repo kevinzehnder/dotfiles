@@ -21,13 +21,24 @@ function psk() {
 }
 
 function ports() {
-   sudo -v
-   sudo ss -Htupln | rg "LISTEN|ESTABLISHED" | tr ',' '\n' | rg "pid=([0-9]+)" -o -r '$1' | xargs -I {} echo -n "{} " | xargs echo "--or" | xargs sudo procs --no-header | fzf --ansi \
-       --preview "sudo ss -tupln | rg {1}" \
-       --preview-window=down \
-       --height=100% \
-       --layout=reverse \
-       --header='Active Ports [LISTEN/ESTABLISHED]' \
+    sudo -v
+    if ! ss_out=$(sudo ss -Htupln | rg "LISTEN|ESTABLISHED"); then
+        echo "no active ports found"
+        return 1
+    fi
+    
+    echo "$ss_out" | \
+        tr ',' '\n' | \
+        rg "pid=([0-9]+)" -o -r '$1' | \
+        xargs -I {} echo -n "{} " | \
+        xargs echo "--or" | \
+        xargs sudo procs --no-header | \
+        fzf --ansi \
+            --preview "sudo ss -tupln | rg {1}" \
+            --preview-window=down \
+            --height=100% \
+            --layout=reverse \
+            --header='Active Ports [LISTEN/ESTABLISHED]'
 }
 
 function hogs() {
