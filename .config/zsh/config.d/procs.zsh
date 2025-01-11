@@ -1,15 +1,15 @@
 function procsp() {
-	sudo -v
+	check_sudo_nopass || sudo -v
     sudo procs --color always --load-config ~/.config/procs/procs_ports.toml "$@" | fzf --ansi
 }
 
 function procsl() {
-    sudo -v
+	check_sudo_nopass || sudo -v
     sudo procs --use-config=large
 }
 
 function psk() {
-   sudo -v
+check_sudo_nopass || sudo -v
    sudo procs | fzf --ansi \
        --preview "sudo procs --no-header --pager=disable --tree {1}" \
        --preview-window=down \
@@ -21,7 +21,7 @@ function psk() {
 }
 
 function ports() {
-    sudo -v
+	check_sudo_nopass || sudo -v
     if ! ss_out=$(sudo ss -Htupln | rg "LISTEN|ESTABLISHED"); then
         echo "no active ports found"
         return 1
@@ -42,7 +42,7 @@ function ports() {
 }
 
 function hogs() {
-   sudo -v
+   check_sudo_nopass || sudo -v
    sudo procs --sortd cpu --no-header | head -n 10 | fzf --ansi \
        --preview "sudo procs --tree {1}" \
        --preview-window=down \
@@ -85,7 +85,7 @@ function fs() {
 }
 
 function memhogs() {
-    sudo -v
+	check_sudo_nopass || sudo -v
     sudo procs --sortd mem --no-header | head -n 15 | fzf --ansi \
         --preview "sudo procs --tree {1} && echo '\n---Memory Maps---\n' && sudo pmap -x {1} | head -n 20" \
         --preview-window=down,wrap \

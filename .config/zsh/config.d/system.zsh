@@ -31,7 +31,6 @@ function fs() {
   fi
 }
 
-
 function check_sudo_nopass() {
     sudo -n true 2>/dev/null
     return $?
