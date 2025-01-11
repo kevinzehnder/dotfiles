@@ -63,7 +63,7 @@ function units() {
 function timers() {
    systemctl list-timers --all --no-pager \
        | tail -n +2 \
-       | head -n -5 \
+       | head -n -2 \
        | awk '{print $(NF-1)}' \
        | fzf --ansi \
            --preview "script -qec 'systemctl status {} --no-pager' /dev/null" \
