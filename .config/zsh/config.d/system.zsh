@@ -55,7 +55,7 @@ function units() {
            --header $'System Units | CTRL-R: reload\nCTRL-L: journal | CTRL-E: edit\nCTRL-S: start | CTRL-D: stop | CTRL-T: restart' \
            --bind "ctrl-r:reload($cmd | awk '{print \$1}' | rg '\.service')" \
            --bind "ctrl-l:execute(sudo journalctl -n 2000 -u {1} --no-pager | bat -l syslog -p --pager='less -R +G')" \
-           --bind "ctrl-e:execute(sudo systemctl edit {1})" \
+           --bind "ctrl-e:execute(sudo systemctl edit {1} --full)" \
            --bind "ctrl-s:execute(sudo systemctl start {1})" \
            --bind "ctrl-d:execute(sudo systemctl stop {1})" \
            --bind "ctrl-t:execute(sudo systemctl restart {1})"
