@@ -156,6 +156,9 @@ function info() {
     done
     
     local timer_count=$(systemctl list-timers --all | rg -N "active" | wc -l)
+	
+	local hostname=$(hostname)
+    printf '\n⚡ \033[1m%s\033[0m ⚡\n\n' "$hostname"
 
     echo "🖥️  OS:      $os"
     echo "🐧 Kernel:   $kernel"
