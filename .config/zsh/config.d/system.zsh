@@ -175,4 +175,9 @@ function info() {
       local ip=$(echo $line | choose 2)
       echo "    $iface: $ip"
     done
+
+	echo -e "\n👥 Users:"
+		w -h | while read -r user tty from rest; do
+	printf "    %s\t%s\t%s\n" "$user" "$tty" "$from"
+	done
 }
