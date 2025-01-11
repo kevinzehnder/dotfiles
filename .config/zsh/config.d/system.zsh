@@ -77,14 +77,38 @@ function timers() {
 }
 
 function crons() {
-   (for f in /etc/cron.d/* /etc/crontab; do
-       [[ -f "$f" ]] && grep -Ev '^#|^$' "$f" | sed "s|^|$f: |"
-   done
-   for user in $(getent passwd | cut -d: -f1,6 | grep -v /nologin$ | cut -d: -f1); do
-       crontab -l -u "$user" 2>/dev/null | grep -Ev '^#|^$' | sed "s/^/$user: /"
-   done) | \
-   fzf --ansi \
-       --header $'System Crons | CTRL-R: reload\nFormat: [file/user]: [schedule] [command]' \
-       --bind "ctrl-r:reload(for f in /etc/cron.d/* /etc/crontab; do [[ -f \$f ]] && grep -Ev '^#|^$' \$f | sed \"s|^|\$f: |\"; done; for user in \$(getent passwd | cut -d: -f1,6 | grep -v /nologin$ | cut -d: -f1); do crontab -l -u \$user 2>/dev/null | grep -Ev '^#|^$' | sed \"s/^/\$user: /\"; done)"
-}
+    local cron_list=$(
+        # System crontabs
+        for f in /etc/cron.d/* /etc/crontab; do
+            [[ -f "$f" ]] && grep -Ev '^#|^$|^SHELL|^PATH|^MAILTO|^HOME|^LOGNAME|^USER' "$f" | sed "s|^|$f: |"
+        done
+        # User crontabs - needs sudo
+        for user in $(getent passwd | cut -d: -f1,6 | grep -v /nologin$ | cut -d: -f1); do
+            sudo crontab -l -u "$user" 2>/dev/null | grep -Ev '^#|^$|^SHELL|^PATH|^MAILTO|^HOME|^LOGNAME|^USER' | sed "s/^/$user: /"
+        done
+    )
 
+    local preview_cmd='
+        line={}
+        source=$(echo "$line" | cut -d: -f1)
+        schedule=$(echo "$line" | cut -d: -f2- | awk "{print \$1,\$2,\$3,\$4,\$5}")
+        command=$(echo "$line" | cut -d: -f2- | cut -d" " -f6-)
+        echo -e "\033[1;32mSource:\033[0m $source"
+        echo -e "\033[1;33mSchedule:\033[0m $schedule"
+        echo -e "\033[1;34mCommand:\033[0m $command"
+    '
+
+    local selected=$(echo "$cron_list" | fzf --ansi \
+        --preview "$preview_cmd" \
+        --preview-window=up:3)
+    
+    if [[ -n "$selected" ]]; then
+        local source=$(echo "$selected" | cut -d: -f1)
+        if [[ "$source" =~ ^/etc/ ]]; then
+            sudo vim "$source"
+        else
+            local user=$(echo "$source" | tr -d ' ')
+            sudo crontab -e -u "$user"
+        fi
+    fi
+}
