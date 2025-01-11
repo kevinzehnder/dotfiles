@@ -36,6 +36,10 @@ function jctl(){
 	sudo journalctl -n 2000 -e $@ | bat -l syslog -p --pager="less -R +G"
 }
 
+function jf(){
+	sudo journalctl -f | bat -l syslog -p
+}
+
 function units() {
    zparseopts -D -E -a opts \
        e=enabled -enabled=enabled \
