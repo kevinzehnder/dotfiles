@@ -180,4 +180,20 @@ function info() {
 		w -h | while read -r user tty from rest; do
 	printf "    %s\t%s\t%s\n" "$user" "$tty" "$from"
 	done
+	
+	echo -e "\n🔄 Reboot:"
+	if needs_reboot; then
+	   echo "    ⚠️  Reboot needed"
+	else
+	   echo "    No Reboot needed"
+	fi
 }
+
+function needs_reboot() {
+   if [[ -f /var/run/reboot-required ]] || \
+      { command -v needs-restarting &>/dev/null && needs-restarting -r 2>/dev/null | rg -q "Reboot is required"; }; then
+       return 0
+   fi
+   return 1
+}
+
