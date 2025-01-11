@@ -168,4 +168,11 @@ function info() {
     
     echo -e "\n📈 Memory:"
     free -h | rg -N "Mem" | choose 1..4 | xargs printf "    Total: %s / Used: %s / Free: %s\n"
+
+    echo -e "\n🌐 Network:"
+    ip -br a | rg -N -v '^lo' | while read -r line; do
+      local iface=$(echo $line | choose 0)
+      local ip=$(echo $line | choose 2)
+      echo "    $iface: $ip"
+    done
 }
