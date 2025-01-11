@@ -52,9 +52,10 @@ function units() {
        | fzf --ansi \
            --preview "script -qec 'systemctl status {1} --no-pager' /dev/null" \
            --preview-window=right:60%:wrap \
-           --header $'System Units | CTRL-R: reload\nCTRL-L: journal | CTRL-E: edit\nCTRL-S: start | CTRL-D: stop | CTRL-T: restart' \
+           --header $'System Units | CTRL-R: reload\nCTRL-L: journal | CTRL-F: follow logs | CTRL-E: edit\nCTRL-S: start | CTRL-D: stop | CTRL-T: restart' \
            --bind "ctrl-r:reload($cmd | awk '{print \$1}' | rg '\.service')" \
            --bind "ctrl-l:execute(sudo journalctl -n 2000 -u {1} --no-pager | bat -l syslog -p --pager='less -R +G')" \
+           --bind "ctrl-f:execute(sudo journalctl -f -u {1} --no-pager | bat -l syslog -p)" \
            --bind "ctrl-e:execute(sudo systemctl edit {1} --full)" \
            --bind "ctrl-s:execute(sudo systemctl start {1})" \
            --bind "ctrl-d:execute(sudo systemctl stop {1})" \
