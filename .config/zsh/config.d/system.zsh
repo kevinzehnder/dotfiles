@@ -31,14 +31,25 @@ function fs() {
   fi
 }
 
+
+function check_sudo_nopass() {
+    sudo -n true 2>/dev/null
+    return $?
+}
+
 # pretty journal
+function jf() {
+    if command -v ccze >/dev/null 2>&1; then
+        sudo journalctl -f | ccze
+    else
+        sudo journalctl -f
+    fi
+}
+
 function jctl(){
 	sudo journalctl -n 2000 -e $@ | bat -l syslog -p --pager="less -R +G"
 }
 
-function jf(){
-	sudo journalctl -f | bat -l syslog -p
-}
 
 function units() {
    zparseopts -D -E -a opts \
@@ -49,7 +60,13 @@ function units() {
    [[ -n "$enabled" ]] && cmd="systemctl list-unit-files --type=service --state=enabled --no-pager"
    [[ -n "$active" ]] && cmd="systemctl list-units --type=service --state=active --no-pager"
 
-   sudo -v
+   if command -v ccze >/dev/null 2>&1; then
+      local follow_logs="sudo journalctl -f -u {1} | ccze"
+   else
+      local follow_logs="sudo journalctl -f -u {1}"
+   fi
+
+   check_sudo_nopass || sudo -v
    eval "$cmd" \
        | awk '{print $1}' \
        | rg '\.service' \
@@ -59,7 +76,7 @@ function units() {
            --header $'System Units | CTRL-R: reload\nCTRL-L: journal | CTRL-F: follow logs | CTRL-E: edit\nCTRL-S: start | CTRL-D: stop | CTRL-T: restart' \
            --bind "ctrl-r:reload($cmd | awk '{print \$1}' | rg '\.service')" \
            --bind "ctrl-l:execute(sudo journalctl -n 2000 -u {1} --no-pager | bat -l syslog -p --pager='less -R +G')" \
-           --bind "ctrl-f:execute(sudo journalctl -f -u {1} --no-pager | bat -l syslog -p)" \
+           --bind "ctrl-f:execute($follow_logs)" \
            --bind "ctrl-e:execute(sudo systemctl edit {1} --full)" \
            --bind "ctrl-s:execute(sudo systemctl start {1})" \
            --bind "ctrl-d:execute(sudo systemctl stop {1})" \
@@ -67,6 +84,7 @@ function units() {
 }
 
 function timers() {
+	check_sudo_nopass || sudo -v
    systemctl list-timers --all --no-pager \
        | tail -n +2 \
        | head -n -2 \
