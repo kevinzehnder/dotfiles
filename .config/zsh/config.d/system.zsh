@@ -52,9 +52,10 @@ function units() {
        | fzf --ansi \
            --preview "script -qec 'systemctl status {1} --no-pager' /dev/null" \
            --preview-window=right:60%:wrap \
-           --header $'System Units | CTRL-R: reload\nCTRL-L: journal | CTRL-S: start | CTRL-D: stop | CTRL-T: restart' \
+           --header $'System Units | CTRL-R: reload\nCTRL-L: journal | CTRL-E: edit\nCTRL-S: start | CTRL-D: stop | CTRL-T: restart' \
            --bind "ctrl-r:reload($cmd | awk '{print \$1}' | rg '\.service')" \
            --bind "ctrl-l:execute(sudo journalctl -n 2000 -u {1} --no-pager | bat -l syslog -p --pager='less -R +G')" \
+           --bind "ctrl-e:execute(sudo systemctl edit {1})" \
            --bind "ctrl-s:execute(sudo systemctl start {1})" \
            --bind "ctrl-d:execute(sudo systemctl stop {1})" \
            --bind "ctrl-t:execute(sudo systemctl restart {1})"
@@ -68,9 +69,10 @@ function timers() {
        | fzf --ansi \
            --preview "script -qec 'systemctl status {} --no-pager' /dev/null" \
            --preview-window=right:60%:wrap \
-           --header $'System Timers | CTRL-R: reload\nCTRL-L: journal | CTRL-S: start | CTRL-D: stop | CTRL-T: restart' \
+           --header $'System Timers | CTRL-R: reload\nCTRL-L: journal | CTRL-E: edit\nCTRL-S: start | CTRL-D: stop | CTRL-T: restart' \
            --bind "ctrl-r:reload(systemctl list-timers --all --no-pager | tail -n +2 | head -n -5 | awk '{print \$(NF-1)}')" \
            --bind "ctrl-l:execute(sudo journalctl -n 2000 -u {} --no-pager | bat -l syslog -p --pager='less -R +G')" \
+           --bind "ctrl-e:execute(sudo systemctl edit {1})" \
            --bind "ctrl-s:execute(sudo systemctl start {})" \
            --bind "ctrl-d:execute(sudo systemctl stop {})" \
            --bind "ctrl-t:execute(sudo systemctl restart {})"
