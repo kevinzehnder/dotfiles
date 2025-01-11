@@ -247,11 +247,6 @@ alias -g -- -h='-h 2>&1 | bat --language=help --style=plain -P'
 alias -g -- --help='--help 2>&1 | bat --language=help --style=plain -P'
 alias batp='bat -Pp'
 
-function jctl(){
-	journalctl -e $@ | bat -l syslog -p --pager="less -FR +G"
-}
-
-
 # Color Themes
 alias light='colorschemeswitcher solarized'
 alias dark='colorschemeswitcher dark'
