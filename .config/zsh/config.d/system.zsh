@@ -38,8 +38,8 @@ function check_sudo_nopass() {
 
 # pretty journal
 function jf() {
-    if command -v ccze >/dev/null 2>&1; then
-        sudo journalctl -f | ccze
+    if command -v tspin >/dev/null 2>&1; then
+        sudo journalctl -f | tspin
     else
         sudo journalctl -f
     fi
@@ -59,8 +59,8 @@ function units() {
    [[ -n "$enabled" ]] && cmd="systemctl list-unit-files --type=service --state=enabled --no-pager"
    [[ -n "$active" ]] && cmd="systemctl list-units --type=service --state=active --no-pager"
 
-   if command -v ccze >/dev/null 2>&1; then
-      local follow_logs="sudo journalctl -f -u {1} | ccze"
+   if command -v tspin >/dev/null 2>&1; then
+      local follow_logs="sudo journalctl -f -u {1} | tspin"
    else
       local follow_logs="sudo journalctl -f -u {1}"
    fi
