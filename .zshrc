@@ -39,6 +39,7 @@ zi wait lucid as"program" from"gh-r" for \
 	mv"choose* -> choose" pick"choose" theryangeary/choose \
 	denisidoro/navi \
 	pick"tldr" tldr-pages/tlrc \
+	pick"xh-*/xh" ducaale/xh \
 
 # neovim for vscode
 zi ice wait lucid as"program" from"gh-r" ver"nightly" bpick"*appimage*" mv"nvim* -> nvim-vscode" id-as"neovim-vscode"
