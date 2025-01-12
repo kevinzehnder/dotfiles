@@ -39,15 +39,15 @@ function check_sudo_nopass() {
 # pretty journal
 function jf() {
     if command -v tspin >/dev/null 2>&1; then
-        sudo journalctl -f $@ | tspin
+        sudo journalctl -n 50 -f $@ | tspin
     else
-        sudo journalctl -f $@
+        sudo journalctl -n 50 -f $@
     fi
 }
 
 function jctl(){
 	# sudo journalctl -n 2000 -e $@ | bat -l syslog -p --pager="less -R +G"
-	tspin -c 'sudo journalctl -n 2000 -e $@ -f'
+	sudo journalctl -n 2000 $@ | tspin | less -r +G
 }
 
 
@@ -62,20 +62,24 @@ function units() {
 
     if command -v tspin >/dev/null 2>&1; then
         local follow_logs='sudo journalctl -n 100 -f -u {1} | tspin'
-		local logs='tspin -c "sudo journalctl -e -u {1}"'
+        local follow_logs_pre='sudo journalctl -n 50 -f -u {1} | tspin'
+		local logs='sudo journalctl -n 2000 -u {1} | tspin | less -r +G'
     else
         local follow_logs='sudo journalctl -n 100 -f -u {1}'
-		local logs='sudo journalctl -e -u {1}'
+        local follow_logs_pre='sudo journalctl -n 50 -f -u {1}'
+		local logs='sudo journalctl -n 2000 -e -u {1}'
         # local logs="sudo journalctl -n 2000 -u {1} --no-pager | bat -l syslog -p --pager='less -R +G'"
     fi
+	local show_status="script -qec 'systemctl status {1} --no-pager' /dev/null"
 
    check_sudo_nopass || sudo -v
    eval "$cmd" \
        | awk '{print $1}' \
        | rg '\.service' \
        | fzf --ansi \
-           --preview "script -qec 'systemctl status {1} --no-pager' /dev/null" \
-           --preview-window=right:60%:wrap \
+           --preview "$show_status" \
+           --preview-window=right:60%:wrap:follow \
+           --height=80% \
            --header $'System Units | CTRL-R: reload\nCTRL-L: journal | CTRL-F: follow logs | CTRL-E: edit\nCTRL-S: start | CTRL-D: stop | CTRL-T: restart' \
            --bind "ctrl-r:reload($cmd | awk '{print \$1}' | rg '\.service')" \
            --bind "ctrl-l:execute($logs)" \
@@ -83,10 +87,20 @@ function units() {
            --bind "ctrl-e:execute(sudo systemctl edit {1} --full)" \
            --bind "ctrl-s:execute(sudo systemctl start {1})" \
            --bind "ctrl-d:execute(sudo systemctl stop {1})" \
-           --bind "ctrl-t:execute(sudo systemctl restart {1})"
+           --bind "ctrl-t:execute(sudo systemctl restart {1})" \
+		   --bind "ctrl-p:preview($follow_logs_pre)" \
 }
 
 function timers() {
+    if command -v tspin >/dev/null 2>&1; then
+        local follow_logs='sudo journalctl -n 100 -f -u {1} | tspin'
+		local logs='sudo journalctl -n 2000 -u {1} | tspin | less -r +G'
+    else
+        local follow_logs='sudo journalctl -n 100 -f -u {1}'
+		local logs='sudo journalctl -n 2000 -e -u {1}'
+        # local logs="sudo journalctl -n 2000 -u {1} --no-pager | bat -l syslog -p --pager='less -R +G'"
+    fi
+	
 	check_sudo_nopass || sudo -v
    systemctl list-timers --all --no-pager \
        | tail -n +2 \
@@ -97,7 +111,7 @@ function timers() {
            --preview-window=right:60%:wrap \
            --header $'System Timers | CTRL-R: reload\nCTRL-L: journal | CTRL-E: edit\nCTRL-S: start | CTRL-D: stop | CTRL-T: restart' \
            --bind "ctrl-r:reload(systemctl list-timers --all --no-pager | tail -n +2 | head -n -5 | awk '{print \$(NF-1)}')" \
-           --bind "ctrl-l:execute(sudo journalctl -n 2000 -u {} --no-pager | bat -l syslog -p --pager='less -R +G')" \
+           --bind "ctrl-l:execute($logs)" \
            --bind "ctrl-e:execute(sudo systemctl edit {1})" \
            --bind "ctrl-s:execute(sudo systemctl start {})" \
            --bind "ctrl-d:execute(sudo systemctl stop {})" \
