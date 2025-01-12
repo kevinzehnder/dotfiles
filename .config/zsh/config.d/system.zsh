@@ -39,14 +39,15 @@ function check_sudo_nopass() {
 # pretty journal
 function jf() {
     if command -v tspin >/dev/null 2>&1; then
-        sudo journalctl -f | tspin
+        sudo journalctl -f $@ | tspin
     else
-        sudo journalctl -f
+        sudo journalctl -f $@
     fi
 }
 
 function jctl(){
-	sudo journalctl -n 2000 -e $@ | bat -l syslog -p --pager="less -R +G"
+	# sudo journalctl -n 2000 -e $@ | bat -l syslog -p --pager="less -R +G"
+	tspin -c 'sudo journalctl -n 2000 -e $@ -f'
 }
 
 
@@ -59,11 +60,14 @@ function units() {
    [[ -n "$enabled" ]] && cmd="systemctl list-unit-files --type=service --state=enabled --no-pager"
    [[ -n "$active" ]] && cmd="systemctl list-units --type=service --state=active --no-pager"
 
-   if command -v tspin >/dev/null 2>&1; then
-      local follow_logs="sudo journalctl -f -u {1} | tspin"
-   else
-      local follow_logs="sudo journalctl -f -u {1}"
-   fi
+    if command -v tspin >/dev/null 2>&1; then
+        local follow_logs='sudo journalctl -n 100 -f -u {1} | tspin'
+		local logs='tspin -c "sudo journalctl -e -u {1}"'
+    else
+        local follow_logs='sudo journalctl -n 100 -f -u {1}'
+		local logs='sudo journalctl -e -u {1}'
+        # local logs="sudo journalctl -n 2000 -u {1} --no-pager | bat -l syslog -p --pager='less -R +G'"
+    fi
 
    check_sudo_nopass || sudo -v
    eval "$cmd" \
@@ -74,7 +78,7 @@ function units() {
            --preview-window=right:60%:wrap \
            --header $'System Units | CTRL-R: reload\nCTRL-L: journal | CTRL-F: follow logs | CTRL-E: edit\nCTRL-S: start | CTRL-D: stop | CTRL-T: restart' \
            --bind "ctrl-r:reload($cmd | awk '{print \$1}' | rg '\.service')" \
-           --bind "ctrl-l:execute(sudo journalctl -n 2000 -u {1} --no-pager | bat -l syslog -p --pager='less -R +G')" \
+           --bind "ctrl-l:execute($logs)" \
            --bind "ctrl-f:execute($follow_logs)" \
            --bind "ctrl-e:execute(sudo systemctl edit {1} --full)" \
            --bind "ctrl-s:execute(sudo systemctl start {1})" \
