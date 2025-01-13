@@ -56,9 +56,9 @@ function units() {
        e=enabled -enabled=enabled \
        a=active -active=active
 
-   local cmd="systemctl list-units --type=service --all --no-pager"
-   [[ -n "$enabled" ]] && cmd="systemctl list-unit-files --type=service --state=enabled --no-pager"
-   [[ -n "$active" ]] && cmd="systemctl list-units --type=service --state=active --no-pager"
+   local cmd="systemctl list-units --type=service --all --no-pager --plain"
+   [[ -n "$enabled" ]] && cmd="systemctl list-unit-files --type=service --state=enabled --no-pager --plain"
+   [[ -n "$active" ]] && cmd="systemctl list-units --type=service --state=active --no-pager --plain"
 
     if command -v tspin >/dev/null 2>&1; then
         local follow_logs='sudo journalctl -n 100 -f -u {1} | tspin'
