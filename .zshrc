@@ -32,7 +32,7 @@ zi wait lucid as"program" from"gh-r" for \
 	pick"duf" muesli/duf \
 	mv"delta* -> delta" pick"delta/delta" dandavison/delta \
 	eza-community/eza \
-	mv"fd* -> fdfind" pick"fdfind/fd" @sharkdp/fd \
+	mv"fd* -> fdfind" pick"fdfind/fd" atclone"sudo cp fdfind/fd /usr/bin/fd" @sharkdp/fd \
 	mv"bat* -> bat" pick"bat/bat" @sharkdp/bat \
 	mv"bin/dog -> dog" pick"dog" ogham/dog \
 	dalance/procs \
