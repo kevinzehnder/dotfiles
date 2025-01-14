@@ -35,7 +35,7 @@ zi wait lucid as"program" from"gh-r" for \
 	mv"fd* -> fdfind" pick"fdfind/fd" atclone"sudo cp fdfind/fd /usr/bin/fd" @sharkdp/fd \
 	mv"bat* -> bat" pick"bat/bat" @sharkdp/bat \
 	mv"bin/dog -> dog" pick"dog" ogham/dog \
-	atclone"sudo cp procs /usr/bin/procs && sudo mkdir /etc/procs && sudo cp ~/.config/procs/procs.toml /etc/procs/procs.toml" dalance/procs \
+	atclone"sudo install procs /usr/bin/procs && sudo install ~/.config/procs/procs.toml /etc/procs/procs.toml" dalance/procs \
 	mv"choose* -> choose" pick"choose" theryangeary/choose \
 	denisidoro/navi \
 	pick"tldr" tldr-pages/tlrc \
