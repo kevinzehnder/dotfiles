@@ -104,6 +104,7 @@ setopt pushd_ignore_dups    # Don't push multiple copies directory onto the dire
 setopt pushd_minus          # Swap the meaning of cd +1 and cd -1 to the opposite.
 
 export EDITOR='nvim'
+export VISUAL='nvim'
 export COLORTERM="truecolor"
 export NVIM_APPNAME="nvim"
 
