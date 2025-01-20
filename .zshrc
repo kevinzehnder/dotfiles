@@ -24,7 +24,7 @@ zi wait lucid for \
 	Aloxaf/fzf-tab
 
 zi wait lucid as"program" from"gh-r" for \
-	ver"v0.10.2" bpick"*appimage*" mv"nvim* -> nvim" neovim/neovim \
+	ver"v0.10.3" bpick"*appimage*" mv"nvim* -> nvim" neovim/neovim \
 	mv"ripgrep* -> rg" pick"rg/rg" BurntSushi/ripgrep \
 	bpick"*linux_amd64*" junegunn/fzf \
 	jesseduffield/lazygit \
