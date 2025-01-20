@@ -230,6 +230,7 @@ alias ld='lazydocker'
 
 alias ap='ansible-playbook'
 alias lg='lazygit'
+alias tf='terraform'
 
 alias syu='sudo pacman -Syu'
 
