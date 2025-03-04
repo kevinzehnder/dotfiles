@@ -225,6 +225,8 @@ alias ip='ip -c'
 alias ipa='ip -o address'
 
 alias d='docker'
+alias n='nerdctl'
+alias nc='nerdctl compose'
 alias dockerkill='docker stop $(docker ps -a -q) && docker rm $(docker ps -a -q)'
 alias ld='lazydocker'
 
@@ -244,7 +246,6 @@ alias kar='kubectl-argo-rollouts'
 
 alias tldrf='tldr --list | fzf --preview "tldr {1}" --preview-window=right,60% | xargs tldr'
 
-alias https='http --default-scheme=https'
 alias zj='zellij'
 
 # use bat to colorize help output
@@ -340,21 +341,18 @@ else
 fi
 
 # Configure ssh forwarding
-export SSH_AUTH_SOCK=$HOME/.ssh/agent.sock
-# need `ps -ww` to get non-truncated command for matching
-# use square brackets to generate a regex match for the process we want but that doesn't match the grep command running it!
-ALREADY_RUNNING=$(ps -auxww | grep -q "[n]piperelay.exe -ei -s //./pipe/openssh-ssh-agent"; echo $?)
-if [[ $ALREADY_RUNNING != "0" ]]; then
-	if [[ -S $SSH_AUTH_SOCK ]]; then
-		# not expecting the socket to exist as the forwarding command isn't running (http://www.tldp.org/LDP/abs/html/fto.html)
-		# echo "removing previous socket..."
-		rm $SSH_AUTH_SOCK
-	fi
-	# echo "Starting SSH-Agent relay..."
-	# setsid to force new session to keep running
-	# set socat to listen on $SSH_AUTH_SOCK and forward to npiperelay which then forwards to openssh-ssh-agent on windows
-	(setsid socat UNIX-LISTEN:$SSH_AUTH_SOCK,fork,umask=077 EXEC:"npiperelay.exe -ei -s //./pipe/openssh-ssh-agent",nofork &) >/dev/null 2>&1
-fi
+function setup_ssh_agent() {
+    export SSH_AUTH_SOCK=$HOME/.ssh/agent.sock
+    # Check if relay is already running
+    ALREADY_RUNNING=$(ps -auxww | grep -q "[n]piperelay.exe -ei -s //./pipe/openssh-ssh-agent"; echo $?)
+    if [[ $ALREADY_RUNNING != "0" ]]; then
+        # Clean up existing socket if needed
+        [[ -S $SSH_AUTH_SOCK ]] && rm $SSH_AUTH_SOCK
+        
+        # Start the SSH agent relay in background
+        (setsid socat UNIX-LISTEN:$SSH_AUTH_SOCK,fork,umask=077 EXEC:"npiperelay.exe -ei -s //./pipe/openssh-ssh-agent",nofork &) >/dev/null 2>&1
+    fi
+}
 
 # fzf keybindings
 [ -f "$HOME/.config/fzf/key-bindings.zsh" ] && source "$HOME/.config/fzf/key-bindings.zsh"
@@ -415,3 +413,5 @@ export NVM_DIR="$HOME/.nvm"
 if command -v tmux &> /dev/null && [ -z "$TMUX" ] && [ -z "$SSH_CONNECTION" ]; then
     tmux attach -t default || tmux new -s default
 fi
+
+setup_ssh_agent
