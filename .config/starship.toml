@@ -58,10 +58,19 @@ style = "bright-white"
 format = "$all_status$ahead_behind"
 
 [hostname]
-ssh_only = true
-format = "<[$hostname]($style)>"
-style = "bold dimmed white"
+ssh_only = false
+format = "on [$ssh_symbol$hostname]($style) "
+style = "bold green"
+ssh_symbol = "🌐 "
+trim_at = "-"
 disabled = false
+
+[hostname.map]
+# "workstation" = "🖥️ "
+# "gaming-pc" = "🎮 "
+# "pi" = "🥧 "
+# "macbook" = "🍎 "
+"mother" = "🔧 "
 
 [julia]
 format = "[$symbol$version]($style) "
