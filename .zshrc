@@ -58,9 +58,14 @@ if [[ "$ARCH" == "x86_64" ]]; then
 elif [[ "$ARCH" == "aarch64" || "$ARCH" == "arm64" || "$ARCH" == "armv7l" ]]; then
     # ARM specific 
     zi wait lucid as"program" from"gh-r" for \
-        ver"v0.10.3" bpick"*linux-arm64.appimage*" mv"nvim* -> nvim" neovim/neovim \
         mv"ripgrep* -> rg" pick"rg/rg" BurntSushi/ripgrep \
         bpick"*linux_arm*" junegunn/fzf
+	
+	zi ice as"program" id-as"neovim" \
+      atclone"CMAKE_BUILD_TYPE=Release make -j4" \
+      atpull"CMAKE_BUILD_TYPE=Release make -j4" \
+      pick"bin/nvim"
+    zi load neovim/neovim
 	
 else
     echo "Unknown architecture: $ARCH - some tools may not install correctly"
