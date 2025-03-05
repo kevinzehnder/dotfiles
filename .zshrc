@@ -26,13 +26,8 @@ zi wait lucid for \
 zi wait lucid for \
 	Aloxaf/fzf-tab
 
-# Architecture-specific tool installations
-if [[ "$ARCH" == "x86_64" ]]; then
+# Common tools (no architecture filter needed)
 zi wait lucid as"program" from"gh-r" for \
-	ver"v0.10.3" bpick"*appimage*" mv"nvim* -> nvim" neovim/neovim \
-	mv"ripgrep* -> rg" pick"rg/rg" BurntSushi/ripgrep \
-	bpick"*linux_amd64*" junegunn/fzf \
-	jesseduffield/lazygit \
 	mv"dust* -> dust" pick"dust/dust" bootandy/dust \
 	pick"duf" muesli/duf \
 	mv"delta* -> delta" pick"delta/delta" dandavison/delta \
@@ -45,37 +40,32 @@ zi wait lucid as"program" from"gh-r" for \
 	denisidoro/navi \
 	pick"tldr" tldr-pages/tlrc \
 	pick"xh-*/xh" ducaale/xh \
-	bensadeh/tailspin \
+	bensadeh/tailspin
 
-# neovim for vscode
-zi ice wait lucid as"program" from"gh-r" ver"nightly" bpick"*appimage*" mv"nvim* -> nvim-vscode" id-as"neovim-vscode"
-zi load neovim/neovim
-
+# Architecture-specific tools
+if [[ "$ARCH" == "x86_64" ]]; then
+    # x86_64 specific
+    zi wait lucid as"program" from"gh-r" for \
+        ver"v0.10.3" bpick"*appimage*" mv"nvim* -> nvim" neovim/neovim \
+        mv"ripgrep* -> rg" pick"rg/rg" BurntSushi/ripgrep \
+        bpick"*linux_amd64*" junegunn/fzf \
+        jesseduffield/lazygit
+    
+    # neovim for vscode (x86_64)
+    zi ice wait lucid as"program" from"gh-r" ver"nightly" bpick"*appimage*" mv"nvim* -> nvim-vscode" id-as"neovim-vscode"
+    zi load neovim/neovim
+    
 elif [[ "$ARCH" == "aarch64" || "$ARCH" == "arm64" || "$ARCH" == "armv7l" ]]; then
-    # ARM specific tools
+    # ARM specific 
     zi wait lucid as"program" from"gh-r" for \
         ver"v0.10.3" bpick"*arm*" mv"nvim* -> nvim" neovim/neovim \
-        mv"ripgrep* -> rg" pick"rg/rg" bpick"*arm*" BurntSushi/ripgrep \
+        mv"ripgrep* -> rg" pick"rg/rg" BurntSushi/ripgrep \
         bpick"*linux_arm*" junegunn/fzf \
-        bpick"*linux_arm*" jesseduffield/lazygit \
-        mv"dust* -> dust" pick"dust/dust" bpick"*arm*" bootandy/dust \
-        pick"duf" bpick"*arm*" muesli/duf \
-        mv"delta* -> delta" pick"delta/delta" bpick"*arm*" dandavison/delta \
-        bpick"*arm*" eza-community/eza \
-        mv"fd* -> fdfind" pick"fdfind/fd" bpick"*arm*" atclone"sudo cp fdfind/fd /usr/bin/fd" @sharkdp/fd \
-        mv"bat* -> bat" pick"bat/bat" bpick"*arm*" @sharkdp/bat \
-        mv"bin/dog -> dog" pick"dog" bpick"*arm*" ogham/dog \
-        bpick"*arm*" atclone"sudo install procs /usr/bin/procs && sudo install ~/.config/procs/procs.toml /etc/procs/procs.toml" dalance/procs \
-        mv"choose* -> choose" pick"choose" bpick"*arm*" theryangeary/choose \
-        bpick"*arm*" denisidoro/navi \
-        pick"tldr" bpick"*arm*" tldr-pages/tlrc \
-        pick"xh-*/xh" bpick"*arm*" ducaale/xh \
-        bpick"*arm*" bensadeh/tailspin
-
+        bpick"*linux_arm*" jesseduffield/lazygit
+    
 else
     echo "Unknown architecture: $ARCH - some tools may not install correctly"
 fi
-
 
 # additional configs
 if [ -d "$HOME/.config/zsh/config.d/" ] ; then
