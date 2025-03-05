@@ -34,11 +34,9 @@ zi wait lucid as"program" from"gh-r" for \
 	eza-community/eza \
 	mv"fd* -> fdfind" pick"fdfind/fd" atclone"sudo cp fdfind/fd /usr/bin/fd" @sharkdp/fd \
 	mv"bat* -> bat" pick"bat/bat" @sharkdp/bat \
-	mv"bin/dog -> dog" pick"dog" ogham/dog \
 	atclone"sudo install procs /usr/bin/procs && sudo install ~/.config/procs/procs.toml /etc/procs/procs.toml" dalance/procs \
 	mv"choose* -> choose" pick"choose" theryangeary/choose \
 	denisidoro/navi \
-	pick"tldr" tldr-pages/tlrc \
 	pick"xh-*/xh" ducaale/xh \
     jesseduffield/lazygit \
 	bensadeh/tailspin
@@ -49,8 +47,9 @@ if [[ "$ARCH" == "x86_64" ]]; then
     zi wait lucid as"program" from"gh-r" for \
         ver"v0.10.3" bpick"*appimage*" mv"nvim* -> nvim" neovim/neovim \
         mv"ripgrep* -> rg" pick"rg/rg" BurntSushi/ripgrep \
+		mv"bin/dog -> dog" pick"dog" ogham/dog \
+		pick"tldr" tldr-pages/tlrc \
         bpick"*linux_amd64*" junegunn/fzf
-	
     
     # neovim for vscode (x86_64)
     zi ice wait lucid as"program" from"gh-r" ver"nightly" bpick"*appimage*" mv"nvim* -> nvim-vscode" id-as"neovim-vscode"
@@ -64,6 +63,7 @@ elif [[ "$ARCH" == "aarch64" || "$ARCH" == "arm64" || "$ARCH" == "armv7l" ]]; th
         bpick"*linux_arm*" junegunn/fzf \
         bpick"*arm*" mv"bin/dog -> dog" pick"dog" ogham/dog \
         bpick"*arm*" pick"tldr" tldr-pages/tlrc 
+	
 else
     echo "Unknown architecture: $ARCH - some tools may not install correctly"
 fi
