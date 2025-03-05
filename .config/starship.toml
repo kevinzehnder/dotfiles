@@ -59,7 +59,7 @@ format = "$all_status$ahead_behind"
 
 [hostname]
 ssh_only = true
-format = "on [$ssh_symbol$hostname]($style) "
+format = "[$ssh_symbol$hostname]($style) "
 style = "bold green"
 ssh_symbol = "🌐 "
 trim_at = "-"
