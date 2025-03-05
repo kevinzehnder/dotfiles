@@ -58,7 +58,7 @@ style = "bright-white"
 format = "$all_status$ahead_behind"
 
 [hostname]
-ssh_only = false
+ssh_only = true
 format = "on [$ssh_symbol$hostname]($style) "
 style = "bold green"
 ssh_symbol = "🌐 "
