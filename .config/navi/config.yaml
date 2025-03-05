@@ -17,24 +17,19 @@ style:
     width_percentage: 10 # column width relative to the terminal window
     min_width: 10 # minimum column width as number of characters
 
-
 finder:
   command: fzf # equivalent to the --finder option
   # overrides: --tac # equivalent to the --fzf-overrides option
   # overrides_var: --tac # equivalent to the --fzf-overrides-var option
 
-# cheats:
-#   paths:
-#     - /path/to/some/dir # on unix-like os
-#     - F:\\path\\to\\dir # on Windows
-# path: /path/to/some/dir # (DEPRECATED) equivalent to the --path option
+cheats:
+  paths:
+    - ~/.config/navi/cheats
+    - ~/.local/share/navi/cheats
 
 # search:
 # tags: git,!checkout # equivalent to the --tag-rules option
 
 shell:
-  # Shell used for shell out. Possible values: bash, zsh, dash, ...
-  # For Windows, use `cmd.exe` instead.
   command: zsh
 
-  # finder_command: bash # similar, but for fzf's internals
