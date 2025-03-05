@@ -30,22 +30,31 @@ function sshget() {
 
 
 function fix_ssh_permissions() {
+   echo "🔒 Starting SSH permissions fix"
+   
    # Fix parent dirs
+   echo "Setting .ssh dir to 700..."
    chmod 700 ~/.ssh 2>/dev/null
+   echo "Setting all subdirs to 700..."
    find ~/.ssh -type d -exec chmod 700 {} \; 2>/dev/null
    
    # Config files including config.d shit
+   echo "Setting config files to 600..."
    find ~/.ssh -type f -name "config*" -exec chmod 600 {} \; 2>/dev/null
    find ~/.ssh/config.d -type f -exec chmod 600 {} \; 2>/dev/null
    
    # Keys
+   echo "Setting private keys to 600..."
    find ~/.ssh -type f -name "id_*" ! -name "*.pub" -exec chmod 600 {} \; 2>/dev/null
    find ~/.ssh -type f -name "identity" -exec chmod 600 {} \; 2>/dev/null
    
    # Public shit
+   echo "Setting public keys to 644..."
    find ~/.ssh -type f -name "*.pub" -exec chmod 644 {} \; 2>/dev/null
+   echo "Setting known_hosts to 644..."
    find ~/.ssh -type f -name "known_hosts*" -exec chmod 644 {} \; 2>/dev/null
+   echo "Setting authorized_keys to 600..."
    find ~/.ssh -type f -name "authorized_keys" -exec chmod 600 {} \; 2>/dev/null
    
-   echo "SSH permissions fixed."
+   echo "✅ SSH permissions fixed."
 }
