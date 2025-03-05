@@ -1,3 +1,6 @@
+# detect architecture
+ARCH=$(uname -m)
+
 # starship
 eval "$(starship init zsh)"
 
@@ -23,6 +26,8 @@ zi wait lucid for \
 zi wait lucid for \
 	Aloxaf/fzf-tab
 
+# Architecture-specific tool installations
+if [[ "$ARCH" == "x86_64" ]]; then
 zi wait lucid as"program" from"gh-r" for \
 	ver"v0.10.3" bpick"*appimage*" mv"nvim* -> nvim" neovim/neovim \
 	mv"ripgrep* -> rg" pick"rg/rg" BurntSushi/ripgrep \
@@ -45,6 +50,32 @@ zi wait lucid as"program" from"gh-r" for \
 # neovim for vscode
 zi ice wait lucid as"program" from"gh-r" ver"nightly" bpick"*appimage*" mv"nvim* -> nvim-vscode" id-as"neovim-vscode"
 zi load neovim/neovim
+
+elif [[ "$ARCH" == "aarch64" || "$ARCH" == "arm64" || "$ARCH" == "armv7l" ]]; then
+    # ARM specific tools
+    zi wait lucid as"program" from"gh-r" for \
+        ver"v0.10.3" bpick"*arm*" mv"nvim* -> nvim" neovim/neovim \
+        mv"ripgrep* -> rg" pick"rg/rg" bpick"*arm*" BurntSushi/ripgrep \
+        bpick"*linux_arm*" junegunn/fzf \
+        bpick"*linux_arm*" jesseduffield/lazygit \
+        mv"dust* -> dust" pick"dust/dust" bpick"*arm*" bootandy/dust \
+        pick"duf" bpick"*arm*" muesli/duf \
+        mv"delta* -> delta" pick"delta/delta" bpick"*arm*" dandavison/delta \
+        bpick"*arm*" eza-community/eza \
+        mv"fd* -> fdfind" pick"fdfind/fd" bpick"*arm*" atclone"sudo cp fdfind/fd /usr/bin/fd" @sharkdp/fd \
+        mv"bat* -> bat" pick"bat/bat" bpick"*arm*" @sharkdp/bat \
+        mv"bin/dog -> dog" pick"dog" bpick"*arm*" ogham/dog \
+        bpick"*arm*" atclone"sudo install procs /usr/bin/procs && sudo install ~/.config/procs/procs.toml /etc/procs/procs.toml" dalance/procs \
+        mv"choose* -> choose" pick"choose" bpick"*arm*" theryangeary/choose \
+        bpick"*arm*" denisidoro/navi \
+        pick"tldr" bpick"*arm*" tldr-pages/tlrc \
+        pick"xh-*/xh" bpick"*arm*" ducaale/xh \
+        bpick"*arm*" bensadeh/tailspin
+
+else
+    echo "Unknown architecture: $ARCH - some tools may not install correctly"
+fi
+
 
 # additional configs
 if [ -d "$HOME/.config/zsh/config.d/" ] ; then
