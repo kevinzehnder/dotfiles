@@ -388,7 +388,7 @@ setup_ssh_agent() {
     
     # Verify it's running
     if ! ps -auxww | grep -q "[s]ocat.*$SSH_AUTH_SOCK"; then
-        echo "SSH agent setup failed. Retrying..."
+        # echo "SSH agent setup failed. Retrying..."
         if [[ ${setup_ssh_agent_retry_count:-0} -lt 2 ]]; then
             export setup_ssh_agent_retry_count=$((${setup_ssh_agent_retry_count:-0} + 1))
             setup_ssh_agent
