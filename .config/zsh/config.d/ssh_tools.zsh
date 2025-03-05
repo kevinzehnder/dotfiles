@@ -58,3 +58,45 @@ function fix_ssh_permissions() {
    
    echo "✅ SSH permissions fixed."
 }
+
+function show_ssh_keys() {
+   echo "🔑 Displaying your public SSH keys..."
+   
+   # Find all public keys and process each one individually
+   local keys=($(find ~/.ssh -type f -name "*.pub" 2>/dev/null))
+   
+   if [[ ${#keys[@]} -eq 0 ]]; then
+      echo "❌ No public keys found. Generate one with ssh-keygen first."
+      return 1
+   fi
+   
+   # Show each key with header
+   local count=0
+   echo ""
+   echo "=== KEYS FOUND ==="
+   
+   for key in "${keys[@]}"; do
+      # Make sure the file exists (check again to be safe)
+      if [[ ! -f "$key" ]]; then
+          continue
+      fi
+      
+      local keyname=$(basename "$key")
+      local keytype=$(head -n 1 "$key" | awk '{print $1}')
+      local fingerprint=$(ssh-keygen -lf "$key" 2>/dev/null | awk '{print $2}')
+      
+      # Only show if we can actually read it
+      if [[ -n "$keytype" ]]; then
+          echo ""
+          echo -e "\e[1;36m$keyname\e[0m [$keytype] - $fingerprint"
+          echo "-----------------------------------------"
+          cat "$key"
+          echo ""
+          ((count++))
+      fi
+   done
+   
+   echo "=== $count keys found ==="
+   echo ""
+   echo "✅ Copy the key you want and paste it into remote:~/.ssh/authorized_keys"
+}
