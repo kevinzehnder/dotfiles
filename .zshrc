@@ -40,6 +40,7 @@ zi wait lucid as"program" from"gh-r" for \
 	denisidoro/navi \
 	pick"tldr" tldr-pages/tlrc \
 	pick"xh-*/xh" ducaale/xh \
+    jesseduffield/lazygit \
 	bensadeh/tailspin
 
 # Architecture-specific tools
@@ -48,9 +49,9 @@ if [[ "$ARCH" == "x86_64" ]]; then
     zi wait lucid as"program" from"gh-r" for \
         ver"v0.10.3" bpick"*appimage*" mv"nvim* -> nvim" neovim/neovim \
         mv"ripgrep* -> rg" pick"rg/rg" BurntSushi/ripgrep \
-        bpick"*linux_amd64*" junegunn/fzf \
-        jesseduffield/lazygit
+        bpick"*linux_amd64*" junegunn/fzf
 	
+    
     # neovim for vscode (x86_64)
     zi ice wait lucid as"program" from"gh-r" ver"nightly" bpick"*appimage*" mv"nvim* -> nvim-vscode" id-as"neovim-vscode"
     zi load neovim/neovim
@@ -61,8 +62,6 @@ elif [[ "$ARCH" == "aarch64" || "$ARCH" == "arm64" || "$ARCH" == "armv7l" ]]; th
         ver"v0.10.3" bpick"*arm*" mv"nvim* -> nvim" neovim/neovim \
         mv"ripgrep* -> rg" pick"rg/rg" BurntSushi/ripgrep \
         bpick"*linux_arm*" junegunn/fzf \
-		bpick"*arm*" eza-community/eza \
-        bpick"*linux_arm*" jesseduffield/lazygit \
         bpick"*arm*" mv"bin/dog -> dog" pick"dog" ogham/dog \
         bpick"*arm*" pick"tldr" tldr-pages/tlrc 
 else
