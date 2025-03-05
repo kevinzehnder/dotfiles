@@ -1,0 +1,21 @@
+% ansible, automation, devops
+
+# Run an Ansible playbook with interactive selection
+; Lets you select:
+; 1. Playbook from 'playbooks/' directory
+; 2. Inventory file (optional)
+; 3. Hosts/groups (optional)
+; 4. Tags (optional)
+; 
+; Builds and prints the full ansible-playbook command for you
+aplay
+
+# Run an Ansible role with interactive selection  
+; Interactive workflow to run a standalone Ansible role:
+; 1. Select role from 'roles/' directory
+; 2. Choose inventory file (optional)
+; 3. Pick target hosts (optional)
+; 4. Select tags to apply (optional)
+;
+; Builds and prints a full ansible command with include_role
+arole

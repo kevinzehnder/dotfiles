@@ -1,0 +1,34 @@
+
+% kz, zsh, system, services, monitoring, admin
+# Find and edit files with fzf+bat preview
+fe
+
+# Search file contents and edit matches (ripgrep+fzf)
+fs
+
+# journalctl -f thru tailspin
+jf
+
+# journalctl thru tailspin
+jctl
+
+# Browse and manage systemd services
+units
+
+# Browse and manage systemd services (only enabled ones)
+units -e
+
+# Browse and manage systemd services (only active ones)
+units -a
+
+# Browse and manage systemd timers
+timers
+
+# View and edit system cron jobs
+crons
+
+# Show system info summary
+info
+
+# open tldr pages using fzf
+tldrf

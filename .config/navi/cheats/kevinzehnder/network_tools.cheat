@@ -1,0 +1,11 @@
+% network, dns, wifi
+
+# Lookup all DNS record types for a domain
+digall <domain>
+
+# Connect to WiFi network using NMCLI (interactive)
+wifi
+
+# Manage network interfaces using NMCLI (view/edit/up/down)
+net
+

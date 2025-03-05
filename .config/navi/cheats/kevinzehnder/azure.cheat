@@ -1,0 +1,5 @@
+
+% azcli, kz
+# ssh into Azure VM
+az ssh vm -n <vmname> -g <resourcegroup> --subscription "<subscription>"
+

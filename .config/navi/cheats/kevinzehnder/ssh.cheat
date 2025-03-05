@@ -1,0 +1,24 @@
+
+% kz, zsh, ssh
+# Fix SSH Folder/File Permissions
+; blah blah
+; blah 
+; what 
+; the fuck
+fix_ssh_permissions
+
+% kz, zsh, ssh
+# Get Files from SSH Server using FD/FZF
+sshget <server> <path>
+
+% ssh, kz
+# SSH using only explicitly configured keyfile
+ssh <user>@<server> -o IdentitiesOnly=yes -i <keyfile>
+
+# SSH using only password (no public keys)
+ssh -o PubkeyAuthentication=no -o PreferredAuthentications=password <user>@<server>
+
+% ssh, kz
+# create a socks proxy through ssh
+ssh <target> -D <socksport>
+
