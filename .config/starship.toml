@@ -58,8 +58,8 @@ style = "bright-white"
 format = "$all_status$ahead_behind"
 
 [hostname]
-ssh_only = false
-format = "🖥️ [$ssh_symbol$hostname]($style) "
+ssh_only = true
+format = "[$ssh_symbol$hostname]($style) "
 style = "bold green"
 ssh_symbol = "🌐 "
 trim_at = "-"
