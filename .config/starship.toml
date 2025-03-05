@@ -59,7 +59,7 @@ format = "$all_status$ahead_behind"
 
 [hostname]
 ssh_only = false
-format = "[$ssh_symbol$hostname]($style) "
+format = "🖥️ [$ssh_symbol$hostname]($style) "
 style = "bold green"
 ssh_symbol = "🌐 "
 trim_at = "-"
@@ -106,6 +106,7 @@ style = "bold #239dae"
 
 [username]
 style_user = "bold dimmed blue"
+format = "[👤 $user]($style) "
 show_always = false
 
 [nodejs]
