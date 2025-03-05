@@ -47,6 +47,8 @@ if [[ "$ARCH" == "x86_64" ]]; then
     zi wait lucid as"program" from"gh-r" for \
         ver"v0.10.3" bpick"*appimage*" mv"nvim* -> nvim" neovim/neovim \
         mv"ripgrep* -> rg" pick"rg/rg" BurntSushi/ripgrep \
+		mv"bin/dog -> dog" pick"dog" ogham/dog \
+		pick"tldr" tldr-pages/tlrc \
         bpick"*linux_amd64*" junegunn/fzf
     
     # neovim for vscode (x86_64)
@@ -56,11 +58,9 @@ if [[ "$ARCH" == "x86_64" ]]; then
 elif [[ "$ARCH" == "aarch64" || "$ARCH" == "arm64" || "$ARCH" == "armv7l" ]]; then
     # ARM specific 
     zi wait lucid as"program" from"gh-r" for \
-        ver"v0.10.3" bpick"*linux-arm64.tar*" mv"nvim* -> nvim" neovim/neovim \
+        ver"v0.10.3" bpick"*linux-arm*" mv"nvim* -> nvim" neovim/neovim \
         mv"ripgrep* -> rg" pick"rg/rg" BurntSushi/ripgrep \
-        bpick"*linux_arm*" junegunn/fzf \
-        bpick"*arm*" mv"bin/dog -> dog" pick"dog" ogham/dog \
-        bpick"*arm*" pick"tldr" tldr-pages/tlrc 
+        bpick"*linux_arm*" junegunn/fzf
 	
 else
     echo "Unknown architecture: $ARCH - some tools may not install correctly"
