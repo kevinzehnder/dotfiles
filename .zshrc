@@ -259,6 +259,8 @@ alias ap='ansible-playbook'
 alias lg='lazygit'
 alias tf='terraform'
 alias tm='tmux attach -t default || tmux new -s default'
+alias zshrc='vim ~/.zshrc'
+alias sshconf='vim ~/.ssh/config'
 
 alias syu='sudo pacman -Syu'
 
