@@ -173,6 +173,10 @@ function info() {
     done
     
     local timer_count=$(systemctl list-timers --all | rg -N "active" | wc -l)
+
+    local cpu_model=$(cat /proc/cpuinfo | grep -i "model name\|hardware" | head -1 | sed 's/.*: //')
+    local cpu_cores=$(grep -c "^processor" /proc/cpuinfo)
+    local cpu_arch=$(uname -m)
 	
 	local hostname=$(hostname)
     printf '\n⚡ \033[1m%s\033[0m ⚡\n\n' "$hostname"
@@ -185,6 +189,11 @@ function info() {
     echo "🔌 Ports:    $listening listening"
     echo "⚡ Timers:   $timer_count active"
     echo "🕒 Crons:    $cron_count jobs"
+
+	echo -e "\n💻 CPU:"
+    echo "    Model:     $cpu_model"
+    echo "    Cores:     $cpu_cores"
+    echo "    Arch:      $cpu_arch"
     
     echo -e "\n📈 Memory:"
     free -h | rg -N "Mem" | choose 1..4 | xargs printf "    Total: %s / Used: %s / Free: %s\n"
