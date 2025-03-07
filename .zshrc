@@ -463,4 +463,6 @@ if command -v tmux &> /dev/null && [ -z "$TMUX" ] && [ -z "$SSH_CONNECTION" ]; t
     tmux attach -t default || tmux new -s default
 fi
 
-setup_ssh_agent
+if [[ -n "$WSL_DISTRO_NAME" ]]; then
+    setup_ssh_agent
+fi
