@@ -47,12 +47,9 @@ function s() {
     # Select a host with FZF
     local selected_host=$(echo "$hosts" | 
         fzf --reverse \
-            --header="SSH Connections | CTRL-R: reload | CTRL-T: test connection | CTRL-I: ping | ENTER: connect" \
+            --header="SSH Connections" \
             --preview-window=right:60%:wrap \
             --preview="source ~/.config/zsh/config.d/preview_functions.zsh && ssh_connection_preview {}" \
-            --bind="ctrl-r:reload(parse_ssh_config | cut -d'|' -f1)" \
-            --bind="ctrl-t:execute(ssh -v -o ConnectTimeout=5 -o BatchMode=yes -o StrictHostKeyChecking=accept-new {} exit 2>&1 | less)" \
-            --bind="ctrl-i:execute(ssh -G {} | grep ^hostname | awk '{print \$2}' | xargs ping -c 5 | less)" \
             --height=80%)
     
     # If nothing selected, just exit
