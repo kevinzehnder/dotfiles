@@ -92,6 +92,7 @@ vim.keymap.set("n", "<C-u>", "<C-u>zz")
 vim.keymap.set("n", "Q", "<nop>")
 
 vim.keymap.set("n", "<Leader>s", [[:%s/\<<C-r><C-w>\>/<C-r><C-w>/gI<Left><Left><Left>]], { desc = "Change word under cursor" })
+vim.keymap.set("n", "<Leader>T", [[:s/\<./\u&/g<cr>:nohl<cr>]], { desc = "Change Line to TitleCase" })
 
 -- Remap arrow keys to resize window
 vim.keymap.set("n", "<A-down>", ":resize -2<CR>")
