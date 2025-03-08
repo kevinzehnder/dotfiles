@@ -20,7 +20,6 @@ nmap -sV -T4 -p111,2049 <server>
 rpcinfo -n 2049 -t <server> <port>
 $port: echo 100003
 
-
 % kz, nfs, mount
 $share: showmount -e <server> --no-headers | choose 0
 $mountpoint: ls

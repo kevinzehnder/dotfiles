@@ -1,27 +1,27 @@
 % processes, monitoring, system, ports, zsh, kz
 
-# Show processes with open ports (interactive)
+# Show Processes With Open Ports (Interactive)
 procsp
 
-# List all processes in large detailed view
+# List All Processes In Large Detailed View
 procsl
 
-# Kill process (interactive selection)
+# Kill Process (Interactive Selection)
 psk
 
-# Show processes with active network connections
+# Show Processes With Active Network Connections
 ports
 
-# View and kill top CPU-consuming processes
+# View And Kill Top CPU-Consuming Processes
 hogs
 
-# View and kill top memory-consuming processes
+# View And Kill Top Memory-Consuming Processes
 memhogs
 
-# Check if sudo password is needed
+# Check if Sudo Password Is Needed
 check_sudo_nopass
 
 % procs, kz
-# show open ports with fzf
+# Show Open Ports With FZF
 sudo procs --sorta=TcpPort --color=always | fzf --ansi
 

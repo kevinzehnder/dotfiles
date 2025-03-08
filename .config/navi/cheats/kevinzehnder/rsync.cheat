@@ -1,12 +1,12 @@
 
 % rsync, kz
-# copy source to target [-P partial][-a archive mode][-v verbose][-z compress]
+# Copy Source to Target [-P partial][-a archive mode][-v verbose][-z compress]
 rsync -Pavz <source> <target>
 
-# copy all files/subdirs of sourcedir to targetdir
+# Copy All Files/Subdirs Of Sourcedir To Targetdir
 rsync -r <source>/ <target>
 
-# rsync with sudo on remote machine
+# Rsync with Sudo on Remote Machine
 rsync -Pavz --rsync-path="sudo rsync" <source> <target>
 
 
