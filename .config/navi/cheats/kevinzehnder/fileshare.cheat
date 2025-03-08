@@ -1,5 +1,6 @@
 
 % smbclient, kz, pentest
+
 # Enumerate SMB shares anonymously
 smbclient -N -L <target>
 

@@ -3,6 +3,8 @@
 # show Linux distribution information
 bat /etc/*-release
 
+# change default shell for current user to ZSH
+sudo chsh -s $(which zsh) $(whoami)
 
 % xargs, kz
 # add input as argument to the command: <command> <input>
