@@ -17,6 +17,7 @@ ssh <user>@<server> -o IdentitiesOnly=yes -i <keyfile>
 ssh -o PubkeyAuthentication=no -o PreferredAuthentications=password <user>@<server>
 
 # Create A Socks Proxy Through SSH
-ssh <target> -D <socksport>
+ssh <server> -D <socksport>
 
-
+# SSH Using Key Forwarding
+ssh -A <server>

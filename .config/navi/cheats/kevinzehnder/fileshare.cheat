@@ -1,6 +1,46 @@
 
-% smbclient, kz, pentest
+% smbclient, smb, kz, pentest
 
 # Enumerate SMB shares anonymously
 smbclient -N -L <target>
 
+
+% kz, nfs
+$subnet: ip route | rg -o '[0-9]+\.[0-9]+\.[0-9]+\.[0-9]+/[0-9]+' | choose 0
+# Scan for NFS Servers in Current Subnet
+nmap -p 2049 <subnet> --open -oG - | rg "/open"
+
+# Show NFS Shares on Remote Server (requires nfs-common or nfs-utils)
+showmount -e <server>
+
+# Test if Host is an NFS Server
+nmap -sV -T4 -p111,2049 <server>
+
+# Verify NFS Server is Running
+rpcinfo -n 2049 -t <server> <port>
+$port: echo 100003
+
+
+% kz, nfs, mount
+$share: showmount -e <server> --no-headers | choose 0
+$mountpoint: ls
+
+# Mount NFSv4 Share
+mount -t nfs4 <server>:/<share> <mountpoint>
+
+# Mount NFSv3 Share
+mount -t nfs <server>:/<share> <mountpoint>
+
+# Force Specific NFS Version
+mount -t nfs -o vers=3 <server>:/<share> <mountpoint>
+
+# Mount with Options (no root squash)
+mount -t nfs4 <server>:/<share> <mountpoint> -o nolock,rw,no_root_squash
+
+
+% kz, nfs, server
+# Reload NFS Exports on Server
+exportfs -ra
+
+# Check Active Exports
+exportfs -v
