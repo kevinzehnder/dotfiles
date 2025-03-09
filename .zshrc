@@ -183,6 +183,8 @@ export FZF_COMMON_OPTIONS="
 
 # navi settings
 export NAVI_FZF_OVERRIDES='--with-nth 3,2,1 --height 70%'
+alias navic='navi --cheatsh'
+alias navit='navi --tldr'
 
 # completion settings
 zstyle ':completion:*' completer _complete _match _approximate

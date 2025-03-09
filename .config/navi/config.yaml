@@ -27,6 +27,9 @@ cheats:
     - ~/.config/navi/cheats
     - ~/.local/share/navi/cheats
 
+client:
+  tealdeer: true
+
 # search:
 # tags: git,!checkout # equivalent to the --tag-rules option
 

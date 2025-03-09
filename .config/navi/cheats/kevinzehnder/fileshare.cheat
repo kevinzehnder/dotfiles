@@ -4,6 +4,15 @@
 # Enumerate SMB shares anonymously
 smbclient -N -L <target>
 
+# Enumerate SMB shares as <user>
+smbclient -U <username> -L <target>
+
+# Mount SMB share, using Credentials from File (ensure cifs-utils is installed)
+; ensure cifs-utils is installed
+; the options uid and gid corresponds to the local (e.g. client) user/user group to have read/write access on the given path. 
+; After installing cifs-utils or smbclient, load the cifs kernel module or reboot to prevent mount fails.
+$ mountpath: ls
+sudo mount -t cifs //<server>/<share> <mountpath> -o vers=3.0,credentials=<credentialsfile> -o uid=<uid>,gid=<gid>
 
 % kz, nfs
 $subnet: ip route | rg -o '[0-9]+\.[0-9]+\.[0-9]+\.[0-9]+/[0-9]+' | choose 0

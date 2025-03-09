@@ -1,7 +1,10 @@
 
 % rsync, kz
-# Copy Source to Target [-P partial][-a archive mode][-v verbose][-z compress]
-rsync -Pavz <source> <target>
+# Copy Large Amount of files to NFS Target
+rsync --partial --archive -h --info=progress2 --no-owner --no-group <source> <target>
+
+# Copy Source to Target [-P partial+progress][-a archive mode][-v verbose][-z compress][-h human readable]
+rsync -Pavzh <source> <target>
 
 # Copy All Files/Subdirs Of Sourcedir To Targetdir
 rsync -r <source>/ <target>
