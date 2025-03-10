@@ -57,18 +57,19 @@ function ssh_connection_preview() {
     [[ -n "$proxycommand" ]] && echo -e "\033[1;32m🔄 Proxy:\033[0m $proxycommand"
     
     # Check if we can ping the host
-    if [[ -n "$hostname" ]]; then
-        local ping_result=$(ping -c1 -W1 "$hostname" 2>/dev/null)
-        if [[ $? -eq 0 ]]; then
-            local latency=$(echo "$ping_result" | tail -1 | awk '{print $4}' | cut -d'/' -f2)
-            echo -e "\033[1;33m━━━━━━━━━━━━━━━━━━━━━━━━━\033[0m"
-            echo -e "\033[1;32m🔊 Status:\033[0m \033[1;32mOnline (${latency}ms)\033[0m"
-        else
-            echo -e "\033[1;33m━━━━━━━━━━━━━━━━━━━━━━━━━\033[0m"
-            echo -e "\033[1;32m🔊 Status:\033[0m \033[1;31mOffline or unreachable\033[0m"
-        fi
-    fi
-    
+   if [[ -n "$hostname" ]]; then
+	if ping -c1 -W1 "$hostname" >/dev/null 2>&1; then
+		# Ping succeeded
+		local latency=$(ping -c1 -W1 "$hostname" 2>/dev/null | tail -1 | awk '{print $4}' | cut -d'/' -f2)
+		echo -e "\033[1;33m━━━━━━━━━━━━━━━━━━━━━━━━━\033[0m"
+		echo -e "\033[1;32m🔊 Status:\033[0m \033[1;32mOnline (${latency}ms)\033[0m"
+	else
+		# Ping failed
+		echo -e "\033[1;33m━━━━━━━━━━━━━━━━━━━━━━━━━\033[0m"
+		echo -e "\033[1;32m🔊 Status:\033[0m \033[1;31mOffline or unreachable\033[0m"
+	fi
+   fi
+	
     # Show recent connections
     if grep -q "ssh $host" ~/.zsh_history 2>/dev/null; then
         echo -e "\033[1;33m━━━━━━━━━━━━━━━━━━━━━━━━━\033[0m"
