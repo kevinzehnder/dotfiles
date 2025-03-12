@@ -1,4 +1,10 @@
 function netsniff() {
+    # Check if tspin is available
+    local use_tspin=0
+    if command -v tspin &> /dev/null; then
+        use_tspin=1
+    fi
+
     local action=$(cat <<EOF | fzf --ansi --header="Network Sniffing Tool" --prompt="Select action: "
 Quick Presets
 Custom Filter Builder
@@ -52,7 +58,11 @@ EOF
                 fzf --ansi --header="Available Interfaces" --prompt="Select interface: ")
             [[ -z "$interface" ]] && return 1
             
-            print -z "sudo tcpdump -nnvttt -i $interface $filter"
+            if [[ $use_tspin -eq 1 ]]; then
+                print -z "sudo tcpdump -l -nnvttt -i $interface $filter | tspin"
+            else
+                print -z "sudo tcpdump -l -nnvttt -i $interface $filter"
+            fi
             ;;
             
         "Custom Filter Builder")
@@ -62,7 +72,7 @@ EOF
             [[ -z "$interface" ]] && return 1
             
             # Base command
-            local cmd="sudo tcpdump -nnvttt -i $interface"
+            local cmd="sudo tcpdump -l -nnvttt -i $interface"
             
             # Port selection (optional)
             local port_type=$(echo -e "No port filter\nSpecific port\nPort range" | 
@@ -183,7 +193,11 @@ EOF
                 done
             fi
             
-            print -z "$cmd"
+            if [[ $use_tspin -eq 1 && ! "$cmd" == *"-w"* ]]; then
+                print -z "$cmd | tspin"
+            else
+                print -z "$cmd"
+            fi
             ;;
             
         "Packet Capture")
@@ -196,105 +210,21 @@ EOF
             read filter_expr
             
             if [[ -z "$filter_expr" ]]; then
-                print -z "sudo tcpdump -i $interface -nnvttt"
+                if [[ $use_tspin -eq 1 ]]; then
+                    print -z "sudo tcpdump -l -i $interface -nnvttt | tspin"
+                else
+                    print -z "sudo tcpdump -l -i $interface -nnvttt"
+                fi
             else
-                print -z "sudo tcpdump -i $interface -nnvttt '$filter_expr'"
+                if [[ $use_tspin -eq 1 ]]; then
+                    print -z "sudo tcpdump -l -i $interface -nnvttt '$filter_expr' | tspin"
+                else
+                    print -z "sudo tcpdump -l -i $interface -nnvttt '$filter_expr'"
+                fi
             fi
             ;;
             
         *)
             echo "No action selected."; return 1;;
     esac
-}
-
-function ports() {
-    check_sudo_nopass || sudo -v
-    if ! ss_out=$(sudo ss -Htupln | rg "LISTEN|ESTABLISHED"); then
-        echo "no active ports found"
-        return 1
-    fi
-    
-    pids=$(echo "$ss_out" | rg "pid=([0-9]+)" -o -r '$1' | sort -u)
-    
-    if [ -z "$pids" ]; then
-        echo "no process IDs found"
-        return 1
-    fi
-    
-    # Use ps instead of procs with --no-headers, but enhance display with port info
-    pid_args=$(echo "$pids" | tr '\n' ',' | sed 's/,$//')
-    
-    # Create temp file for process+port data
-    tmp_file=$(mktemp)
-    
-    # For each pid, get the process info and port, then combine them
-    for pid in $(echo "$pids"); do
-        proc_info=$(sudo ps --no-headers -p "$pid" -o pid,ppid,user,%cpu,%mem,command | tr -s ' ')
-        port_info=$(sudo ss -tupln | rg "$pid" | rg -o ':[0-9]+' | head -1 | tr -d ':')
-        echo "$proc_info | PORT:$port_info" >> "$tmp_file"
-    done
-    
-    selection=$(cat "$tmp_file" |
-        fzf --ansi \
-            --preview "sudo ss -tupln | rg \$(echo {} | awk '{print \$1}')" \
-            --preview-window=down \
-            --height=100% \
-            --layout=reverse \
-            --header='Active Ports [LISTEN/ESTABLISHED] | ctrl-t: tcpdump' \
-            --expect=ctrl-t)
-    
-    # Clean up temp file
-    rm -f "$tmp_file"
-    
-    key=$(echo "$selection" | head -1)
-    line=$(echo "$selection" | tail -1)
-    
-    if [ "$key" = "ctrl-t" ] && [ -n "$line" ]; then
-        pid=$(echo "$line" | awk '{print $1}')
-        # Port is already included in the selection line
-        port=$(echo "$line" | grep -o 'PORT:[0-9]\+' | cut -d':' -f2)
-        
-        if [ -n "$port" ]; then
-            # Create tcpdump menu similar to netsniff
-            tcpdump_action=$(cat <<EOF | fzf --ansi --header="Tcpdump Options for Port $port" --prompt="Select action: "
-Basic Capture
-Verbose Capture
-Capture with Hex
-Save to File
-Custom Filter
-EOF
-            )
-            
-            case "$tcpdump_action" in
-                "Basic Capture")
-                    print -z "sudo tcpdump -i any port $port -n"
-                    ;;
-                "Verbose Capture")
-                    print -z "sudo tcpdump -i any port $port -nnvvS"
-                    ;;
-                "Capture with Hex")
-                    print -z "sudo tcpdump -i any port $port -nnvXs 0"
-                    ;;
-                "Save to File")
-                    echo -n "Enter filename (default: capture-$port.pcap): "
-                    read filename
-                    if [ -z "$filename" ]; then
-                        filename="capture-$port.pcap"
-                    fi
-                    print -z "sudo tcpdump -i any port $port -w $filename"
-                    ;;
-                "Custom Filter")
-                    echo -n "Enter additional filter (will be ANDed with port $port): "
-                    read custom_filter
-                    if [ -n "$custom_filter" ]; then
-                        print -z "sudo tcpdump -i any port $port and ($custom_filter) -n"
-                    else
-                        print -z "sudo tcpdump -i any port $port -n"
-                    fi
-                    ;;
-            esac
-        else
-            echo "No port found for PID $pid"
-        fi
-    fi
 }
