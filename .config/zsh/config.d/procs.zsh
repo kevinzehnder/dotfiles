@@ -8,19 +8,7 @@ function procsl() {
     sudo procs --use-config=large
 }
 
-function psk() {
-check_sudo_nopass || sudo -v
-   sudo procs | fzf --ansi \
-       --preview "sudo procs --no-header --pager=disable --tree {1}" \
-       --preview-window=down \
-       --bind='ctrl-r:reload(sudo procs)' \
-       --header='[CTRL-R] reload [ENTER] kill' \
-       --height=100% \
-       --layout=reverse \
-       | awk '{print $1}' | xargs -r sudo kill -9
-}
-
-function ports() {
+function procsports() {
 	check_sudo_nopass || sudo -v
     if ! ss_out=$(sudo ss -Htupln | rg "LISTEN|ESTABLISHED"); then
         echo "no active ports found"
@@ -40,6 +28,19 @@ function ports() {
             --layout=reverse \
             --header='Active Ports [LISTEN/ESTABLISHED]'
 }
+
+function psk() {
+check_sudo_nopass || sudo -v
+   sudo procs | fzf --ansi \
+       --preview "sudo procs --no-header --pager=disable --tree {1}" \
+       --preview-window=down \
+       --bind='ctrl-r:reload(sudo procs)' \
+       --header='[CTRL-R] reload [ENTER] kill' \
+       --height=100% \
+       --layout=reverse \
+       | awk '{print $1}' | xargs -r sudo kill -9
+}
+
 
 function hogs() {
    check_sudo_nopass || sudo -v
