@@ -1,5 +1,5 @@
 
-% kz, zsh, ssh
+% fztoolz, kz, zsh, ssh
 # Fix SSH Folder/File Permissions
 fix_ssh_permissions
 

@@ -24,7 +24,8 @@ zi wait lucid for \
 [ -x "$(command -v kubectl)" ] && source <(kubectl completion zsh)
 
 zi wait lucid for \
-	Aloxaf/fzf-tab
+	Aloxaf/fzf-tab \
+	kevinzehnder/fztoolz
 
 # Common tools (no architecture filter needed)
 zi wait lucid as"program" from"gh-r" for \
@@ -272,8 +273,6 @@ alias config='/usr/bin/git --git-dir=$HOME/.cfg/ --work-tree=$HOME'
 alias k='kubectl'
 alias kc='kubectl config use-context'
 alias kar='kubectl-argo-rollouts'
-
-alias tldrf='tldr --list | fzf --preview "tldr {1}" --preview-window=right,60% | xargs tldr'
 
 alias zj='zellij'
 

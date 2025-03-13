@@ -20,7 +20,7 @@ function procsports() {
         rg "pid=([0-9]+)" -o -r '$1' | \
         xargs -I {} echo -n "{} " | \
         xargs echo "--or" | \
-        xargs sudo procs --no-header | \
+        xargs sudo procs --no-header --color always --sorta TcpPort,UdpPort | \
         fzf --ansi \
             --preview "sudo ss -tupln | rg {1}" \
             --preview-window=down \
@@ -31,7 +31,7 @@ function procsports() {
 
 function psk() {
 check_sudo_nopass || sudo -v
-   sudo procs | fzf --ansi \
+   sudo procs --color always | fzf --ansi \
        --preview "sudo procs --no-header --pager=disable --tree {1}" \
        --preview-window=down \
        --bind='ctrl-r:reload(sudo procs)' \
@@ -44,7 +44,7 @@ check_sudo_nopass || sudo -v
 
 function hogs() {
    check_sudo_nopass || sudo -v
-   sudo procs --sortd cpu --no-header | head -n 10 | fzf --ansi \
+   sudo procs --color always --sortd cpu --no-header | head -n 10 | fzf --ansi \
        --preview "sudo procs --tree {1}" \
        --preview-window=down \
        --height=100% \
@@ -56,7 +56,7 @@ function hogs() {
 
 function memhogs() {
 	check_sudo_nopass || sudo -v
-    sudo procs --sortd mem --no-header | head -n 15 | fzf --ansi \
+    sudo procs --color always --sortd mem --no-header | head -n 15 | fzf --ansi \
         --preview "sudo procs --tree {1} && echo '\n---Memory Maps---\n' && sudo pmap -x {1} | head -n 20" \
         --preview-window=down,wrap \
         --height=100% \
