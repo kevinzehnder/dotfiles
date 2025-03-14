@@ -13,7 +13,7 @@ function s() {
         fzf --reverse \
             --header="SSH Connections" \
             --preview-window=right:60%:wrap \
-            --preview="source ~/.config/zsh/config.d/preview_functions.zsh && ssh_connection_preview {}" \
+            --preview="source ~/.config/zsh/config.d/ssh_connection_preview.zsh && ssh_connection_preview {}" \
             --height=80%)
     
     # If nothing selected, just exit
