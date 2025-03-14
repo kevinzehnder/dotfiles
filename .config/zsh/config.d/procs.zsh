@@ -11,7 +11,7 @@ function procsl() {
 }
 
 # open ports
-function pp() {
+function ports() {
 	check_sudo_nopass || sudo -v
     if ! ss_out=$(sudo ss -Htupln | rg "LISTEN|ESTABLISHED"); then
         echo "no active ports found"

@@ -265,6 +265,8 @@ alias tm='tmux attach -t default || tmux new -s default'
 alias zshrc='vim ~/.zshrc'
 alias sshconf='vim ~/.ssh/config'
 
+alias tldrf="tldr --list | fzf --ansi --preview 'script -qec \"tldr {1}\"' --height=80% --preview-window=right,60% | xargs tldr"
+
 alias syu='sudo pacman -Syu'
 
 alias lazyconfig='lazygit --git-dir=$HOME/.cfg/ --work-tree=$HOME'
@@ -281,128 +283,6 @@ alias -g -- -h='-h 2>&1 | bat --language=help --style=plain -P'
 alias -g -- --help='--help 2>&1 | bat --language=help --style=plain -P'
 alias batp='bat -Pp'
 
-# Color Themes
-alias light='colorschemeswitcher solarized'
-alias dark='colorschemeswitcher dark'
-alias gruv='colorschemeswitcher gruvbox'
-
-function colorschemeswitcher(){
-	if [ "$1" = "solarized" ]; then
-		touch ~/.lightmode;
-		base16_solarized-light;
-		[ -f ~/.zi/plugins/tinted-theming---tinted-fzf/bash/base16-$BASE16_THEME.config ] && source ~/.zi/plugins/tinted-theming---tinted-fzf/bash/base16-$BASE16_THEME.config;
-		export BAT_THEME="Solarized (light)"
-		change_zellij_theme "solarized-light"
-		change_k9s_theme "solarized_light"
-	elif [ "$1" = "gruvbox" ]; then
-		rm -f ~/.lightmode;
-		base16_gruvbox-dark-medium;
-		[ -f ~/.zi/plugins/tinted-theming---tinted-fzf/bash/base16-$BASE16_THEME.config ] && source ~/.zi/plugins/tinted-theming---tinted-fzf/bash/base16-$BASE16_THEME.config;
-		export BAT_THEME="gruvbox-dark"
-		change_zellij_theme "gruvbox"
-	else
-		rm -f ~/.lightmode;
-		[ -f ~/.config/base16/base16-tokyo-night.config ] && source ~/.config/base16/base16-tokyo-night.config;
-		[ -f $HOME/.config/base16/base16-tokyo-night.sh ] && source $HOME/.config/base16/base16-tokyo-night.sh;
-		export BAT_THEME="OneHalfDark"
-		change_zellij_theme "tokyo-night-dark"
-		change_k9s_theme "nord"
-	fi
-}
-
-function change_zellij_theme() {
-	if [ "$#" -ne 1 ]; then
-		echo "Usage: change_zellij_theme <new-theme>"
-		return 1
-	fi
-
-	CONFIG_FILE="$HOME/.config/zellij/config.kdl"
-	NEW_THEME="$1"
-
-	if [ ! -f "$CONFIG_FILE" ]; then
-		echo "Configuration file not found: $CONFIG_FILE"
-		return 1
-	fi
-
-	# Use sed to replace the theme line
-	sed -i.bak "s/^theme \".*\"$/theme \"$NEW_THEME\"/" "$CONFIG_FILE"
-}
-
-function change_k9s_theme() {
-	if [ "$#" -ne 1 ]; then
-		echo "Usage: change_k9s_theme <new-theme>"
-		return 1
-	fi
-	CONFIG_FILE="$HOME/.config/k9s/config.yaml"
-	NEW_THEME="$1"
-
-	if [ ! -f "$CONFIG_FILE" ]; then
-		echo "Configuration file not found: $CONFIG_FILE"
-		return 1
-	fi
-
-	# Use sed to replace the skin line, considering the nested structure
-	sed -i.bak 's/^ *skin: .*$/    skin: '"$NEW_THEME"'/' "$CONFIG_FILE"
-}
-
-function darkmodechecker(){
-	# Check if the AppsUseLightTheme registry key exists and its value is 1
-	# if /mnt/c/Windows/System32/reg.exe query 'HKCU\SOFTWARE\Microsoft\Windows\CurrentVersion\Themes\Personalize' /v AppsUseLightTheme | grep -q '0x1'; then
-	if [ -f ~/.lightmode ]; then
-		# If the registry key value is 1, execute "light"
-		light
-	else
-		# If the registry key value is not 1, execute "dark"
-		dark
-	fi
-}
-
-# run DarkMode Check if we're not on an SSH connection
-if [[ -z "$SSH_CONNECTION" ]]; then
-	darkmodechecker
-else 
-	if [[ -f ~/.lightmode ]]; then
-		light
-	else
-		dark
-	fi
-fi
-
-# Configure ssh forwarding
-setup_ssh_agent() {
-    export SSH_AUTH_SOCK=$HOME/.agent.sock
-    
-    # Check if socat is already running properly
-    if ps -auxww | grep -q "[s]ocat.*$SSH_AUTH_SOCK" && [[ -S $SSH_AUTH_SOCK ]]; then
-        # Already running, do nothing
-        return 0
-    fi
-    
-    # Kill any zombie processes
-    pkill -f "socat UNIX-LISTEN:$SSH_AUTH_SOCK"
-    
-    # Clean up socket
-    [[ -S $SSH_AUTH_SOCK ]] && rm $SSH_AUTH_SOCK
-    
-    # Start new socat process
-    (
-        setsid socat UNIX-LISTEN:$SSH_AUTH_SOCK,fork,umask=077 EXEC:"npiperelay.exe -ei -s //./pipe/openssh-ssh-agent",nofork &
-    ) > /dev/null 2>&1
-    
-    # Verify it's running
-    if ! ps -auxww | grep -q "[s]ocat.*$SSH_AUTH_SOCK"; then
-        # echo "SSH agent setup failed. Retrying..."
-        if [[ ${setup_ssh_agent_retry_count:-0} -lt 2 ]]; then
-            export setup_ssh_agent_retry_count=$((${setup_ssh_agent_retry_count:-0} + 1))
-            setup_ssh_agent
-        else
-            echo "SSH agent setup failed after multiple attempts."
-            export setup_ssh_agent_retry_count=0
-        fi
-    else
-        export setup_ssh_agent_retry_count=0
-    fi
-}
 
 # fzf keybindings
 [ -f "$HOME/.config/fzf/key-bindings.zsh" ] && source "$HOME/.config/fzf/key-bindings.zsh"
@@ -438,22 +318,6 @@ function y() {
 	fi
 	rm -f -- "$tmp"
 }
-
-function repeater() {
-  if [ "$#" -lt 2 ]; then
-    echo "Usage: repeater <seconds> <command>"
-    return 1
-  fi
-
-  local interval=$1
-  shift
-  local command="$@"
-
-  while true; do
-	echo "--- $(date +"%H:%M:%S") ---"  
-    eval "$command"
-    sleep $interval
-  done}
 
 export NVM_DIR="$HOME/.nvm"
 [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
