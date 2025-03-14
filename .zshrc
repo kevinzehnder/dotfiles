@@ -24,8 +24,7 @@ zi wait lucid for \
 [ -x "$(command -v kubectl)" ] && source <(kubectl completion zsh)
 
 zi wait lucid for \
-	Aloxaf/fzf-tab \
-	kevinzehnder/fztoolz
+	Aloxaf/fzf-tab
 
 # Common tools (no architecture filter needed)
 zi wait lucid as"program" from"gh-r" for \

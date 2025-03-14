@@ -38,3 +38,4 @@ setup_ssh_agent() {
 if [[ -n "$WSL_DISTRO_NAME" ]]; then
     setup_ssh_agent
 fi
+
