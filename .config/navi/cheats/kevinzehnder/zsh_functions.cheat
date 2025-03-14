@@ -32,3 +32,6 @@ info
 
 # Open TLDR Pages Using FZF
 tldrf
+
+# Build tcpdump filter thru FZF
+netsniff
