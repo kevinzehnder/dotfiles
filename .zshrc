@@ -256,7 +256,7 @@ alias tm='tmux attach -t default || tmux new -s default'
 alias zshrc='vim ~/.zshrc'
 alias sshconf='vim ~/.ssh/config'
 
-alias tldrf="tldr --list | fzf --ansi --preview 'script -qec \"tldr {1}\"' --height=80% --preview-window=right,60% | xargs tldr"
+alias tldrf="tldr --list | fzf --ansi --preview 'script -qec \"tldr {1}\" /dev/null' --height=80% --preview-window=right,60% | xargs tldr"
 
 alias syu='sudo pacman -Syu'
 
