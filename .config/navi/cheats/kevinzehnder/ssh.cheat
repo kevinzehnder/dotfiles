@@ -1,12 +1,11 @@
 
-% fztoolz, kz, zsh, ssh
+% kz, zsh, ssh
 # Fix SSH Folder/File Permissions
 fix_ssh_permissions
 
 # Get Files from SSH Server using FD/FZF
 sshget <server> <path>
 
-% kz, ssh
 # Start SSH Agent
 eval "$(ssh-agent -s)"
 

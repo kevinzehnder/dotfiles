@@ -13,13 +13,10 @@ psk
 ports
 
 # View And Kill Top CPU-Consuming Processes
-hogs
+cpuhogs
 
 # View And Kill Top Memory-Consuming Processes
 memhogs
-
-# Check if Sudo Password Is Needed
-check_sudo_nopass
 
 % procs, kz
 # Show Open Ports With FZF
