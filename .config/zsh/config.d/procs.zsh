@@ -31,6 +31,27 @@ function ports() {
             --header='Active Ports [LISTEN/ESTABLISHED]'
 }
 
+# open ports using ps
+function portz() {
+	check_sudo_nopass || sudo -v
+    if ! ss_out=$(sudo ss -Htupln | rg "LISTEN|ESTABLISHED"); then
+        echo "no active ports found"
+        return 1
+    fi
+    
+    echo "$ss_out" | \
+        tr ',' '\n' | \
+        rg "pid=([0-9]+)" | \
+		choose 1 -f "=" | \
+        xargs sudo ps | \
+        fzf --ansi \
+            --preview "sudo ss -tupln | rg {1}" \
+            --preview-window=down \
+            --height=100% \
+            --layout=reverse \
+            --header='Active Ports [LISTEN/ESTABLISHED]'
+}
+
 # interactive kill thru procs and FZF
 function psk() {
 check_sudo_nopass || sudo -v
