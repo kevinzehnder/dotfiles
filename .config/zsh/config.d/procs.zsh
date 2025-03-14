@@ -20,10 +20,9 @@ function pp() {
     
     echo "$ss_out" | \
         tr ',' '\n' | \
-        rg "pid=([0-9]+)" -o -r '$1' | \
-        xargs -I {} echo -n "{} " | \
-        xargs echo "--or" | \
-        xargs sudo procs --no-header --color always --sorta TcpPort,UdpPort | \
+        rg "pid=([0-9]+)" | \
+		choose 1 -f "=" | \
+        xargs sudo procs --or {} --color always --sorta TcpPort | \
         fzf --ansi \
             --preview "sudo ss -tupln | rg {1}" \
             --preview-window=down \
