@@ -72,14 +72,6 @@ else
     echo "Unknown architecture: $ARCH - some tools may not install correctly"
 fi
 
-# additional configs
-if [ -d "$HOME/.config/zsh/config.d/" ] ; then
-	for conf in "$HOME/.config/zsh/config.d/"*.zsh ; do
-		source "${conf}" 
-	done
-	unset conf
-fi
-
 # system completions
 zi wait pack for system-completions
 
@@ -328,6 +320,11 @@ if command -v tmux &> /dev/null && [ -z "$TMUX" ] && [ -z "$SSH_CONNECTION" ]; t
     tmux attach -t default || tmux new -s default
 fi
 
-if [[ -n "$WSL_DISTRO_NAME" ]]; then
-    setup_ssh_agent
+# additional configs
+if [ -d "$HOME/.config/zsh/config.d/" ] ; then
+	for conf in "$HOME/.config/zsh/config.d/"*.zsh ; do
+		source "${conf}" 
+	done
+	unset conf
 fi
+
