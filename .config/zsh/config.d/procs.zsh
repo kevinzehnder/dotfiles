@@ -22,7 +22,7 @@ function ports() {
         tr ',' '\n' | \
         rg "pid=([0-9]+)" | \
 		choose 1 -f "=" | \
-        xargs sudo procs --or {} --color always --sorta TcpPort | \
+        xargs sudo procs --or {} --color always | \
         fzf --ansi \
             --preview "sudo ss -tupln | rg {1}" \
             --preview-window=down \
