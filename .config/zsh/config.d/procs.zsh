@@ -1,4 +1,13 @@
 # procs that also shows open ports
+function portz() {
+	check_sudo_nopass || sudo -v
+    if ! ss_out=$(sudo ss -tulpn4 | rg "LISTEN|ESTABLISHED"); then
+        echo "no active ports found"
+        return 1
+    fi
+    
+    echo "$ss_out" | fzf --ansi
+}
 function procsp() {
 	check_sudo_nopass || sudo -v
     sudo procs --color always --load-config ~/.config/procs/procs_ports.toml "$@" | fzf --ansi
