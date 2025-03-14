@@ -1,14 +1,17 @@
+# procs that also shows open ports
 function procsp() {
 	check_sudo_nopass || sudo -v
     sudo procs --color always --load-config ~/.config/procs/procs_ports.toml "$@" | fzf --ansi
 }
 
+# procs large view
 function procsl() {
 	check_sudo_nopass || sudo -v
     sudo procs --use-config=large
 }
 
-function procsports() {
+# open ports
+function pp() {
 	check_sudo_nopass || sudo -v
     if ! ss_out=$(sudo ss -Htupln | rg "LISTEN|ESTABLISHED"); then
         echo "no active ports found"
@@ -29,6 +32,7 @@ function procsports() {
             --header='Active Ports [LISTEN/ESTABLISHED]'
 }
 
+# interactive kill thru procs and FZF
 function psk() {
 check_sudo_nopass || sudo -v
    sudo procs --color always | fzf --ansi \
@@ -41,8 +45,8 @@ check_sudo_nopass || sudo -v
        | awk '{print $1}' | xargs -r sudo kill -9
 }
 
-
-function hogs() {
+# find cpu hogs
+function cpuhogs() {
    check_sudo_nopass || sudo -v
    sudo procs --color always --sortd cpu --no-header | head -n 10 | fzf --ansi \
        --preview "sudo procs --tree {1}" \
@@ -54,6 +58,7 @@ function hogs() {
        | awk '{print $1}' | xargs -r sudo kill -9
 }
 
+# find memory hogs
 function memhogs() {
 	check_sudo_nopass || sudo -v
     sudo procs --color always --sortd mem --no-header | head -n 15 | fzf --ansi \
