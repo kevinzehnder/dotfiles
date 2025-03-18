@@ -244,8 +244,8 @@ alias ip='ip -c'
 alias ipa='ip -o address'
 
 alias d='docker'
-alias n='nerdctl'
-alias nc='nerdctl compose'
+alias n='sudo nerdctl'
+alias nc='sudo nerdctl compose'
 alias dockerkill='docker stop $(docker ps -a -q) && docker rm $(docker ps -a -q)'
 alias ld='lazydocker'
 
