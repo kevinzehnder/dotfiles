@@ -98,7 +98,7 @@ function units() {
 		local logs='sudo journalctl -n 2000 -e -u {1}'
 		# local logs="sudo journalctl -n 2000 -u {1} --no-pager | bat -l syslog -p --pager='less -R +G'"
 	fi
-	local show_status="script -qec 'systemctl status {1} --no-pager' /dev/null"
+	local show_status="script -qec 'sudo systemctl status {1} --no-pager' /dev/null"
 
 	check_sudo_nopass || sudo -v
 	eval "$cmd" \
