@@ -19,23 +19,11 @@ if [[ "$ARCH" == "aarch64" || "$ARCH" == "arm64" ]]; then
 # ARM 32-bit specific tools
 elif [[ "$ARCH" == "armv7l" ]]; then
 	zi wait lucid as"program" from"gh-r" for \
-		bpick"*linux-musleabihf*" mv"dust* -> dust" pick"dust/dust" bootandy/dust \
 		bpick"*freebsd_armv7*" pick"duf" muesli/duf \
-		bpick"*armv7-unknown-linux-musl*" mv"delta* -> delta" pick"delta/delta" dandavison/delta \
 		bpick"eza_arm-unknown-linux-gnueabihf.tar.gz" eza-community/eza \
-		bpick"*armv7-unknown-linux-musl*" mv"fd* -> fdfind" pick"fdfind/fd" atclone"sudo cp fdfind/fd /usr/bin/fd" @sharkdp/fd \
-		bpick"*armv7-unknown-linux-musl*" mv"bat* -> bat" pick"bat/bat" @sharkdp/bat \
-		bpick"*arm-unknown-linux-musl*" atclone"sudo install procs /usr/bin/procs" dalance/procs \
 		bpick"*armv7-unknown-linux-musleabihf*" denisidoro/navi \
-		bpick"*armv7-unknown-linux-musl*" pick"xh-*/xh" ducaale/xh \
 		bpick"*Linux_armv6*" jesseduffield/lazygit \
-		bpick"*armv7-unknown-linux-musleabihf*" bensadeh/tailspin \
 		bpick"*armv7-unknown-linux-musleabi*" mv"ripgrep* -> rg" pick"rg/rg" BurntSushi/ripgrep \
 		bpick"*linux_armv7*" junegunn/fzf
 
-	# Fix choose - don't use the aarch64 version
-	zi ice lucid wait as"program" \
-		atclone"cargo build --release && cp target/release/choose $ZPFX/bin/" \
-		atpull"%atclone"
-	zi load theryangeary/choose
 fi
