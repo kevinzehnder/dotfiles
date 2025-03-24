@@ -13,6 +13,19 @@ function procsl() {
 # open ports
 function ports() {
 	check_sudo_nopass || sudo -v
+
+	# Check if we're on non-x86_64 or procs doesn't exist
+	if [[ "$(uname -m)" != "x86_64" ]] || ! command -v procs &> /dev/null; then
+		# Fallback to portz implementation
+		if ! ss_out=$(sudo ss -tulpn4 | rg "LISTEN|ESTABLISHED"); then
+			echo "no active ports found"
+			return 1
+		fi
+		echo "$ss_out" | fzf --ansi --header='Active Ports [LISTEN/ESTABLISHED]'
+		return 0
+	fi
+
+	# Main implementation with procs
 	if ! ss_out=$(sudo ss -Htupln | rg "LISTEN|ESTABLISHED"); then
 		echo "no active ports found"
 		return 1
