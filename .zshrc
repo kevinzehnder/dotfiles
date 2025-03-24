@@ -57,6 +57,7 @@ if [[ "$ARCH" == "x86_64" ]]; then
 	else
 		zi ice from"gh-r" ver"nightly" bpick"nvim-linux-x86_64.tar.gz" \
 			pick"nvim-linux-x86_64/bin/nvim" \
+			nocompile \
 			atclone"chmod +x nvim-linux-x86_64/bin/nvim; sudo cp -vf nvim-linux-x86_64/bin/nvim /usr/local/bin/; sudo mkdir -p /usr/local/share; sudo cp -r nvim-linux-x86_64/share/nvim /usr/local/share/" \
 			atpull"%atclone"
 		zi load neovim/neovim
