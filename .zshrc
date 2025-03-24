@@ -65,7 +65,7 @@ if [[ "$ARCH" == "x86_64" ]]; then
 fi
 
 # system completions
-zi wait pack for system-completions
+# zi wait pack for system-completions
 
 # install custom completions
 function load_custom_completions() {
