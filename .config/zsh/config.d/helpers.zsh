@@ -109,6 +109,5 @@ function y() {
 function install_yazi() {
 	zi wait lucid light-mode as"program" from"gh-r" for \
 		pick"ya*/yazi" sxyazi/yazi
-fi
-	
+
 }
