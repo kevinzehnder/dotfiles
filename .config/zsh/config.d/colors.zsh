@@ -1,27 +1,26 @@
-
 # Color Themes
 alias light='colorschemeswitcher solarized'
 alias dark='colorschemeswitcher dark'
 alias gruv='colorschemeswitcher gruvbox'
 
-function colorschemeswitcher(){
+function colorschemeswitcher() {
 	if [ "$1" = "solarized" ]; then
-		touch ~/.lightmode;
-		base16_solarized-light;
-		[ -f ~/.zi/plugins/tinted-theming---tinted-fzf/bash/base16-$BASE16_THEME.config ] && source ~/.zi/plugins/tinted-theming---tinted-fzf/bash/base16-$BASE16_THEME.config;
+		touch ~/.lightmode
+		base16_solarized-light
+		[ -f ~/.zi/plugins/tinted-theming---tinted-fzf/bash/base16-$BASE16_THEME.config ] && source ~/.zi/plugins/tinted-theming---tinted-fzf/bash/base16-$BASE16_THEME.config
 		export BAT_THEME="Solarized (light)"
 		change_zellij_theme "solarized-light"
 		change_k9s_theme "solarized_light"
 	elif [ "$1" = "gruvbox" ]; then
-		rm -f ~/.lightmode;
-		base16_gruvbox-dark-medium;
-		[ -f ~/.zi/plugins/tinted-theming---tinted-fzf/bash/base16-$BASE16_THEME.config ] && source ~/.zi/plugins/tinted-theming---tinted-fzf/bash/base16-$BASE16_THEME.config;
+		rm -f ~/.lightmode
+		base16_gruvbox-dark-medium
+		[ -f ~/.zi/plugins/tinted-theming---tinted-fzf/bash/base16-$BASE16_THEME.config ] && source ~/.zi/plugins/tinted-theming---tinted-fzf/bash/base16-$BASE16_THEME.config
 		export BAT_THEME="gruvbox-dark"
 		change_zellij_theme "gruvbox"
 	else
-		rm -f ~/.lightmode;
-		[ -f ~/.config/base16/base16-tokyo-night.config ] && source ~/.config/base16/base16-tokyo-night.config;
-		[ -f $HOME/.config/base16/base16-tokyo-night.sh ] && source $HOME/.config/base16/base16-tokyo-night.sh;
+		rm -f ~/.lightmode
+		[ -f ~/.config/base16/base16-tokyo-night.config ] && source ~/.config/base16/base16-tokyo-night.config
+		[ -f $HOME/.config/base16/base16-tokyo-night.sh ] && source $HOME/.config/base16/base16-tokyo-night.sh
 		export BAT_THEME="OneHalfDark"
 		change_zellij_theme "tokyo-night-dark"
 		change_k9s_theme "nord"
@@ -63,7 +62,7 @@ function change_k9s_theme() {
 	sed -i.bak 's/^ *skin: .*$/    skin: '"$NEW_THEME"'/' "$CONFIG_FILE"
 }
 
-function darkmodechecker(){
+function darkmodechecker() {
 	# Check if the AppsUseLightTheme registry key exists and its value is 1
 	# if /mnt/c/Windows/System32/reg.exe query 'HKCU\SOFTWARE\Microsoft\Windows\CurrentVersion\Themes\Personalize' /v AppsUseLightTheme | grep -q '0x1'; then
 	if [ -f ~/.lightmode ]; then
@@ -78,7 +77,7 @@ function darkmodechecker(){
 # run DarkMode Check if we're not on an SSH connection
 if [[ -z "$SSH_CONNECTION" ]]; then
 	darkmodechecker
-else 
+else
 	if [[ -f ~/.lightmode ]]; then
 		light
 	else
