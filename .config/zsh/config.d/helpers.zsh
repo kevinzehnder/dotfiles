@@ -80,3 +80,30 @@ function get_package_manager() {
   fi
 }
 
+
+# load global devbox
+function devbox_global() {
+	eval "$(devbox global shellenv --init-hook --omit-nix-env=false)"
+}
+
+# zellij
+function za() {
+	if command -v zellij &> /dev/null; then
+		# Check if zellij is already running to avoid nested sessions
+		if [ -z "$ZELLIJ" ]; then
+			# Start a new Zellij session or attach to an existing one
+			zellij attach --create mysession
+		fi
+	fi
+}
+
+# yazi
+function y() {
+	local tmp="$(mktemp -t "yazi-cwd.XXXXXX")"
+	yazi "$@" --cwd-file="$tmp"
+	if cwd="$(command cat -- "$tmp")" && [ -n "$cwd" ] && [ "$cwd" != "$PWD" ]; then
+		builtin cd -- "$cwd"
+	fi
+	rm -f -- "$tmp"
+}
+

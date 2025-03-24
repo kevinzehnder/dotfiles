@@ -26,23 +26,21 @@ zi wait lucid for \
 zi wait lucid for \
 	Aloxaf/fzf-tab
 
-# tools - install everywhere except 32bit ARM
-if [[ "$ARCH" != "armv7l" ]]; then
-zi wait lucid as"program" from"gh-r" for \
-	mv"dust* -> dust" pick"dust/dust" bootandy/dust \
-	pick"duf" muesli/duf \
-	mv"delta* -> delta" pick"delta/delta" dandavison/delta \
-	eza-community/eza \
-	mv"fd* -> fdfind" pick"fdfind/fd" atclone"sudo cp fdfind/fd /usr/bin/fd" @sharkdp/fd \
-	mv"bat* -> bat" pick"bat/bat" @sharkdp/bat \
-	atclone"sudo install procs /usr/bin/procs && sudo install ~/.config/procs/procs.toml /etc/procs/procs.toml" dalance/procs \
-	denisidoro/navi \
-	pick"xh-*/xh" ducaale/xh \
-	jesseduffield/lazygit \
-	bensadeh/tailspin
+# x86_64 specific tools
+if [[ "$ARCH" == "x86_64" ]]; then
+	zi wait lucid as"program" from"gh-r" for \
+		mv"dust* -> dust" pick"dust/dust" bootandy/dust \
+		pick"duf" muesli/duf \
+		mv"delta* -> delta" pick"delta/delta" dandavison/delta \
+		eza-community/eza \
+		mv"fd* -> fdfind" pick"fdfind/fd" atclone"sudo cp fdfind/fd /usr/bin/fd" @sharkdp/fd \
+		mv"bat* -> bat" pick"bat/bat" @sharkdp/bat \
+		atclone"sudo install procs /usr/bin/procs && sudo install ~/.config/procs/procs.toml /etc/procs/procs.toml" dalance/procs \
+		denisidoro/navi \
+		pick"xh-*/xh" ducaale/xh \
+		jesseduffield/lazygit \
+		bensadeh/tailspin
 
-elif [[ "$ARCH" == "x86_64" ]]; then
-	# x86_64 specific
 	zi wait lucid as"program" from"gh-r" for \
 		ver"v0.10.3" bpick"*appimage*" mv"nvim* -> nvim" neovim/neovim \
 		mv"choose* -> choose" pick"choose" theryangeary/choose \
@@ -54,31 +52,6 @@ elif [[ "$ARCH" == "x86_64" ]]; then
 	# neovim for vscode (x86_64)
 	zi ice wait lucid as"program" from"gh-r" ver"nightly" bpick"*appimage*" mv"nvim* -> nvim-vscode" id-as"neovim-vscode"
 	zi load neovim/neovim
-
-elif [[ "$ARCH" == "aarch64" || "$ARCH" == "arm64" ]]; then
-	# ARM 64-bit specific
-	zi wait lucid as"program" from"gh-r" for \
-		mv"ripgrep* -> rg" pick"rg/rg" BurntSushi/ripgrep \
-		bpick"*aarch64*" eza-community/eza \
-		bpick"choose-aarch64-unknown-linux-gnu" binpicks"choose" mikefarah/choose \
-		bpick"*linux_arm64*" junegunn/fzf
-
-	zi ice as"program" id-as"neovim" \
-		atclone"CMAKE_BUILD_TYPE=Release make -j4" \
-		atpull"CMAKE_BUILD_TYPE=Release make -j4" \
-		pick"bin/nvim"
-	zi load neovim/neovim
-
-elif [[ "$ARCH" == "armv7l" ]]; then
-	# ARM 32-bit specific
-	zi wait lucid as"program" from"gh-r" for \
-		mv"ripgrep* -> rg" pick"rg/rg" BurntSushi/ripgrep \
-		mv"choose* -> choose" bpick"choose-aarch64-unknown-linux-gnu" theryangeary/choose \
-		bpick"eza_arm-unknown-linux-gnueabihf.tar.gz" eza-community/eza \
-		bpick"*linux_armv7*" junegunn/fzf
-
-else
-	echo "Unknown architecture: $ARCH - some tools may not install correctly"
 fi
 
 # system completions
@@ -291,32 +264,6 @@ zi ice as"program" make'!' atclone'./direnv hook zsh > zhook.zsh' \
 	atpull'%atclone' src"zhook.zsh"
 zi light direnv/direnv
 
-# load global devbox
-function devbox_global() {
-	eval "$(devbox global shellenv --init-hook --omit-nix-env=false)"
-}
-
-# zellij
-function za() {
-	if command -v zellij &> /dev/null; then
-		# Check if zellij is already running to avoid nested sessions
-		if [ -z "$ZELLIJ" ]; then
-			# Start a new Zellij session or attach to an existing one
-			zellij attach --create mysession
-		fi
-	fi
-}
-
-# yazi
-function y() {
-	local tmp="$(mktemp -t "yazi-cwd.XXXXXX")"
-	yazi "$@" --cwd-file="$tmp"
-	if cwd="$(command cat -- "$tmp")" && [ -n "$cwd" ] && [ "$cwd" != "$PWD" ]; then
-		builtin cd -- "$cwd"
-	fi
-	rm -f -- "$tmp"
-}
-
 export NVM_DIR="$HOME/.nvm"
 [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"                   # This loads nvm
 [ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion" # This loads nvm bash_completion
@@ -326,7 +273,7 @@ if command -v tmux &> /dev/null && [ -z "$TMUX" ] && [ -z "$SSH_CONNECTION" ]; t
 	tmux attach -t default || tmux new -s default
 fi
 
-# additional configs
+# load additional configs
 if [ -d "$HOME/.config/zsh/config.d/" ]; then
 	for conf in "$HOME/.config/zsh/config.d/"*.zsh; do
 		source "${conf}"
