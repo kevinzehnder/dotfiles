@@ -27,4 +27,6 @@ elif [[ "$ARCH" == "armv7l" ]]; then
 		bpick"*Linux_armv6*" jesseduffield/lazygit \
 		bpick"*armv7-unknown-linux-musleabi*" mv"ripgrep* -> rg" pick"rg/rg" BurntSushi/ripgrep \
 		bpick"*linux_armv7*" junegunn/fzf
+
+	unalias vim
 fi
