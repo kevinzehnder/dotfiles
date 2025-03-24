@@ -12,6 +12,11 @@ if [[ $(hostname) == "towerKZ" ]]; then
 		pick"ya*/yazi" sxyazi/yazi \
 		pick"sd*/sd" chmln/sd \
 		pick"jnv*/jnv" ynqa/jnv
+
+	# neovim for vscode (x86_64)
+	zi ice wait lucid as"program" from"gh-r" ver"nightly" bpick"*appimage*" mv"nvim* -> nvim-vscode" id-as"neovim-vscode"
+	zi load neovim/neovim
+
 fi
 
 if [[ $(hostname) == "lappop" ]]; then
