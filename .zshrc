@@ -35,40 +35,56 @@ zi wait lucid as"program" from"gh-r" for \
 	mv"fd* -> fdfind" pick"fdfind/fd" atclone"sudo cp fdfind/fd /usr/bin/fd" @sharkdp/fd \
 	mv"bat* -> bat" pick"bat/bat" @sharkdp/bat \
 	atclone"sudo install procs /usr/bin/procs && sudo install ~/.config/procs/procs.toml /etc/procs/procs.toml" dalance/procs \
-	mv"choose* -> choose" pick"choose" theryangeary/choose \
 	denisidoro/navi \
 	pick"xh-*/xh" ducaale/xh \
-    jesseduffield/lazygit \
+	jesseduffield/lazygit \
 	bensadeh/tailspin
 
 # Architecture-specific tools
 if [[ "$ARCH" == "x86_64" ]]; then
-    # x86_64 specific
-    zi wait lucid as"program" from"gh-r" for \
-        ver"v0.10.3" bpick"*appimage*" mv"nvim* -> nvim" neovim/neovim \
-        mv"ripgrep* -> rg" pick"rg/rg" BurntSushi/ripgrep \
+	# x86_64 specific
+	zi wait lucid as"program" from"gh-r" for \
+		ver"v0.10.3" bpick"*appimage*" mv"nvim* -> nvim" neovim/neovim \
+		mv"choose* -> choose" pick"choose" theryangeary/choose \
+		mv"ripgrep* -> rg" pick"rg/rg" BurntSushi/ripgrep \
 		mv"bin/dog -> dog" pick"dog" ogham/dog \
 		pick"tldr" tldr-pages/tlrc \
-        bpick"*linux_amd64*" junegunn/fzf
-    
-    # neovim for vscode (x86_64)
-    zi ice wait lucid as"program" from"gh-r" ver"nightly" bpick"*appimage*" mv"nvim* -> nvim-vscode" id-as"neovim-vscode"
-    zi load neovim/neovim
-    
-elif [[ "$ARCH" == "aarch64" || "$ARCH" == "arm64" || "$ARCH" == "armv7l" ]]; then
-    # ARM specific 
-    zi wait lucid as"program" from"gh-r" for \
-        mv"ripgrep* -> rg" pick"rg/rg" BurntSushi/ripgrep \
-        bpick"*linux_arm*" junegunn/fzf
-	
+		bpick"*linux_amd64*" junegunn/fzf
+
+	# neovim for vscode (x86_64)
+	zi ice wait lucid as"program" from"gh-r" ver"nightly" bpick"*appimage*" mv"nvim* -> nvim-vscode" id-as"neovim-vscode"
+	zi load neovim/neovim
+
+elif [[ "$ARCH" == "aarch64" || "$ARCH" == "arm64" ]]; then
+	# ARM 64-bit specific
+	zi wait lucid as"program" from"gh-r" for \
+		mv"ripgrep* -> rg" pick"rg/rg" BurntSushi/ripgrep \
+		bpick"*aarch64*" eza-community/eza \
+		bpick"choose-aarch64-unknown-linux-gnu" binpicks"choose" mikefarah/choose \
+		bpick"*linux_arm64*" junegunn/fzf
+
 	zi ice as"program" id-as"neovim" \
-      atclone"CMAKE_BUILD_TYPE=Release make -j4" \
-      atpull"CMAKE_BUILD_TYPE=Release make -j4" \
-      pick"bin/nvim"
-    zi load neovim/neovim
-	
+		atclone"CMAKE_BUILD_TYPE=Release make -j4" \
+		atpull"CMAKE_BUILD_TYPE=Release make -j4" \
+		pick"bin/nvim"
+	zi load neovim/neovim
+
+elif [[ "$ARCH" == "armv7l" ]]; then
+	# ARM 32-bit specific
+	zi wait lucid as"program" from"gh-r" for \
+		mv"ripgrep* -> rg" pick"rg/rg" BurntSushi/ripgrep \
+		mv"choose* -> choose" bpick"choose-aarch64-unknown-linux-gnu" theryangeary/choose \
+		bpick"eza_arm-unknown-linux-gnueabihf.tar.gz" eza-community/eza \
+		bpick"*linux_armv7*" junegunn/fzf
+
+	zi ice as"program" id-as"neovim" \
+		atclone"CMAKE_BUILD_TYPE=Release make -j4" \
+		atpull"CMAKE_BUILD_TYPE=Release make -j4" \
+		pick"bin/nvim"
+	zi load neovim/neovim
+
 else
-    echo "Unknown architecture: $ARCH - some tools may not install correctly"
+	echo "Unknown architecture: $ARCH - some tools may not install correctly"
 fi
 
 # system completions
@@ -172,7 +188,6 @@ export FZF_COMMON_OPTIONS="
 --preview-window 'right:60%:hidden:wrap'
 --preview '([[ -d {} ]] && tree -C {}) || ([[ -f {} ]] && bat --style=full --color=always {}) || echo {}'"
 
-
 # navi settings
 export NAVI_FZF_OVERRIDES='--with-nth 3,2,1 --height 70%'
 alias navic='navi --cheatsh'
@@ -184,7 +199,7 @@ zstyle ':completion:*:match:*' original only
 zstyle -e ':completion:*:approximate:*' max-errors 'reply=($((($#PREFIX+$#SUFFIX)/3>7?7:($#PREFIX+$#SUFFIX)/3))numeric)'
 
 zstyle ':completion:*:git-checkout:*' sort false # disable sort when completing `git checkout`
-zstyle ':completion:*' list-colors ${(s.:.)LS_COLORS} # set list-colors to enable filename colorizing
+zstyle ':completion:*' list-colors ${(s.:.)LS_COLORS}
 
 zstyle ':completion:*:matches' group 'yes'
 zstyle ':completion:*:options' description 'yes'
@@ -202,12 +217,11 @@ zstyle ':completion:*:functions' ignored-patterns '(_*|pre(cmd|exec))'
 zstyle ':completion:*' use-cache true
 zstyle ':completion:*' rehash true
 
-
 # golang settings
 export PATH=$PATH:/usr/local/go/bin
 export PATH=$PATH:$HOME/go/bin
 
-# key bindings 
+# key bindings
 bindkey "^[[1;5C" forward-word
 bindkey "^[[1;5D" backward-word
 bindkey "^E" end-of-line
@@ -274,7 +288,6 @@ alias -g -- -h='-h 2>&1 | bat --language=help --style=plain -P'
 alias -g -- --help='--help 2>&1 | bat --language=help --style=plain -P'
 alias batp='bat -Pp'
 
-
 # fzf keybindings
 [ -f "$HOME/.config/fzf/key-bindings.zsh" ] && source "$HOME/.config/fzf/key-bindings.zsh"
 [[ $- == *i* ]] && source "$HOME/.config/fzf/completion.zsh" 2> /dev/null
@@ -282,15 +295,15 @@ alias batp='bat -Pp'
 # direnv
 zi ice as"program" make'!' atclone'./direnv hook zsh > zhook.zsh' \
 	atpull'%atclone' src"zhook.zsh"
-	zi light direnv/direnv
+zi light direnv/direnv
 
 # load global devbox
-function devbox_global () {
+function devbox_global() {
 	eval "$(devbox global shellenv --init-hook --omit-nix-env=false)"
 }
 
-# zellij 
-function za(){
+# zellij
+function za() {
 	if command -v zellij &> /dev/null; then
 		# Check if zellij is already running to avoid nested sessions
 		if [ -z "$ZELLIJ" ]; then
@@ -311,19 +324,18 @@ function y() {
 }
 
 export NVM_DIR="$HOME/.nvm"
-[ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
-[ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
+[ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"                   # This loads nvm
+[ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion" # This loads nvm bash_completion
 
 # auto attach to tmux on local shells
 if command -v tmux &> /dev/null && [ -z "$TMUX" ] && [ -z "$SSH_CONNECTION" ]; then
-    tmux attach -t default || tmux new -s default
+	tmux attach -t default || tmux new -s default
 fi
 
 # additional configs
-if [ -d "$HOME/.config/zsh/config.d/" ] ; then
-	for conf in "$HOME/.config/zsh/config.d/"*.zsh ; do
-		source "${conf}" 
+if [ -d "$HOME/.config/zsh/config.d/" ]; then
+	for conf in "$HOME/.config/zsh/config.d/"*.zsh; do
+		source "${conf}"
 	done
 	unset conf
 fi
-
