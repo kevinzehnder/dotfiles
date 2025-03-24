@@ -32,6 +32,8 @@ if [[ "$ARCH" == "x86_64" ]]; then
 		mv"dust* -> dust" pick"dust/dust" bootandy/dust \
 		pick"duf" muesli/duf \
 		mv"delta* -> delta" pick"delta/delta" dandavison/delta \
+		go-task/task \
+		pick"btop/bin/btop" aristocratos/btop \
 		eza-community/eza \
 		mv"fd* -> fdfind" pick"fdfind/fd" atclone"sudo cp fdfind/fd /usr/bin/fd" @sharkdp/fd \
 		mv"bat* -> bat" pick"bat/bat" @sharkdp/bat \
