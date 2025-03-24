@@ -34,6 +34,9 @@ function containers() {
 		--bind "ctrl-x:execute(ID=\$(echo {} | awk '{print \$1}'); echo \"Removing \$ID...\"; sudo nerdctl rm \$ID; echo \"Reloading...\")+reload(eval \"$cmd\" | tail -n +2)"
 }
 
+alias c='containers'
+alias ca='containers -a'
+
 function images() {
 	check_sudo_nopass || sudo -v
 
