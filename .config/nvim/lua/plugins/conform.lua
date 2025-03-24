@@ -22,6 +22,7 @@ return {
 			-- lua = { "stylua" },
 			javascript = { "prettierd", "prettier", stop_after_first = true },
 			yaml = { "yamlfmt", stop_after_first = true },
+			zsh = { "shfmt" },
 		},
 		-- Set default options
 		default_format_opts = {
@@ -32,8 +33,13 @@ return {
 		-- Customize formatters
 		formatters = {
 			shfmt = {
-				prepend_args = { "-i", "2" },
-			},
+				args = {
+					"-i", "0", -- Use tabs, not spaces
+					"-ci", -- indent switch cases
+					"-bn", -- binary ops get space
+					"-sr", -- spaces around redirects
+				},
+			}
 		},
 	},
 	init = function ()
