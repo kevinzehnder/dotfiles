@@ -12,7 +12,7 @@ if [[ "$ARCH" == "aarch64" || "$ARCH" == "arm64" ]]; then
 		bpick"*aarch64*" pick"xh-*/xh" ducaale/xh \
 		bpick"*aarch64*" jesseduffield/lazygit \
 		bpick"*aarch64*" bensadeh/tailspin \
-		bpick"choose-aarch64-unknown-linux-gnu" binpicks"choose" mikefarah/choose \
+		mv"choose* -> choose" bpick"choose-aarch64-unknown-linux-gnu" theryangeary/choose \
 		bpick"*aarch64*" mv"ripgrep* -> rg" pick"rg/rg" BurntSushi/ripgrep \
 		bpick"*linux_arm64*" junegunn/fzf
 
@@ -29,7 +29,6 @@ elif [[ "$ARCH" == "armv7l" ]]; then
 		bpick"*armv7*" denisidoro/navi \
 		bpick"*armv7*" pick"xh-*/xh" ducaale/xh \
 		bpick"*armv7*" jesseduffield/lazygit \
-		mv"choose* -> choose" bpick"choose-aarch64-unknown-linux-gnu" theryangeary/choose \
 		bpick"*armv7*" bensadeh/tailspin \
 		bpick"*armv7*" mv"ripgrep* -> rg" pick"rg/rg" BurntSushi/ripgrep \
 		bpick"*linux_armv7*" junegunn/fzf
