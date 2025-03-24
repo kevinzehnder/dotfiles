@@ -2,7 +2,7 @@
 if [[ "$ARCH" == "aarch64" || "$ARCH" == "arm64" ]]; then
 	zi wait lucid as"program" from"gh-r" for \
 		bpick"*aarch64*" mv"dust* -> dust" pick"dust/dust" bootandy/dust \
-		bpick"*aarch64*" pick"duf" muesli/duf \
+		pick"duf" muesli/duf \
 		bpick"*aarch64*" mv"delta* -> delta" pick"delta/delta" dandavison/delta \
 		bpick"*aarch64*" eza-community/eza \
 		bpick"*aarch64*" mv"fd* -> fdfind" pick"fdfind/fd" atclone"sudo cp fdfind/fd /usr/bin/fd" @sharkdp/fd \
@@ -10,7 +10,7 @@ if [[ "$ARCH" == "aarch64" || "$ARCH" == "arm64" ]]; then
 		bpick"*aarch64*" atclone"sudo install procs /usr/bin/procs" dalance/procs \
 		bpick"*aarch64*" denisidoro/navi \
 		bpick"*aarch64*" pick"xh-*/xh" ducaale/xh \
-		bpick"*aarch64*" jesseduffield/lazygit \
+		jesseduffield/lazygit \
 		bpick"*aarch64*" bensadeh/tailspin \
 		mv"choose* -> choose" bpick"choose-aarch64-unknown-linux-gnu" theryangeary/choose \
 		bpick"*aarch64*" mv"ripgrep* -> rg" pick"rg/rg" BurntSushi/ripgrep \
@@ -19,7 +19,6 @@ if [[ "$ARCH" == "aarch64" || "$ARCH" == "arm64" ]]; then
 # ARM 32-bit specific tools
 elif [[ "$ARCH" == "armv7l" ]]; then
 	zi wait lucid as"program" from"gh-r" for \
-		bpick"*freebsd_armv7*" pick"duf" muesli/duf \
 		bpick"eza_arm-unknown-linux-gnueabihf.tar.gz" eza-community/eza \
 		bpick"*armv7-unknown-linux-musleabihf*" denisidoro/navi \
 		bpick"*Linux_armv6*" jesseduffield/lazygit \
