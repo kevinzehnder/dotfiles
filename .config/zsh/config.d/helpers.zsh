@@ -99,6 +99,12 @@ function za() {
 
 # yazi
 function y() {
+	if ! command -v yazi > /dev/null 2>&1; then
+		echo "Yazi not found. Installing..."
+		zi wait lucid light-mode as"program" from"gh-r" pick"ya*/yazi" for sxyazi/yazi
+		exec zsh # Reload shell to get yazi
+	fi
+
 	local tmp="$(mktemp -t "yazi-cwd.XXXXXX")"
 	yazi "$@" --cwd-file="$tmp"
 	if cwd="$(command cat -- "$tmp")" && [ -n "$cwd" ] && [ "$cwd" != "$PWD" ]; then
