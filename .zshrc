@@ -44,16 +44,23 @@ if [[ "$ARCH" == "x86_64" ]]; then
 		bensadeh/tailspin
 
 	zi wait lucid as"program" from"gh-r" for \
-		ver"v0.10.3" bpick"*appimage*" mv"nvim* -> nvim" neovim/neovim \
 		mv"choose* -> choose" pick"choose" theryangeary/choose \
 		mv"ripgrep* -> rg" pick"rg/rg" BurntSushi/ripgrep \
 		mv"bin/dog -> dog" pick"dog" ogham/dog \
 		pick"tldr" tldr-pages/tlrc \
 		bpick"*linux_amd64*" junegunn/fzf
 
-	# neovim for vscode (x86_64)
-	zi ice wait lucid as"program" from"gh-r" ver"nightly" bpick"*appimage*" mv"nvim* -> nvim-vscode" id-as"neovim-vscode"
-	zi load neovim/neovim
+	# neovim
+	if command -v fuse-overlayfs > /dev/null 2>&1 || test -e /dev/fuse; then
+		zi wait lucid as"program" from"gh-r" for \
+			ver"v0.10.3" bpick"*appimage*" mv"nvim* -> nvim" neovim/neovim
+	else
+		zi ice from"gh-r" ver"nightly" bpick"nvim-linux-x86_64.tar.gz" \
+			pick"nvim-linux-x86_64/bin/nvim" \
+			atclone"chmod +x nvim-linux-x86_64/bin/nvim; sudo cp -vf nvim-linux-x86_64/bin/nvim /usr/local/bin/; sudo mkdir -p /usr/local/share; sudo cp -r nvim-linux-x86_64/share/nvim /usr/local/share/" \
+			atpull"%atclone"
+		zi load neovim/neovim
+	fi
 fi
 
 # system completions
@@ -168,7 +175,7 @@ zstyle ':completion:*:match:*' original only
 zstyle -e ':completion:*:approximate:*' max-errors 'reply=($((($#PREFIX+$#SUFFIX)/3>7?7:($#PREFIX+$#SUFFIX)/3))numeric)'
 
 zstyle ':completion:*:git-checkout:*' sort false # disable sort when completing `git checkout`
-zstyle ':completion:*' list-colors ${(s.:.)LS_COLORS}
+# zstyle ':completion:*' list-colors ${(s.:.)LS_COLORS}
 
 zstyle ':completion:*:matches' group 'yes'
 zstyle ':completion:*:options' description 'yes'
