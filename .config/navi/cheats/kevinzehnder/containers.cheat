@@ -1,0 +1,5 @@
+
+% containers, nerdctl, containerd, docker
+
+# Run A Debug Container
+sudo nerdctl run --rm alpine sh -c "hostname && echo 'containerd is running'"
