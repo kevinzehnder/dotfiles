@@ -26,7 +26,8 @@ zi wait lucid for \
 zi wait lucid for \
 	Aloxaf/fzf-tab
 
-# Common tools (no architecture filter needed)
+# tools - install everywhere except 32bit ARM
+if [[ "$ARCH" != "armv7l" ]]; then
 zi wait lucid as"program" from"gh-r" for \
 	mv"dust* -> dust" pick"dust/dust" bootandy/dust \
 	pick"duf" muesli/duf \
@@ -40,8 +41,7 @@ zi wait lucid as"program" from"gh-r" for \
 	jesseduffield/lazygit \
 	bensadeh/tailspin
 
-# Architecture-specific tools
-if [[ "$ARCH" == "x86_64" ]]; then
+elif [[ "$ARCH" == "x86_64" ]]; then
 	# x86_64 specific
 	zi wait lucid as"program" from"gh-r" for \
 		ver"v0.10.3" bpick"*appimage*" mv"nvim* -> nvim" neovim/neovim \
@@ -76,12 +76,6 @@ elif [[ "$ARCH" == "armv7l" ]]; then
 		mv"choose* -> choose" bpick"choose-aarch64-unknown-linux-gnu" theryangeary/choose \
 		bpick"eza_arm-unknown-linux-gnueabihf.tar.gz" eza-community/eza \
 		bpick"*linux_armv7*" junegunn/fzf
-
-	zi ice as"program" id-as"neovim" \
-		atclone"CMAKE_BUILD_TYPE=Release make -j4" \
-		atpull"CMAKE_BUILD_TYPE=Release make -j4" \
-		pick"bin/nvim"
-	zi load neovim/neovim
 
 else
 	echo "Unknown architecture: $ARCH - some tools may not install correctly"
