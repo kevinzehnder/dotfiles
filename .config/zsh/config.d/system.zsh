@@ -51,7 +51,7 @@ function timers() {
 		| head -n -2 \
 		| awk '{print $(NF-1)}' \
 		| fzf --ansi \
-			--preview "script -qec 'systemctl status {} --no-pager' /dev/null" \
+			--preview "script -qec 'sudo systemctl status {} --no-pager' /dev/null" \
 			--preview-window=right:60%:wrap \
 			--header $'System Timers | CTRL-R: reload\nCTRL-L: journal | CTRL-E: edit\nCTRL-S: start | CTRL-D: stop | CTRL-T: restart' \
 			--bind "ctrl-r:reload(systemctl list-timers --all --no-pager | tail -n +2 | head -n -5 | awk '{print \$(NF-1)}')" \
