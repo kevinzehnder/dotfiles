@@ -1,11 +1,9 @@
 function containers() {
 	# Check sudo
 	check_sudo_nopass || sudo -v
-
 	# Command options
 	local cmd="sudo nerdctl ps"
 	[[ "$1" == "-a" ]] && cmd="sudo nerdctl ps -a"
-
 	# Set up log commands based on tspin availability
 	if command -v tspin > /dev/null 2>&1; then
 		local logs="ID=\$(echo {} | awk '{print \$1}'); sudo nerdctl logs --tail 2000 \$ID | tspin | less -r +G"
@@ -14,29 +12,26 @@ function containers() {
 		local logs="ID=\$(echo {} | awk '{print \$1}'); sudo nerdctl logs --tail 2000 \$ID | less -r +G"
 		local follow_logs="ID=\$(echo {} | awk '{print \$1}'); sudo nerdctl logs -f \$ID"
 	fi
-
 	# Get the header and containers
 	local header=$(eval "$cmd" | head -1)
 	local containers=$(eval "$cmd" | tail -n +2)
-
 	if [[ -z "$containers" ]]; then
 		echo "No containers found"
 		return
 	fi
-
 	# Run fzf with header line and preview at bottom
 	echo "$header"
 	echo "$containers" | fzf \
 		--preview="ID=\$(echo {} | awk '{print \$1}'); echo -e '\033[1;32mContainer Info:\033[0m'; sudo nerdctl inspect \$ID | head -30; echo -e '\n\033[1;33mRecent Logs:\033[0m'; sudo nerdctl logs --tail 10 \$ID" \
 		--preview-window=down:60%:wrap \
-		--header $'Container Management | CTRL-R: reload\nCTRL-L: logs | CTRL-F: follow logs | CTRL-E: exec\nCTRL-S: start | CTRL-D: stop | CTRL-X: rm' \
+		--header $'Container Management | CTRL-R: reload\nCTRL-L: logs | CTRL-F: follow logs | CTRL-E: exec\nCTRL-S: start | CTRL-P: stop | CTRL-X: rm' \
 		--bind "ctrl-l:execute($logs)" \
 		--bind "ctrl-f:execute($follow_logs)" \
 		--bind "ctrl-e:execute(ID=\$(echo {} | awk '{print \$1}'); sudo nerdctl exec -it \$ID sh)" \
-		--bind "ctrl-s:execute(ID=\$(echo {} | awk '{print \$1}'); sudo nerdctl start \$ID)" \
-		--bind "ctrl-p:execute(ID=\$(echo {} | awk '{print \$1}'); sudo nerdctl stop \$ID)" \
+		--bind "ctrl-s:execute(ID=\$(echo {} | awk '{print \$1}'); echo \"Starting \$ID...\"; sudo nerdctl start \$ID; echo \"Reloading...\")+reload(eval \"$cmd\" | tail -n +2)" \
+		--bind "ctrl-p:execute(ID=\$(echo {} | awk '{print \$1}'); echo \"Stopping \$ID...\"; sudo nerdctl stop \$ID; echo \"Reloading...\")+reload(eval \"$cmd\" | tail -n +2)" \
 		--bind "ctrl-r:reload(eval \"$cmd\" | tail -n +2)" \
-		--bind "ctrl-x:execute(ID=\$(echo {} | awk '{print \$1}'); sudo nerdctl rm \$ID)"
+		--bind "ctrl-x:execute(ID=\$(echo {} | awk '{print \$1}'); echo \"Removing \$ID...\"; sudo nerdctl rm \$ID; echo \"Reloading...\")+reload(eval \"$cmd\" | tail -n +2)"
 }
 
 function images() {
