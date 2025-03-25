@@ -1,7 +1,35 @@
 #!/usr/bin/env zsh
 # firewall - Interactive firewalld management tool using fzf
 
-function firewall() {
+# Status view
+function fwstate() {
+	clear
+	echo -e "🔥 ${BLUE}FIREWALLD STATUS${NC}"
+	if systemctl is-active --quiet firewalld; then
+		echo -e "• Status: ${GREEN}ACTIVE ✓${NC}"
+	else
+		echo -e "• Status: ${RED}INACTIVE ✗${NC}"
+	fi
+
+	if systemctl is-enabled --quiet firewalld; then
+		echo -e "• Boot:   ${GREEN}ENABLED ✓${NC}"
+	else
+		echo -e "• Boot:   ${RED}DISABLED ✗${NC}"
+	fi
+
+	echo -e "\n🎯 ${BLUE}ZONES${NC}"
+	echo -e "• Default: $(sudo firewall-cmd --get-default-zone)"
+
+	echo -e "\n🔌 ${BLUE}ACTIVE ZONES${NC}"
+	active_zones=$(sudo firewall-cmd --get-active-zones)
+	if [[ -z "$active_zones" ]]; then
+		echo -e "• ${RED}No active zones${NC}"
+	else
+		echo "$active_zones" | sed 's/^/• /'
+	fi
+}
+
+function fw() {
 
 	# Check if we have fzf
 	if ! command -v fzf &> /dev/null; then
@@ -47,7 +75,8 @@ function firewall() {
 
 		case $select in
 			"Status: Show firewalld status")
-				show_status
+				fwstate
+				main_menu
 				;;
 			"Zones: Manage firewall zones")
 				manage_zones
@@ -66,7 +95,8 @@ function firewall() {
 				main_menu
 				;;
 			"Listening: Show currently listening ports")
-				show_listening
+				fwports
+				main_menu
 				;;
 			"Exit: Quit this tool")
 				return 0
@@ -75,36 +105,6 @@ function firewall() {
 				main_menu
 				;;
 		esac
-	}
-
-	# Status view
-	function show_status() {
-		clear
-		echo -e "🔥 ${BLUE}FIREWALLD STATUS${NC}"
-		if systemctl is-active --quiet firewalld; then
-			echo -e "• Status: ${GREEN}ACTIVE ✓${NC}"
-		else
-			echo -e "• Status: ${RED}INACTIVE ✗${NC}"
-		fi
-
-		if systemctl is-enabled --quiet firewalld; then
-			echo -e "• Boot:   ${GREEN}ENABLED ✓${NC}"
-		else
-			echo -e "• Boot:   ${RED}DISABLED ✗${NC}"
-		fi
-
-		echo -e "\n🎯 ${BLUE}ZONES${NC}"
-		echo -e "• Default: $(sudo firewall-cmd --get-default-zone)"
-
-		echo -e "\n🔌 ${BLUE}ACTIVE ZONES${NC}"
-		active_zones=$(sudo firewall-cmd --get-active-zones)
-		if [[ -z "$active_zones" ]]; then
-			echo -e "• ${RED}No active zones${NC}"
-		else
-			echo "$active_zones" | sed 's/^/• /'
-		fi
-
-		main_menu
 	}
 
 	function show_zone_info() {
@@ -626,38 +626,90 @@ function firewall() {
 	}
 
 	# Show listening ports
-	function show_listening() {
-		clear
-		echo -e "${BLUE}=== Listening Ports ===${NC}"
-		echo -e "${YELLOW}Protocol | Port | Process${NC}"
-		echo "--------------------------------"
-		ss -tulpn | grep LISTEN | sort -k5 | awk '{printf "%-8s | %-5s | %s\n", $1, $5, $7}' | sed 's/.*:\([0-9]*\) .*/\1/g'
-		echo
-
-		# Check if all listening ports are allowed through firewall
-		echo -e "${BLUE}=== Firewall Check ===${NC}"
-		default_zone=$(sudo firewall-cmd --get-default-zone)
-		allowed_ports=$(sudo firewall-cmd --zone=$default_zone --list-ports | tr ' ' '\n' | cut -d'/' -f1)
-		allowed_services=$(sudo firewall-cmd --zone=$default_zone --list-services)
-
-		for service in $allowed_services; do
-			service_ports=$(sudo firewall-cmd --info-service=$service | grep port= | cut -d= -f2 | cut -d- -f1)
-			if [[ -n "$service_ports" ]]; then
-				allowed_ports="$allowed_ports $service_ports"
-			fi
-		done
-
-		listening_ports=$(ss -tulpn | grep LISTEN | awk '{print $5}' | sed 's/.*:\([0-9]*\)/\1/g' | sort -u)
-
-		for port in $listening_ports; do
-			if echo "$allowed_ports" | grep -q -w "$port"; then
-				echo -e "Port ${GREEN}$port${NC} is listening and ${GREEN}allowed${NC} in firewall"
-			else
-				echo -e "Port ${RED}$port${NC} is listening but ${RED}NOT allowed${NC} in firewall"
-			fi
-		done
-
-		main_menu
-	}
 	main_menu
+}
+
+function fwports() {
+	check_sudo_nopass || sudo -v
+	clear
+
+	# Colors and symbols
+	BLUE="\033[1;34m"
+	GREEN="\033[1;32m"
+	YELLOW="\033[1;33m"
+	RED="\033[1;31m"
+	NC="\033[0m"
+
+	# Icons
+	EAR="👂"
+	SHIELD="🛡️"
+	CHECK="✅"
+	WARN="⚠️"
+
+	echo -e "${BLUE}${EAR} LISTENING PORTS ${EAR}${NC}"
+	echo -e "${YELLOW}Protocol | Port | Process${NC}"
+	echo "--------------------------------"
+
+	# Clean port display
+	sudo ss -tulpn | grep LISTEN | sort -n -k 5 \
+		| awk '{
+            protocol=$1; 
+            split($5,a,":"); 
+            port=a[length(a)]; 
+            process=$7;
+            printf "%-8s | %-5s | %s\n", protocol, port, process
+        }'
+
+	echo
+	echo -e "${BLUE}${SHIELD} FIREWALL STATUS ${SHIELD}${NC}"
+
+	# Get default zone
+	default_zone=$(sudo firewall-cmd --get-default-zone)
+	echo -e "Default zone: ${YELLOW}$default_zone${NC}"
+
+	# Create temp file for ports
+	tmp_listening="/tmp/listening_ports.$$"
+	sudo ss -tulpn | grep LISTEN | awk '{split($5,a,":"); print a[length(a)]}' | sort -nu > "$tmp_listening"
+
+	# Get allowed ports
+	tmp_allowed="/tmp/allowed_ports.$$"
+	sudo firewall-cmd --zone=$default_zone --list-ports 2> /dev/null | tr ' ' '\n' | grep -v '^$' | cut -d'/' -f1 > "$tmp_allowed"
+
+	# Add service ports with your better approach
+	for service in $(sudo firewall-cmd --zone=$default_zone --list-services 2> /dev/null); do
+		port_list=$(sudo firewall-cmd --info-service="$service" 2> /dev/null | grep ports: | cut -f 2 -d ":" | cut -f 1 -d "/" | tr -d ' ')
+		if [ -n "$port_list" ]; then
+			echo "$port_list" >> "$tmp_allowed"
+		fi
+	done
+
+	# Count variables
+	total=0
+	allowed=0
+	blocked=0
+
+	# Process each port individually
+	while read port; do
+		if [[ "$port" =~ ^[0-9]+$ ]]; then
+			total=$((total + 1))
+			if grep -q "^$port$" "$tmp_allowed" 2> /dev/null; then
+				echo -e "${CHECK} Port ${GREEN}$port${NC} is listening and ${GREEN}allowed${NC}"
+				allowed=$((allowed + 1))
+			else
+				echo -e "${WARN} Port ${RED}$port${NC} is listening but ${RED}BLOCKED${NC}"
+				blocked=$((blocked + 1))
+			fi
+		fi
+	done < "$tmp_listening"
+
+	# Cleanup
+	rm -f "$tmp_listening" "$tmp_allowed"
+
+	# Summary section
+	echo
+	echo -e "${BLUE}=== SUMMARY ===${NC}"
+	echo -e "Total ports: $total"
+	echo -e "Allowed: ${GREEN}$allowed${NC}"
+	echo -e "Blocked: ${RED}$blocked${NC}"
+
 }
