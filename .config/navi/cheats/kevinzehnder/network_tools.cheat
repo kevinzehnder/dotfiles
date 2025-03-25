@@ -9,3 +9,15 @@ wifi
 # Manage network interfaces using NMCLI (view/edit/up/down)
 net
 
+% network, connection, python
+
+# Run a Basic Python3 WebServer that serves current directory
+python3 -m http.server <port>
+
+
+% iperf, connection
+# Run iperf3 Server on Specific Port
+iperf3 -s -p <port>
+
+# Run iperf3 Client to test Connection to Server
+iperf3 -c <server> -p <port>
