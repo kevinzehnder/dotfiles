@@ -212,7 +212,7 @@ alias gh='gh.exe' # use windows based gh, because it supports credential store
 
 alias l='eza'
 alias ls="eza --color=auto --icons"
-alias ll='ls -alh'
+alias ll='ls -alhg'
 alias la='ls -a'
 alias llm='ll --sort=modified' # ll, sorted by modification date
 alias llz='ll -Z'
