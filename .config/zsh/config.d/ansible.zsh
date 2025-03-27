@@ -67,7 +67,6 @@ function arole() {
 	# Step 2: Select inventory (optional)
 	local inventory
 	inventory=$(fd -t f . inventories/ \
-		| rg "inventory" \
 		| fzf --preview 'bat --style=numbers --color=always --line-range :100 {}' \
 			--preview-window='right:60%' \
 			--header 'Select inventory file (ESC to skip)' \
