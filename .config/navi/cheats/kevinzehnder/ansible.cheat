@@ -19,3 +19,6 @@ aplay
 ;
 ; Builds and prints a full ansible command with include_role
 arole
+
+# Ansible Debug: Output Variable for a Given Host
+ansible <host> -m debug -a "var=<variable>"
