@@ -26,9 +26,9 @@ export NVM_DIR="$HOME/.nvm"
 [ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion" # This loads nvm bash_completion
 
 # Auto attach to tmux on local shells
-if command -v tmux &> /dev/null && [ -z "$TMUX" ] && [ -z "$SSH_CONNECTION" ]; then
-	tmux attach -t default || tmux new -s default
-fi
+# if command -v tmux &> /dev/null && [ -z "$TMUX" ] && [ -z "$SSH_CONNECTION" ]; then
+# 	tmux attach -t default || tmux new -s default
+# fi
 
 # Load remaining config files
 if [ -d "$HOME/.config/zsh/config.d/" ]; then
