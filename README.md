@@ -8,14 +8,12 @@ My personal dotfiles and configuration files.
 dotfiles/
 ├── .bashrc                   # Bash configuration
 ├── .config/                  # Application configs
-│   ├── astronvim_v4/         # AstroNvim config
 │   ├── base16/               # Base16 color themes
 │   ├── btop/                 # Btop++ settings
 │   ├── direnv/               # Direnv settings
 │   ├── fzf/                  # FZF key bindings and completions
 │   ├── k9s/                  # K9s Kubernetes UI config
 │   ├── lazygit/              # Lazygit config
-│   ├── lvim/                 # LunarVim config
 │   ├── navi/                 # Navi cheatsheet tool config
 │   ├── nvim/                 # Neovim config
 │   ├── procs/                # Process viewer config
@@ -93,14 +91,13 @@ config config status.showUntrackedFiles no
 - Customized Tmux configuration
 - Various CLI tool configurations
 - Kubernetes tool configurations
-- Terminal multiplexer setups (Zellij, Tmux)
 - Custom ZSH functions and aliases
 
 ## Key Tools
 
 - **Shell**: ZSH with Zi plugin manager
 - **Terminal Multiplexers**: Tmux, Zellij
-- **Editor**: Neovim (multiple configurations)
+- **Editor**: Neovim
 - **Git UI**: Lazygit
 - **File Navigation**: fzf, eza
 - **Kubernetes**: k9s, kubectl
