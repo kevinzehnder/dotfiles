@@ -25,17 +25,19 @@ export NVM_DIR="$HOME/.nvm"
 [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"                   # This loads nvm
 [ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion" # This loads nvm bash_completion
 
-# Auto attach to tmux on local shells
-# if command -v tmux &> /dev/null && [ -z "$TMUX" ] && [ -z "$SSH_CONNECTION" ]; then
-# 	tmux attach -t default || tmux new -s default
-# fi
+# Auto attach to tmux on local WSL shells
+if [[ -n "$WSL_DISTRO_NAME" ]]; then
+	if command -v tmux &> /dev/null && [ -z "$TMUX" ] && [ -z "$SSH_CONNECTION" ]; then
+		tmux attach -t default || tmux new -s default
+	fi
+fi
 
 # Load remaining config files
 if [ -d "$HOME/.config/zsh/config.d/" ]; then
 	for conf in "$HOME/.config/zsh/config.d/"*.zsh; do
 		# Skip already loaded core config files
 		case "${conf}" in
-			*plugins.zsh|*options.zsh|*environment.zsh|*keybindings.zsh|*completion.zsh|*aliases.zsh) continue ;;
+			*plugins.zsh | *options.zsh | *environment.zsh | *keybindings.zsh | *completion.zsh | *aliases.zsh) continue ;;
 			*) source "${conf}" ;;
 		esac
 	done
