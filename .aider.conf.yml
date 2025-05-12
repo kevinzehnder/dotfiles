@@ -11,7 +11,6 @@ code-theme: solarized-light
 cache-prompts: false
 
 read:
-  - CONVENTIONS.md
   - README.md
 
 test-cmd: task test

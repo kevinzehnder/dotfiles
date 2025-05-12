@@ -3,7 +3,7 @@ vim.keymap.set("n", "<leader>x", "<cmd>qa<CR>", { desc = "Quit All" })
 vim.keymap.set("n", "<leader>q", "<cmd>q<CR>", { desc = "Quit" })
 vim.keymap.set("n", "<leader>w", "<cmd>w<CR>", { desc = "Save Buffer" })
 vim.keymap.set("n", "<leader>h", "<cmd>nohlsearch<CR>", { desc = "No Highlight" })
-vim.keymap.set("n", "<leader>e", "<cmd>NvimTreeToggle<CR><cmd>wincmd p<CR>", { desc = "Toggle NvimTree" })
+vim.keymap.set("n", "<leader>e", "<cmd>Neotree toggle<CR><cmd>wincmd p<CR>", { desc = "Toggle NeoTree" })
 vim.keymap.set("n", "<leader>c", "<cmd>bdelete<CR>", { desc = "Close Buffer" })
 
 vim.keymap.set("n", "<A-j>", "<cmd>cnext<CR>zz", { desc = "QuickFix next", silent = true })
@@ -15,8 +15,8 @@ vim.keymap.set("n", "<leader>lR", "<cmd>Telescope lsp_references<CR>", { desc = 
 
 
 -- panels keymaps
-vim.keymap.set("n", "<A-H>", "<cmd>NvimTreeToggle<CR>", { desc = "Toggle NvimTree" })
-vim.keymap.set("n", "<A-M>", "<cmd>Trouble diagnostics toggle filter.buf=0<cr>", { desc = "Toggle NvimTree" })
+vim.keymap.set("n", "<A-H>", "<cmd>Neotree toggle<CR>", { desc = "Toggle NeoTree" })
+vim.keymap.set("n", "<A-M>", "<cmd>Trouble diagnostics toggle filter.buf=0<cr>", { desc = "Toggle Diagnostics" })
 --
 -- Toggle quickfix with Alt-N
 vim.keymap.set("n", "<A-N>", function ()

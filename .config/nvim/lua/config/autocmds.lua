@@ -3,7 +3,7 @@
 
 -- setup tab expansion for YAML files
 vim.api.nvim_create_autocmd("FileType", {
-	pattern = { "yaml", "helm", "json" },
+	pattern = { "yaml", "helm", "json", "html" },
 	callback = function ()
 		vim.bo.tabstop = 2
 		vim.bo.softtabstop = 2
