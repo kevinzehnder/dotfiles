@@ -10,7 +10,8 @@ export NVIM_APPNAME="nvim"
 
 # Golang
 export PATH=$PATH:/usr/local/go/bin
-export PATH=$PATH:$HOME/go/bin
+export PATH=$PATH:$HOME/.go/bin
+export GOPATH=$HOME/.go
 
 # FZF settings
 export FZF_DEFAULT_COMMAND='fd --type file --follow --exclude .git'
@@ -54,3 +55,4 @@ export FZF_COMMON_OPTIONS="
 
 # Navi settings
 export NAVI_FZF_OVERRIDES='--with-nth 3,2,1 --height 70%'
+
