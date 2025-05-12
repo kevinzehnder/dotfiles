@@ -1,0 +1,19 @@
+---
+# Main model:
+model: deepseek/deepseek-chat
+
+# Output settings:
+light-mode: true
+pretty: true
+code-theme: solarized-light
+
+# Cache settings:
+cache-prompts: false
+
+read:
+  - CONVENTIONS.md
+  - README.md
+
+test-cmd: task test
+
+auto-commits: false
