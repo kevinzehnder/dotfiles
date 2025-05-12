@@ -43,3 +43,10 @@ if [ -d "$HOME/.config/zsh/config.d/" ]; then
 	done
 	unset conf
 fi
+
+# bun completions
+[ -s "/home/zehnderk/.bun/_bun" ] && source "/home/zehnderk/.bun/_bun"
+
+# bun
+export BUN_INSTALL="$HOME/.bun"
+export PATH="$BUN_INSTALL/bin:$PATH"
