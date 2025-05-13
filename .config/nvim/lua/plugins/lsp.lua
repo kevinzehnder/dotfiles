@@ -1,16 +1,16 @@
 return {
 	-- Main LSP Configuration
 	"neovim/nvim-lspconfig",
-	version="1.8.0",
+	version = "1.8.0",
 	dependencies = {
 		-- Automatically install LSPs and related tools to stdpath for Neovim
-		{ "williamboman/mason.nvim", version="1.11.0", config = true }, -- NOTE: Must be loaded before dependants
-		{"williamboman/mason-lspconfig.nvim", version="1.32.0"},
+		{ "williamboman/mason.nvim",           version = "1.11.0", config = true }, -- NOTE: Must be loaded before dependants
+		{ "williamboman/mason-lspconfig.nvim", version = "1.32.0" },
 		"WhoIsSethDaniel/mason-tool-installer.nvim",
 
 		-- Useful status updates for LSP.
 		-- NOTE: `opts = {}` is the same as calling `require('fidget').setup({})`
-		{ "j-hui/fidget.nvim",       opts = {} },
+		{ "j-hui/fidget.nvim", opts = {} },
 
 		-- Allows extra capabilities provided by nvim-cmp
 		"hrsh7th/cmp-nvim-lsp",
@@ -235,25 +235,31 @@ return {
 		--  You can press `g?` for help in this menu.
 		require("mason").setup()
 
-		-- install required servers, add more if you want...
-		require("mason-tool-installer").setup({
+		require("mason-lspconfig").setup({
 			ensure_installed = {
 				"stylua",
 				"lua_ls",
-			}
-		})
-
-		require("mason-lspconfig").setup({
+			},
+			automatic_installation = {},
 			handlers = {
 				function (server_name)
+					-- Use the server config from our table, or fall back to default
 					local server = servers[server_name] or {}
-					-- This handles overriding only values explicitly passed
-					-- by the server configuration above. Useful when disabling
-					-- certain features of an LSP (for example, turning off formatting for ts_ls)
+					--
+					-- This handles overriding only values explicitly passed by the server configuration above.
 					server.capabilities = vim.tbl_deep_extend("force", {}, capabilities, server.capabilities or {})
 					require("lspconfig")[server_name].setup(server)
 				end,
 			},
+		})
+
+		-- configure ruff
+		require("lspconfig").ruff.setup({
+			init_options = {
+				settings = {
+					logLevel = "info",
+				}
+			}
 		})
 	end,
 }
