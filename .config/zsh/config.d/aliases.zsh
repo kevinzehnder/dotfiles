@@ -46,6 +46,7 @@ alias ld='lazydocker'
 # Development tools
 alias ap='ansible-playbook'
 alias lg='lazygit'
+alias t='task'
 alias tf='terraform'
 alias tm='tmux attach -t default || tmux new -s default'
 alias gh='gh.exe' # use windows based gh, because it supports credential store
