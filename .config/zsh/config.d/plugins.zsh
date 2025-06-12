@@ -33,7 +33,8 @@ if [[ "$ARCH" == "x86_64" ]]; then
 		denisidoro/navi \
 		pick"xh-*/xh" ducaale/xh \
 		jesseduffield/lazygit \
-		bensadeh/tailspin
+		bensadeh/tailspin \
+		pick"bin/cb" Slackadays/Clipboard
 
 	zi wait lucid as"program" from"gh-r" for \
 		mv"choose* -> choose" pick"choose" theryangeary/choose \
