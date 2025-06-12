@@ -247,12 +247,12 @@ auto_layout true
 // Choose the theme that is specified in the themes section.
 // Default: default
 
-theme "solarized-light"
+theme "tokyo-night-dark"
 
 // The name of the default layout to load on startup
 // Default: "default"
 //
-default_layout "vim"
+// default_layout "vim"
 
 // Choose the mode that zellij uses when starting up.
 // Default: normal
