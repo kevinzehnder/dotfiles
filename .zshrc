@@ -25,12 +25,12 @@ export NVM_DIR="$HOME/.nvm"
 [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"                   # This loads nvm
 [ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion" # This loads nvm bash_completion
 
-# Auto attach to tmux on local WSL shells
-if [[ -n "$WSL_DISTRO_NAME" ]]; then
-	if command -v tmux &> /dev/null && [ -z "$TMUX" ] && [ -z "$SSH_CONNECTION" ]; then
-		tmux attach -t default || tmux new -s default
-	fi
-fi
+# # Auto attach to tmux on local WSL shells
+# if [[ -n "$WSL_DISTRO_NAME" ]]; then
+# 	if command -v tmux &> /dev/null && [ -z "$TMUX" ] && [ -z "$SSH_CONNECTION" ]; then
+# 		tmux attach -t default || tmux new -s default
+# 	fi
+# fi
 
 # Load remaining config files
 if [ -d "$HOME/.config/zsh/config.d/" ]; then
@@ -43,10 +43,3 @@ if [ -d "$HOME/.config/zsh/config.d/" ]; then
 	done
 	unset conf
 fi
-
-# bun completions
-[ -s "/home/zehnderk/.bun/_bun" ] && source "/home/zehnderk/.bun/_bun"
-
-# bun
-export BUN_INSTALL="$HOME/.bun"
-export PATH="$BUN_INSTALL/bin:$PATH"
