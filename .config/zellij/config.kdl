@@ -179,7 +179,7 @@ keybinds clear-defaults=true {
         bind "Alt o" { SwitchToMode "Session"; }
     }
     shared_except "tab" "locked" {
-        bind "Ctrl t" { SwitchToMode "Tab"; }
+        bind "Alt t" { SwitchToMode "Tab"; }
     }
     shared_except "move" "locked" {
         bind "Alt m" { SwitchToMode "Move"; }
@@ -247,7 +247,7 @@ auto_layout true
 // Choose the theme that is specified in the themes section.
 // Default: default
 
-theme "tokyo-night-dark"
+theme "solarized-light"
 
 // The name of the default layout to load on startup
 // Default: "default"
