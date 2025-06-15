@@ -7,14 +7,14 @@ function colorschemeswitcher() {
 	if [ "$1" = "solarized" ]; then
 		touch ~/.lightmode
 		base16_solarized-light
-		[ -f ~/.zi/plugins/tinted-theming---tinted-fzf/bash/base16-$BASE16_THEME.config ] && source ~/.zi/plugins/tinted-theming---tinted-fzf/bash/base16-$BASE16_THEME.config
+		[ -f "$ZINIT[PLUGINS_DIR]/tinted-theming---tinted-fzf/bash/base16-$BASE16_THEME.config" ] && source "$ZINIT[PLUGINS_DIR]/tinted-theming---tinted-fzf/bash/base16-$BASE16_THEME.config"
 		export BAT_THEME="Solarized (light)"
 		change_zellij_theme "solarized-light"
 		change_k9s_theme "solarized_light"
 	elif [ "$1" = "gruvbox" ]; then
 		rm -f ~/.lightmode
 		base16_gruvbox-dark-medium
-		[ -f ~/.zi/plugins/tinted-theming---tinted-fzf/bash/base16-$BASE16_THEME.config ] && source ~/.zi/plugins/tinted-theming---tinted-fzf/bash/base16-$BASE16_THEME.config
+		[ -f "$ZINIT[PLUGINS_DIR]/tinted-theming---tinted-fzf/bash/base16-$BASE16_THEME.config" ] && source "$ZINIT[PLUGINS_DIR]/tinted-theming---tinted-fzf/bash/base16-$BASE16_THEME.config"
 		export BAT_THEME="gruvbox-dark"
 		change_zellij_theme "gruvbox"
 	else
@@ -26,6 +26,7 @@ function colorschemeswitcher() {
 		change_k9s_theme "nord"
 	fi
 }
+
 
 function change_zellij_theme() {
 	if [ "$#" -ne 1 ]; then
