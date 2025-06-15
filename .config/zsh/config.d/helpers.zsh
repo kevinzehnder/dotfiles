@@ -17,6 +17,7 @@ function repeater() {
 
 # Helper function for sudo without password
 function check_sudo_nopass() {
+	return 0
 	sudo -n true 2> /dev/null
 	return $?
 }

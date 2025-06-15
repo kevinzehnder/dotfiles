@@ -13,12 +13,12 @@ fi
 export ZVM_INIT_MODE=sourcing # vi mode for zsh
 
 # Core configuration files (order matters)
-source "$HOME/.config/zsh/config.d/plugins.zsh"     # Zi plugins
-source "$HOME/.config/zsh/config.d/options.zsh"     # ZSH options
-source "$HOME/.config/zsh/config.d/environment.zsh" # Environment variables
-source "$HOME/.config/zsh/config.d/keybindings.zsh" # Key bindings
-source "$HOME/.config/zsh/config.d/completion.zsh"  # Completion system
-source "$HOME/.config/zsh/config.d/aliases.zsh"     # Aliases
+source "$HOME/.config/zsh/config.d/core/plugins.zsh"     # Zi plugins
+source "$HOME/.config/zsh/config.d/core/options.zsh"     # ZSH options
+source "$HOME/.config/zsh/config.d/core/environment.zsh" # Environment variables
+source "$HOME/.config/zsh/config.d/core/keybindings.zsh" # Key bindings
+source "$HOME/.config/zsh/config.d/core/completion.zsh"  # Completion system
+source "$HOME/.config/zsh/config.d/core/aliases.zsh"     # Aliases
 
 # NVM configuration
 export NVM_DIR="$HOME/.nvm"
