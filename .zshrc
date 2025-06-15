@@ -4,10 +4,12 @@ ARCH=$(uname -m)
 # Initialize starship prompt
 eval "$(starship init zsh)"
 
-# Initialize zi plugin manager
-if [[ -r "${XDG_CONFIG_HOME:-${HOME}/.config}/zi/init.zsh" ]]; then
-	source "${XDG_CONFIG_HOME:-${HOME}/.config}/zi/init.zsh" && zzinit
-fi
+# initialize zinit plugin manager
+ZINIT_HOME="${XDG_DATA_HOME:-${HOME}/.local/share}/zinit/zinit.git"
+[ ! -d $ZINIT_HOME ] && mkdir -p "$(dirname $ZINIT_HOME)"
+[ ! -d $ZINIT_HOME/.git ] && git clone https://github.com/zdharma-continuum/zinit.git "$ZINIT_HOME"
+source "${ZINIT_HOME}/zinit.zsh"
+
 
 # ZSH vi mode
 export ZVM_INIT_MODE=sourcing # vi mode for zsh
