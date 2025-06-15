@@ -27,7 +27,6 @@ function colorschemeswitcher() {
 	fi
 }
 
-
 function change_zellij_theme() {
 	if [ "$#" -ne 1 ]; then
 		echo "Usage: change_zellij_theme <new-theme>"
@@ -85,3 +84,5 @@ else
 		dark
 	fi
 fi
+
+eval $(dircolors ${HOME}/.dircolors)
