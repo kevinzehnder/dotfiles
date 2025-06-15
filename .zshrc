@@ -39,3 +39,6 @@ if [[ -f "$HOST_CONFIG" ]]; then
     source "$HOST_CONFIG"
 fi
 
+# Load Atuin last
+source "$HOME/.config/zsh/config.d/core/atuin_init.zsh"
+
