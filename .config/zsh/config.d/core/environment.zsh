@@ -14,7 +14,7 @@ export PATH=$PATH:$HOME/.go/bin
 export GOPATH=$HOME/.go
 
 # FZF settings
-export FZF_DEFAULT_COMMAND='fd --type file --follow --exclude .git'
+export FZF_DEFAULT_COMMAND='fd --type file --follow --exclude .git --color always'
 export FZF_PREVIEW_COMMAND='bat --style=numbers,changes --wrap never --color always {} || cat {} || tree -C {}'
 
 export FZF_DEFAULT_OPTS="
@@ -55,4 +55,3 @@ export FZF_COMMON_OPTIONS="
 
 # Navi settings
 export NAVI_FZF_OVERRIDES='--with-nth 3,2,1 --height 70%'
-

@@ -58,6 +58,9 @@ if [[ "$ARCH" == "x86_64" ]]; then
 			atpull"%atclone"
 		zinit load neovim/neovim
 	fi
+
+	zinit ice as"command" from"gh-r" bpick"atuin-*.tar.gz" mv"atuin*/atuin -> atuin"
+	zinit light atuinsh/atuin
 fi
 
 # direnv

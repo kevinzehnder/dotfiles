@@ -23,10 +23,15 @@ function fs() {
 
 # Find files and edit them
 function fe() {
+	local toggle_file="/tmp/fe_hidden_toggle_$"
+	trap "rm -f $toggle_file" EXIT
+
 	local files=($(fzf -m --ansi \
-		--bind "ctrl-h:execute-silent([ -z $HIDDEN ] && export HIDDEN=1 || unset HIDDEN)+reload:fd --type f --color=always $([ -n $HIDDEN ] && echo '--hidden')" \
+		--bind "ctrl-h:execute-silent([ -f $toggle_file ] && rm $toggle_file || touch $toggle_file)+reload:fd --type f --color=always \$([ -f $toggle_file ] && echo '--hidden') {q}" \
 		--preview 'bat --style=numbers --color=always {}' \
-		--header "CTRL-H: enable hidden files | ENTER: open in $EDITOR" \
+		--header "CTRL-H: toggle hidden files | ENTER: open in $EDITOR" \
 		< <(fd --type f --color=always)))
+
+	rm -f "$toggle_file"
 	[[ ${#files[@]} -gt 0 ]] && ${EDITOR:-vim} "${files[@]}"
 }

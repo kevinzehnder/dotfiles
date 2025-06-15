@@ -3,13 +3,13 @@
 #
 
 # Navigation
-bindkey "^[[1;5C" forward-word                   # Ctrl+Right
-bindkey "^[[1;5D" backward-word                  # Ctrl+Left
-bindkey "^E" end-of-line                         # Ctrl+E
-bindkey "^A" beginning-of-line                   # Ctrl+A
-bindkey '^ ' forward-word                        # Ctrl+Space
-bindkey '^[[H' beginning-of-line                 # Home
-bindkey '^[[F' end-of-line                       # End
+bindkey "^[[1;5C" forward-word   # Ctrl+Right
+bindkey "^[[1;5D" backward-word  # Ctrl+Left
+bindkey "^E" end-of-line         # Ctrl+E
+bindkey "^A" beginning-of-line   # Ctrl+A
+bindkey '^ ' forward-word        # Ctrl+Space
+bindkey '^[[H' beginning-of-line # Home
+bindkey '^[[F' end-of-line       # End
 
 # History navigation
 bindkey "^K" up-line-or-history                  # Ctrl+K
@@ -19,8 +19,12 @@ bindkey '^[[A' up-line-or-search                 # Up arrow
 bindkey '^[[B' down-line-or-search               # Down arrow
 
 # Editing
-bindkey '^[[3~' delete-char                      # Delete
+bindkey '^[[3~' delete-char # Delete
+
+zle -N fe
+bindkey "^F" fe # Find And Open Files
 
 # Load fzf keybindings if available
 [ -f "$HOME/.config/fzf/key-bindings.zsh" ] && source "$HOME/.config/fzf/key-bindings.zsh"
 [[ $- == *i* ]] && source "$HOME/.config/fzf/completion.zsh" 2> /dev/null
+

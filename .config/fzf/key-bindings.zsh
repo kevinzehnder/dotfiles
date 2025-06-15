@@ -46,12 +46,28 @@ __fsel() {
     -o -type l -print 2> /dev/null | cut -b3-"}"
   setopt localoptions pipefail no_aliases 2> /dev/null
   local item
-  eval "$cmd" | FZF_DEFAULT_OPTS="--height ${FZF_TMUX_HEIGHT:-40%} --reverse --bind=ctrl-z:ignore $FZF_DEFAULT_OPTS $FZF_CTRL_T_OPTS" $(__fzfcmd) -m "$@" | while read item; do
+  eval "$cmd" | FZF_DEFAULT_OPTS="--ansi --height ${FZF_TMUX_HEIGHT:-40%} --reverse --bind=ctrl-z:ignore $FZF_DEFAULT_OPTS $FZF_CTRL_T_OPTS" $(__fzfcmd) -m "$@" | while read item; do
     echo -n "${(q)item} "
   done
   local ret=$?
   echo
   return $ret
+}
+
+function __betterfsel() {
+	local toggle_file="/tmp/fe_hidden_toggle_$$"
+	trap "rm -f $toggle_file" EXIT
+	local item
+	fd --type f --color=always | fzf -m --ansi \
+		--bind "ctrl-h:execute-silent([ -f $toggle_file ] && rm $toggle_file || touch $toggle_file)+reload:fd --type f --color=always \$([ -f $toggle_file ] && echo '--hidden') {q}" \
+		--preview 'bat --style=numbers --color=always {}' \
+		--header "CTRL-H: toggle hidden files | ENTER: select file(s)" | while read item; do
+		echo -n "${(q)item} "
+	done
+	local ret=$?
+	echo
+	rm -f "$toggle_file"
+	return $ret
 }
 
 __fzfcmd() {
@@ -60,7 +76,7 @@ __fzfcmd() {
 }
 
 fzf-file-widget() {
-  LBUFFER="${LBUFFER}$(__fsel)"
+  LBUFFER="${LBUFFER}$(__betterfsel)"
   local ret=$?
   zle reset-prompt
   return $ret
