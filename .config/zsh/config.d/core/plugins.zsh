@@ -3,13 +3,13 @@
 #
 
 # Base plugins
-zi light chriskempson/base16-shell
-zi ice nocompile
-zi light tinted-theming/tinted-fzf
+zinit light chriskempson/base16-shell
+zinit ice nocompile
+zinit light tinted-theming/tinted-fzf
 
 # Load syntax highlighting, completions, and autosuggestions with better performance
-zi wait lucid for \
-	atinit"ZI[COMPINIT_OPTS]=-C; zicompinit; zicdreplay" \
+zinit wait lucid for \
+	atinit"ZINIT[COMPINIT_OPTS]=-C; zicompinit; zicdreplay" \
 	z-shell/F-Sy-H \
 	blockf \
 	zsh-users/zsh-completions \
@@ -20,7 +20,7 @@ zi wait lucid for \
 # Architecture-specific tools
 ARCH=$(uname -m)
 if [[ "$ARCH" == "x86_64" ]]; then
-	zi wait lucid as"program" from"gh-r" for \
+	zinit wait lucid as"program" from"gh-r" for \
 		mv"dust* -> dust" pick"dust/dust" bootandy/dust \
 		pick"duf" muesli/duf \
 		mv"delta* -> delta" pick"delta/delta" dandavison/delta \
@@ -37,7 +37,7 @@ if [[ "$ARCH" == "x86_64" ]]; then
 		pick"bin/cb" Slackadays/Clipboard \
 		zellij-org/zellij
 
-	zi wait lucid as"program" from"gh-r" for \
+	zinit wait lucid as"program" from"gh-r" for \
 		mv"choose* -> choose" pick"choose" theryangeary/choose \
 		mv"ripgrep* -> rg" pick"rg/rg" BurntSushi/ripgrep \
 		mv"bin/dog -> dog" pick"dog" ogham/dog \
@@ -47,20 +47,20 @@ if [[ "$ARCH" == "x86_64" ]]; then
 
 	# Neovim
 	if command -v fuse-overlayfs > /dev/null 2>&1 || test -e /dev/fuse; then
-		zi wait lucid as"program" from"gh-r" for \
+		zinit wait lucid as"program" from"gh-r" for \
 			ver"v0.10.3" bpick"*appimage*" mv"nvim* -> nvim" neovim/neovim
 	else
-		zi ice from"gh-r" ver"nightly" bpick"nvim-linux-x86_64.tar.gz" \
+		zinit ice from"gh-r" ver"nightly" bpick"nvim-linux-x86_64.tar.gz" \
 			pick"nvim-linux-x86_64/bin/nvim" \
 			nocompile \
 			as"program" \
 			atclone"chmod +x nvim-linux-x86_64/bin/nvim; sudo cp -vf nvim-linux-x86_64/bin/nvim /usr/local/bin/; sudo mkdir -p /usr/local/share; sudo cp -r nvim-linux-x86_64/share/nvim /usr/local/share/" \
 			atpull"%atclone"
-		zi load neovim/neovim
+		zinit load neovim/neovim
 	fi
 fi
 
 # direnv
-zi ice as"program" make'!' atclone'./direnv hook zsh > zhook.zsh' \
-	atpull'%atclone' src"zhook.zsh"
-zi light direnv/direnv
+# zinit ice as"program" make'!' atclone'./direnv hook zsh > zhook.zsh' \
+# 	atpull'%atclone' src"zhook.zsh"
+# zinit light direnv/direnv
