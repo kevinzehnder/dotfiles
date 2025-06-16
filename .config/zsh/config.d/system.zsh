@@ -51,7 +51,7 @@ function timers() {
 		| head -n -2 \
 		| awk '{print $(NF-1)}' \
 		| fzf --ansi \
-			--preview "script -qec 'sudo systemctl status {} --no-pager' /dev/null" \
+			--preview "sudo SYSTEMD_COLORS=1 systemctl status {} --no-pager" \
 			--preview-window=right:60%:wrap \
 			--header $'System Timers | CTRL-R: reload\nCTRL-L: journal | CTRL-E: edit\nCTRL-S: start | CTRL-D: stop | CTRL-T: restart' \
 			--bind "ctrl-r:reload(systemctl list-timers --all --no-pager | tail -n +2 | head -n -5 | awk '{print \$(NF-1)}')" \
@@ -98,7 +98,7 @@ function units() {
 		local logs='sudo journalctl -n 2000 -e -u {1}'
 		# local logs="sudo journalctl -n 2000 -u {1} --no-pager | bat -l syslog -p --pager='less -R +G'"
 	fi
-	local show_status="script -qec 'sudo systemctl status {1} --no-pager' /dev/null"
+	local show_status="sudo -n SYSTEMD_COLORS=1 systemctl status {1} --no-pager"
 
 	check_sudo_nopass || sudo -v
 	eval "$cmd" \
