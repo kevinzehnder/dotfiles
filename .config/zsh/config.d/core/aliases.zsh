@@ -37,7 +37,8 @@ alias zshrc='nvim ~/.zshrc'
 alias sshconf='nvim ~/.ssh/config'
 
 # Container tools
-alias d='docker'
+alias d='sudo docker'
+alias dcomp='sudo docker compose'
 alias n='sudo nerdctl'
 alias ncomp='sudo nerdctl compose'
 alias dockerkill='docker stop $(docker ps -a -q) && docker rm $(docker ps -a -q)'
