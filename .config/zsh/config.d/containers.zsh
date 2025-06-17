@@ -1,7 +1,19 @@
 function containers() {
-	local runtime="docker"
-	# Check sudo
+	# Determine container runtime
+	if [[ -n "$CONTAINER_RUNTIME" ]]; then
+		runtime="$CONTAINER_RUNTIME"
+	elif command -v docker &> /dev/null; then
+		runtime="docker"
+	elif command -v nerdctl &> /dev/null; then
+		runtime="nerdctl"
+	else
+		echo "No container runtime found (docker or nerdctl). Set CONTAINER_RUNTIME to override." >&2
+		return 1
+	fi
+
+	# check sudo
 	check_sudo_nopass || sudo -v
+
 	# Command options
 	local cmd="sudo ${runtime} ps"
 	[[ "$1" == "-a" ]] && cmd="sudo ${runtime} ps -a"
