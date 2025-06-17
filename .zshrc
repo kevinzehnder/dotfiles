@@ -24,11 +24,7 @@ source "$HOME/.config/zsh/config.d/core/aliases.zsh"     # Aliases
 # Load remaining config files
 if [ -d "$HOME/.config/zsh/config.d/" ]; then
 	for conf in "$HOME/.config/zsh/config.d/"*.zsh; do
-		# Skip already loaded core config files
-		case "${conf}" in
-			*plugins.zsh | *options.zsh | *environment.zsh | *keybindings.zsh | *completion.zsh | *aliases.zsh) continue ;;
-			*) source "${conf}" ;;
-		esac
+		source "${conf}"
 	done
 	unset conf
 fi
