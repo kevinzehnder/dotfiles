@@ -10,7 +10,6 @@ ZINIT_HOME="${XDG_DATA_HOME:-${HOME}/.local/share}/zinit/zinit.git"
 [ ! -d $ZINIT_HOME/.git ] && git clone https://github.com/zdharma-continuum/zinit.git "$ZINIT_HOME"
 source "${ZINIT_HOME}/zinit.zsh"
 
-
 # ZSH vi mode
 export ZVM_INIT_MODE=sourcing # vi mode for zsh
 
@@ -35,12 +34,13 @@ if [ -d "$HOME/.config/zsh/config.d/" ]; then
 fi
 
 # Load host-specific configuration if it exists
-HOSTNAME=$(hostname -s 2>/dev/null || uname -n)
+HOSTNAME=$(hostname -s 2> /dev/null || uname -n)
 HOST_CONFIG="$HOME/.config/zsh/config.d/hosts/${HOSTNAME}.zsh"
 if [[ -f "$HOST_CONFIG" ]]; then
-    source "$HOST_CONFIG"
+	source "$HOST_CONFIG"
 fi
 
 # Load Atuin last
+zi wait lucid light-mode as"command" from"gh-r" for \
+	bpick"atuin-*.tar.gz" mv"atuin*/atuin -> atuin" atuinsh/atuin
 source "$HOME/.config/zsh/config.d/core/atuin_init.zsh"
-
