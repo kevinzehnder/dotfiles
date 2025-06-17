@@ -41,6 +41,6 @@ if [[ -f "$HOST_CONFIG" ]]; then
 fi
 
 # Load Atuin last
-zi wait lucid light-mode as"command" from"gh-r" for \
-	bpick"atuin-*.tar.gz" mv"atuin*/atuin -> atuin" atuinsh/atuin
+zinit ice as"command" from"gh-r" bpick"atuin-*.tar.gz" mv"atuin*/atuin -> atuin"
+zinit light atuinsh/atuin
 source "$HOME/.config/zsh/config.d/core/atuin_init.zsh"
