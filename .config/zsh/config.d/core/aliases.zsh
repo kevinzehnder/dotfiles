@@ -34,6 +34,7 @@ alias cim='nvim'
 alias v='nvim' # Shorter alias for nvim
 alias neovide='nohup neovide.exe --wsl --neovim-bin $(which nvim) >/dev/null 2>&1 &'
 alias zshrc='nvim ~/.zshrc'
+alias zshconf="nvim ~/.config/zsh/config.d"
 alias sshconf='nvim ~/.ssh/config'
 
 # Container tools
