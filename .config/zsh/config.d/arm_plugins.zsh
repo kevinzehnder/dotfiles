@@ -1,3 +1,5 @@
+ARCH=$(uname -m)
+
 # ARM 64-bit specific tools
 if [[ "$ARCH" == "aarch64" || "$ARCH" == "arm64" ]]; then
 	zi wait lucid as"program" from"gh-r" for \
