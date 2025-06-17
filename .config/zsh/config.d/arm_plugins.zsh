@@ -14,7 +14,8 @@ if [[ "$ARCH" == "aarch64" || "$ARCH" == "arm64" ]]; then
 		bpick"*aarch64*" bensadeh/tailspin \
 		mv"choose* -> choose" bpick"choose-aarch64-unknown-linux-gnu" theryangeary/choose \
 		bpick"*aarch64*" mv"ripgrep* -> rg" pick"rg/rg" BurntSushi/ripgrep \
-		bpick"*linux_arm64*" junegunn/fzf
+		bpick"*linux_arm64*" junegunn/fzf \
+		mv"bat* -> bat" pick"bat/bat" @sharkdp/bat
 
 # ARM 32-bit specific tools
 elif [[ "$ARCH" == "armv7l" ]]; then
