@@ -37,6 +37,7 @@ end, { desc = "Toggle quickfix window" })
 vim.keymap.set("n", "<C-f>", "<cmd>Telescope current_buffer_fuzzy_find<CR>", { desc = "Find in Buffer" })
 vim.keymap.set("n", "<C-p>", "<cmd>Telescope find_files<CR>", { desc = "Find Files" })
 vim.keymap.set("n", "<leader>f6", "<cmd>YAMLTelescope<CR>", { desc = "Find in YAML" })
+vim.keymap.set("n", "<leader>fj", "<cmd>Telescope jsonfly<CR>", { desc = "Find in JSON" })
 
 -- Clear highlights on search when pressing <Esc> in normal mode
 vim.keymap.set("n", "<Esc>", "<cmd>nohlsearch<CR>")
