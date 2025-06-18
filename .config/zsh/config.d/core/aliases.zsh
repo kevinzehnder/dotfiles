@@ -37,6 +37,8 @@ alias zshrc='nvim ~/.zshrc'
 alias zshconf="nvim ~/.config/zsh/config.d"
 alias sshconf='nvim ~/.ssh/config'
 
+alias jsonv="vim -c 'set syntax=json' -"
+
 # Container tools
 alias d='sudo docker'
 alias dcomp='sudo docker compose'
