@@ -2,20 +2,15 @@
 # ZSH plugin management with zi
 #
 
-# Base plugins
-zinit light chriskempson/base16-shell
-zinit ice nocompile
-zinit light tinted-theming/tinted-fzf
+# Base plugins that need to be loaded first
+zinit for \
+	chriskempson/base16-shell \
+	nocompile tinted-theming/tinted-fzf
 
-# Load syntax highlighting, completions, and autosuggestions with better performance
 zinit wait lucid for \
-	atinit"ZINIT[COMPINIT_OPTS]=-C; zicompinit; zicdreplay" \
-	z-shell/F-Sy-H \
-	blockf \
-	zsh-users/zsh-completions \
-	atload"!_zsh_autosuggest_start" \
-	zsh-users/zsh-autosuggestions \
-	Aloxaf/fzf-tab
+	Aloxaf/fzf-tab \
+	zdharma-continuum/fast-syntax-highlighting \
+	zsh-users/zsh-completions
 
 # Architecture-specific tools
 ARCH=$(uname -m)
@@ -35,15 +30,14 @@ if [[ "$ARCH" == "x86_64" ]]; then
 		jesseduffield/lazygit \
 		bensadeh/tailspin \
 		pick"bin/cb" Slackadays/Clipboard \
-		zellij-org/zellij
-
-	zinit wait lucid as"program" from"gh-r" for \
+		zellij-org/zellij \
 		mv"choose* -> choose" pick"choose" theryangeary/choose \
 		mv"ripgrep* -> rg" pick"rg/rg" BurntSushi/ripgrep \
 		mv"bin/dog -> dog" pick"dog" ogham/dog \
 		pick"tldr" tldr-pages/tlrc \
 		bpick"*linux_amd64*" junegunn/fzf \
-		pick"bws" ver"bws-v1.0.0" bitwarden/sdk-sm
+		pick"bws" ver"bws-v1.0.0" bitwarden/sdk-sm \
+		bpick"atuin-*.tar.gz" mv"atuin*/atuin -> atuin" atuinsh/atuin
 
 	# Neovim
 	if command -v fuse-overlayfs > /dev/null 2>&1 || test -e /dev/fuse; then
@@ -59,11 +53,10 @@ if [[ "$ARCH" == "x86_64" ]]; then
 		zinit load neovim/neovim
 	fi
 
-	zinit ice as"command" from"gh-r" bpick"atuin-*.tar.gz" mv"atuin*/atuin -> atuin"
-	zinit light atuinsh/atuin
 fi
 
-# direnv
-# zinit ice as"program" make'!' atclone'./direnv hook zsh > zhook.zsh' \
-# 	atpull'%atclone' src"zhook.zsh"
-# zinit light direnv/direnv
+# needs to be loaded last
+zinit for \
+	atinit"ZINIT[COMPINIT_OPTS]=-C; zicompinit; zicdreplay" \
+	blockf \
+	zsh-users/zsh-autosuggestions
