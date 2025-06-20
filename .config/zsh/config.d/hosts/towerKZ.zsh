@@ -1,4 +1,3 @@
-
 zi wait lucid light-mode as"program" from"gh-r" for \
 	mv"gojq* ->gojq" pick"gojq/gojq" itchyny/gojq \
 	go-task/task \
@@ -14,6 +13,5 @@ zi wait lucid light-mode as"program" from"gh-r" for \
 	pick"jnv*/jnv" ynqa/jnv
 
 # neovim for vscode (x86_64)
-zi ice wait lucid as"program" from"gh-r" ver"nightly" bpick"*appimage*" mv"nvim* -> nvim-vscode" id-as"neovim-vscode"
-zi load neovim/neovim
-
+# zi ice wait lucid as"program" from"gh-r" ver"nightly" bpick"*appimage*" mv"nvim* -> nvim-vscode" id-as"neovim-vscode"
+# zi load neovim/neovim
