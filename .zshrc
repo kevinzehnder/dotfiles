@@ -40,3 +40,8 @@ fi
 zinit ice as"command" from"gh-r" bpick"atuin-*.tar.gz" mv"atuin*/atuin -> atuin"
 zinit light atuinsh/atuin
 source "$HOME/.config/zsh/config.d/core/atuin_init.zsh"
+
+# direnv
+if command -v direnv > /dev/null 2>&1; then
+	eval "$(direnv hook zsh)"
+fi
