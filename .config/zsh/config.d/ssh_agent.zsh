@@ -34,6 +34,6 @@ setup_ssh_agent() {
 	fi
 }
 
-if [[ -n "$WSL_DISTRO_NAME" ]]; then
-	setup_ssh_agent
+if command -v wsl2-ssh-agent &> /dev/null; then
+    eval "$(wsl2-ssh-agent)"
 fi
