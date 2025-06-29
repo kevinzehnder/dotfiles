@@ -24,7 +24,6 @@ if [[ "$ARCH" == "x86_64" ]]; then
 		eza-community/eza \
 		mv"fd* -> fdfind" pick"fdfind/fd" atclone"sudo cp fdfind/fd /usr/bin/fd" @sharkdp/fd \
 		mv"bat* -> bat" pick"bat/bat" @sharkdp/bat \
-		atclone"sudo install procs /usr/bin/procs && sudo install ~/.config/procs/procs.toml /etc/procs/procs.toml" dalance/procs \
 		denisidoro/navi \
 		pick"xh-*/xh" ducaale/xh \
 		jesseduffield/lazygit \
