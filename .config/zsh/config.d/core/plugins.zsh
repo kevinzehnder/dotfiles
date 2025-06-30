@@ -19,7 +19,6 @@ if [[ "$ARCH" == "x86_64" ]]; then
 		go-task/task \
 		pick"bin/cb" Slackadays/Clipboard \
 		bpick"atuin-*.tar.gz" mv"atuin*/atuin -> atuin" atuinsh/atuin
-
 fi
 
 # needs to be loaded last
