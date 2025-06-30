@@ -16,4 +16,3 @@ function tg() {
 	fi
 }
 
-alias tedit='vim ~/.Taskfile.yaml'

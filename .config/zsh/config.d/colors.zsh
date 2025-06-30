@@ -85,4 +85,3 @@ else
 	fi
 fi
 
-eval $(dircolors ${HOME}/.dircolors)

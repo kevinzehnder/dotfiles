@@ -49,6 +49,9 @@ alias ncomp='sudo nerdctl compose'
 alias dockerkill='docker stop $(docker ps -a -q) && docker rm $(docker ps -a -q)'
 alias ld='lazydocker'
 
+alias c='containers'
+alias ca='containers -a'
+
 # Development tools
 alias ap='ansible-playbook'
 alias lg='lazygit'

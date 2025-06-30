@@ -32,3 +32,5 @@ setopt interactive_comments # Comments even in interactive shells.
 setopt multios              # Implicit tees or cats when multiple redirections are attempted.
 setopt no_beep              # Don't beep on error.
 setopt prompt_subst         # Substitution of parameters inside the prompt each time the prompt is drawn.
+
+eval $(dircolors ${HOME}/.dircolors)
