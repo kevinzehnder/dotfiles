@@ -24,6 +24,7 @@ return {
 			html = { "prettier", stop_after_first = true },
 			yaml = { "yamlfmt", stop_after_first = true },
 			zsh = { "shfmt" },
+			sshconfig = { "ssh_config_fmt" },
 		},
 		-- Set default options
 		default_format_opts = {
@@ -33,6 +34,13 @@ return {
 		format_on_save = { timeout_ms = 500 },
 		-- Customize formatters
 		formatters = {
+			ssh_config_fmt = {
+				command = "awk",
+				args = {
+					'BEGIN{OFS=""} /^[[:space:]]*#/ {print; next} /^[[:space:]]*$/ {print; next} /^[A-Za-z]/ {print; next} {gsub(/^[[:space:]]+/, "    "); print}'
+				},
+				stdin = true,
+			},
 			shfmt = {
 				args = {
 					"-i", "0", -- Use tabs, not spaces
